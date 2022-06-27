@@ -1,11 +1,8 @@
 import React,{ useEffect, useState } from "react";
 import axios from 'axios';
 
-import {Text, View, TextInput ,TouchableOpacity,Image,FlatList} from 'react-native';
-import {styles2} from './styleSheets.js'
-
-
-
+import {Text, View, Button, TextInput, TouchableOpacity,Image,FlatList} from 'react-native';
+import {styles, styles2, btn} from './styleSheets.js'
 
 const LoginPage = props =>{
   // const [email, setEmail] = useState("");
@@ -39,17 +36,34 @@ const LoginPage = props =>{
       .catch((error) => console.log(error));
   });
   return(
+
     <View style={styles2.page}>
         <View style={styles2.topbox}>
+        
           <View>
             <Image source={require('../assets/app_ui2-13.png')} style={styles2.logo}/>
           </View>
           <View>
             <Image source={require('../assets/app_ui2-11.png')} />
           </View>
+          
         </View>
         <View style={[styles2.butbox,{alignItems: 'center'}]}>
           <Text style={{fontSize:32,color:'#f2ca30',marginTop:'20%'}}>Current Projects</Text>
+          <View>
+          
+       <Text  style={styles2.card}
+       onPress={() =>
+        props.navigation.navigate('Bearing', { name: 'Bearing' })
+      }>Bearing</Text>
+              </View>
+              <View>
+                <Text style={btn.trapezoid1}>Current Projects</Text>
+              </View>
+              <View>
+                <Text style={btn.trapezoid2}>History of Your Projects</Text>
+              </View>
+               
           <View style={{height:150,width:'100%',padding:10}}>
             <FlatList 
             data={project}
@@ -61,7 +75,8 @@ const LoginPage = props =>{
             </View>
         </View>
     </View>
-
+   
+  
   )
 
 }

@@ -5,6 +5,7 @@
 import { StyleSheet , Dimensions} from 'react-native';
 
 const win = Dimensions.get('window');
+
 const styles = StyleSheet.create({
 
 
@@ -87,7 +88,6 @@ const styles = StyleSheet.create({
 export { styles }
 
 const styles2 = StyleSheet.create({
-
     logo:{
         // height:"100%",
         width:win.width/1.7,
@@ -127,14 +127,227 @@ const styles2 = StyleSheet.create({
         // backgroundColor:"green"
     },
     butbox:{
-      backgroundColor:'red',
+      borderRadius: 50,
+      backgroundColor:'white',
       height:"100%",
       width:'80%',
       marginLeft:-82
 
-    }
+    },
+    card: {
+      fontWeight: 'bold',
+      fontSize:18,
+      marginTop: 20,
+      marginStart:35,
+      paddingStart:15,
+      width:300,  
+      height:60,   
+      textAlign: 'left',
+      lineHeight:50,
+      borderRadius: 6,
+      elevation:3,
+      backgroundColor: '#fff',
+      shadowOffset: {width: 1, height: 1},
+      shadowColor: '#333',
+      shadowOpacity: 0.3,
+      shadowRadius: 2,
+            
+    },
+    card2: {
+      fontWeight: 'bold',
+      fontSize:18,
+      marginTop: 10,
+      marginStart:1,
+      paddingStart:10,
+      width:200,  
+      height:60,   
+      textAlign: 'left',
+      lineHeight:30,
+      borderRadius: 6,
+      backgroundColor: '#fff',
+                 
+    },
 
+  
+    
 
 })
-export { styles2 }
+const btn = StyleSheet.create({
+  btn: {
+    fontWeight: 'bold',
+    padding:10,
+    textAlign: 'center',
+    fontSize:17,
+    transform: [{ rotate: '90deg'}],
+    color: '#fff',
+    marginTop:-400,
+    marginLeft: 420,
+    // borderTopLeftRadius: 50,
+    borderBottomLeftRadius: 50,
+backgroundColor: '#f2c92f',
+width: 200,
+height: 50,
+  },
+  btn2: {
+    fontWeight: 'bold',
+    padding:10,
+    textAlign: 'center',
+    fontSize:15,
+    transform: [{ rotate: '90deg'}],
+    color: '#fff',
+    marginTop:-200,
+    marginLeft: 420,
+    borderBottomRightRadius: 50,
+    // bsorderBottomRightRadius: 20,
+    backgroundColor: '#192571',
+width: 200,
+height: 50,
+  },
+  trapezoid1: {
+    marginTop: 0,
+    marginLeft: 405,
+    fontWeight: 'bold',
+    paddingTop:10,
+    textAlign: 'center',
+    fontSize:18,
+    color: '#fff',
+    transform: [{ rotate: '90deg'}],
+    width: 250,
+    height: 0,
+    borderTopWidth: 55,
+    borderTopColor: '#f2c92f',
+    borderLeftWidth: 70,
+    borderLeftColor: 'transparent',
+    borderRightWidth: 0,
+    borderRightColor: 'transparent',
+    borderStyle: 'solid'
+   },
+   trapezoid2: {
+    marginTop:180,
+    marginLeft: 405,
+    fontWeight: 'bold',
+    paddingTop:10,
+    paddingLeft:10,
+    textAlign: 'left',
+    fontSize:18,
+    color: '#fff',
+    transform: [{ rotate: '90deg'}],
+    width: 250,
+    height: 0,
+    borderTopWidth: 55,
+    borderTopColor: '#192571',
+    borderLeftWidth: 0,
+    borderLeftColor: 'transparent',
+    borderRightWidth: 70,
+    borderRightColor: 'transparent',
+    borderStyle: 'solid'
+   },
+//   btna: {
+//     fontWeight: 'bold',
+//     padding:10,
+//     textAlign: 'center',
+//     fontSize:17,
+//     transform: [{ rotate: '90deg'}],
+//     color: '#fff',
+//     marginTop:-480,
+//     marginLeft: 420,
+//     // borderTopLeftRadius: 50,
+//     borderBottomLeftRadius: 50,
+// backgroundColor: '#f2c92f',
+// width: 150,
+// height: 50,
+//   },
+  btnb: {
+    fontWeight: 'bold',
+    padding:14,
+    textAlign: 'center',
+    fontSize:17,
+    transform: [{ rotate: '90deg'}],
+    color: '#000',
+    marginTop:-330,
+    marginLeft: 420,
+    // borderTopLeftRadius: 50,
+    // borderBottomRightRadius: 50,
+backgroundColor: '#e8e4e3',
+width: 150,
+height: 70,
+  },
+  btnc: {
+    fontWeight: 'bold',
+    padding:10,
+    textAlign: 'center',
+    fontSize:17,
+    transform: [{ rotate: '90deg'}],
+    color: '#fff',
+    marginTop:-180,
+    marginLeft: 420,
+    // borderTopLeftRadius: 50,
+    borderBottomRightRadius: 50,
+backgroundColor: '#f2c92f',
+width: 150,
+height: 50,
+  },
+  btn3: {
+    padding:10,
+    marginTop:-500,
+    marginLeft: -120,
+    borderBottomLeftRadius: 50,
+    borderBottomRightRadius: 50,
+    backgroundColor: '#192571',
+width: 20,
+height: 322,
+  },
+  btn4: {
+    padding:10,
+    marginTop:-180,
+    marginLeft: -120,
+    borderTopLeftRadius:40,
+    borderTopRightRadius:40,
+    borderBottomLeftRadius: 50,
+    borderBottomRightRadius: 50,
+    // bsorderBottomRightRadius: 20,
+    backgroundColor: '#f2c92f',
+width: 20,
+height: 150,
+  },
+  trapezoida: {
+    marginTop:-480,
+    marginLeft: 400,
+    fontWeight: 'bold',
+    padding:5,
+    textAlign: 'center',
+    fontSize:17,
+    color: '#fff',
+    transform: [{ rotate: '90deg'}],
+    width: 200,
+    height: 0,
+    borderTopWidth: 60,
+    borderTopColor: '#f2c92f',
+    borderLeftWidth: 70,
+    borderLeftColor: 'transparent',
+    borderRightWidth: 0,
+    borderRightColor: 'transparent',
+    borderStyle: 'solid'
+   },
+   trapezoidb: {
+    marginTop:-155,
+    marginLeft: 400,
+    fontWeight: 'bold',
+    padding:5,
+    textAlign: 'center',
+    fontSize:17,
+    color: '#fff',
+    transform: [{ rotate: '90deg'}],
+    width: 200,
+    height: 0,
+    borderTopWidth: 60,
+    borderTopColor: '#f2c92f',
+    borderLeftWidth: 0,
+    borderLeftColor: 'transparent',
+    borderRightWidth: 70,
+    borderRightColor: 'transparent',
+    borderStyle: 'solid'
+   },
+});
+export { styles2, btn }
 
