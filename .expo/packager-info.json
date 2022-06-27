@@ -1,6 +1,10 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": null,
+  "expoServerPort": 19000,
   "packagerPort": 19000,
-  "webpackServerPort": 19006
+  "webpackServerPort": 19006,
+  "expoServerNgrokUrl": "https://84-cmf.anonymous.e-novation-front-end.exp.direct",
+  "packagerNgrokUrl": "https://84-cmf.anonymous.e-novation-front-end.exp.direct",
+  "ngrokPid": 4800,
+  "packagerPid": null
 }
