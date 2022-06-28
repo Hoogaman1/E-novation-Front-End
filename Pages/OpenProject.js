@@ -1,9 +1,31 @@
 import React,{ useEffect, useState } from "react";
 import axios from 'axios';
+import { SettingOutlined } from '@ant-design/icons';
 
+// import createAnimatedSwitchNavigator from "react-navigation-animated-switch";
+// import { Transition } from 'react-native-reanimated';
 import {Text, View, Button, TextInput, TouchableOpacity,Image,FlatList} from 'react-native';
 import {styles, styles2, btn} from './styleSheets.js'
 
+// const MySwitch = createAnimatedSwitchNavigator(
+//   {
+//     Home: HomeScreen,
+//     Other: OtherScreen,
+//   },
+//   {
+//     // The previous screen will slide to the bottom while the next screen will fade in
+//     transition: (
+//       <Transition.Together>
+//         <Transition.Out
+//           type="slide-bottom"
+//           durationMs={400}
+//           interpolation="easeIn"
+//         />
+//         <Transition.In type="fade" durationMs={500} />
+//       </Transition.Together>
+//     ),
+//   }
+// );
 const LoginPage = props =>{
   // const [email, setEmail] = useState("");
   var email = "ali@test.com";
@@ -58,7 +80,7 @@ const LoginPage = props =>{
       }>Bearing</Text>
               </View>
               <View>
-                <Text style={btn.trapezoid1}>Current Projects</Text>
+                <Text style={btn.trapezoid1}><SettingOutlined />Current Projects</Text>
               </View>
               <View>
                 <Text style={btn.trapezoid2}>History of Your Projects</Text>
