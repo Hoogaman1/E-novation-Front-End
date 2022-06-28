@@ -1,33 +1,49 @@
 import React,{ useEffect, useState } from "react";
 import axios from 'axios';
 
-import {Text, View, Button, TextInput, TouchableOpacity,Image,FlatList} from 'react-native';
+import {Text, View, Button, TextInput, TouchableOpacity,Image,FlatList, StyleSheet } from 'react-native';
 import {styles, styles2, btn} from './styleSheets.js'
 
 
 const LoginPage = props =>{
-  const DATA = [
-    {
-      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-      title: 'First Item',
-    },
-    {
-      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-      title: 'Second Item',
-    },
-    {
-      id: '58694a0f-3da1-471f-bd96-145571e29d72',
-      title: 'Third Item',
-    },
-  ];
-  const renderItem = ({ item }) => (
-    <Item title={item.title} />
-  );
-  const Item = ({ title }) => (
-    <View style={newstyle.item}>
-      <Text style={newstyle.title}>{title}</Text>
-    </View>
-  );
+  // const DATA = [
+  //   {
+  //     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+  //     title: '1- Material supply',
+  //   },
+  //   {
+  //     id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+  //     title: '2- Cutting',
+  //   },
+  //   {
+  //     id: '58694a0f-3da1-471f-bd96-145571e29d72',
+  //     title: '3- Machining',
+  //   },
+  //   {
+  //     id: '58694a0f-3da1-471f-bd96-145571e29d73',
+  //     title: '4- Heat treatment/coating/painting and plating',
+  //   },
+  //   {
+  //     id: '58694a0f-3da1-471f-bd96-145571e29d74',
+  //     title: '5- Quality control',
+  //   },
+  //   {
+  //     id: '58694a0f-3da1-471f-bd96-145571e29d75',
+  //     title: '6- Packaging',
+  //   },
+  //   {
+  //     id: '58694a0f-3da1-471f-bd96-145571e29d76',
+  //     title: '7- Ready for delivery',
+  //   },
+  // ];
+  // const renderItem = ({ item }) => (
+  //   <Item title={item.title} />
+  // );
+  // const Item = ({ title }) => (
+  //   <View >
+  //     <Text >{title}</Text>
+  //   </View>
+  // );
   
 
   // const [email, setEmail] = useState("");
@@ -77,7 +93,7 @@ const LoginPage = props =>{
         <View style={[styles2.butbox,{alignItems: 'center'}]}>
           <Text style={{fontSize:32,color:'#f2ca30',marginTop:'20%', marginLeft:-75}}>Bearing</Text>
           
-              {/* <View>
+              <View>
                  <Text  style={styles2.card2} >1- Material supply</Text>
               </View>
               
@@ -103,7 +119,7 @@ const LoginPage = props =>{
       backgroundColor: '#fff',}}>4- Heat treatment/coating/painting and plating</Text>
               </View>
               <View>
-                 <Text  style={styles2.card2}>3- Quality control</Text>
+                 <Text  style={styles2.card2}>5- Quality control</Text>
               </View>
               <View>
                  <Text  style={styles2.card2}>6- Packaging</Text>
@@ -111,7 +127,7 @@ const LoginPage = props =>{
               <View>
                  <Text  style={styles2.card2}>7- Ready for delivery</Text>
               </View>
-               */}
+              
               <View>
                 <Text style={btn.trapezoida}>Photo Album</Text>
               </View>
@@ -122,26 +138,26 @@ const LoginPage = props =>{
                 <Text style={btn.trapezoidb}>Documents</Text>
               </View>
               <View>
-                <Text style={btn.btn3}></Text>
+                <Text style={btn.btn4}></Text>
               </View>
               <View>
-                <Text style={btn.btn4}></Text>
+                <Text style={btn.btn3}></Text>
               </View>
                
           <View style={{height:150,width:'100%',padding:10}}>
-          <SafeAreaView style={styles.container}>
+     
             <FlatList 
-            data={DATA}
-            renderItem={renderItem}
-            keyExtractor={item => item.id}
-            // renderItem={({renderItem}) => (
-            //     <TouchableOpacity  style={[{backgroundColor:'blue',justifyContent:'center',alignItems:'center',flex:1,}]}  >
-            //         <Text key = {item.id}>{item.name}</Text>
-            //     </TouchableOpacity>
-            // )} 
+            // data={DATA}
+            // renderItem={renderItem}
+            // keyExtractor={item => item.id}
+            renderItem={({renderItem}) => (
+                <TouchableOpacity  style={[{backgroundColor:'blue',justifyContent:'center',alignItems:'center',flex:1,}]}  >
+                    <Text key = {item.id}>{item.name}</Text>
+                </TouchableOpacity>
+            )} 
             
             />
-            </SafeAreaView>
+            
             </View>
             
         </View>
@@ -153,21 +169,7 @@ const LoginPage = props =>{
 }
 export default LoginPage;
 
-const newstyle = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: StatusBar.currentHeight || 0,
-  },
-  item: {
-    backgroundColor: '#f9c2ff',
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
-  },
-  title: {
-    fontSize: 32,
-  },
-});
+
 // const styles = StyleSheet.create({
 
 
