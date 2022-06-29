@@ -1,11 +1,13 @@
 import React,{ useEffect, useState } from "react";
 import axios from 'axios';
-import { SettingOutlined } from '@ant-design/icons';
+import { EvilIcons  , MaterialIcons  } from '@expo/vector-icons'; 
+
 
 // import createAnimatedSwitchNavigator from "react-navigation-animated-switch";
 // import { Transition } from 'react-native-reanimated';
 import {Text, View, Button, TextInput, TouchableOpacity,Image,FlatList} from 'react-native';
 import {styles, styles2, btn} from './styleSheets.js'
+
 
 // const MySwitch = createAnimatedSwitchNavigator(
 //   {
@@ -71,21 +73,27 @@ const LoginPage = props =>{
           
         </View>
         <View style={[styles2.butbox,{alignItems: 'center'}]}>
-          <Text style={{fontSize:32,color:'#f2ca30',marginTop:'20%'}}>Current Projects</Text>
+          <Text style={{fontSize:32,color:'#f2ca30',marginTop:'20%', fontFamily:"Roboto"}}>Current Projects</Text>
+         
           <View>
-          
+          <TouchableOpacity>
        <Text  style={styles2.card}
        onPress={() =>
         props.navigation.navigate('Bearing', { name: 'Bearing' })
-      }>Bearing</Text>
+      }>Bearing</Text></TouchableOpacity>
               </View>
+           
               <View>
-                <Text style={btn.trapezoid1}><SettingOutlined />Current Projects</Text>
-              </View>
-              <View>
-                <Text style={btn.trapezoid2}>History of Your Projects</Text>
-              </View>
+              <Text style={{ marginTop: -20,marginLeft:'-0.3%',paddingLeft: '170%', zIndex: 1}}><EvilIcons  name="gear" size={32} color="white" /></Text>
+                <Text style={btn.trapezoid1}>                Current Projects</Text>
                
+              </View>
+              
+                <View>
+                <Text style={{marginTop: '-20%',paddingTop:'40%', paddingLeft: '170%', zIndex: 1}}><MaterialIcons name="history-toggle-off" size={30} color="white" /></Text>
+                <Text style={btn.trapezoid2}>              History of Your Projects</Text>
+              </View>
+              
           <View style={{height:150,width:'100%',padding:10}}>
             <FlatList 
             data={project}
@@ -100,8 +108,9 @@ const LoginPage = props =>{
    
   
   )
-
+      
 }
+
 export default LoginPage;
 
 
