@@ -2,7 +2,7 @@ import React,{ useEffect, useState } from "react";
 import axios from 'axios';
 import { MaterialCommunityIcons, Octicons,FontAwesome5, AntDesign } from '@expo/vector-icons';
 
-import {Text, View, Button, TextInput, TouchableOpacity,Image,FlatList, StyleSheet } from 'react-native';
+import {Text, View, Button, TextInput, TouchableOpacity,Image,FlatList, StyleSheet, Pressable } from 'react-native';
 import {styles, styles2, btn} from './styleSheets.js'
 
 
@@ -53,8 +53,12 @@ const LoginPage = props =>{
   const onCChange = (textValue) => setCode(textValue);
 //   const [email, setEmail] = useState('ali@test.com');
 //   const onEChange = (textValue) => setEmail(textValue);
-  const[ project , setProject ] = useState([])
-  const[list , setList] = useState([''])
+  // const[ project , setProject ] = useState([])
+  // const [isActive, setIsActive] = useState(false);
+  //   const handleClick = () => {
+  //   // 👇️ toggle
+  //   setIsActive(true);
+  // const[list , setList] = useState([''])
   useEffect(()  => {
     // props.navigation.navigate("NewPass"),
     
@@ -77,7 +81,7 @@ const LoginPage = props =>{
     .then((response) => console.log(response))
       // console.log(response)})
       .catch((error) => console.log(error));
-  });
+  }); 
   return(
 
     <View style={styles2.page}>
@@ -92,59 +96,179 @@ const LoginPage = props =>{
           
         </View>
         <View style={[styles2.butbox,{alignItems: 'center'}]}>
-          <Text style={{fontSize:32,color:'#f2ca30',marginTop:'20%', marginLeft:-75}}>Bearing</Text>
+          <Text style={{fontSize:32,color:'#f2ca30',marginTop:'20%', marginLeft:-130}}>Bearing</Text>
           
               <View>
+              <Pressable
+        children={({ pressed }) => (
+          <Text style={{ color: pressed ? '#f2c92f' : '#222',fontFamily:'Roboto',
+      fontSize:18,
+      marginTop: 20,
+      marginBottom:-2,
+      marginStart:'29%',
+      paddingStart:0,
+      width:200,  
+      height:60,   
+      textAlign: 'left',
+      lineHeight:30,
+      borderRadius: 6,
+      backgroundColor: '#fff'}}>
+            Material supply
+          </Text>
+        )}/>
                  <Text  style={styles2.icon1} ><MaterialCommunityIcons name="forklift" size={28} color="black" /></Text>
-                 <Text style={styles2.carda}> Material supply</Text>
+                 {/* <Text style={styles2.carda}> Material supply</Text> */}
               </View>
               
               <View>
+              <Pressable
+        children={({ pressed }) => (
+          <Text style={{ color: pressed ? '#f2c92f' : '#222',fontFamily:'Roboto',
+      fontSize:18,
+      marginTop: 5,
+      marginBottom:-2,
+      marginStart:'29%',
+      paddingStart:1,
+      width:200,  
+      height:60,   
+      textAlign: 'left',
+      lineHeight:30,
+      borderRadius: 6,
+      backgroundColor: '#fff'}}>
+            Cutting
+          </Text>
+        )}/>
                  <Text  style={styles2.icon2}><MaterialCommunityIcons name="scissors-cutting" size={24} color="black" /> </Text>
-                 <Text style={styles2.cardb}>Cutting</Text>
+                 {/* <Text style={styles2.cardb}>Cutting</Text> */}
               </View>
               <View>
+              <Pressable
+        children={({ pressed }) => (
+          <Text style={{ color: pressed ? '#f2c92f' : '#222',fontFamily:'Roboto',
+      fontSize:18,
+      marginTop: -15,
+      marginBottom:0,
+      marginStart:'29%',
+      paddingStart:1,
+      width:200,  
+      height:60,   
+      textAlign: 'left',
+      lineHeight:30,
+      borderRadius: 6,
+      backgroundColor: '#fff'}}>
+            Machining
+          </Text>
+        )}/>
                  <Text  style={styles2.icon3}><Octicons name="tools" size={22} color="black" /> </Text>
-                 <Text style={styles2.cardc}>Machining</Text>
+                 {/* <Text style={styles2.cardc}>Machining</Text> */}
               </View>
               <View>
-              <Text style={styles2.icon4}><FontAwesome5 name="paint-roller" size={24} color="black" /></Text>
-                 <Text  style={{
+              <Pressable
+        children={({ pressed }) => (
+          <Text style={{ color: pressed ? '#f2c92f' : '#222',fontFamily:'Roboto',
+      fontSize:18,
+      marginTop: -14,
+      marginBottom:-20,
+      marginStart:'29%',
+      paddingStart:1,
+      width:200,  
+      height:60,   
+      textAlign: 'left',
+      lineHeight:30,
+      borderRadius: 6,
+      backgroundColor: '#fff'}}>
+            Heat treatment/coating/
+            painting and plating
+          </Text>
+        )}/>
+              <Text style={styles2.icon4}><FontAwesome5 name="paint-roller" size={22} color="black" /></Text>
+                 {/* <Text  style={{
       fontSize:18,
       marginTop: -30,
       marginBottom:30,
-      marginStart:105,
+      marginStart:119,
       paddingStart:0,
       width:245,  
       height:60,   
       textAlign: 'left',
       lineHeight:30,
       borderRadius: 6,
-      backgroundColor: '#fff',}}> Heat treatment/coating/</Text>
-      <Text style={{
+      backgroundColor: '#fff',}}> Heat treatment/coating/</Text> */}
+      {/* <Text style={{
       fontSize:18,
       marginTop: -62,
       marginBottom:-5,
-      marginLeft:110,
+      marginLeft:124,
       paddingStart:0,
       width:245,  
       height:60,   
       textAlign: 'left',
       lineHeight:30,
       borderRadius: 6,
-      backgroundColor: '#fff',}}>painting and plating</Text>
+      backgroundColor: '#fff',}}>painting and plating</Text> */}
               </View>
               <View>
+              <Pressable
+        children={({ pressed }) => (
+          <Text style={{ color: pressed ? '#f2c92f' : '#222',fontFamily:'Roboto',
+      fontSize:18,
+      marginTop:30,
+      marginBottom:-20,
+      marginStart:'29%',
+      paddingStart:1,
+      width:200,  
+      height:60,   
+      textAlign: 'left',
+      lineHeight:30,
+      borderRadius: 6,
+      backgroundColor: '#fff'}}>
+            Quality control
+          </Text>
+        )}/>
                  <Text style={styles2.icon5}><AntDesign name="checksquare" size={20} color="black" /></Text>
-                 <Text  style={styles2.cardd}> Quality control</Text>
+                 {/* <Text  style={styles2.cardd}> Quality control</Text> */}
               </View>
               <View>
+              <Pressable
+        children={({ pressed }) => (
+          <Text style={{ color: pressed ? '#f2c92f' : '#222',fontFamily:'Roboto',
+      fontSize:18,
+      marginTop:10,
+      marginBottom:-20,
+      marginStart:'29%',
+      paddingStart:1,
+      width:200,  
+      height:60,   
+      textAlign: 'left',
+      lineHeight:30,
+      borderRadius: 6,
+      backgroundColor: '#fff'}}>
+            Packaging
+          </Text>
+        )}/>
                  <Text  style={styles2.icon6}><Octicons name="package-dependencies" size={21} color="black" /> </Text>
-                 <Text style={styles2.carde}>Packaging</Text>
+                 {/* <Text style={styles2.carde}>Packaging</Text> */}
               </View>
               <View>
+              <Pressable
+        children={({ pressed }) => (
+          <Text style={{ color: pressed ? '#f2c92f' : '#222',fontFamily:'Roboto',
+      fontSize:18,
+      marginTop:10,
+      marginBottom:-20,
+      marginStart:'29%',
+      paddingStart:1,
+      width:200,  
+      height:60,   
+      textAlign: 'left',
+      lineHeight:30,
+      borderRadius: 6,
+      backgroundColor: '#fff'}}>
+            Ready for delivery
+          </Text>
+        )}/>
                  <Text  style={styles2.icon7}><MaterialCommunityIcons name="truck-delivery" size={26} color="black" /> </Text>
-                 <Text style={styles2.cardf}>Ready for delivery</Text>
+                 {/* <Text style={styles2.cardf}>Ready for delivery</Text> */}
               </View>
               
               <View>
@@ -156,13 +280,14 @@ const LoginPage = props =>{
               <View>
                 <Text style={btn.trapezoidb}>Documents</Text>
               </View>
-              <View>
-                <Text style={btn.btn4}></Text>
+              <TouchableOpacity>
+              <View > 
+              <Text style={btn.btn4}></Text>
               </View>
               <View>
                 <Text style={btn.btn3}></Text>
               </View>
-               
+              </TouchableOpacity>
           <View style={{height:150,width:'100%',padding:10}}>
      
             <FlatList 
@@ -191,7 +316,12 @@ export default LoginPage;
 
 // const styles = StyleSheet.create({
 
-
+ {/* <Button style={{
+          backgroundColor: isActive ? 'yellow' : 'yellow',
+          color: isActive ? 'yellow' : 'yellow',
+        }} onPress={() =>
+          {handleClick}
+      } title="Press Me"></Button> */}
 //   page:{
 //     alignItems: 'center',
 //     backgroundColor: 'yellow',
