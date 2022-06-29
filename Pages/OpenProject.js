@@ -73,7 +73,7 @@ const LoginPage = props =>{
           
         </View>
         <View style={[styles2.butbox,{alignItems: 'center'}]}>
-          <Text style={{fontSize:32,color:'#f2ca30',marginTop:'20%', fontFamily:"Roboto"}}>Current Projects</Text>
+          <Text style={{fontSize:32,color:'#f2ca30',marginTop:'20%',marginLeft:'-2%', fontFamily:"Roboto"}}>Current Projects</Text>
          
           <View>
           <TouchableOpacity>
@@ -84,13 +84,13 @@ const LoginPage = props =>{
               </View>
            
               <View>
-              <Text style={{ marginTop: -20,marginLeft:'-0.3%',paddingLeft: '170%', zIndex: 1}}><EvilIcons  name="gear" size={32} color="white" /></Text>
+              <Text style={{ marginTop: -20,marginLeft:'8%',paddingLeft: '170%', zIndex: 1}}><EvilIcons  name="gear" size={32} color="white" /></Text>
                 <Text style={btn.trapezoid1}>                Current Projects</Text>
                
               </View>
               
                 <View>
-                <Text style={{marginTop: '-20%',paddingTop:'40%', paddingLeft: '170%', zIndex: 1}}><MaterialIcons name="history-toggle-off" size={30} color="white" /></Text>
+                <Text style={{marginTop: '-20%',paddingTop:'40%',marginLeft:'8%', paddingLeft: '170%', zIndex: 1}}><MaterialIcons name="history-toggle-off" size={30} color="white" /></Text>
                 <Text style={btn.trapezoid2}>              History of Your Projects</Text>
               </View>
               
