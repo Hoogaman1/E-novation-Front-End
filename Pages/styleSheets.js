@@ -262,6 +262,27 @@ height:"70%",
       backgroundColor: '#fff',
                  
     },
+    cardg: {
+      padding:15,
+      color:"gray",
+      fontFamily:'Roboto',
+      fontSize:18,
+      marginTop: 20,
+      marginStart:35,
+      paddingStart:11,
+      width:330,  
+      height:110,   
+      textAlign: 'left',
+      lineHeight:66,
+      borderRadius: 6,
+      elevation:3,
+      backgroundColor: '#fff',
+      shadowOffset: {width: 1, height: 1},
+      shadowColor: '#333',
+      shadowOpacity: 0.3,
+      shadowRadius: 2,
+            
+    },
     
     icon1: {
       marginTop: '10%',

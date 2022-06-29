@@ -12,6 +12,7 @@ import Verification from './Pages/Verification'
 import NewPass from './Pages/NewPass'
 import OpenProject from './Pages/OpenProject'
 import Bearing from './Pages/Bearing'
+import History from './Pages/History'
 // const getFonts = () => {
 //   return Font.loadAsync({
 //     Calibri: require("./assets/fonts/calibri.ttf"),
@@ -55,6 +56,7 @@ export default function App() {
     // screenOptions={{gestureEnabled:true, gestsureDirection: 'horizontal', transitionSpec:{open: config, close: config}}}
     
         >
+      <Stack.Screen name="History" component={History} options={{ headerShown: false }}/>      
       <Stack.Screen name="OpenProject" component={OpenProject} options={{  headerShown: false,  }} />
       <Stack.Screen name="Bearing" component={Bearing} options={{ headerShown: false }}/>      
       <Stack.Screen name="LoginPage" component={LoginPage} />
