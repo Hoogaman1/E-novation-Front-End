@@ -10,6 +10,8 @@ const styles = StyleSheet.create({
 
 
     page:{
+      fontFamily:'Roboto',
+
       alignItems: 'center',
       backgroundColor: '#f2ca30',
       justifyContent: 'center',
@@ -21,6 +23,8 @@ const styles = StyleSheet.create({
       flex: 1
     },
     fields: {
+      fontFamily:'Roboto',
+
         height: 35,
         width: '90.8%',
         padding:10,
@@ -31,10 +35,14 @@ const styles = StyleSheet.create({
         marginLeft:10,
     },
     text:{
+      fontFamily:'Roboto',
+
         marginTop:-9,
         marginBottom:-5,
     },
     Button : {
+      fontFamily:'Roboto',
+
         // justifyContent:'center',
         // alignItems:'center',
         // borderColor:'#fff',
@@ -52,6 +60,8 @@ const styles = StyleSheet.create({
         // flex:0,
     },
     box: {
+      fontFamily:'Roboto',
+
       marginTop: '42%',
       height: '45%',
       width: '65%',
@@ -59,6 +69,8 @@ const styles = StyleSheet.create({
       // backgroundColor:"green"
   },
   ButtonText:{
+    fontFamily:'Roboto',
+
     color:'white',
     // width:"100%"
     // fontSize:12,
@@ -67,6 +79,8 @@ const styles = StyleSheet.create({
     marginLeft:10,
   },
   butbox:{
+    fontFamily:'Roboto',
+
     justifyContent:'space-between',
   
     // marginTop: '10%',
@@ -78,6 +92,8 @@ const styles = StyleSheet.create({
     // flexDirection: 'column',
   },
   logo:{
+    fontFamily:'Roboto',
+
     width:'100%', 
     height:100,
     marginRight:30 , 
@@ -89,7 +105,9 @@ export { styles }
 
 const styles2 = StyleSheet.create({
     logo:{
-        // height:"100%",
+      
+height:"70%",
+// width:50,
         width:win.width/1.7,
         // marginRight:30 , 
         // marginBottom:20 ,
@@ -97,9 +115,11 @@ const styles2 = StyleSheet.create({
         // marginLeft:30 ,
         // backgroundColor:'blue',
         resizeMode:'cover',
-        flex:1
+       
        },
     page:{
+      fontFamily:'Roboto',
+
         // alignItems: 'center',
         backgroundColor: '#fff',
         justifyContent: 'center',
@@ -108,9 +128,11 @@ const styles2 = StyleSheet.create({
         flexDirection: 'column',
         flexDirection: 'row',
         flexWrap: 'wrap',
-        flex: 1
+        flex: 1,
       },
     topbox:{
+      fontFamily:'Roboto',
+
         alignItems: 'center',
         // justifyContent: 'flex-end',
         // flexDirection: 'column',
@@ -127,6 +149,8 @@ const styles2 = StyleSheet.create({
         // backgroundColor:"green"
     },
     butbox:{
+      fontFamily:'Roboto',
+
       borderRadius: 50,
       backgroundColor:'white',
       height:"100%",
@@ -135,7 +159,8 @@ const styles2 = StyleSheet.create({
 
     },
     card: {
-      fontWeight: 'bold',
+      
+      fontFamily:'Roboto',
       fontSize:18,
       marginTop: 20,
       marginStart:35,
@@ -153,12 +178,12 @@ const styles2 = StyleSheet.create({
       shadowRadius: 2,
             
     },
-    card2: {
-      fontWeight: 'bold',
+    carda: {
+      fontFamily:'Roboto',
       fontSize:18,
-      marginTop: 10,
-      marginStart:1,
-      paddingStart:10,
+      marginTop: -27,
+      marginStart:'16%',
+      paddingStart:1,
       width:200,  
       height:60,   
       textAlign: 'left',
@@ -167,6 +192,106 @@ const styles2 = StyleSheet.create({
       backgroundColor: '#fff',
                  
     },
+    cardb: {
+      fontFamily:'Roboto',
+      fontSize:18,
+      marginTop: -27,
+      marginStart:'19%',
+      paddingStart:1,
+      width:200,  
+      height:60,   
+      textAlign: 'left',
+      lineHeight:30,
+      borderRadius: 6,
+      backgroundColor: '#fff',
+                 
+    },
+    cardc: {
+      fontFamily:'Roboto',
+      fontSize:18,
+      marginTop: -27,
+      marginStart:'19%',
+      paddingStart:1,
+      width:200,  
+      height:60,   
+      textAlign: 'left',
+      lineHeight:30,
+      borderRadius: 6,
+      backgroundColor: '#fff',
+                 
+    },
+    cardd: {
+      fontFamily:'Roboto',
+      fontSize:18,
+      marginTop: -27,
+      marginStart:'17%',
+      paddingStart:1,
+      width:200,  
+      height:60,   
+      textAlign: 'left',
+      lineHeight:30,
+      borderRadius: 6,
+      backgroundColor: '#fff',
+                 
+    },
+    carde: {
+      fontFamily:'Roboto',
+      fontSize:18,
+      marginTop: -27,
+      marginStart:'20%',
+      paddingStart:1,
+      width:200,  
+      height:60,   
+      textAlign: 'left',
+      lineHeight:30,
+      borderRadius: 6,
+      backgroundColor: '#fff',
+                 
+    },
+    cardf: {
+      fontFamily:'Roboto',
+      fontSize:18,
+      marginTop: -27,
+      marginStart:'20%',
+      paddingStart:1,
+      width:200,  
+      height:60,   
+      textAlign: 'left',
+      lineHeight:30,
+      borderRadius: 6,
+      backgroundColor: '#fff',
+                 
+    },
+    
+    icon1: {
+      marginTop: '10%',
+      marginLeft:'9%',               
+    },
+    icon2: {
+      marginTop: '0%',
+      marginLeft:'11%',               
+    },
+    icon3: {
+      marginTop: '0%',
+      marginLeft:'11%',              
+    },
+    icon4: {
+      marginTop: '0%',
+      marginLeft:'25%',               
+    },
+    icon5: {
+      marginTop: '0%',
+      marginLeft:'10%',                
+    },
+    icon6: {
+      marginTop: '0%',
+      marginLeft:'11%',                
+    },
+    icon7: {
+      marginTop: '0%',
+      marginLeft:'11%', 
+    },
+
 
   
     
@@ -174,6 +299,8 @@ const styles2 = StyleSheet.create({
 })
 const btn = StyleSheet.create({
   btn: {
+    fontFamily:'Roboto',
+
     fontWeight: 'bold',
     padding:10,
     textAlign: 'center',
@@ -189,6 +316,8 @@ width: 200,
 height: 50,
   },
   btn2: {
+    fontFamily:'Roboto',
+
     fontWeight: 'bold',
     padding:10,
     textAlign: 'center',
@@ -203,13 +332,15 @@ height: 50,
 width: 200,
 height: 50,
   },
-  trapezoid1: {
-    marginTop: '0%',
-    marginLeft: '130%',
-    fontWeight: 'bold',
-    paddingTop:10,
+    trapezoid1: {
+      fontFamily:'Roboto',
+
+      zIndex: 0,
+    marginTop: 0,
+    marginLeft: '132%',
+    paddingTop:15,
     textAlign: 'center',
-    fontSize:18,
+    fontSize:13,
     color: '#fff',
     transform: [{ rotate: '90deg'}],
     width: 250,
@@ -223,13 +354,15 @@ height: 50,
     borderStyle: 'solid',
    },
    trapezoid2: {
-    marginTop:'45%',
-    marginLeft: '130%',
-    fontWeight: 'bold',
-    paddingTop:10,
-    paddingLeft:10,
+    fontFamily:'Roboto',
+
+    zIndex: 0,
+    marginTop:'15%',
+    marginLeft: '132%',
+    paddingTop: 15,
+    paddingLeft:'1%',
     textAlign: 'left',
-    fontSize:18,
+    fontSize:13,
     color: '#fff',
     transform: [{ rotate: '90deg'}],
     width: 250,
@@ -258,22 +391,25 @@ height: 50,
 // height: 50,
 //   },
   btnb: {
-    fontWeight: 'bold',
-    paddingTop:10,
-    paddingLeft:10,
+    fontFamily:'Roboto',
+
+    paddingTop:15,
+    paddingLeft:5,
     textAlign: 'center',
-    fontSize:17,
+    fontSize:14,
     transform: [{ rotate: '90deg'}],
     color: '#000',
-    marginTop:'-89%',
-    marginLeft: '133%',
+    marginTop:'-90%',
+    marginLeft: '135%',
     // borderTopLeftRadius: 50,
     // borderBottomRightRadius: 50,
 backgroundColor: '#e8e4e3',
 width: 150,
-height: 60,
+height: 50,
   },
   btnc: {
+    fontFamily:'Roboto',
+
     fontWeight: 'bold',
     padding:10,
     textAlign: 'center',
@@ -289,6 +425,8 @@ width: 150,
 height: 50,
   },
   btn4: {
+    fontFamily:'Roboto',
+
     padding:10,
     marginTop:-200,
     marginLeft: -120,
@@ -302,9 +440,13 @@ width: 20,
 height: 170,
   },
   btn3: {
+    fontFamily:'Roboto',
+
     padding:10,
     marginTop:-500,
     marginLeft: -120,
+    borderTopLeftRadius:50,
+    borderTopRightRadius:50,
     borderBottomLeftRadius: 50,
     borderBottomRightRadius: 50,
     backgroundColor: '#192571',
@@ -313,17 +455,20 @@ height: 322,
   },
   
   trapezoida: {
-    marginTop:-480,
+    fontFamily:'Roboto',
+
+    marginTop:-450,
     marginLeft: '130%',
-    fontWeight: 'bold',
-    padding:5,
+    paddingLeft:'20%',
+    paddingTop:17,
+    paddingRight:'10%',
     textAlign: 'center',
-    fontSize:17,
+    fontSize:14,
     color: '#fff',
     transform: [{ rotate: '90deg'}],
     width: 200,
     height: 0,
-    borderTopWidth: 60,
+    borderTopWidth: 50,
     borderTopColor: '#f2c92f',
     borderLeftWidth: 70,
     borderLeftColor: 'transparent',
@@ -333,17 +478,19 @@ height: 322,
     borderBottomStartRadius:50,
    },
    trapezoidb: {
-    marginTop:'-50%',
-    marginLeft: '130%',
-    fontWeight: 'bold',
-    padding:5,
+    fontFamily:'Roboto',
+
+    marginTop:'-40%',
+    marginLeft: '130.5%',
+    paddingTop:15,
+    paddingRight:'20%',
     textAlign: 'center',
-    fontSize:17,
+    fontSize:14,
     color: '#fff',
     transform: [{ rotate: '90deg'}],
-    width: 170,
+    width: 190,
     height: 0,
-    borderTopWidth: 60,
+    borderTopWidth: 50,
     borderTopColor: '#f2c92f',
     borderLeftWidth: 0,
     borderLeftColor: 'transparent',
