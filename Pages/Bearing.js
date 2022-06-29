@@ -1,5 +1,6 @@
 import React,{ useEffect, useState } from "react";
 import axios from 'axios';
+import { MaterialCommunityIcons, Octicons,FontAwesome5, AntDesign } from '@expo/vector-icons';
 
 import {Text, View, Button, TextInput, TouchableOpacity,Image,FlatList, StyleSheet } from 'react-native';
 import {styles, styles2, btn} from './styleSheets.js'
@@ -94,38 +95,56 @@ const LoginPage = props =>{
           <Text style={{fontSize:32,color:'#f2ca30',marginTop:'20%', marginLeft:-75}}>Bearing</Text>
           
               <View>
-                 <Text  style={styles2.card2} >1- Material supply</Text>
+                 <Text  style={styles2.icon1} ><MaterialCommunityIcons name="forklift" size={28} color="black" /></Text>
+                 <Text style={styles2.carda}> Material supply</Text>
               </View>
               
               <View>
-                 <Text  style={styles2.card2}>2- Cutting</Text>
+                 <Text  style={styles2.icon2}><MaterialCommunityIcons name="scissors-cutting" size={24} color="black" /> </Text>
+                 <Text style={styles2.cardb}>Cutting</Text>
               </View>
               <View>
-                 <Text  style={styles2.card2}>3- Machining</Text>
+                 <Text  style={styles2.icon3}><Octicons name="tools" size={22} color="black" /> </Text>
+                 <Text style={styles2.cardc}>Machining</Text>
               </View>
               <View>
+              <Text style={styles2.icon4}><FontAwesome5 name="paint-roller" size={24} color="black" /></Text>
                  <Text  style={{
-      fontWeight: 'bold',
       fontSize:18,
-      marginTop: 10,
+      marginTop: -30,
       marginBottom:30,
-      marginStart:25,
-      paddingStart:20,
+      marginStart:105,
+      paddingStart:0,
       width:245,  
       height:60,   
       textAlign: 'left',
       lineHeight:30,
       borderRadius: 6,
-      backgroundColor: '#fff',}}>4- Heat treatment/coating/painting and plating</Text>
+      backgroundColor: '#fff',}}> Heat treatment/coating/</Text>
+      <Text style={{
+      fontSize:18,
+      marginTop: -62,
+      marginBottom:-5,
+      marginLeft:110,
+      paddingStart:0,
+      width:245,  
+      height:60,   
+      textAlign: 'left',
+      lineHeight:30,
+      borderRadius: 6,
+      backgroundColor: '#fff',}}>painting and plating</Text>
               </View>
               <View>
-                 <Text  style={styles2.card2}>5- Quality control</Text>
+                 <Text style={styles2.icon5}><AntDesign name="checksquare" size={20} color="black" /></Text>
+                 <Text  style={styles2.cardd}> Quality control</Text>
               </View>
               <View>
-                 <Text  style={styles2.card2}>6- Packaging</Text>
+                 <Text  style={styles2.icon6}><Octicons name="package-dependencies" size={21} color="black" /> </Text>
+                 <Text style={styles2.carde}>Packaging</Text>
               </View>
               <View>
-                 <Text  style={styles2.card2}>7- Ready for delivery</Text>
+                 <Text  style={styles2.icon7}><MaterialCommunityIcons name="truck-delivery" size={26} color="black" /> </Text>
+                 <Text style={styles2.cardf}>Ready for delivery</Text>
               </View>
               
               <View>

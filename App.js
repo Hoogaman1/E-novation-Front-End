@@ -1,8 +1,10 @@
 
-import React from 'react';
+import React,{ useState } from 'react';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import AppLoading from 'expo-app-loading';
+import * as Font from 'expo-font';
 
 import LoginPage from './Pages/Login';
 import ForgetPass from './Pages/ForgetPass';
@@ -10,7 +12,12 @@ import Verification from './Pages/Verification'
 import NewPass from './Pages/NewPass'
 import OpenProject from './Pages/OpenProject'
 import Bearing from './Pages/Bearing'
-
+// const getFonts = () => {
+//   return Font.loadAsync({
+//     Calibri: require("./assets/fonts/calibri.ttf"),
+    
+//   })
+// }
 
 const Stack = createNativeStackNavigator();
 
@@ -33,6 +40,15 @@ const Stack = createNativeStackNavigator();
 //   }
 // }
 export default function App() {
+// const [fontLoading, setFontLoading] = useState(false);
+// if (fontLoading)
+// {
+//  return <AppLoading
+//       startAsync={getFonts}
+//       onFinish= {() => setFontLoading(true)}
+//       onError={console.warn}
+//     />
+// }
   return (
     <NavigationContainer>
     <Stack.Navigator
@@ -48,4 +64,4 @@ export default function App() {
     </Stack.Navigator>
   </NavigationContainer>
   );
-}
+  }
