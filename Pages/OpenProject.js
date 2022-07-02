@@ -84,13 +84,13 @@ const LoginPage = props =>{
               </View>
            
               <View>
-              <Text style={{ marginTop: -20,marginLeft:'8%',paddingLeft: '170%', zIndex: 1}}><EvilIcons  name="gear" size={32} color="white" /></Text>
+              <Text style={{ marginTop: '-15%',marginLeft:'9%',paddingLeft: '170%', zIndex: 1}}><EvilIcons  name="gear" size={32} color="white" /></Text>
                 <Text style={btn.trapezoid1}>                Current Projects</Text>
                
               </View>
               
                 <View>
-                <Text style={{marginTop: '-20%',paddingTop:'40%',marginLeft:'8%', paddingLeft: '170%', zIndex: 1}}><MaterialIcons name="history-toggle-off" size={30} color="white" /></Text>
+                <Text style={{marginTop: '-20%',paddingTop:'40%',marginLeft:'9%', paddingLeft: '170%', zIndex: 1}}><MaterialIcons name="history-toggle-off" size={30} color="white" /></Text>
                 <Text style={btn.trapezoid2}>              History of Your Projects</Text>
               </View>
               
