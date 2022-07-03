@@ -1,81 +1,95 @@
-import React,{ useState } from "react";
-import axios from 'axios';
+import React, { useState } from "react";
+import axios from "axios";
 
-import {Text, View, TextInput ,TouchableOpacity,Image} from 'react-native';
+import { Text, View, TextInput, TouchableOpacity, Image } from "react-native";
 
-import {styles} from './styleSheets.js'
+import { styles } from "./styleSheets.js";
 
-
-
-const LoginPage = props =>{
+const LoginPage = (props) => {
   // const [email, setEmail] = useState("");
-  
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const onEChange = (textValue) => setEmail(textValue);
   const onPChange = (textValue) => setPassword(textValue);
   const isStatus = 404;
   const setSend = () => {
+    () => props.navigation.navigate("OpenProject");
     axios({
       method: "POST",
       url: "http://127.0.0.1:8000/USER/login/",
       headers: {
-          // 'Content-Type': "application/json",
-          'Authorization':  "7a5b55841e8ad94f989a789ef4d23e5809ce0c48",
-          // 'Accept': 'application/json'
+        // 'Content-Type': "application/json",
+        Authorization: "7a5b55841e8ad94f989a789ef4d23e5809ce0c48",
+        // 'Accept': 'application/json'
       },
       data: {
         email: email,
         password: password,
       },
-      
     })
       // .then((response) => console.log(response.status))
-      .then((response) => {if(response.status =="200"){
-      props.navigation.navigate("OpenProject");
-      console.log(response.status);
-      }})
-      
-      
-      .catch((error) => console.log(error));
+      .then((response) => {
+        if (response.status == "200") {
+          props.navigation.navigate("OpenProject");
+          console.log(response.status);
+        }
+      })
 
+      .catch((error) => console.log(error));
   };
-  return(
+  return (
     <View style={styles.page}>
       <View style={styles.box}>
         <View>
-            <Image source={require('../assets/app_ui2-12.png')} style={styles.logo}
-                  resizeMode= 'cover'/>
+          <Image
+            source={require("../assets/app_ui2-12.png")}
+            style={styles.logo}
+            resizeMode="cover"
+          />
         </View>
-        <View style={styles.fields}> 
-            <TextInput placeholder="Type your email address  "  style={styles.text} onChangeText={onEChange}/>
+        <View style={styles.fields}>
+          <TextInput
+            placeholder="Type your email address  "
+            style={styles.text}
+            onChangeText={onEChange}
+          />
         </View>
-        <View style={[styles.fields,{marginTop:10}]}>
-            <TextInput secureTextEntry={true} placeholder="password" style={styles.text}  onChangeText={onPChange} />
+        <View style={[styles.fields, { marginTop: 10 }]}>
+          <TextInput
+            secureTextEntry={true}
+            placeholder="password"
+            style={styles.text}
+            onChangeText={onPChange}
+          />
         </View>
         <View style={styles.butbox}>
-            <View>
-                <TouchableOpacity style={styles.Button} onPress={setSend} >
-                    <Text style={styles.ButtonText}>   Login       </Text>
-                </TouchableOpacity>
-            </View>
-            <View >
-                <TouchableOpacity style={[{backgroundColor:'transparent'}]} onPress={setSend} >
-                    <Text style={styles.ButtonText} onPress={() => props.navigation.navigate("ForgetPass")} >Forgot Password</Text>
-                </TouchableOpacity>
+          <View>
+            <TouchableOpacity style={styles.Button} onPress={setSend}>
+              <Text style={styles.ButtonText}> Login </Text>
+            </TouchableOpacity>
+          </View>
+          <View>
+            <TouchableOpacity
+              style={[{ backgroundColor: "transparent" }]}
+              onPress={setSend}
+            >
+              <Text
+                style={styles.ButtonText}
+                onPress={() => props.navigation.navigate("ForgetPass")}
+              >
+                Forgot Password
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
-        </View>
-        </View>
+      </View>
     </View>
-
-  )
-
-}
+  );
+};
 export default LoginPage;
 
-
 // const styles = StyleSheet.create({
-
 
 //   page:{
 //     alignItems: 'center',

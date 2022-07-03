@@ -13,6 +13,7 @@ import NewPass from './Pages/NewPass'
 import OpenProject from './Pages/OpenProject'
 import Bearing from './Pages/Bearing'
 import History from './Pages/History'
+import Notif from './Pages/Notif'
 // const getFonts = () => {
 //   return Font.loadAsync({
 //     Calibri: require("./assets/fonts/calibri.ttf"),
@@ -56,13 +57,14 @@ export default function App() {
     // screenOptions={{gestureEnabled:true, gestsureDirection: 'horizontal', transitionSpec:{open: config, close: config}}}
     
         >
-      <Stack.Screen name="History" component={History} options={{ headerShown: false }}/>      
       <Stack.Screen name="OpenProject" component={OpenProject} options={{  headerShown: false,  }} />
+      <Stack.Screen name="LoginPage" component={LoginPage} options={{  headerShown: false,  }}/>
+      <Stack.Screen name="Notif" component={Notif} options={{  headerShown: false,  }} />
+      <Stack.Screen name="History" component={History} options={{ headerShown: false }}/>      
+      <Stack.Screen name="NewPass" component={NewPass} options={{  headerShown: false,  }}/>
       <Stack.Screen name="Bearing" component={Bearing} options={{ headerShown: false }}/>      
-      <Stack.Screen name="LoginPage" component={LoginPage} />
-      <Stack.Screen name="ForgetPass" component={ForgetPass} />
-      <Stack.Screen name="Verification" component={Verification} />
-      <Stack.Screen name="NewPass" component={NewPass} />
+      <Stack.Screen name="ForgetPass" component={ForgetPass} options={{  headerShown: false,  }}/>
+      <Stack.Screen name="Verification" component={Verification} options={{  headerShown: false,  }}/>
     </Stack.Navigator>
   </NavigationContainer>
   );

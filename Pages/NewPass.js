@@ -1,80 +1,84 @@
-import React,{ useState } from "react";
-import axios from 'axios';
+import React, { useState } from "react";
+import axios from "axios";
 
-import {Text, View, TextInput , Image,TouchableOpacity} from 'react-native';
+import { Text, View, TextInput, Image, TouchableOpacity } from "react-native";
 
-import {styles} from './styleSheets.js'
+import { styles } from "./styleSheets.js";
 
-
-
-const NewPass = props =>{
+const NewPass = (props) => {
   // const [email, setEmail] = useState("");
-  
-  const [re_password, setRepass] = useState('');
-  const [password, setPassword] = useState('');
+
+  const [re_password, setRepass] = useState("");
+  const [password, setPassword] = useState("");
   const onEChange = (textValue) => setRepass(textValue);
   const onPChange = (textValue) => setPassword(textValue);
   var email = "ali@test.com";
   const setSend = () => {
     props.navigation.navigate("LoginPage"),
-
-    axios({
-      method: "POST",
-      url: "http://127.0.0.1:8000/USER/new_password/"+email,
-      // params:{
-      //   email:email,
-      // },
-      headers: {
+      axios({
+        method: "POST",
+        url: "http://127.0.0.1:8000/USER/new_password/" + email,
+        // params:{
+        //   email:email,
+        // },
+        headers: {
           // 'Content-Type': "application/json",
-          'Authorization':  "7a5b55841e8ad94f989a789ef4d23e5809ce0c48",
+          Authorization: "7a5b55841e8ad94f989a789ef4d23e5809ce0c48",
           // 'Accept': 'application/json'
-      },
-      data: {
-        re_new_password: re_password,
-        new_password: password,
-      },
-      
-    })
-      .then((response) => console.log(response))
-   
-      .catch((error) => console.log(error));
+        },
+        data: {
+          re_new_password: re_password,
+          new_password: password,
+        },
+      })
+        .then((response) => console.log(response))
+
+        .catch((error) => console.log(error));
   };
-  return(
+  return (
     <View style={styles.page}>
       <View style={styles.box}>
-      <View>
-            <Image source={require('../assets/app_ui2-12.png')} style={styles.logo}
-                  resizeMode= 'cover'/>
+        <View>
+          <Image
+            source={require("../assets/app_ui2-12.png")}
+            style={styles.logo}
+            resizeMode="cover"
+          />
         </View>
-        <View style={styles.fields}> 
-            <TextInput placeholder="New password  " style={styles.text} onChangeText={onEChange}/>
+        <View style={styles.fields}>
+          <TextInput
+            placeholder="New password  "
+            style={styles.text}
+            onChangeText={onEChange}
+          />
         </View>
-        <View style={[styles.fields,{marginTop:10}]}>
-            <TextInput secureTextEntry={true} placeholder="Re_password" style={styles.text} onChangeText={onPChange} />
+        <View style={[styles.fields, { marginTop: 10 }]}>
+          <TextInput
+            secureTextEntry={true}
+            placeholder="Re_password"
+            style={styles.text}
+            onChangeText={onPChange}
+          />
         </View>
         <View style={styles.butbox}>
-            <View>
-                <TouchableOpacity style={styles.Button} onPress={setSend} >
-                    <Text style={styles.ButtonText}>Accept   ...  </Text>
-                </TouchableOpacity>
-            </View>
-            {/* <View >
+          <View>
+            <TouchableOpacity style={styles.Button} onPress={setSend}>
+              <Text style={styles.ButtonText}>Accept ... </Text>
+            </TouchableOpacity>
+          </View>
+          {/* <View >
                 <TouchableOpacity style={[{backgroundColor:'transparent'}]} onPress={setSend} >
                     <Text style={[styles.ButtonText, {fontSize:12},{marginTop:15}]} onPress={() => props.navigation.navigate("ForgetPass")} >Forget Password</Text>
                 </TouchableOpacity>
         </View> */}
         </View>
-        </View>
+      </View>
     </View>
-
-  )
-
-}
+  );
+};
 export default NewPass;
 
-
 // const styles = StyleSheet.create({
-
 
 //   page:{
 //     alignItems: 'center',
