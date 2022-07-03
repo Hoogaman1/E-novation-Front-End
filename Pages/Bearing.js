@@ -2,7 +2,7 @@ import React,{ useEffect, useState } from "react";
 import axios from 'axios';
 import { MaterialCommunityIcons, Octicons,FontAwesome5, AntDesign } from '@expo/vector-icons';
 
-import {Text, View, Button, TextInput, TouchableOpacity,Image,FlatList, StyleSheet, Pressable } from 'react-native';
+import {Text, View, Button, TextInput, TouchableOpacity,Image,FlatList, StyleSheet, Pressable, Dimensions } from 'react-native';
 import {styles, styles2, btn} from './styleSheets.js'
 
 
