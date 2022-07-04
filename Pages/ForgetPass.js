@@ -1,67 +1,67 @@
-import React,{ useState } from "react";
-import axios from 'axios';
+import React, { useState } from "react";
+import axios from "axios";
 
-import {Text, View, TextInput , Image,TouchableOpacity} from 'react-native';
-import {styles} from './styleSheets.js'
+import { Text, View, TextInput, Image, TouchableOpacity } from "react-native";
+import { styles } from "./styleSheets.js";
 
-
-
-
-const LoginPage = props =>{
+const LoginPage = (props) => {
   // const [email, setEmail] = useState("");
-  
-  const [email, setEmail] = useState('');
+
+  const [email, setEmail] = useState("");
   // const [password, setPassword] = useState('');
   const onEChange = (textValue) => setEmail(textValue);
   // const onPChange = (textValue) => setPassword(textValue);
   const setSend = () => {
-    props.navigation.navigate("Verification"),
-    console.log(email);
+    props.navigation.navigate("Verification"), console.log(email);
     axios({
       method: "POST",
       url: "http://127.0.0.1:8000/USER/forget_password/",
       headers: {
-          // 'Content-Type': "application/json",
-          'Authorization':"7a5b55841e8ad94f989a789ef4d23e5809ce0c48",
-          // 'Accept': 'application/json'
+        // 'Content-Type': "application/json",
+        Authorization: "7a5b55841e8ad94f989a789ef4d23e5809ce0c48",
+        // 'Accept': 'application/json'
       },
       data: {
-        email: email
+        email: email,
       },
-      
     })
       .then((response) => console.log(response))
-   
+
       .catch((error) => console.log(error));
   };
-  return(
+  return (
     <View style={styles.page}>
       <View style={styles.box}>
         <View>
-            <Image source={require('../assets/app_ui2-12.png')} style={styles.logo}
-                  resizeMode= 'cover'/>
+          <Image
+            source={require("../assets/app_ui2-12.png")}
+            style={styles.logo}
+            resizeMode="cover"
+          />
         </View>
-        <View style={styles.fields}> 
-            <TextInput placeholder="Type your email address  " style={styles.text} onChangeText={onEChange}/>
+        <View style={styles.fields}>
+          <TextInput
+            placeholder="Type your email address  "
+            style={styles.text}
+            onChangeText={onEChange}
+          />
         </View>
         <View style={styles.butbox}>
-            <View>
-                <TouchableOpacity style={styles.Button} onPress={setSend} >
-                    <Text style={styles.ButtonText}>  Next ...  </Text>
-                </TouchableOpacity>
-            </View>
+          <View>
+            <TouchableOpacity style={[styles.Button,{flexDirection:"row"}]} onPress={setSend}>
+              <Text style={styles.ButtonText}> Next</Text>
+              <Text style={{transform: [{ rotate: "90deg" }],fontSize:20,color:"#fff"}}> ^ </Text>
+
+            </TouchableOpacity>
+          </View>
         </View>
-        </View>
+      </View>
     </View>
-
-  )
-
-}
+  );
+};
 export default LoginPage;
 
-
 // const styles = StyleSheet.create({
-
 
 //   page:{
 //     alignItems: 'center',
@@ -123,4 +123,3 @@ export default LoginPage;
 
 // }
 // });
-
