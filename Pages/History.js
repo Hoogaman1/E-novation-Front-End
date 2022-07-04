@@ -56,7 +56,7 @@ const LoginPage = (props) => {
           <Image source={require("../assets/app_ui2-11.png")} />
         </View>
       </View>
-      <View style={[styles2.butbox, { alignItems: "center" }]}>
+      <View style={[styles2.butbox2, { alignItems: "center" }]}>
         <Text
           style={{
             fontSize: 30,
@@ -172,7 +172,7 @@ const LoginPage = (props) => {
           >
             <EvilIcons name="gear" size={32} color="white" />
           </Text>
-          <Text style={btn.trapezoid1}> Current Projects</Text>
+          <Text style={[btn.trapezoid1,{marginRight:"10%"}]}> Current Projects</Text>
         </View>
 
         <View>
@@ -186,7 +186,7 @@ const LoginPage = (props) => {
           >
             <MaterialIcons name="history-toggle-off" size={30} color="white" />
           </Text>
-          <Text style={btn.trapezoid2}> History of Your Projects</Text>
+          <Text style={[btn.trapezoid2,{marginRight:"10%"}]}> History of Your Projects</Text>
         </View>
 
         <View style={{ height: 150, width: "100%", padding: 10 }}>

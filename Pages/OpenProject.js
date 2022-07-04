@@ -65,17 +65,12 @@ const LoginPage = (props) => {
       .catch((error) => console.log(error));
   });
   return (
-    <>
-      <View style={styles2.page}>
-        <View style={styles2.topbox}>
-          <Image
-            source={require("../assets/app_ui2-13.png")}
-            style={styles2.logo}
-          />
-        </View>
-        <View>
-          <Image source={require("../assets/app_ui2-11.png")} />
-        </View>
+    <View style={styles2.page}>
+      <View style={styles2.topbox}>
+        <Image
+          source={require("../assets/app_ui2-13.png")}
+          style={styles2.logo}
+        />
       </View>
       <View style={[styles2.butbox, { alignItems: "center" }]}>
         <Text
@@ -83,6 +78,7 @@ const LoginPage = (props) => {
             fontSize: 32,
             color: "#f2ca30",
             marginTop: "20%",
+            marginLeft: "-2%",
             fontFamily: "Roboto",
           }}
         >
@@ -102,11 +98,11 @@ const LoginPage = (props) => {
           </TouchableOpacity>
         </View>
 
-        <View onPress={() => props.navigation.navigate("Bearing")}>
+        <View>
           <Text
             style={{
-              marginTop: -20,
-              marginLeft: "-0.3%",
+              marginTop: "-15%",
+              marginLeft: "9%",
               paddingLeft: "170%",
               zIndex: 1,
             }}
@@ -116,11 +112,12 @@ const LoginPage = (props) => {
           <Text style={btn.trapezoid1}> Current Projects</Text>
         </View>
 
-        <View onPress={() => props.navigation.navigate("History")}>
+        <View>
           <Text
             style={{
               marginTop: "-20%",
               paddingTop: "40%",
+              marginLeft: "9%",
               paddingLeft: "170%",
               zIndex: 1,
             }}
@@ -150,7 +147,7 @@ const LoginPage = (props) => {
           />
         </View>
       </View>
-    </>
+    </View>
   );
 };
 

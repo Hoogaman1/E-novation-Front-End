@@ -3,9 +3,9 @@ import React,{ useState } from 'react';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import AppLoading from 'expo-app-loading';
-import * as Font from 'expo-font';
-
+// import AppLoading from 'expo-app-loading';
+// import * as Font from 'expo-font';
+import PhotoAlbum from './Pages/PhotoAlbum'
 import LoginPage from './Pages/Login';
 import ForgetPass from './Pages/ForgetPass';
 import Verification from './Pages/Verification'
@@ -57,14 +57,15 @@ export default function App() {
     // screenOptions={{gestureEnabled:true, gestsureDirection: 'horizontal', transitionSpec:{open: config, close: config}}}
     
         >
-      <Stack.Screen name="OpenProject" component={OpenProject} options={{  headerShown: false,  }} />
-      <Stack.Screen name="LoginPage" component={LoginPage} options={{  headerShown: false,  }}/>
-      <Stack.Screen name="Notif" component={Notif} options={{  headerShown: false,  }} />
-      <Stack.Screen name="History" component={History} options={{ headerShown: false }}/>      
-      <Stack.Screen name="NewPass" component={NewPass} options={{  headerShown: false,  }}/>
       <Stack.Screen name="Bearing" component={Bearing} options={{ headerShown: false }}/>      
-      <Stack.Screen name="ForgetPass" component={ForgetPass} options={{  headerShown: false,  }}/>
+      <Stack.Screen name="History" component={History} options={{ headerShown: false }}/>      
+      <Stack.Screen name="LoginPage" component={LoginPage} options={{  headerShown: false,  }}/>
+      <Stack.Screen name="OpenProject" component={OpenProject} options={{  headerShown: false,  }} />
+      <Stack.Screen name="PhotoAlbum" component={PhotoAlbum} options={{ headerShown: false }}/>      
       <Stack.Screen name="Verification" component={Verification} options={{  headerShown: false,  }}/>
+      <Stack.Screen name="ForgetPass" component={ForgetPass} options={{  headerShown: false,  }}/>
+      <Stack.Screen name="NewPass" component={NewPass} options={{  headerShown: false,  }}/>
+      <Stack.Screen name="Notif" component={Notif} options={{  headerShown: false,  }} />
     </Stack.Navigator>
   </NavigationContainer>
   );
