@@ -2,7 +2,7 @@ import React,{ useEffect, useState } from "react";
 import axios from 'axios';
 import { MaterialCommunityIcons, Octicons,FontAwesome5, AntDesign } from '@expo/vector-icons';
 
-import {Text, View, Button, TextInput, TouchableOpacity,Image,FlatList, StyleSheet, Pressable } from 'react-native';
+import {Text, View, Button, TextInput, TouchableOpacity,Image,FlatList, StyleSheet, Pressable, Dimensions } from 'react-native';
 import {styles, styles2, btn} from './styleSheets.js'
 
 
@@ -101,87 +101,118 @@ const LoginPage = props =>{
               <View>
               <Pressable
         children={({ pressed }) => (
-          <Text style={{ color: pressed ? '#f2c92f' : '#222',fontFamily:'Roboto',
+          <Text style={{ color: pressed ? '#fff' : '#222',
+          fontFamily:'Roboto',
       fontSize:18,
-      marginTop: 20,
-      marginBottom:-2,
-      marginStart:'29%',
-      paddingStart:0,
-      width:200,  
-      height:60,   
+      marginTop: 10,
+      marginBottom:25,
+      marginStart:'26%',
+      paddingLeft:10,
+      paddingTop:8,
+      width:270,  
+      height:50,   
       textAlign: 'left',
       lineHeight:30,
-      borderRadius: 6,
-      backgroundColor: '#fff'}}>
-            Material supply
+      borderRadius: 10,
+      backgroundColor: pressed ? '#192571' : '#fff',
+      elevation:3,
+      shadowOffset: {width: 1, height: 1},
+      shadowColor: '#333',
+      shadowOpacity: 0.3,
+      shadowRadius: 2,}}>
+          <MaterialCommunityIcons name="forklift" size={28} color="orange" /> Material supply
           </Text>
         )}/>
-                 <Text  style={styles2.icon1} ><MaterialCommunityIcons name="forklift" size={28} color="black" /></Text>
+                 <Text  style={styles2.icon1} ></Text>
                  {/* <Text style={styles2.carda}> Material supply</Text> */}
               </View>
               
               <View>
               <Pressable
         children={({ pressed }) => (
-          <Text style={{ color: pressed ? '#f2c92f' : '#222',fontFamily:'Roboto',
+          <Text style={{ color: pressed ? '#fff' : '#222',
+          fontFamily:'Roboto',
       fontSize:18,
-      marginTop: 5,
+      marginTop: -10,
       marginBottom:-2,
-      marginStart:'29%',
-      paddingStart:1,
-      width:200,  
-      height:60,   
+      marginStart:'26%',
+      paddingLeft:10,
+      paddingTop:8,
+      width:270,  
+      height:50,   
       textAlign: 'left',
       lineHeight:30,
-      borderRadius: 6,
-      backgroundColor: '#fff'}}>
-            Cutting
+      borderRadius: 10,
+      backgroundColor: pressed ? '#192571' : '#fff',
+      elevation:3,
+      shadowOffset: {width: 1, height: 1},
+      shadowColor: '#333',
+      shadowOpacity: 0.3,
+      shadowRadius: 2,}}>
+            <MaterialCommunityIcons name="scissors-cutting" size={24} color="orange" />  Cutting
           </Text>
         )}/>
-                 <Text  style={styles2.icon2}><MaterialCommunityIcons name="scissors-cutting" size={24} color="black" /> </Text>
+                 <Text  style={styles2.icon2}> </Text>
                  {/* <Text style={styles2.cardb}>Cutting</Text> */}
               </View>
               <View>
               <Pressable
         children={({ pressed }) => (
-          <Text style={{ color: pressed ? '#f2c92f' : '#222',fontFamily:'Roboto',
+          <Text style={{ color: pressed ? '#fff' : '#222',
+          fontFamily:'Roboto',
       fontSize:18,
-      marginTop: -15,
-      marginBottom:0,
-      marginStart:'29%',
-      paddingStart:1,
-      width:200,  
-      height:60,   
+      marginTop: -10,
+      marginBottom:18,
+      marginStart:'26%',
+      paddingLeft:10,
+      paddingTop:8,
+      width:270,  
+      height:50,   
       textAlign: 'left',
       lineHeight:30,
-      borderRadius: 6,
-      backgroundColor: '#fff'}}>
-            Machining
+      borderRadius: 10,
+      backgroundColor: pressed ? '#192571' : '#fff',
+      elevation:3,
+      shadowOffset: {width: 1, height: 1},
+      shadowColor: '#333',
+      shadowOpacity: 0.3,
+      shadowRadius: 2,}}>
+           <Text  style={styles2.icon3}><Octicons name="tools" size={22} color="orange" /> </Text>   Machining
           </Text>
         )}/>
-                 <Text  style={styles2.icon3}><Octicons name="tools" size={22} color="black" /> </Text>
+                 
                  {/* <Text style={styles2.cardc}>Machining</Text> */}
               </View>
               <View>
               <Pressable
         children={({ pressed }) => (
-          <Text style={{ color: pressed ? '#f2c92f' : '#222',fontFamily:'Roboto',
+
+          <Text style={{ color: pressed ? '#fff' : '#222',
+          fontFamily:'Roboto',
       fontSize:18,
-      marginTop: -14,
-      marginBottom:-20,
-      marginStart:'29%',
-      paddingStart:1,
-      width:200,  
-      height:60,   
-      textAlign: 'left',
+      marginTop: -10,
+      marginBottom:18,
+      marginStart:'26%',
+      paddingRight:15,
+      paddingLeft:0,
+      paddingTop:8,
+      paddingBottom:0,
+      width:270,  
+      height:80,   
+      textAlign: 'center',
       lineHeight:30,
-      borderRadius: 6,
-      backgroundColor: '#fff'}}>
-            Heat treatment/coating/
-            painting and plating
-          </Text>
+      borderRadius: 10,
+      backgroundColor: pressed ? '#192571' : '#fff',
+      elevation:3,
+      shadowOffset: {width: 1, height: 1},
+      shadowColor: '#333',
+      shadowOpacity: 0.3,
+      shadowRadius: 2,}}>
+                <FontAwesome5 name="paint-roller" size={22} color="orange" />   Heat treatment/coating/
+                                                                                  painting and plating</Text>
+          
         )}/>
-              <Text style={styles2.icon4}><FontAwesome5 name="paint-roller" size={22} color="black" /></Text>
+              
                  {/* <Text  style={{
       fontSize:18,
       marginTop: -30,
@@ -210,69 +241,93 @@ const LoginPage = props =>{
               <View>
               <Pressable
         children={({ pressed }) => (
-          <Text style={{ color: pressed ? '#f2c92f' : '#222',fontFamily:'Roboto',
+          <Text style={{ color: pressed ? '#fff' : '#222',
+          fontFamily:'Roboto',
       fontSize:18,
-      marginTop:30,
-      marginBottom:-20,
-      marginStart:'29%',
-      paddingStart:1,
-      width:200,  
-      height:60,   
+      marginTop: -10,
+      marginBottom:5,
+      marginStart:'26%',
+      paddingLeft:10,
+      paddingTop:8,
+      width:270,  
+      height:50,   
       textAlign: 'left',
       lineHeight:30,
-      borderRadius: 6,
-      backgroundColor: '#fff'}}>
-            Quality control
+      borderRadius: 10,
+      backgroundColor: pressed ? '#192571' : '#fff',
+      elevation:3,
+      shadowOffset: {width: 1, height: 1},
+      shadowColor: '#333',
+      shadowOpacity: 0.3,
+      shadowRadius: 2,}}>
+            <AntDesign name="checksquare" size={20} color="orange" />   Quality control
           </Text>
         )}/>
-                 <Text style={styles2.icon5}><AntDesign name="checksquare" size={20} color="black" /></Text>
+                 <Text style={styles2.icon5}></Text>
                  {/* <Text  style={styles2.cardd}> Quality control</Text> */}
               </View>
               <View>
               <Pressable
         children={({ pressed }) => (
-          <Text style={{ color: pressed ? '#f2c92f' : '#222',fontFamily:'Roboto',
+          <Text style={{ color: pressed ? '#fff' : '#222',
+          fontFamily:'Roboto',
       fontSize:18,
-      marginTop:10,
-      marginBottom:-20,
-      marginStart:'29%',
-      paddingStart:1,
-      width:200,  
-      height:60,   
+      marginTop: -12,
+      marginBottom:5,
+      marginStart:'26%',
+      paddingLeft:10,
+      paddingTop:8,
+      width:270,  
+      height:50,   
       textAlign: 'left',
       lineHeight:30,
-      borderRadius: 6,
-      backgroundColor: '#fff'}}>
-            Packaging
+      borderRadius: 10,
+      backgroundColor: pressed ? '#192571' : '#fff',
+      elevation:3,
+      shadowOffset: {width: 1, height: 1},
+      shadowColor: '#333',
+      shadowOpacity: 0.3,
+      shadowRadius: 2,}}>
+            <Octicons name="package-dependencies" size={21} color="orange" />   Packaging
           </Text>
         )}/>
-                 <Text  style={styles2.icon6}><Octicons name="package-dependencies" size={21} color="black" /> </Text>
+                 <Text  style={styles2.icon6}> </Text>
                  {/* <Text style={styles2.carde}>Packaging</Text> */}
               </View>
               <View>
               <Pressable
         children={({ pressed }) => (
-          <Text style={{ color: pressed ? '#f2c92f' : '#222',fontFamily:'Roboto',
+          <Text style={{ color: pressed ? '#fff' : '#222',
+          fontFamily:'Roboto',
       fontSize:18,
-      marginTop:10,
-      marginBottom:-20,
-      marginStart:'29%',
-      paddingStart:1,
-      width:200,  
-      height:60,   
+      marginTop: -12,
+      marginBottom:5,
+      marginStart:'26%',
+      paddingLeft:10,
+      paddingTop:8,
+      width:270,  
+      height:50,   
       textAlign: 'left',
       lineHeight:30,
-      borderRadius: 6,
-      backgroundColor: '#fff'}}>
-            Ready for delivery
+      borderRadius: 10,
+      backgroundColor: pressed ? '#192571' : '#fff',
+      elevation:3,
+      shadowOffset: {width: 1, height: 1},
+      shadowColor: '#333',
+      shadowOpacity: 0.3,
+      shadowRadius: 2,}}>
+            <MaterialCommunityIcons name="truck-delivery" size={26} color="orange" />  Ready for delivery
           </Text>
         )}/>
-                 <Text  style={styles2.icon7}><MaterialCommunityIcons name="truck-delivery" size={26} color="black" /> </Text>
+                 <Text  style={styles2.icon7}> </Text>
                  {/* <Text style={styles2.cardf}>Ready for delivery</Text> */}
               </View>
               
               <View>
-                <Text style={btn.trapezoida}>Photo Album</Text>
+                <Text style={btn.trapezoida}
+                onPress={() =>
+        props.navigation.navigate('PhotoAlbum', { name: 'PhotoAlbum' })
+      }>Photo Album</Text>
               </View>
               <View>
                 <Text style={btn.btnb}>Project Process</Text>
