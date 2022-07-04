@@ -1,13 +1,19 @@
-import React,{ useEffect, useState } from "react";
-import axios from 'axios';
-import { EvilIcons  , MaterialIcons  } from '@expo/vector-icons'; 
-
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { EvilIcons, MaterialIcons } from "@expo/vector-icons";
 
 // import createAnimatedSwitchNavigator from "react-navigation-animated-switch";
 // import { Transition } from 'react-native-reanimated';
-import {Text, View, Button, TextInput, TouchableOpacity,Image,FlatList} from 'react-native';
-import {styles, styles2, btn} from './styleSheets.js'
-
+import {
+  Text,
+  View,
+  Button,
+  TextInput,
+  TouchableOpacity,
+  Image,
+  FlatList,
+} from "react-native";
+import { styles, styles2, btn } from "./styleSheets.js";
 
 // const MySwitch = createAnimatedSwitchNavigator(
 //   {
@@ -28,17 +34,17 @@ import {styles, styles2, btn} from './styleSheets.js'
 //     ),
 //   }
 // );
-const LoginPage = props =>{
+const LoginPage = (props) => {
   // const [email, setEmail] = useState("");
   var email = "ali@test.com";
-  const [mydata, setData] = useState('');
+  const [mydata, setData] = useState("");
   const onCChange = (textValue) => setCode(textValue);
-//   const [email, setEmail] = useState('ali@test.com');
-//   const onEChange = (textValue) => setEmail(textValue);
-  const[ project , setProject ] = useState([])
-  useEffect(()  => {
+  //   const [email, setEmail] = useState('ali@test.com');
+  //   const onEChange = (textValue) => setEmail(textValue);
+  const [project, setProject] = useState([]);
+  useEffect(() => {
     // props.navigation.navigate("NewPass"),
-    
+
     axios({
       method: "get",
       url: "http://127.0.0.1:8000/USER/opproject/",
@@ -46,76 +52,108 @@ const LoginPage = props =>{
       //   email:email,
       // },
       headers: {
-          // 'Content-Type': "application/json",
-          'Authorization':  "Token 7a5b55841e8ad94f989a789ef4d23e5809ce0c48",
-          // 'Accept': 'application/json'
+        // 'Content-Type': "application/json",
+        Authorization: "Token 7a5b55841e8ad94f989a789ef4d23e5809ce0c48",
+        // 'Accept': 'application/json'
       },
       data: {
         // verification_code: code,
       },
-      
     })
-    .then((response) => console.log(response))
+      .then((response) => console.log(response))
       // console.log(response)})
       .catch((error) => console.log(error));
   });
-  return(
-
+  return (
     <View style={styles2.page}>
-        <View style={styles2.topbox}>
-        
-          <View>
-            <Image source={require('../assets/app_ui2-13.png')} style={styles2.logo}/>
-          </View>
-          <View>
-            <Image source={require('../assets/app_ui2-11.png')} />
-          </View>
-          
-        </View>
-        <View style={[styles2.butbox,{alignItems: 'center'}]}>
-          <Text style={{fontSize:32,color:'#f2ca30',marginTop:'20%',marginLeft:'-2%', fontFamily:"Roboto"}}>Current Projects</Text>
-         
-          <View>
+      <View style={styles2.topbox}>
+        <Image
+          source={require("../assets/app_ui2-13.png")}
+          style={styles2.logo}
+        />
+      </View>
+      <View style={[styles2.butbox, { alignItems: "center" }]}>
+        <Text
+          style={{
+            fontSize: 32,
+            color: "#f2ca30",
+            marginTop: "20%",
+            marginLeft: "-2%",
+            fontFamily: "Roboto",
+          }}
+        >
+          Current Projects
+        </Text>
+
+        <View>
           <TouchableOpacity>
-       <Text  style={styles2.card}
-       onPress={() =>
-        props.navigation.navigate('Bearing', { name: 'Bearing' })
-      }>Bearing</Text></TouchableOpacity>
-              </View>
-           
-              <View>
-              <Text style={{ marginTop: '-15%',marginLeft:'9%',paddingLeft: '170%', zIndex: 1}}><EvilIcons  name="gear" size={32} color="white" /></Text>
-                <Text style={btn.trapezoid1}>                Current Projects</Text>
-               
-              </View>
-              
-                <View>
-                <Text style={{marginTop: '-20%',paddingTop:'40%',marginLeft:'9%', paddingLeft: '170%', zIndex: 1}}><MaterialIcons name="history-toggle-off" size={30} color="white" /></Text>
-                <Text style={btn.trapezoid2}>              History of Your Projects</Text>
-              </View>
-              
-          <View style={{height:150,width:'100%',padding:10}}>
-            <FlatList 
-            data={project}
-            renderItem={({item}) => (
-                <TouchableOpacity  style={[{backgroundColor:'blue',justifyContent:'center',alignItems:'center',flex:1,}]}  >
-                    <Text key = {item.id}>{item.name}</Text>
-                </TouchableOpacity>
-            )} />
-            </View>
+            <Text
+              style={styles2.card}
+              onPress={() =>
+                props.navigation.navigate("Bearing", { name: "Bearing" })
+              }
+            >
+              Bearing
+            </Text>
+          </TouchableOpacity>
         </View>
+
+        <View>
+          <Text
+            style={{
+              marginTop: "-15%",
+              marginLeft: "9%",
+              paddingLeft: "170%",
+              zIndex: 1,
+            }}
+          >
+            <EvilIcons name="gear" size={32} color="white" />
+          </Text>
+          <Text style={btn.trapezoid1}> Current Projects</Text>
+        </View>
+
+        <View>
+          <Text
+            style={{
+              marginTop: "-20%",
+              paddingTop: "40%",
+              marginLeft: "9%",
+              paddingLeft: "170%",
+              zIndex: 1,
+            }}
+          >
+            <MaterialIcons name="history-toggle-off" size={30} color="white" />
+          </Text>
+          <Text style={btn.trapezoid2}> History of Your Projects</Text>
+        </View>
+
+        <View style={{ height: 150, width: "100%", padding: 10 }}>
+          <FlatList
+            data={project}
+            renderItem={({ item }) => (
+              <TouchableOpacity
+                style={[
+                  {
+                    backgroundColor: "blue",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    flex: 1,
+                  },
+                ]}
+              >
+                <Text key={item.id}>{item.name}</Text>
+              </TouchableOpacity>
+            )}
+          />
+        </View>
+      </View>
     </View>
-   
-  
-  )
-      
-}
+  );
+};
 
 export default LoginPage;
 
-
 // const styles = StyleSheet.create({
-
 
 //   page:{
 //     alignItems: 'center',
@@ -177,4 +215,3 @@ export default LoginPage;
 
 // }
 // });
-
