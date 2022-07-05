@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 import { Text, View, TextInput, Image, TouchableOpacity } from "react-native";
 
@@ -52,7 +53,7 @@ const NewPass = (props) => {
             onChangeText={onEChange}
           />
         </View>
-        <View style={[styles.fields, { marginTop: 10 }]}>
+        <View style={[styles.fields, { marginTop:hp('1%') }]}>
           <TextInput
             secureTextEntry={true}
             placeholder="Re_password"
@@ -64,7 +65,7 @@ const NewPass = (props) => {
           <View>
             <TouchableOpacity style={[styles.Button,{flexDirection:'row'}]} onPress={setSend}>
               <Text style={styles.ButtonText}>Accept</Text>
-              <Text style={{transform: [{ rotate: "90deg" }],fontSize:20,color:"#fff"}}> ^ </Text>
+              {/* <Text style={{transform: [{ rotate: "90deg" }],fontSize:20,color:"#fff"}}> ^ </Text> */}
 
             </TouchableOpacity>
           </View>

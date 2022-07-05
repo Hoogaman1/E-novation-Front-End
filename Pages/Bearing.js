@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+
 import {
   MaterialCommunityIcons,
   Octicons,
@@ -109,122 +111,37 @@ const LoginPage = (props) => {
         </View>
       </View>
       <View style={[styles2.butbox, { alignItems: "center" }]}>
-        {/* <Text
-          style={{
-            fontSize: 32,
-            color: "#f2ca30",
-            marginTop: "20%",
-            marginLeft: -75,
-          }}
-        >
-          Bearing
-        </Text> */}
-
-        {/* <View>
-          <Text style={styles2.icon1}>
-            <MaterialCommunityIcons name="forklift" size={28} color="black" />
-          </Text>
-          <Text style={styles2.carda}> Material supply</Text>
-        </View>
-
-        <View>
-          <Text style={styles2.icon2}>
-            <MaterialCommunityIcons
-              name="scissors-cutting"
-              size={24}
-              color="black"
-            />{" "}
-          </Text>
-          <Text style={styles2.cardb}>Cutting</Text>
-        </View>
-        <View>
-          <Text style={styles2.icon3}>
-            <Octicons name="tools" size={22} color="black" />{" "}
-          </Text>
-          <Text style={styles2.cardc}>Machining</Text>
-        </View>
-        <View>
-          <Text style={styles2.icon4}>
-            <FontAwesome5 name="paint-roller" size={24} color="black" />
-          </Text>
-          <Text
-            style={{
-              fontSize: 18,
-              marginTop: -30,
-              marginBottom: 30,
-              marginStart: 105,
-              paddingStart: 0,
-              width: 245,
-              height: 60,
-              textAlign: "left",
-              lineHeight: 30,
-              borderRadius: 6,
-              backgroundColor: "#fff",
-            }}
-          >
-            {" "}
-            Heat treatment/coating/
-          </Text>
-          <Text
-            style={{
-              fontSize: 18,
-              marginTop: -62,
-              marginBottom: -5,
-              marginLeft: 110,
-              paddingStart: 0,
-              width: 245,
-              height: 60,
-              textAlign: "left",
-              lineHeight: 30,
-              borderRadius: 6,
-              backgroundColor: "#fff",
-            }}
-          >
-            painting and plating
-          </Text>
-        </View>
-        <View>
-          <Text style={styles2.icon5}>
-            <AntDesign name="checksquare" size={20} color="black" />
-          </Text>
-          <Text style={styles2.cardd}> Quality control</Text>
-        </View>
-        <View>
-          <Text style={styles2.icon6}>
-            <Octicons name="package-dependencies" size={21} color="black" />{" "}
-          </Text>
-          <Text style={styles2.carde}>Packaging</Text>
-        </View> */}
         <View style={[styles2.butbox, { alignItems: "center" }]}>
           <Text
             style={{
-              fontSize: 32,
+              fontSize: hp('5%'),
               color: "#f2ca30",
-              marginTop: "20%",
-              marginLeft: -130,
+              marginTop: hp("4%"),
+              marginLeft: wp('18%'),
+              marginBottom: hp('3%'),
             }}
           >
             Bearing
           </Text>
 
-          <View>
+          <View style={{marginLeft:70}}>
             <Pressable
               children={({ pressed }) => (
                 <Text
                   style={{
                     color: pressed ? "#fff" : "#222",
                     fontFamily: "Roboto",
-                    fontSize: 18,
-                    marginTop: 10,
-                    marginBottom: 25,
-                    marginStart: "26%",
+                    fontSize: hp("3%"),
+                    marginTop: hp("2%"),
+                    marginBottom: 10,
+                    marginStart: wp("12%"),
                     paddingLeft: 10,
-                    paddingTop: 8,
-                    width: 270,
-                    height: 50,
+                    paddingTop: hp('3%'),
+                    width: wp('70%'),
+                    height: hp('8%'),
                     textAlign: "left",
                     lineHeight: 30,
-                    borderRadius: 10,
+                    borderRadius: hp('1%'),
                     backgroundColor: pressed ? "#192571" : "#fff",
                     elevation: 3,
                     shadowOffset: { width: 1, height: 1 },
@@ -233,11 +150,16 @@ const LoginPage = (props) => {
                     shadowRadius: 2,
                   }}
                 >
+                  {/* <View style={{paddingTop: hp('1%'),backgroundColor:'red'}}> */}
                   <MaterialCommunityIcons
+                    
                     name="forklift"
-                    size={28}
+                    size={hp('4%')}
                     color="orange"
-                  />{" "}
+                    paddingTop={hp("5%")}
+                  />
+                  {/* </View> */}
+                  {" "}
                   Material supply
                 </Text>
               )}
@@ -354,30 +276,7 @@ const LoginPage = (props) => {
               )}
             />
 
-            {/* <Text  style={{
-      fontSize:18,
-      marginTop: -30,
-      marginBottom:30,
-      marginStart:119,
-      paddingStart:0,
-      width:245,  
-      height:60,   
-      textAlign: 'left',
-      lineHeight:30,
-      borderRadius: 6,
-      backgroundColor: '#fff',}}> Heat treatment/coating/</Text> */}
-            {/* <Text style={{
-      fontSize:18,
-      marginTop: -62,
-      marginBottom:-5,
-      marginLeft:124,
-      paddingStart:0,
-      width:245,  
-      height:60,   
-      textAlign: 'left',
-      lineHeight:30,
-      borderRadius: 6,
-      backgroundColor: '#fff',}}>painting and plating</Text> */}
+
           </View>
           <View>
             <Pressable
@@ -507,12 +406,12 @@ const LoginPage = (props) => {
             <Text style={btn.trapezoidb}>Documents</Text>
           </View>
           <TouchableOpacity>
-            <View>
+            {/* <View>
               <Text style={btn.btn4}></Text>
             </View>
             <View>
               <Text style={btn.btn3}></Text>
-            </View>
+            </View> */}
           </TouchableOpacity>
           <View style={{ height: 150, width: "100%", padding: 10 }}>
             <FlatList
@@ -542,73 +441,3 @@ const LoginPage = (props) => {
 };
 export default LoginPage;
 
-// const styles = StyleSheet.create({
-
-{
-  /* <Button style={{
-          backgroundColor: isActive ? 'yellow' : 'yellow',
-          color: isActive ? 'yellow' : 'yellow',
-        }} onPress={() =>
-          {handleClick}
-      } title="Press Me"></Button> */
-}
-//   page:{
-//     alignItems: 'center',
-//     backgroundColor: 'yellow',
-//     justifyContent: 'center',
-//     height: '100%',
-//     width: '100%',
-//     flexDirection: 'column',
-//     flexDirection: 'row',
-//     // flexWrap: 'wrap',
-//     flex: 1
-//   },
-//   fields: {
-//       height: 50,
-//       width: '100%',
-//       padding:10,
-//       backgroundColor: 'white',
-//       textAlign:'center',
-//       borderRadius:30,
-//       marginTop: 10,
-//   },
-//   Button : {
-//       // justifyContent:'center',
-//       // alignItems:'center',
-//       // borderColor:'#fff',
-//       backgroundColor:'blue',
-//       // color :"red",
-//       // Color:'blue',
-//       // underlayColor:'#fff',
-//       borderRadius:25,
-//       height: 50,
-//       width: '100%',
-//       padding:10,
-//       textAlign:'center',
-//       marginTop:1,
-//       // Align:'left',
-//       // flex:0,
-//   },
-//   box: {
-//     marginTop: '70%',
-//     height: '50%',
-//     width: '70%',
-//     padding:10,
-//     // backgroundColor:"green"
-// },
-// ButtonText:{
-//   color:'white',
-// },
-// butbox:{
-//   justifyContent:'space-between',
-
-//   // marginTop: '10%',
-//   height: '50%',
-//   width: '100%',
-//   padding:10,
-//   flexDirection: 'row',
-//   // backgroundColor:"green",
-//   // flexDirection: 'column',
-
-// }
-// });

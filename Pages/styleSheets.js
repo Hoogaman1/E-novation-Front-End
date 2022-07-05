@@ -1,6 +1,6 @@
 // import React,{ useState } from "react";
 // import axios from 'axios';
-
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import { StyleSheet, Dimensions } from "react-native";
 
 const win = Dimensions.get("window");
@@ -8,12 +8,12 @@ const win = Dimensions.get("window");
 const styles = StyleSheet.create({
   page: {
     fontFamily: "Roboto",
-
+    fontSize:hp('5%'),
     alignItems: "center",
     backgroundColor: "#f2ca30",
     justifyContent: "center",
-    height: "100%",
-    width: "100%",
+    height:hp("100%"),
+    width: wp("100%"),
     flexDirection: "column",
     flexDirection: "row",
     // flexWrap: 'wrap',
@@ -21,21 +21,23 @@ const styles = StyleSheet.create({
   },
   fields: {
     fontFamily: "Roboto",
+    fontSize:hp('5%'),
 
-    height: 35,
-    width: "90.8%",
+    height: hp('4%'),
+    width: wp("56%"),
     padding: 10,
     backgroundColor: "white",
     textAlign: "center",
-    borderRadius: 30,
-    marginTop: -20,
-    marginLeft: 10,
+    borderRadius: hp('14%'),
+    marginTop:hp('-3%'),
+    marginLeft: wp('3%'),
   },
   text: {
     fontFamily: "Roboto",
+    fontSize:hp('1.5%'),
 
-    marginTop: -9,
-    marginBottom: -5,
+    marginTop: hp('-1%'),
+    marginBottom: hp('-5%'),
   },
   Button: {
     // fontFamily: "Roboto",
@@ -47,21 +49,20 @@ const styles = StyleSheet.create({
     // color :"red",
     // Color:'blue',
     // underlayColor:'#fff',
-    borderRadius: 25,
-    height: 30,
-    width: "100%",
+    borderRadius: hp('40%'),
+    height: hp('3.7%'),
+    width: wp('17%'),
     padding: 0,
     textAlign: "center",
-    marginTop: 1,
+    marginTop: hp('0.0%'),
     // Align:'left',
     // flex:0,
   },
   box: {
     fontFamily: "Roboto",
-
-    marginTop: "42%",
-    height: "45%",
-    width: "65%",
+    marginTop: hp("15%"),
+    height:hp("45%"),
+    width: hp("32%"),
     padding: 10,
     // backgroundColor:"green"
   },
@@ -71,30 +72,27 @@ const styles = StyleSheet.create({
     color: "white",
     // width:"100%"
     // fontSize:12,
-    fontSize: 12,
-    marginTop: 4,
-    marginLeft: 10,
+    fontSize: hp('1.4%'),
+    marginTop: hp("0.5%"),
+    marginLeft: wp('3.3%'),
   },
   butbox: {
     fontFamily: "Roboto",
-
     justifyContent: "space-between",
-
     // marginTop: '10%',
-    height: "50%",
-    width: "100%",
+    height: hp("25%"),
+    width: hp("29%"),
     padding: 10,
     flexDirection: "row",
     // backgroundColor:"green",
     // flexDirection: 'column',
   },
   logo: {
-    fontFamily: "Roboto",
-
-    width: "100%",
-    height: 100,
-    marginRight: 30,
-    marginBottom: 20,
+    // fontFamily: "Roboto",
+    width: hp("29%"),
+    height:hp('10%'),
+    marginRight: wp('30%'),
+    marginBottom: hp("3%"),
   },
 });
 
@@ -102,7 +100,7 @@ export { styles };
 
 const styles2 = StyleSheet.create({
   logo: {
-    height: "70%",
+    height: hp("6%"),
     // width:50,
     width: win.width / 1.7,
     // marginRight:30 ,
@@ -116,9 +114,9 @@ const styles2 = StyleSheet.create({
     fontFamily: "Roboto",
 
     // alignItems: 'center',
-    backgroundColor: "#fff",
+    // backgroundColor: "red",
     justifyContent: "center",
-    height: "100%",
+    height: hp("100%"),
     width: win.width,
     flexDirection: "column",
     flexDirection: "row",
@@ -135,8 +133,8 @@ const styles2 = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
 
-    marginTop: "10%",
-    height: "9%",
+    marginTop: hp("4%"),
+    height: hp("9%"),
     // width: '95%',
     width: win.width,
 
@@ -146,11 +144,10 @@ const styles2 = StyleSheet.create({
   butbox: {
     fontFamily: "Roboto",
 
-    borderRadius: 50,
-    backgroundColor: "white",
-    height: "100%",
-    width: "80%",
-    marginLeft: -125,
+    borderRadius: hp('50%'),
+    height: hp("100%"),
+    width: hp("40%"),
+    marginLeft: wp("-19%"),
   },
   butbox2: {
     fontFamily: "Roboto",
@@ -162,6 +159,7 @@ const styles2 = StyleSheet.create({
     marginLeft: -82,
   },
   card: {
+    
     fontFamily: "Roboto",
     fontSize: 18,
     marginTop: 20,
@@ -180,6 +178,7 @@ const styles2 = StyleSheet.create({
     shadowRadius: 2,
   },
   carda: {
+    
     fontFamily: "Roboto",
     fontSize: 18,
     marginTop: -27,
@@ -193,6 +192,7 @@ const styles2 = StyleSheet.create({
     backgroundColor: "#fff",
   },
   cardb: {
+    
     fontFamily: "Roboto",
     fontSize: 18,
     marginTop: -27,
@@ -206,6 +206,7 @@ const styles2 = StyleSheet.create({
     backgroundColor: "#fff",
   },
   cardc: {
+    
     fontFamily: "Roboto",
     fontSize: 18,
     marginTop: -27,
@@ -219,6 +220,7 @@ const styles2 = StyleSheet.create({
     backgroundColor: "#fff",
   },
   cardd: {
+    
     fontFamily: "Roboto",
     fontSize: 18,
     marginTop: -27,
@@ -232,6 +234,7 @@ const styles2 = StyleSheet.create({
     backgroundColor: "#fff",
   },
   carde: {
+    
     fontFamily: "Roboto",
     fontSize: 18,
     marginTop: -27,
@@ -245,6 +248,7 @@ const styles2 = StyleSheet.create({
     backgroundColor: "#fff",
   },
   cardf: {
+    
     fontFamily: "Roboto",
     fontSize: 18,
     marginTop: -27,
@@ -258,6 +262,7 @@ const styles2 = StyleSheet.create({
     backgroundColor: "#fff",
   },
   cardg: {
+    
     padding: 15,
     color: "gray",
     fontFamily: "Roboto",
@@ -279,39 +284,40 @@ const styles2 = StyleSheet.create({
   },
 
   icon1: {
-    marginTop: "-18.5%",
-    marginBottom: "10%",
-    marginLeft: "16%",
+    
+    marginTop: hp("-7%"),
+    marginBottom: hp("4%"),
+    marginLeft: wp("16%"),
   },
   icon2: {
-    marginTop: "-18%",
-    marginBottom: "18%",
-    marginLeft: "17%",
+    marginTop: hp("-7%"),
+    marginBottom: hp("7%"),
+    marginLeft: wp("16%"),
   },
   icon3: {
-    marginTop: "-18%",
-    marginBottom: "16%",
-    marginLeft: "18%",
+    marginTop: hp("-7%"),
+    marginBottom:  hp("7%"),
+    marginLeft: wp("16%"),
   },
   icon4: {
-    marginTop: "-11%",
-    marginBottom: "11%",
-    marginLeft: "17%",
+    marginTop:hp("-7%"),
+    marginBottom: hp("7%"),
+    marginLeft: wp("16%"),
   },
   icon5: {
-    marginTop: "-12%",
-    marginBottom: "11%",
-    marginLeft: "18%",
+    marginTop: hp("-7%"),
+    marginBottom: hp("7%"),
+    marginLeft: wp("16%"),
   },
   icon6: {
-    marginTop: "-12%",
-    marginBottom: "11%",
-    marginLeft: "18%",
+    marginTop: hp("-7%"),
+    marginBottom: hp("7%"),
+    marginLeft: wp("16%"),
   },
   icon7: {
-    marginTop: "-12%",
-    marginBottom: "11%",
-    marginLeft: "17%",
+    marginTop: hp("-7%"),
+    marginBottom: hp("7%"),
+    marginLeft: wp("16%"),
   },
 });
 const btn = StyleSheet.create({
@@ -351,10 +357,10 @@ const btn = StyleSheet.create({
   },
   trapezoid1: {
     fontFamily: "Roboto",
-
+backgroundColor:"red",
     zIndex: 0,
-    marginTop: 0,
-    marginLeft: "143%",
+    marginTop: hp('3%'),
+    marginLeft: wp("3%"),
     paddingTop: 15,
     textAlign: "center",
     fontSize: 13,
@@ -372,7 +378,7 @@ const btn = StyleSheet.create({
   },
   trapezoid2: {
     fontFamily: "Roboto",
-
+    
     zIndex: 0,
     marginTop: "15%",
     marginLeft: "143%",
@@ -410,19 +416,19 @@ const btn = StyleSheet.create({
   btnb: {
     fontFamily: "Roboto",
 
-    paddingTop: 15,
-    paddingLeft: 5,
+    paddingTop: hp('0%'),
+    paddingLeft: wp('0%'),
     textAlign: "center",
-    fontSize: 14,
+    fontSize: hp('1.7%'),
     transform: [{ rotate: "90deg" }],
     color: "#000",
-    marginTop: -250,
-    marginLeft: "148%",
+    marginTop: hp("-33%"),
+    marginLeft: wp("125%"),
     // borderTopLeftRadius: 50,
     // borderBottomRightRadius: 50,
     backgroundColor: "#e8e4e3",
-    width: 150,
-    height: 55,
+    width: wp('35%'),
+    height: hp('7%'),
   },
   btnbb: {
     fontFamily: "Roboto",
@@ -489,19 +495,20 @@ const btn = StyleSheet.create({
   },
 
   trapezoida: {
+    position:'absolute',
     fontFamily: "Roboto",
-
-    marginTop: "-130%",
-    marginLeft: "143%",
-    paddingLeft: "20%",
-    paddingTop: 17,
-    paddingRight: "10%",
+    // backgroundColor:'red',
+    marginTop: hp("-52%"),
+    marginLeft: wp("39%"),
+    paddingLeft: wp("27%"),
+    paddingTop: hp("0%"),
+    paddingRight: wp("2%"),
     textAlign: "center",
-    fontSize: 14,
+    fontSize: hp("1.7%"),
     color: "#fff",
     transform: [{ rotate: "90deg" }],
-    width: 200,
-    height: 0,
+    width: wp("20%"),
+    height: hp("2%"),
     borderTopWidth: 55,
     borderTopColor: "#f2c92f",
     borderLeftWidth: 70,
@@ -514,16 +521,16 @@ const btn = StyleSheet.create({
   trapezoidb: {
     fontFamily: "Roboto",
 
-    marginTop: "-30%",
-    marginLeft: "143%",
-    paddingTop: 15,
-    paddingRight: "20%",
+    marginTop: wp("-30%"),
+    marginLeft: wp("122%"),
+    paddingTop: hp('1%'),
+    paddingRight: wp("10%"),
     textAlign: "center",
-    fontSize: 14,
+    fontSize: hp("1.7%"),
     color: "#fff",
     transform: [{ rotate: "90deg" }],
-    width: 190,
-    height: 0,
+    width: wp("50%"),
+    height: hp("2%"),
     borderTopWidth: 55,
     borderTopColor: "#f2c92f",
     borderLeftWidth: 0,

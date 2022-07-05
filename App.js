@@ -58,8 +58,8 @@ export default function App() {
     
         >
       <Stack.Screen name="Bearing" component={Bearing} options={{ headerShown: false }}/>      
-      <Stack.Screen name="History" component={History} options={{ headerShown: false }}/>      
       <Stack.Screen name="LoginPage" component={LoginPage} options={{  headerShown: false,  }}/>
+      <Stack.Screen name="History" component={History} options={{ headerShown: false }}/>      
       <Stack.Screen name="OpenProject" component={OpenProject} options={{  headerShown: false,  }} />
       <Stack.Screen name="PhotoAlbum" component={PhotoAlbum} options={{ headerShown: false }}/>      
       <Stack.Screen name="Verification" component={Verification} options={{  headerShown: false,  }}/>

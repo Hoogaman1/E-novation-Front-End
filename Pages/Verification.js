@@ -54,8 +54,8 @@ const LoginPage = (props) => {
         <View style={styles.butbox}>
           <View>
             <TouchableOpacity style={[styles.Button,{flexDirection:"row"}]} onPress={setSend}>
-              <Text style={styles.ButtonText}>Next</Text>
-              <Text style={{transform: [{ rotate: "90deg" }],fontSize:20,color:"#fff"}}> ^ </Text>
+              <Text style={styles.ButtonText}> Next</Text>
+              {/* <Text style={{transform: [{ rotate: "90deg" }],fontSize:20,color:"#fff"}}> ^ </Text> */}
 
             </TouchableOpacity>
           </View>
