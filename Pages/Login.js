@@ -39,7 +39,7 @@ const LoginPage = (props) => {
       .catch((error) => console.log(error));
   };
   return (
-    <View style={styles.page}>
+    <View style={[styles.page,{flexDirection:"column"}]}>
       <View style={styles.box}>
         <View>
           <Image
@@ -55,7 +55,7 @@ const LoginPage = (props) => {
             onChangeText={onEChange}
           />
         </View>
-        <View style={[styles.fields, { marginTop: hp('1%') }]}>
+        <View style={[styles.fields, { marginTop: "4%" }]}>
           <TextInput
             secureTextEntry={true}
             placeholder="password"
@@ -73,11 +73,11 @@ const LoginPage = (props) => {
           </View>
           <View>
             <TouchableOpacity
-              style={[{ backgroundColor: "transparent" }]}
+              style={[{ backgroundColor: 'transparent' }]}
               onPress={setSend}
             >
               <Text
-                style={styles.ButtonText}
+                style={[styles.ButtonText,{marginTop:"6%",marginLeft:"5%"}]}
                 onPress={() => props.navigation.navigate("ForgetPass")}
               >
                 Forgot Password
@@ -86,6 +86,16 @@ const LoginPage = (props) => {
           </View>
         </View>
       </View>
+      <Text  style={{
+            marginTop: "45%",
+            color: "white",
+            fontSize: 15,
+            // marginLeft: "23%",
+          }}>Client Application</Text>
+      <Text  style={{
+            marginTop: "1%",
+            color: "white",
+            fontSize: 9,}}>Allrights reserved by E-novation engineering Co.{" "}</Text>
     </View>
   );
 };

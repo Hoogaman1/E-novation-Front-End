@@ -3,8 +3,9 @@
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import { StyleSheet, Dimensions } from "react-native";
 
-const win = Dimensions.get("window");
-
+const wh = Dimensions.get('screen').height;
+const ww = Dimensions.get('screen').width;
+// console.log(win)
 const styles = StyleSheet.create({
   page: {
     fontFamily: "Roboto",
@@ -12,8 +13,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#f2ca30",
     justifyContent: "center",
-    height:hp("100%"),
-    width: wp("100%"),
+    height:wh,
+    width: ww,
     flexDirection: "column",
     flexDirection: "row",
     // flexWrap: 'wrap',
@@ -22,22 +23,21 @@ const styles = StyleSheet.create({
   fields: {
     fontFamily: "Roboto",
     fontSize:hp('5%'),
-
-    height: hp('4%'),
-    width: wp("56%"),
-    padding: 10,
+    position:'relative',
+    height:"12%",
+    width: "90%",
+    padding: 0,
     backgroundColor: "white",
     textAlign: "center",
-    borderRadius: hp('14%'),
-    marginTop:hp('-3%'),
-    marginLeft: wp('3%'),
+    borderRadius: "50%",
+    marginTop:'-25%',
+    marginLeft: '5%',
+    // marginRight: wp('5%'),
   },
   text: {
     fontFamily: "Roboto",
     fontSize:hp('1.5%'),
-
-    marginTop: hp('-1%'),
-    marginBottom: hp('-5%'),
+    marginLeft:"4%"
   },
   Button: {
     // fontFamily: "Roboto",
@@ -49,22 +49,26 @@ const styles = StyleSheet.create({
     // color :"red",
     // Color:'blue',
     // underlayColor:'#fff',
-    borderRadius: hp('40%'),
-    height: hp('3.7%'),
-    width: wp('17%'),
+    borderRadius: 50,
+    height: '38%',
+    width: wh/12,
     padding: 0,
     textAlign: "center",
-    marginTop: hp('0.0%'),
+    // marginTop: hp('0.0%'),
     // Align:'left',
     // flex:0,
   },
   box: {
     fontFamily: "Roboto",
-    marginTop: hp("15%"),
-    height:hp("45%"),
-    width: hp("32%"),
+    marginTop: "70%",
+    // height:hp("45%"),
+    // width: hp("32%"),
+    // marginLeft:wp("10%"),
+    // marginRight:wp("10%"),
     padding: 10,
-    // backgroundColor:"green"
+    height:wh/3,
+    width:ww/1.5,
+    // backgroundColor:"red"
   },
   ButtonText: {
     fontFamily: "Roboto",
@@ -73,15 +77,15 @@ const styles = StyleSheet.create({
     // width:"100%"
     // fontSize:12,
     fontSize: hp('1.4%'),
-    marginTop: hp("0.5%"),
-    marginLeft: wp('3.3%'),
+    marginTop: '8%',
+    marginLeft: '20%',
   },
   butbox: {
     fontFamily: "Roboto",
     justifyContent: "space-between",
     // marginTop: '10%',
-    height: hp("25%"),
-    width: hp("29%"),
+    height: "40%",
+    width: "100%",
     padding: 10,
     flexDirection: "row",
     // backgroundColor:"green",
@@ -89,10 +93,10 @@ const styles = StyleSheet.create({
   },
   logo: {
     // fontFamily: "Roboto",
-    width: hp("29%"),
-    height:hp('10%'),
-    marginRight: wp('30%'),
-    marginBottom: hp("3%"),
+    width: "100%",
+    height:"50%",
+    // marginRight: wp('30%'),
+    marginBottom: "1%",
   },
 });
 
@@ -102,7 +106,7 @@ const styles2 = StyleSheet.create({
   logo: {
     height: hp("6%"),
     // width:50,
-    width: win.width / 1.7,
+    width: ww / 1.7,
     // marginRight:30 ,
     // marginBottom:20 ,
     // marginTop:50 ,
@@ -117,7 +121,7 @@ const styles2 = StyleSheet.create({
     // backgroundColor: "red",
     justifyContent: "center",
     height: hp("100%"),
-    width: win.width,
+    width: ww,
     flexDirection: "column",
     flexDirection: "row",
     flexWrap: "wrap",
@@ -136,7 +140,7 @@ const styles2 = StyleSheet.create({
     marginTop: hp("4%"),
     height: hp("9%"),
     // width: '95%',
-    width: win.width,
+    width:ww,
 
     // padding:10,
     // backgroundColor:"green"
