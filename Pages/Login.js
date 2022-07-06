@@ -89,13 +89,13 @@ const LoginPage = (props) => {
       <Text  style={{
             marginTop: "45%",
             color: "white",
-            fontSize: 15,
+            fontSize: hp("1.6"),
             // marginLeft: "23%",
           }}>Client Application</Text>
       <Text  style={{
             marginTop: "1%",
             color: "white",
-            fontSize: 9,}}>Allrights reserved by E-novation engineering Co.{" "}</Text>
+            fontSize: 9,}}>All rights reserved by E-novation engineering Co.{" "}</Text>
     </View>
   );
 };

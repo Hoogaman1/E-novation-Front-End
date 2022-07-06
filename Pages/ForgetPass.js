@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+
 // import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import { Text, View, TextInput, Image, TouchableOpacity } from "react-native";
 import { styles } from "./styleSheets.js";
@@ -30,7 +32,7 @@ const LoginPage = (props) => {
       .catch((error) => console.log(error));
   };
   return (
-    <View style={styles.page}>
+    <View style={[styles.page,{flexDirection:"column"}]}>
       <View style={styles.box}>
         <View>
           <Image
@@ -49,13 +51,23 @@ const LoginPage = (props) => {
         <View style={styles.butbox}>
           <View>
             <TouchableOpacity style={[styles.Button,{flexDirection:"row"}]} onPress={setSend}>
-              <Text style={styles.ButtonText}> Next</Text>
+              <Text style={styles.ButtonText}>Next</Text>
               {/* <Text style={{transform: [{ rotate: "90deg" }],fontSize:hp('2%'),color:"#fff"}}> ^ </Text> */}
 
             </TouchableOpacity>
           </View>
         </View>
       </View>
+      <Text  style={{
+            marginTop: "45%",
+            color: "white",
+            fontSize: hp("1.6"),
+            // marginLeft: "23%",
+          }}>Client Application</Text>
+      <Text  style={{
+            marginTop: "1%",
+            color: "white",
+            fontSize: 9,}}>All rights reserved by E-novation engineering Co.{" "}</Text>
     </View>
   );
 };

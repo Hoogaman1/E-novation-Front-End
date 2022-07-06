@@ -3,13 +3,15 @@
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import { StyleSheet, Dimensions } from "react-native";
 
+const wf = Dimensions.get('screen').fontScale;
+const ws = Dimensions.get('screen').scale;
 const wh = Dimensions.get('screen').height;
 const ww = Dimensions.get('screen').width;
 // console.log(win)
 const styles = StyleSheet.create({
   page: {
     fontFamily: "Roboto",
-    fontSize:hp('5%'),
+    fontSize:wf*8,
     alignItems: "center",
     backgroundColor: "#f2ca30",
     justifyContent: "center",
@@ -22,28 +24,29 @@ const styles = StyleSheet.create({
   },
   fields: {
     fontFamily: "Roboto",
-    fontSize:hp('5%'),
+    fontSize:wf*8,
     position:'relative',
     height:"12%",
     width: "90%",
-    padding: 0,
+    // padding: 0,
     backgroundColor: "white",
     textAlign: "center",
-    borderRadius: "50%",
+    borderRadius: 50,
     marginTop:'-25%',
     marginLeft: '5%',
     // marginRight: wp('5%'),
   },
   text: {
+    
     fontFamily: "Roboto",
-    fontSize:hp('1.5%'),
+    fontSize:wf*12,
     marginLeft:"4%"
   },
   Button: {
     // fontFamily: "Roboto",
 
-    // justifyContent:'center',
-    // alignItems:'center',
+    justifyContent:'center',
+    alignItems:'center',
     // borderColor:'#fff',
     backgroundColor: "#192570",
     // color :"red",
@@ -52,7 +55,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     height: '38%',
     width: wh/12,
-    padding: 0,
+    // padding: 0,
     textAlign: "center",
     // marginTop: hp('0.0%'),
     // Align:'left',
@@ -65,28 +68,34 @@ const styles = StyleSheet.create({
     // width: hp("32%"),
     // marginLeft:wp("10%"),
     // marginRight:wp("10%"),
-    padding: 10,
+    padding: "2%",
     height:wh/3,
     width:ww/1.5,
     // backgroundColor:"red"
   },
   ButtonText: {
     fontFamily: "Roboto",
-
+// alignItems:'center',
     color: "white",
     // width:"100%"
     // fontSize:12,
-    fontSize: hp('1.4%'),
-    marginTop: '8%',
-    marginLeft: '20%',
+    textAlign: "center",
+
+    fontSize: wf*10,
+    // fontSize: hp("1.4"),
+    // marginTop: ws/100*200,
+    // marginLeft: '25%',
+    // paddingLeft: ws*700/100,
+    // paddingRight: ws*3,
+    // backgroundColor:"red"
   },
   butbox: {
     fontFamily: "Roboto",
     justifyContent: "space-between",
-    // marginTop: '10%',
+    marginTop: '-1.8%',
     height: "40%",
     width: "100%",
-    padding: 10,
+    padding:"6%",
     flexDirection: "row",
     // backgroundColor:"green",
     // flexDirection: 'column',
@@ -586,4 +595,117 @@ backgroundColor:"red",
     borderStyle: "solid",
   },
 });
-export { styles2, btn };
+const styles3 = StyleSheet.create({
+  page: {
+    fontFamily: "Roboto",
+    fontSize:wf*8,
+    alignItems: "center",
+    backgroundColor: "#fff",
+    justifyContent: "center",
+    height:wh,
+    width: ww,
+    flexDirection: "column",
+    // backgroundColor:"red",
+    flex: 1,
+    // flexDirection: "row",
+    // flexWrap: 'wrap',
+  },
+  topbox: {
+    fontFamily: "Roboto",
+    alignItems: "center",
+    // justifyContent: 'flex-end',
+    // flexDirection: 'column',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    // backgroundColor:'red',
+    // marginTop: "15%",
+    height: '30%',
+    // width: '95%',
+    width:ww,
+    paddingTop:"40%",
+    // padding:'30%',
+  },
+  butbox: {
+    fontFamily: "Roboto",
+    flexDirection:"row",
+    borderRadius: hp('2%'),
+    height: "100%",
+    width: "100%",
+    // marginLeft: wp("-19%"),
+    backgroundColor:'transparent'
+  },
+  workbox: {
+    fontFamily: "Roboto",
+    flexDirection:"column",
+    borderRadius: hp('2%'),
+    height: "90%",
+    width: "80%",
+    // marginLeft: wp("-19%"),
+    // backgroundColor:"pink"
+  },
+  barbox: {
+    fontFamily: "Roboto",
+    flexDirection:'column',
+    borderRadius: hp('2%'),
+    height: "90%",
+    width: "20%",
+    // marginLeft: wp("-19%"),
+    // backgroundColor:"green"
+  },
+  logo: {
+    height: "50%",
+    // width:50,
+    width: ww / 1.7,
+    // marginRight:30 ,
+    // marginBottom:20 ,
+    // marginTop:50 ,
+    // marginLeft:30 ,
+    // backgroundColor:'blue',
+    resizeMode: "cover",
+  },
+  barbut1: {
+    fontFamily: "Roboto",
+    backgroundColor:"#f2ca30",
+    transform: [{ rotate: "90deg" }],
+    width:wh/5,
+    height:ww/5,
+    marginTop:"220%",
+    marginLeft:'-59%',
+  },
+  barbut2: {
+    fontFamily: "Roboto",
+    backgroundColor:"#e5e5e5",
+    transform: [{ rotate: "90deg" }],
+    width:wh/5,
+    height:ww/5,
+    marginTop:"120%",
+    marginLeft:'-59%'
+  },
+  barbut3: {
+    fontFamily: "Roboto",
+    backgroundColor:"#f2ca30",
+    transform: [{ rotate: "90deg" }],
+    width:wh/5,
+    height:ww/5,
+    marginTop:"120%",
+    marginLeft:'-59%'
+  },
+  bartxt: {
+    fontFamily: "Roboto",
+    width:wh/5,
+    height:ww/5,
+    marginTop:"15%",
+    marginLeft:'20%'
+  },
+  workcard: {
+    backgroundColor:"gray",
+    fontFamily: "Roboto",
+    width:'100%',
+    height:ww/5,
+    marginBottom:"15%",
+    borderRadius:20,
+    flexDirection:"row"
+    
+  },
+});
+export { styles2, btn ,styles3};

@@ -37,7 +37,7 @@ const NewPass = (props) => {
         .catch((error) => console.log(error));
   };
   return (
-    <View style={styles.page}>
+    <View style={[styles.page,{flexDirection:"column"}]}>
       <View style={styles.box}>
         <View>
           <Image
@@ -53,7 +53,7 @@ const NewPass = (props) => {
             onChangeText={onEChange}
           />
         </View>
-        <View style={[styles.fields, { marginTop:hp('1%') }]}>
+        <View style={[styles.fields, {marginTop: '4%'}]}>
           <TextInput
             secureTextEntry={true}
             placeholder="Re_password"
@@ -76,6 +76,16 @@ const NewPass = (props) => {
         </View> */}
         </View>
       </View>
+      <Text  style={{
+            marginTop: "45%",
+            color: "white",
+            fontSize: hp("1.6"),
+            // marginLeft: "23%",
+          }}>Client Application</Text>
+      <Text  style={{
+            marginTop: "1%",
+            color: "white",
+            fontSize: 9,}}>All rights reserved by E-novation engineering Co.{" "}</Text>
     </View>
   );
 };
