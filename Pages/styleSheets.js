@@ -619,10 +619,10 @@ const styles3 = StyleSheet.create({
     justifyContent: "space-between",
     // backgroundColor:'red',
     // marginTop: "15%",
-    height: '30%',
+    height: wh/3.7,
     // width: '95%',
     width:ww,
-    paddingTop:"40%",
+    paddingTop:wh/5.9,
     // padding:'30%',
   },
   butbox: {
@@ -669,8 +669,8 @@ const styles3 = StyleSheet.create({
     transform: [{ rotate: "90deg" }],
     width:wh/5,
     height:ww/5,
-    marginTop:"220%",
-    marginLeft:'-59%',
+    marginTop:wh/5.2,
+    marginLeft:-(ww/8.2),
   },
   barbut2: {
     fontFamily: "Roboto",
@@ -678,8 +678,8 @@ const styles3 = StyleSheet.create({
     transform: [{ rotate: "90deg" }],
     width:wh/5,
     height:ww/5,
-    marginTop:"120%",
-    marginLeft:'-59%'
+    marginTop:wh/9.1,
+    marginLeft:-(ww/8.2),
   },
   barbut3: {
     fontFamily: "Roboto",
@@ -687,15 +687,15 @@ const styles3 = StyleSheet.create({
     transform: [{ rotate: "90deg" }],
     width:wh/5,
     height:ww/5,
-    marginTop:"120%",
-    marginLeft:'-59%'
+    marginTop:wh/9.1,
+    marginLeft:-(ww/8.2),
   },
   bartxt: {
     fontFamily: "Roboto",
     width:wh/5,
     height:ww/5,
-    marginTop:"15%",
-    marginLeft:'20%'
+    marginTop:wh/30,
+    marginLeft:ww/10
   },
   workcard: {
     backgroundColor:"gray",

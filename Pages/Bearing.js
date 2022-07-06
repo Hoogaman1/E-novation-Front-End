@@ -84,11 +84,11 @@ const LoginPage = (props) => {
           <View style={{width:"100%",borderRadius:20,}}>
           <Text style={{
             
-              fontSize: hp('5%'),
+              fontSize: wf*39,
               color: "#f2ca30",
-              marginTop: '10%',
-              marginLeft:'10%',
-              marginBottom: hp('3%'),
+              marginTop: wh/29,
+              marginLeft:ww/12,
+              marginBottom: wh/35,
             }}>Bearing</Text>
           </View>
           <View style={{width:'100%',height:"80%",borderRadius:20,flexDirection:"row"}}>
@@ -99,10 +99,10 @@ const LoginPage = (props) => {
             <View style={{backgroundColor:"pink",width:'75%',height:"100%",borderRadius:20,}}>
               
                   <View style={styles3.workcard}>
-                    <View style={{marginTop:"4%"}}>
+                    <View style={{marginTop:wh/80}}>
                       <MaterialCommunityIcons
                         name="forklift"
-                        size={hp('7%')}
+                        size={ww/7}
                         color="orange"
                       />
                     </View>
