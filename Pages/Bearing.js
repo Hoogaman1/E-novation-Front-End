@@ -25,7 +25,8 @@ import {
   Dimensions,
 } from "react-native";
 import { styles3, styles2, btn } from "./styleSheets.js";
-
+import ResponsiveScreen from 'react-native-auto-responsive-screen';
+ResponsiveScreen.init(720, 1600)
 const wf = Dimensions.get("screen").fontScale;
 const ws = Dimensions.get("screen").scale;
 const wh = Dimensions.get("screen").height;
@@ -81,41 +82,107 @@ const LoginPage = (props) => {
 
       <View style={[styles3.butbox]}>
         <View style={[styles3.workbox, { alignItems: "center",flexDirection:"column" }]}>
-          <View style={{width:"100%",borderRadius:20,}}>
+          <View style={{width:ResponsiveScreen.normalize(600),borderRadius:20,height:ResponsiveScreen.normalize(200)}}>
           <Text style={{
             
-              fontSize: wf*39,
+              fontSize: ResponsiveScreen.normalize(75),
               color: "#f2ca30",
-              marginTop: wh/29,
-              marginLeft:ww/12,
-              marginBottom: wh/35,
+              marginTop: ResponsiveScreen.normalize(50),
+              marginLeft:ResponsiveScreen.normalize(50),
+              marginBottom: ResponsiveScreen.normalize(25),
             }}>Bearing</Text>
           </View>
-          <View style={{width:'100%',height:"80%",borderRadius:20,flexDirection:"row"}}>
-            <View style={{backgroundColor:"blue",width:'25%',height:"100%",borderRadius:20,}}>
+          <View style={{width:ResponsiveScreen.normalize(600),height:ResponsiveScreen.normalize(1150),borderRadius:20,flexDirection:"row"}}>
+            <View style={{backgroundColor:"#fff",width:ResponsiveScreen.normalize(150),height:ResponsiveScreen.normalize(1150),borderRadius:20,}}>
 
             </View>
 
-            <View style={{backgroundColor:"pink",width:'75%',height:"100%",borderRadius:20,}}>
+            <View style={{width:ResponsiveScreen.normalize(450),height:ResponsiveScreen.normalize(1150),borderRadius:20,}}>
               
                   <View style={styles3.workcard}>
-                    <View style={{marginTop:wh/80}}>
+                    <View style={{marginTop:ResponsiveScreen.normalize(25)}}>
                       <MaterialCommunityIcons
                         name="forklift"
-                        size={ww/7}
+                        size={(ResponsiveScreen.normalize(70))}
                         color="orange"
                       />
                     </View>
                     <View>
-                      <Text>material</Text>
+                      <Text style={styles3.txtworkcard}>Material supply</Text>
                     </View>
                   </View>
-                  <View></View>
-                  <View></View>
-                  <View></View>
-                  <View></View>
-                  <View></View>
-                  <View></View>
+                  <View style={styles3.workcard}>
+                  <View style={{marginTop:ResponsiveScreen.normalize(25),marginLeft:ResponsiveScreen.normalize(25)}}>
+                      <MaterialCommunityIcons
+                        name="scissors-cutting"
+                        size={(ResponsiveScreen.normalize(70))}
+                        color="orange"
+                      />
+                    </View>
+                    <View>
+                      <Text style={styles3.txtworkcard}>Cutting</Text>
+                    </View>
+                  </View>
+                  <View style={styles3.workcard}>
+                  <View style={{marginTop:ResponsiveScreen.normalize(25),marginLeft:ResponsiveScreen.normalize(25)}}>
+                      <MaterialCommunityIcons
+                        name="tools"
+                        size={(ResponsiveScreen.normalize(70))}
+                        color="orange"
+                      />
+                    </View>
+                    <View>
+                      <Text style={styles3.txtworkcard}>Matching</Text>
+                    </View>
+                  </View>
+                  <View style={[styles3.workcard,{paddingTop:ResponsiveScreen.normalize(0)}]}>
+                  <View style={{marginTop:ResponsiveScreen.normalize(25),marginLeft:ResponsiveScreen.normalize(25)}}>
+                      <FontAwesome5
+                        name="paint-roller"
+                        size={(ResponsiveScreen.normalize(70))}
+                        color="orange"
+                      />
+                    </View>
+                    <View>
+                      <Text style={[styles3.txtworkcard,{fontSize:ResponsiveScreen.normalize(27),marginTop:ResponsiveScreen.normalize(0)}]}>Heat treatment/Coating/Painting or Plating</Text>
+                    </View>
+                  </View>
+                  <View style={styles3.workcard}>
+                  <View style={{marginTop:ResponsiveScreen.normalize(25),marginLeft:ResponsiveScreen.normalize(25)}}>
+                      <AntDesign
+                        name="checksquare"
+                        size={(ResponsiveScreen.normalize(70))}
+                        color="orange"
+                      />
+                    </View>
+                    <View>
+                      <Text style={styles3.txtworkcard}>Quality Control</Text>
+                    </View>
+                  </View>
+                  <View style={styles3.workcard}>
+                  <View style={{marginTop:ResponsiveScreen.normalize(25),marginLeft:ResponsiveScreen.normalize(25)}}>
+                      <Octicons
+                        name="package-dependencies"
+                        size={(ResponsiveScreen.normalize(70))}
+                        color="orange"
+                      />
+                    </View>
+                    <View>
+                      <Text style={styles3.txtworkcard}>Packaging</Text>
+                    </View>
+                  </View>
+                  <View style={styles3.workcard}>
+                  <View style={{marginTop:ResponsiveScreen.normalize(25),marginLeft:ResponsiveScreen.normalize(25)}}>
+                      <MaterialCommunityIcons
+                        name="truck-delivery"
+                        size={(ResponsiveScreen.normalize(70))}
+                        color="orange"
+                      />
+                    </View>
+                    <View>
+                      <Text style={styles3.txtworkcard}>Ready for delivery</Text>
+                    </View>
+                  </View>
 
             </View>
           </View>

@@ -2,7 +2,8 @@
 // import axios from 'axios';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import { StyleSheet, Dimensions } from "react-native";
-
+import ResponsiveScreen from 'react-native-auto-responsive-screen';
+ResponsiveScreen.init(720, 1600)
 const wf = Dimensions.get('screen').fontScale;
 const ws = Dimensions.get('screen').scale;
 const wh = Dimensions.get('screen').height;
@@ -15,8 +16,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#f2ca30",
     justifyContent: "center",
-    height:wh,
-    width: ww,
+    height:ResponsiveScreen.normalize(1600),
+    width: ResponsiveScreen.normalize(720),
     flexDirection: "column",
     flexDirection: "row",
     // flexWrap: 'wrap',
@@ -26,21 +27,21 @@ const styles = StyleSheet.create({
     fontFamily: "Roboto",
     fontSize:wf*8,
     position:'relative',
-    height:"12%",
-    width: "90%",
+    height:ResponsiveScreen.normalize(60),
+    width: ResponsiveScreen.normalize(420),
     // padding: 0,
     backgroundColor: "white",
     textAlign: "center",
     borderRadius: 50,
-    marginTop:'-25%',
-    marginLeft: '5%',
+    marginTop:ResponsiveScreen.normalize(-120),
+    marginLeft: ResponsiveScreen.normalize(20),
     // marginRight: wp('5%'),
   },
   text: {
     
     fontFamily: "Roboto",
-    fontSize:wf*12,
-    marginLeft:"4%"
+    fontSize:ResponsiveScreen.normalize(25),
+    marginLeft:ResponsiveScreen.normalize(25)
   },
   Button: {
     // fontFamily: "Roboto",
@@ -53,24 +54,24 @@ const styles = StyleSheet.create({
     // Color:'blue',
     // underlayColor:'#fff',
     borderRadius: 50,
-    height: '38%',
-    width: wh/12,
+    height: ResponsiveScreen.normalize(60),
+    width: ResponsiveScreen.normalize(120),
     // padding: 0,
     textAlign: "center",
-    // marginTop: hp('0.0%'),
+    marginLeft: ResponsiveScreen.normalize(15),
     // Align:'left',
     // flex:0,
   },
   box: {
     fontFamily: "Roboto",
-    marginTop: "70%",
+    marginTop: ResponsiveScreen.normalize(540),
     // height:hp("45%"),
     // width: hp("32%"),
     // marginLeft:wp("10%"),
     // marginRight:wp("10%"),
-    padding: "2%",
-    height:wh/3,
-    width:ww/1.5,
+    padding: ResponsiveScreen.normalize(25),
+    height:ResponsiveScreen.normalize(600),
+    width:ResponsiveScreen.normalize(500),
     // backgroundColor:"red"
   },
   ButtonText: {
@@ -81,7 +82,7 @@ const styles = StyleSheet.create({
     // fontSize:12,
     textAlign: "center",
 
-    fontSize: wf*10,
+    fontSize:ResponsiveScreen.normalize(25),
     // fontSize: hp("1.4"),
     // marginTop: ws/100*200,
     // marginLeft: '25%',
@@ -92,20 +93,21 @@ const styles = StyleSheet.create({
   butbox: {
     fontFamily: "Roboto",
     justifyContent: "space-between",
-    marginTop: '-1.8%',
-    height: "40%",
-    width: "100%",
-    padding:"6%",
+    marginTop: ResponsiveScreen.normalize(15),
+    height: ResponsiveScreen.normalize(200),
+    width: ResponsiveScreen.normalize(440),
+    padding:ResponsiveScreen.normalize(10),
     flexDirection: "row",
     // backgroundColor:"green",
     // flexDirection: 'column',
   },
   logo: {
     // fontFamily: "Roboto",
-    width: "100%",
-    height:"50%",
+    // backgroundColor:"red",
+    width: ResponsiveScreen.normalize(450),
+    height:ResponsiveScreen.normalize(150),
     // marginRight: wp('30%'),
-    marginBottom: "1%",
+    marginBottom: ResponsiveScreen.normalize(120),
   },
 });
 
@@ -598,12 +600,12 @@ backgroundColor:"red",
 const styles3 = StyleSheet.create({
   page: {
     fontFamily: "Roboto",
-    fontSize:wf*8,
+    fontSize:ResponsiveScreen.normalize(25),
     alignItems: "center",
     backgroundColor: "#fff",
-    justifyContent: "center",
-    height:wh,
-    width: ww,
+    // justifyContent: "center",
+    height:ResponsiveScreen.normalize(1600),
+    width: ResponsiveScreen.normalize(720),
     flexDirection: "column",
     // backgroundColor:"red",
     flex: 1,
@@ -616,46 +618,48 @@ const styles3 = StyleSheet.create({
     // justifyContent: 'flex-end',
     // flexDirection: 'column',
     flexDirection: "row",
+    marginTop:ResponsiveScreen.normalize(20),
     justifyContent: "space-between",
-    // backgroundColor:'red',
+    // backgroundColor:'blue',
     // marginTop: "15%",
-    height: wh/3.7,
+    height: ResponsiveScreen.normalize(200),
     // width: '95%',
-    width:ww,
-    paddingTop:wh/5.9,
+    width:ResponsiveScreen.normalize(720),
+    // paddingTop:wh/5.9,
     // padding:'30%',
   },
   butbox: {
     fontFamily: "Roboto",
     flexDirection:"row",
-    borderRadius: hp('2%'),
-    height: "100%",
-    width: "100%",
+    borderRadius: 20,
+    height: ResponsiveScreen.normalize(1360),
+    width: ResponsiveScreen.normalize(720),
     // marginLeft: wp("-19%"),
-    backgroundColor:'transparent'
+    // backgroundColor:'transparent'
+    // backgroundColor:"red"
   },
   workbox: {
     fontFamily: "Roboto",
     flexDirection:"column",
-    borderRadius: hp('2%'),
-    height: "90%",
-    width: "80%",
+    borderRadius: 20,
+    height: ResponsiveScreen.normalize(1360),
+    width: ResponsiveScreen.normalize(600),
     // marginLeft: wp("-19%"),
-    // backgroundColor:"pink"
+    // backgroundColor:"orange"
   },
   barbox: {
     fontFamily: "Roboto",
     flexDirection:'column',
-    borderRadius: hp('2%'),
-    height: "90%",
-    width: "20%",
+    borderRadius: 20,
+    height: ResponsiveScreen.normalize(1360),
+    width: ResponsiveScreen.normalize(130),
     // marginLeft: wp("-19%"),
     // backgroundColor:"green"
   },
   logo: {
-    height: "50%",
+    height: ResponsiveScreen.normalize(160),
     // width:50,
-    width: ww / 1.7,
+    width: ResponsiveScreen.normalize(500),
     // marginRight:30 ,
     // marginBottom:20 ,
     // marginTop:50 ,
@@ -698,13 +702,31 @@ const styles3 = StyleSheet.create({
     marginLeft:ww/10
   },
   workcard: {
-    backgroundColor:"gray",
+    // backgroundColor:"gray",
     fontFamily: "Roboto",
-    width:'100%',
-    height:ww/5,
-    marginBottom:"15%",
+    width:ResponsiveScreen.normalize(450),
+    height:ResponsiveScreen.normalize(120),
+    marginBottom:ResponsiveScreen.normalize(25),
+    borderRadius:ResponsiveScreen.normalize(18),
+    flexDirection:"row",
+    elevation: 5,
+    backgroundColor: "#fff",
+    shadowOffset: { width: 3, height: 3 },
+    shadowColor: "#333",
+    shadowOpacity: 0.3,
+    shadowRadius: 3,
+    
+  },
+  txtworkcard:{
+    // backgroundColor:"yellow",
+    fontFamily: "Roboto",
+    width:ResponsiveScreen.normalize(350),
+    height:ResponsiveScreen.normalize(150),
+    fontSize:ResponsiveScreen.normalize(35),
+    paddingTop:ResponsiveScreen.normalize(30),
+    paddingLeft:ResponsiveScreen.normalize(40),
     borderRadius:20,
-    flexDirection:"row"
+    
     
   },
 });

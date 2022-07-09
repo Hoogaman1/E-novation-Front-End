@@ -5,7 +5,8 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 import { Text, View, TextInput, Image, TouchableOpacity } from "react-native";
 
 import { styles } from "./styleSheets.js";
-
+import ResponsiveScreen from 'react-native-auto-responsive-screen';
+ResponsiveScreen.init(720, 1600)
 const NewPass = (props) => {
   // const [email, setEmail] = useState("");
 
@@ -53,7 +54,7 @@ const NewPass = (props) => {
             onChangeText={onEChange}
           />
         </View>
-        <View style={[styles.fields, {marginTop: '4%'}]}>
+        <View style={[styles.fields, {marginTop: ResponsiveScreen.normalize(20)}]}>
           <TextInput
             secureTextEntry={true}
             placeholder="Re_password"
@@ -77,15 +78,15 @@ const NewPass = (props) => {
         </View>
       </View>
       <Text  style={{
-            marginTop: "45%",
+            marginTop: ResponsiveScreen.normalize(250),
             color: "white",
-            fontSize: hp("1.6"),
+            fontSize: ResponsiveScreen.normalize(30),
             // marginLeft: "23%",
           }}>Client Application</Text>
       <Text  style={{
-            marginTop: "1%",
+            marginTop: ResponsiveScreen.normalize(20),
             color: "white",
-            fontSize: 9,}}>All rights reserved by E-novation engineering Co.{" "}</Text>
+            fontSize: ResponsiveScreen.normalize(20),}}>All rights reserved by E-novation engineering Co.{" "}</Text>
     </View>
   );
 };

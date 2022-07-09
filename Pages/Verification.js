@@ -4,7 +4,8 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 
 import { Text, View, TextInput, TouchableOpacity, Image } from "react-native";
 import { styles } from "./styleSheets.js";
-
+import ResponsiveScreen from 'react-native-auto-responsive-screen';
+ResponsiveScreen.init(720, 1600)
 const LoginPage = (props) => {
   // const [email, setEmail] = useState("");
   var email = "ali@test.com";
@@ -63,15 +64,15 @@ const LoginPage = (props) => {
         </View>
       </View>
       <Text  style={{
-            marginTop: "45%",
+            marginTop: ResponsiveScreen.normalize(230),
             color: "white",
-            fontSize: hp("1.6"),
+            fontSize: ResponsiveScreen.normalize(30),
             // marginLeft: "23%",
           }}>Client Application</Text>
       <Text  style={{
-            marginTop: "1%",
+            marginTop: ResponsiveScreen.normalize(20),
             color: "white",
-            fontSize: 9,}}>All rights reserved by E-novation engineering Co.{" "}</Text>
+            fontSize: ResponsiveScreen.normalize(20),}}>All rights reserved by E-novation engineering Co.{" "}</Text>
     </View>
   );
 };
