@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 // import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import { Text, View, TextInput, Image, TouchableOpacity } from "react-native";
 import { styles } from "./styleSheets.js";
-import ResponsiveScreen from 'react-native-auto-responsive-screen';
-ResponsiveScreen.init(720, 1600)
+import ResponsiveScreen from "react-native-auto-responsive-screen";
+ResponsiveScreen.init(720, 1600);
 const LoginPage = (props) => {
   // const [email, setEmail] = useState("");
 
@@ -33,7 +36,7 @@ const LoginPage = (props) => {
       .catch((error) => console.log(error));
   };
   return (
-    <View style={[styles.page,{flexDirection:"column"}]}>
+    <View style={[styles.page, { flexDirection: "column" }]}>
       <View style={styles.box}>
         <View>
           <Image
@@ -51,24 +54,35 @@ const LoginPage = (props) => {
         </View>
         <View style={styles.butbox}>
           <View>
-            <TouchableOpacity style={[styles.Button,{flexDirection:"row"}]} onPress={setSend}>
+            <TouchableOpacity
+              style={[styles.Button, { flexDirection: "row" }]}
+              onPress={setSend}
+            >
               <Text style={styles.ButtonText}>Next</Text>
               {/* <Text style={{transform: [{ rotate: "90deg" }],fontSize:hp('2%'),color:"#fff"}}> ^ </Text> */}
-
             </TouchableOpacity>
           </View>
         </View>
       </View>
-      <Text  style={{
-            marginTop: ResponsiveScreen.normalize(220),
-            color: "white",
-            fontSize: ResponsiveScreen.normalize(30),
-            // marginLeft: "23%",
-          }}>Client Application</Text>
-      <Text  style={{
-            marginTop: ResponsiveScreen.normalize(20),
-            color: "white",
-            fontSize: ResponsiveScreen.normalize(20),}}>All rights reserved by E-novation engineering Co.{" "}</Text>
+      <Text
+        style={{
+          marginTop: ResponsiveScreen.normalize(220),
+          color: "white",
+          fontSize: ResponsiveScreen.normalize(30),
+          // marginLeft: "23%",
+        }}
+      >
+        Client Application
+      </Text>
+      <Text
+        style={{
+          marginTop: ResponsiveScreen.normalize(20),
+          color: "white",
+          fontSize: ResponsiveScreen.normalize(20),
+        }}
+      >
+        All rights reserved by E-novation engineering Co.{" "}
+      </Text>
     </View>
   );
 };

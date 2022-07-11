@@ -16,6 +16,8 @@ import {
   StyleSheet,
 } from "react-native";
 import { styles, styles2, btn } from "./styleSheets.js";
+import ResponsiveScreen from "react-native-auto-responsive-screen";
+ResponsiveScreen.init(720, 1600);
 
 // const MySwitch = createAnimatedSwitchNavigator(
 //   {
@@ -93,14 +95,18 @@ const LoginPage = (props) => {
       <View
         style={[
           styles2.butbox,
-          { alignItems: "center", width: "100%", marginLeft: "0%" },
+          {
+            alignItems: "center",
+            width: ResponsiveScreen.normalize(720),
+            marginLeft: ResponsiveScreen.normalize(3),
+          },
         ]}
       >
         <Text
           style={{
-            fontSize: 32,
+            fontSize: ResponsiveScreen.normalize(60),
             color: "#f2ca30",
-            marginTop: "20%",
+            marginTop: ResponsiveScreen.normalize(230),
             fontFamily: "Roboto",
           }}
         >
@@ -108,7 +114,13 @@ const LoginPage = (props) => {
         </Text>
 
         <View
-          style={[mystyles.card, { alignItems: "flex-start", marginTop: "8%" }]}
+          style={[
+            mystyles.card,
+            {
+              alignItems: "flex-start",
+              marginTop: ResponsiveScreen.normalize(70),
+            },
+          ]}
         >
           <CheckBox
             center
@@ -148,7 +160,13 @@ const LoginPage = (props) => {
           {/* <Text>Current time entered is: {time}</Text> */}
         </View>
 
-        <View style={{ height: 150, width: "100%", padding: 10 }}>
+        <View
+          style={{
+            height: ResponsiveScreen.normalize(150),
+            width: ResponsiveScreen.normalize(530),
+            padding: ResponsiveScreen.normalize(60),
+          }}
+        >
           <FlatList
             data={project}
             renderItem={({ item }) => (
@@ -176,15 +194,15 @@ export default LoginPage;
 
 const mystyles = StyleSheet.create({
   card: {
-    marginLeft: "0%",
+    marginLeft: ResponsiveScreen.normalize(0),
     // marginVertical:"10%",
     fontFamily: "Roboto",
-    fontSize: 18,
-    marginTop: "2%",
+    fontSize: ResponsiveScreen.normalize(60),
+    marginTop: ResponsiveScreen.normalize(20),
     // marginStart:35,
     // paddingStart:15,
-    width: 300,
-    height: 60,
+    width: ResponsiveScreen.normalize(500),
+    height: ResponsiveScreen.normalize(100),
     textAlign: "left",
     lineHeight: 50,
     borderRadius: 6,

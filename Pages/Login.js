@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 import { Text, View, TextInput, TouchableOpacity, Image } from "react-native";
-
+import { Cache } from "react-native-cache";
 import { styles } from "./styleSheets.js";
-import ResponsiveScreen from 'react-native-auto-responsive-screen';
-ResponsiveScreen.init(720, 1600)
+import ResponsiveScreen from "react-native-auto-responsive-screen";
+ResponsiveScreen.init(720, 1600);
 const LoginPage = (props) => {
   // const [email, setEmail] = useState("");
 
@@ -13,15 +17,25 @@ const LoginPage = (props) => {
   const [password, setPassword] = useState("");
   const onEChange = (textValue) => setEmail(textValue);
   const onPChange = (textValue) => setPassword(textValue);
+  const cache = new Cache({
+    namespace: "myapp",
+    policy: {
+        maxEntries: 50000, // if unspecified, it can have unlimited entries
+        stdTTL: 0 // the standard ttl as number in seconds, default: 0 (unlimited)
+    },
+    backend: AsyncStorage
+});
   const isStatus = 404;
-  const setSend = () => {
+  const  setSend = () => {
+    // const response 
     () => props.navigation.navigate("OpenProject");
+    
     axios({
       method: "POST",
       url: "http://127.0.0.1:8000/USER/login/",
       headers: {
         // 'Content-Type': "application/json",
-        Authorization: "7a5b55841e8ad94f989a789ef4d23e5809ce0c48",
+        // Authorization: `Token ${mahdi}`,
         // 'Accept': 'application/json'
       },
       data: {
@@ -31,16 +45,20 @@ const LoginPage = (props) => {
     })
       // .then((response) => console.log(response.status))
       .then((response) => {
-        if (response.status == "200") {
+        if (response.status == "202") {
           props.navigation.navigate("OpenProject");
-          console.log(response.status);
+          cache.set("token", response.data.data.token);
+          // console.log(response.data.data.token);
+          
+          // console.log('mahdi')
         }
       })
+      
 
       .catch((error) => console.log(error));
-  };
+    }
   return (
-    <View style={[styles.page,{flexDirection:"column"}]}>
+    <View style={[styles.page, { flexDirection: "column" }]}>
       <View style={styles.box}>
         <View>
           <Image
@@ -56,7 +74,9 @@ const LoginPage = (props) => {
             onChangeText={onEChange}
           />
         </View>
-        <View style={[styles.fields, { marginTop: ResponsiveScreen.normalize(20) }]}>
+        <View
+          style={[styles.fields, { marginTop: ResponsiveScreen.normalize(20) }]}
+        >
           <TextInput
             secureTextEntry={true}
             placeholder="password"
@@ -66,40 +86,67 @@ const LoginPage = (props) => {
         </View>
         <View style={styles.butbox}>
           <View>
-            <TouchableOpacity style={[styles.Button,{flexDirection:"row"}]} onPress={setSend}>
-    
+            <TouchableOpacity
+              style={[styles.Button, { flexDirection: "row" }]}
+              onPress={setSend}
+            >
               <Text style={styles.ButtonText}> Login</Text>
               {/* <Text style={{transform: [{ rotate: "90deg" }],fontSize:hp('2%'),color:"#fff"}}> ^ </Text> */}
             </TouchableOpacity>
           </View>
           <View>
             <TouchableOpacity
-              style={[{ backgroundColor: 'transparent' }]}
+              style={[{ backgroundColor: "transparent" }]}
               onPress={setSend}
-            >
-              <Text
-                style={[styles.ButtonText,{marginTop:ResponsiveScreen.normalize(10),marginLeft:ResponsiveScreen.normalize(20)}]}
-                onPress={() => props.navigation.navigate("ForgetPass")}
               >
+              <Text
+                style={[
+                  styles.ButtonText,
+                  {
+                    marginTop: ResponsiveScreen.normalize(10),
+                    marginLeft: ResponsiveScreen.normalize(20),
+                  },
+                ]}
+                onPress={() => props.navigation.navigate("ForgetPass")}
+                >
+                
                 Forgot Password
               </Text>
             </TouchableOpacity>
           </View>
         </View>
       </View>
-      <Text  style={{
-            marginTop: ResponsiveScreen.normalize(250),
+      <View
+        style={{
+          height: ResponsiveScreen.normalize(530),
+          alignItems: "center",
+        }}
+      >
+        <Text
+          style={{
+            marginTop: ResponsiveScreen.normalize(210),
             color: "white",
             fontSize: ResponsiveScreen.normalize(30),
             // marginLeft: "23%",
-          }}>Client Application</Text>
-      <Text  style={{
+          }}
+        >
+          Client Application
+        </Text>
+        <Text
+          style={{
             marginTop: ResponsiveScreen.normalize(20),
+            marginBottom: ResponsiveScreen.normalize(320),
             color: "white",
-            fontSize: ResponsiveScreen.normalize(20),}}>All rights reserved by E-novation engineering Co.{" "}</Text>
+            fontSize: ResponsiveScreen.normalize(20),
+          }}
+        >
+          All rights reserved by E-novation engineering Co.{" "}
+        </Text>
+      </View>
     </View>
   );
 };
+
 export default LoginPage;
 
 // const styles = StyleSheet.create({

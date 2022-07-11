@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { EvilIcons, MaterialIcons } from "@expo/vector-icons";
 
+// import createAnimatedSwitchNavigator from "react-navigation-animated-switch";
+// import { Transition } from 'react-native-reanimated';
 import {
   Text,
   View,
@@ -11,8 +13,28 @@ import {
   Image,
   FlatList,
 } from "react-native";
-import { styles, styles2, btn } from "./styleSheets.js";
-
+import { styles2, btn, styles3 } from "./styleSheets.js";
+import ResponsiveScreen from "react-native-auto-responsive-screen";
+ResponsiveScreen.init(720, 1600);
+// const MySwitch = createAnimatedSwitchNavigator(
+//   {
+//     Home: HomeScreen,
+//     Other: OtherScreen,
+//   },
+//   {
+//     // The previous screen will slide to the bottom while the next screen will fade in
+//     transition: (
+//       <Transition.Together>
+//         <Transition.Out
+//           type="slide-bottom"
+//           durationMs={400}
+//           interpolation="easeIn"
+//         />
+//         <Transition.In type="fade" durationMs={500} />
+//       </Transition.Together>
+//     ),
+//   }
+// );
 const LoginPage = (props) => {
   // const [email, setEmail] = useState("");
   var email = "ali@test.com";
@@ -44,170 +66,148 @@ const LoginPage = (props) => {
       .catch((error) => console.log(error));
   });
   return (
-    <View style={styles2.page}>
-      <View style={styles2.topbox}>
-        <View>
-          <Image
-            source={require("../assets/app_ui2-13.png")}
-            style={styles2.logo}
-          />
-        </View>
-        <View>
-          <Image source={require("../assets/app_ui2-11.png")} />
-        </View>
+    <View style={styles3.page}>
+      <View style={styles3.topbox}>
+        <Image
+          source={require("../assets/app_ui2-13.png")}
+          style={styles3.logo}
+        />
       </View>
-      <View style={[styles2.butbox2, { alignItems: "center" }]}>
-        <Text
-          style={{
-            fontSize: 30,
-            color: "#f2ca30",
-            marginTop: "20%",
-            marginRight: "-40%",
-            marginLeft: "-20%",
-            fontFamily: "Roboto",
-          }}
+      <View style={[styles3.butbox]}>
+        <View
+          style={[
+            styles3.workbox,
+            { alignItems: "center", flexDirection: "column" },
+          ]}
         >
-          History of Your Projects
-        </Text>
-
-        <View>
-          <TouchableOpacity>
-            <Text
-              style={[styles2.cardg, { marginLeft: 32, width: 330 }]}
-              onPress={() =>
-                props.navigation.navigate("Bearing", { name: "Bearing" })
-              }
-            >
-              Bearing
-            </Text>
-
-            <Text
-              style={{
-                marginTop: "-24%",
-                marginLeft: "38%",
-                fontSize: 10,
-                color: "#192570",
-                fontWeight: "bold",
-              }}
-            >
-              ID No.:<Text style={{ color: "gray" }}>123456</Text>
-            </Text>
-            <Text
-              style={{
-                marginTop: "1.5%",
-                marginLeft: "38%",
-                fontSize: 10,
-                color: "#192570",
-                fontWeight: "bold",
-              }}
-            >
-              Patent No.:<Text style={{ color: "gray" }}>123456</Text>
-            </Text>
-            <Text
-              style={{
-                marginTop: "2%",
-                marginLeft: "38%",
-                fontSize: 10,
-                color: "#192570",
-                fontWeight: "bold",
-              }}
-            >
-              Patent No:<Text style={{ color: "gray" }}>123456</Text>
-            </Text>
-            <Text
-              style={{
-                marginTop: "-17.3%",
-                marginLeft: "70%",
-                fontSize: 10,
-                color: "#192570",
-                fontWeight: "bold",
-              }}
-            >
-              Order No.:<Text style={{ color: "gray" }}>12</Text>
-            </Text>
-            <Text
-              style={{
-                marginTop: "1.6%",
-                marginLeft: "70%",
-                fontSize: 10,
-                color: "#192570",
-                fontWeight: "bold",
-              }}
-            >
-              Req No.:<Text style={{ color: "gray" }}>123456</Text>
-            </Text>
-            <Text
-              style={{
-                marginTop: "2%",
-                marginLeft: "70%",
-                fontSize: 9,
-                color: "#192570",
-                fontWeight: "bold",
-              }}
-            >
-              End Date:<Text style={{ color: "gray" }}>2022/3/12</Text>
-            </Text>
-            <View
-              style={{
-                width: 2,
-                height: 78,
-                backgroundColor: "#f2ca30",
-                marginLeft: "35%",
-                marginTop: "-19%",
-              }}
-            ></View>
-
-            <View></View>
-          </TouchableOpacity>
-        </View>
-
-        <View>
-          <Text
+          <View
             style={{
-              marginTop: "-30%",
-              marginLeft: "-0.3%",
-              paddingLeft: "170%",
-              zIndex: 1,
+              // backgroundColor: "blue",
+              width: ResponsiveScreen.normalize(600),
+              borderRadius: 20,
+              height: ResponsiveScreen.normalize(200),
             }}
           >
-            <EvilIcons name="gear" size={32} color="white" />
-          </Text>
-          <Text style={[btn.trapezoid1,{marginRight:"10%"}]}> Current Projects</Text>
-        </View>
-
-        <View>
-          <Text
+            <Text
+              style={{
+                fontSize: ResponsiveScreen.normalize(47),
+                color: "#f2ca30",
+                marginTop: ResponsiveScreen.normalize(50),
+                marginLeft: ResponsiveScreen.normalize(50),
+                marginBottom: ResponsiveScreen.normalize(25),
+              }}
+            >
+              History of your Projects
+            </Text>
+          </View>
+          <View
             style={{
-              marginTop: "-15%",
-              paddingTop: "40%",
-              paddingLeft: "170%",
-              zIndex: 1,
+              // backgroundColor:'red',
+              width: ResponsiveScreen.normalize(600),
+              height: ResponsiveScreen.normalize(1150),
+              borderRadius: 20,
+              flexDirection: "row",
             }}
           >
-            <MaterialIcons name="history-toggle-off" size={30} color="white" />
-          </Text>
-          <Text style={[btn.trapezoid2,{marginRight:"10%"}]}> History of Your Projects</Text>
-        </View>
+            <View style={{ marginTop: ResponsiveScreen.normalize(-30) }}>
+              <TouchableOpacity>
+                <Text
+                  style={[
+                    styles2.cardg,
+                    {
+                      marginLeft: ResponsiveScreen.normalize(20),
+                      width: ResponsiveScreen.normalize(570),
+                    },
+                  ]}
+                  onPress={() =>
+                    props.navigation.navigate("Bearing", { name: "Bearing" })
+                  }
+                >
+                  Bearing
+                </Text>
 
-        <View style={{ height: 150, width: "100%", padding: 10 }}>
-          <FlatList
-            data={project}
-            renderItem={({ item }) => (
-              <TouchableOpacity
-                style={[
-                  {
-                    backgroundColor: "blue",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    flex: 1,
-                  },
-                ]}
-              >
-                <Text key={item.id}>{item.name}</Text>
+                <Text
+                  style={{
+                    marginTop: ResponsiveScreen.normalize(-160),
+                    marginLeft: ResponsiveScreen.normalize(230),
+                    fontSize: ResponsiveScreen.normalize(20),
+                    color: "#192570",
+                    fontWeight: "bold",
+                  }}
+                >
+                  ID No.:<Text style={{ color: "gray" }}>123456</Text>
+                </Text>
+                <Text
+                  style={{
+                    marginTop: ResponsiveScreen.normalize(25),
+                    marginLeft: ResponsiveScreen.normalize(230),
+                    fontSize: ResponsiveScreen.normalize(20),
+                    color: "#192570",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Patent No.:<Text style={{ color: "gray" }}>123456</Text>
+                </Text>
+                <Text
+                  style={{
+                    marginTop: ResponsiveScreen.normalize(25),
+                    marginLeft: ResponsiveScreen.normalize(230),
+                    fontSize: ResponsiveScreen.normalize(20),
+                    color: "#192570",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Patent No:<Text style={{ color: "gray" }}>123456</Text>
+                </Text>
+                <Text
+                  style={{
+                    marginTop: ResponsiveScreen.normalize(-120),
+                    marginLeft: ResponsiveScreen.normalize(400),
+                    fontSize: ResponsiveScreen.normalize(20),
+                    color: "#192570",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Order No.:<Text style={{ color: "gray" }}>12</Text>
+                </Text>
+                <Text
+                  style={{
+                    marginTop: ResponsiveScreen.normalize(25),
+                    marginLeft: ResponsiveScreen.normalize(400),
+                    fontSize: ResponsiveScreen.normalize(20),
+                    color: "#192570",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Req No.:<Text style={{ color: "gray" }}>123456</Text>
+                </Text>
+                <Text
+                  style={{
+                    marginTop: ResponsiveScreen.normalize(25),
+                    marginLeft: ResponsiveScreen.normalize(400),
+                    fontSize: ResponsiveScreen.normalize(20),
+                    color: "#192570",
+                    fontWeight: "bold",
+                  }}
+                >
+                  End Date:<Text style={{ color: "gray" }}>2022/3/12</Text>
+                </Text>
+                <View
+                  style={{
+                    width: 2,
+                    height: 78,
+                    backgroundColor: "#f2ca30",
+                    marginLeft: ResponsiveScreen.normalize(200),
+                    marginTop: ResponsiveScreen.normalize(-120),
+                  }}
+                ></View>
+
+                <View></View>
               </TouchableOpacity>
-            )}
-          />
+            </View>
+          </View>
         </View>
+        <View style={styles3.barbox}></View>
       </View>
     </View>
   );

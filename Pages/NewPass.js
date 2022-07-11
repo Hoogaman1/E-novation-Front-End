@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 import { Text, View, TextInput, Image, TouchableOpacity } from "react-native";
 
 import { styles } from "./styleSheets.js";
-import ResponsiveScreen from 'react-native-auto-responsive-screen';
-ResponsiveScreen.init(720, 1600)
+import ResponsiveScreen from "react-native-auto-responsive-screen";
+ResponsiveScreen.init(720, 1600);
 const NewPass = (props) => {
   // const [email, setEmail] = useState("");
 
@@ -38,7 +41,7 @@ const NewPass = (props) => {
         .catch((error) => console.log(error));
   };
   return (
-    <View style={[styles.page,{flexDirection:"column"}]}>
+    <View style={[styles.page, { flexDirection: "column" }]}>
       <View style={styles.box}>
         <View>
           <Image
@@ -54,7 +57,9 @@ const NewPass = (props) => {
             onChangeText={onEChange}
           />
         </View>
-        <View style={[styles.fields, {marginTop: ResponsiveScreen.normalize(20)}]}>
+        <View
+          style={[styles.fields, { marginTop: ResponsiveScreen.normalize(20) }]}
+        >
           <TextInput
             secureTextEntry={true}
             placeholder="Re_password"
@@ -64,10 +69,12 @@ const NewPass = (props) => {
         </View>
         <View style={styles.butbox}>
           <View>
-            <TouchableOpacity style={[styles.Button,{flexDirection:'row'}]} onPress={setSend}>
+            <TouchableOpacity
+              style={[styles.Button, { flexDirection: "row" }]}
+              onPress={setSend}
+            >
               <Text style={styles.ButtonText}>Accept</Text>
               {/* <Text style={{transform: [{ rotate: "90deg" }],fontSize:20,color:"#fff"}}> ^ </Text> */}
-
             </TouchableOpacity>
           </View>
           {/* <View >
@@ -77,16 +84,25 @@ const NewPass = (props) => {
         </View> */}
         </View>
       </View>
-      <Text  style={{
-            marginTop: ResponsiveScreen.normalize(250),
-            color: "white",
-            fontSize: ResponsiveScreen.normalize(30),
-            // marginLeft: "23%",
-          }}>Client Application</Text>
-      <Text  style={{
-            marginTop: ResponsiveScreen.normalize(20),
-            color: "white",
-            fontSize: ResponsiveScreen.normalize(20),}}>All rights reserved by E-novation engineering Co.{" "}</Text>
+      <Text
+        style={{
+          marginTop: ResponsiveScreen.normalize(250),
+          color: "white",
+          fontSize: ResponsiveScreen.normalize(30),
+          // marginLeft: "23%",
+        }}
+      >
+        Client Application
+      </Text>
+      <Text
+        style={{
+          marginTop: ResponsiveScreen.normalize(20),
+          color: "white",
+          fontSize: ResponsiveScreen.normalize(20),
+        }}
+      >
+        All rights reserved by E-novation engineering Co.{" "}
+      </Text>
     </View>
   );
 };

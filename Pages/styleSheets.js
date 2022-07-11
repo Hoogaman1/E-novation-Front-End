@@ -1,23 +1,26 @@
 // import React,{ useState } from "react";
 // import axios from 'axios';
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 import { StyleSheet, Dimensions } from "react-native";
-import ResponsiveScreen from 'react-native-auto-responsive-screen';
-ResponsiveScreen.init(720, 1600)
-const wf = Dimensions.get('screen').fontScale;
-const ws = Dimensions.get('screen').scale;
-const wh = Dimensions.get('screen').height;
-const ww = Dimensions.get('screen').width;
+import ResponsiveScreen from "react-native-auto-responsive-screen";
+ResponsiveScreen.init(720, 1600);
+const wf = Dimensions.get("screen").fontScale;
+const ws = Dimensions.get("screen").scale;
+const wh = Dimensions.get("screen").height;
+const ww = Dimensions.get("screen").width;
 // console.log(win)
 const styles = StyleSheet.create({
   page: {
     fontFamily: "Roboto",
-    fontSize:wf*8,
+    fontSize: wf * 8,
     alignItems: "center",
     backgroundColor: "#f2ca30",
-    justifyContent: "center",
-    height:ResponsiveScreen.normalize(1600),
-    width: ResponsiveScreen.normalize(720),
+    // justifyContent: "center",
+    height: ResponsiveScreen.normalize(1600),
+    width: ResponsiveScreen.normalize(725),
     flexDirection: "column",
     flexDirection: "row",
     // flexWrap: 'wrap',
@@ -25,29 +28,28 @@ const styles = StyleSheet.create({
   },
   fields: {
     fontFamily: "Roboto",
-    fontSize:wf*8,
-    position:'relative',
-    height:ResponsiveScreen.normalize(60),
+    fontSize: wf * 8,
+    position: "relative",
+    height: ResponsiveScreen.normalize(60),
     width: ResponsiveScreen.normalize(420),
     // padding: 0,
     backgroundColor: "white",
     textAlign: "center",
     borderRadius: 50,
-    marginTop:ResponsiveScreen.normalize(-120),
+    marginTop: ResponsiveScreen.normalize(-120),
     marginLeft: ResponsiveScreen.normalize(20),
     // marginRight: wp('5%'),
   },
   text: {
-    
     fontFamily: "Roboto",
-    fontSize:ResponsiveScreen.normalize(25),
-    marginLeft:ResponsiveScreen.normalize(25)
+    fontSize: ResponsiveScreen.normalize(25),
+    marginLeft: ResponsiveScreen.normalize(25),
   },
   Button: {
     // fontFamily: "Roboto",
 
-    justifyContent:'center',
-    alignItems:'center',
+    justifyContent: "center",
+    alignItems: "center",
     // borderColor:'#fff',
     backgroundColor: "#192570",
     // color :"red",
@@ -64,30 +66,30 @@ const styles = StyleSheet.create({
   },
   box: {
     fontFamily: "Roboto",
-    marginTop: ResponsiveScreen.normalize(540),
+    marginTop: ResponsiveScreen.normalize(450),
     // height:hp("45%"),
     // width: hp("32%"),
     // marginLeft:wp("10%"),
     // marginRight:wp("10%"),
     padding: ResponsiveScreen.normalize(25),
-    height:ResponsiveScreen.normalize(600),
-    width:ResponsiveScreen.normalize(500),
+    height: ResponsiveScreen.normalize(600),
+    width: ResponsiveScreen.normalize(500),
     // backgroundColor:"red"
   },
   ButtonText: {
     fontFamily: "Roboto",
-// alignItems:'center',
+    // alignItems:'center',
     color: "white",
     // width:"100%"
     // fontSize:12,
     textAlign: "center",
 
-    fontSize:ResponsiveScreen.normalize(25),
+    fontSize: ResponsiveScreen.normalize(25),
     // fontSize: hp("1.4"),
     // marginTop: ws/100*200,
     // marginLeft: '25%',
     // paddingLeft: ws*700/100,
-    // paddingRight: ws*3,
+    paddingBottom: ResponsiveScreen.normalize(10),
     // backgroundColor:"red"
   },
   butbox: {
@@ -96,7 +98,7 @@ const styles = StyleSheet.create({
     marginTop: ResponsiveScreen.normalize(15),
     height: ResponsiveScreen.normalize(200),
     width: ResponsiveScreen.normalize(440),
-    padding:ResponsiveScreen.normalize(10),
+    padding: ResponsiveScreen.normalize(10),
     flexDirection: "row",
     // backgroundColor:"green",
     // flexDirection: 'column',
@@ -105,7 +107,7 @@ const styles = StyleSheet.create({
     // fontFamily: "Roboto",
     // backgroundColor:"red",
     width: ResponsiveScreen.normalize(450),
-    height:ResponsiveScreen.normalize(150),
+    height: ResponsiveScreen.normalize(150),
     // marginRight: wp('30%'),
     marginBottom: ResponsiveScreen.normalize(120),
   },
@@ -151,7 +153,7 @@ const styles2 = StyleSheet.create({
     marginTop: hp("4%"),
     height: hp("9%"),
     // width: '95%',
-    width:ww,
+    width: ww,
 
     // padding:10,
     // backgroundColor:"green"
@@ -159,7 +161,7 @@ const styles2 = StyleSheet.create({
   butbox: {
     fontFamily: "Roboto",
 
-    borderRadius: hp('50%'),
+    borderRadius: hp("50%"),
     height: hp("100%"),
     width: hp("40%"),
     marginLeft: wp("-19%"),
@@ -174,7 +176,6 @@ const styles2 = StyleSheet.create({
     marginLeft: -82,
   },
   card: {
-    
     fontFamily: "Roboto",
     fontSize: 18,
     marginTop: 20,
@@ -193,7 +194,6 @@ const styles2 = StyleSheet.create({
     shadowRadius: 2,
   },
   carda: {
-    
     fontFamily: "Roboto",
     fontSize: 18,
     marginTop: -27,
@@ -207,7 +207,6 @@ const styles2 = StyleSheet.create({
     backgroundColor: "#fff",
   },
   cardb: {
-    
     fontFamily: "Roboto",
     fontSize: 18,
     marginTop: -27,
@@ -221,7 +220,6 @@ const styles2 = StyleSheet.create({
     backgroundColor: "#fff",
   },
   cardc: {
-    
     fontFamily: "Roboto",
     fontSize: 18,
     marginTop: -27,
@@ -235,7 +233,6 @@ const styles2 = StyleSheet.create({
     backgroundColor: "#fff",
   },
   cardd: {
-    
     fontFamily: "Roboto",
     fontSize: 18,
     marginTop: -27,
@@ -249,7 +246,6 @@ const styles2 = StyleSheet.create({
     backgroundColor: "#fff",
   },
   carde: {
-    
     fontFamily: "Roboto",
     fontSize: 18,
     marginTop: -27,
@@ -263,7 +259,6 @@ const styles2 = StyleSheet.create({
     backgroundColor: "#fff",
   },
   cardf: {
-    
     fontFamily: "Roboto",
     fontSize: 18,
     marginTop: -27,
@@ -277,7 +272,6 @@ const styles2 = StyleSheet.create({
     backgroundColor: "#fff",
   },
   cardg: {
-    
     padding: 15,
     color: "gray",
     fontFamily: "Roboto",
@@ -299,7 +293,6 @@ const styles2 = StyleSheet.create({
   },
 
   icon1: {
-    
     marginTop: hp("-7%"),
     marginBottom: hp("4%"),
     marginLeft: wp("16%"),
@@ -311,11 +304,11 @@ const styles2 = StyleSheet.create({
   },
   icon3: {
     marginTop: hp("-7%"),
-    marginBottom:  hp("7%"),
+    marginBottom: hp("7%"),
     marginLeft: wp("16%"),
   },
   icon4: {
-    marginTop:hp("-7%"),
+    marginTop: hp("-7%"),
     marginBottom: hp("7%"),
     marginLeft: wp("16%"),
   },
@@ -372,9 +365,9 @@ const btn = StyleSheet.create({
   },
   trapezoid1: {
     fontFamily: "Roboto",
-backgroundColor:"red",
+    backgroundColor: "red",
     zIndex: 0,
-    marginTop: hp('3%'),
+    marginTop: hp("3%"),
     marginLeft: wp("3%"),
     paddingTop: 15,
     textAlign: "center",
@@ -393,7 +386,7 @@ backgroundColor:"red",
   },
   trapezoid2: {
     fontFamily: "Roboto",
-    
+
     zIndex: 0,
     marginTop: "15%",
     marginLeft: "143%",
@@ -431,10 +424,10 @@ backgroundColor:"red",
   btnb: {
     fontFamily: "Roboto",
 
-    paddingTop: hp('0%'),
-    paddingLeft: wp('0%'),
+    paddingTop: hp("0%"),
+    paddingLeft: wp("0%"),
     textAlign: "center",
-    fontSize: hp('1.7%'),
+    fontSize: hp("1.7%"),
     transform: [{ rotate: "90deg" }],
     color: "#000",
     marginTop: hp("-33%"),
@@ -442,8 +435,8 @@ backgroundColor:"red",
     // borderTopLeftRadius: 50,
     // borderBottomRightRadius: 50,
     backgroundColor: "#e8e4e3",
-    width: wp('35%'),
-    height: hp('7%'),
+    width: wp("35%"),
+    height: hp("7%"),
   },
   btnbb: {
     fontFamily: "Roboto",
@@ -510,7 +503,7 @@ backgroundColor:"red",
   },
 
   trapezoida: {
-    position:'absolute',
+    position: "absolute",
     fontFamily: "Roboto",
     // backgroundColor:'red',
     marginTop: hp("-52%"),
@@ -538,7 +531,7 @@ backgroundColor:"red",
 
     marginTop: wp("-30%"),
     marginLeft: wp("122%"),
-    paddingTop: hp('1%'),
+    paddingTop: hp("1%"),
     paddingRight: wp("10%"),
     textAlign: "center",
     fontSize: hp("1.7%"),
@@ -600,11 +593,11 @@ backgroundColor:"red",
 const styles3 = StyleSheet.create({
   page: {
     fontFamily: "Roboto",
-    fontSize:ResponsiveScreen.normalize(25),
+    fontSize: ResponsiveScreen.normalize(25),
     alignItems: "center",
     backgroundColor: "#fff",
     // justifyContent: "center",
-    height:ResponsiveScreen.normalize(1600),
+    height: ResponsiveScreen.normalize(1600),
     width: ResponsiveScreen.normalize(720),
     flexDirection: "column",
     // backgroundColor:"red",
@@ -618,19 +611,19 @@ const styles3 = StyleSheet.create({
     // justifyContent: 'flex-end',
     // flexDirection: 'column',
     flexDirection: "row",
-    marginTop:ResponsiveScreen.normalize(20),
+    marginTop: ResponsiveScreen.normalize(20),
     justifyContent: "space-between",
     // backgroundColor:'blue',
     // marginTop: "15%",
     height: ResponsiveScreen.normalize(200),
     // width: '95%',
-    width:ResponsiveScreen.normalize(720),
+    width: ResponsiveScreen.normalize(720),
     // paddingTop:wh/5.9,
     // padding:'30%',
   },
   butbox: {
     fontFamily: "Roboto",
-    flexDirection:"row",
+    flexDirection: "row",
     borderRadius: 20,
     height: ResponsiveScreen.normalize(1360),
     width: ResponsiveScreen.normalize(720),
@@ -640,7 +633,7 @@ const styles3 = StyleSheet.create({
   },
   workbox: {
     fontFamily: "Roboto",
-    flexDirection:"column",
+    flexDirection: "column",
     borderRadius: 20,
     height: ResponsiveScreen.normalize(1360),
     width: ResponsiveScreen.normalize(600),
@@ -649,12 +642,12 @@ const styles3 = StyleSheet.create({
   },
   barbox: {
     fontFamily: "Roboto",
-    flexDirection:'column',
+    flexDirection: "column",
     borderRadius: 20,
     height: ResponsiveScreen.normalize(1360),
     width: ResponsiveScreen.normalize(130),
     // marginLeft: wp("-19%"),
-    // backgroundColor:"green"
+    backgroundColor: "green",
   },
   logo: {
     height: ResponsiveScreen.normalize(160),
@@ -669,65 +662,78 @@ const styles3 = StyleSheet.create({
   },
   barbut1: {
     fontFamily: "Roboto",
-    backgroundColor:"#f2ca30",
+    backgroundColor: "#f2ca30",
     transform: [{ rotate: "90deg" }],
-    width:wh/5,
-    height:ww/5,
-    marginTop:wh/5.2,
-    marginLeft:-(ww/8.2),
+    width: wh / 5,
+    height: ww / 5,
+    marginTop: wh / 5.2,
+    marginLeft: -(ww / 8.2),
   },
   barbut2: {
     fontFamily: "Roboto",
-    backgroundColor:"#e5e5e5",
+    backgroundColor: "#e5e5e5",
     transform: [{ rotate: "90deg" }],
-    width:wh/5,
-    height:ww/5,
-    marginTop:wh/9.1,
-    marginLeft:-(ww/8.2),
+    width: wh / 5,
+    height: ww / 5,
+    marginTop: wh / 9.1,
+    marginLeft: -(ww / 8.2),
   },
   barbut3: {
     fontFamily: "Roboto",
-    backgroundColor:"#f2ca30",
+    backgroundColor: "#f2ca30",
     transform: [{ rotate: "90deg" }],
-    width:wh/5,
-    height:ww/5,
-    marginTop:wh/9.1,
-    marginLeft:-(ww/8.2),
+    width: wh / 5,
+    height: ww / 5,
+    marginTop: wh / 9.1,
+    marginLeft: -(ww / 8.2),
   },
   bartxt: {
     fontFamily: "Roboto",
-    width:wh/5,
-    height:ww/5,
-    marginTop:wh/30,
-    marginLeft:ww/10
+    width: wh / 5,
+    height: ww / 5,
+    marginTop: wh / 30,
+    marginLeft: ww / 10,
   },
   workcard: {
     // backgroundColor:"gray",
     fontFamily: "Roboto",
-    width:ResponsiveScreen.normalize(450),
-    height:ResponsiveScreen.normalize(120),
-    marginBottom:ResponsiveScreen.normalize(25),
-    borderRadius:ResponsiveScreen.normalize(18),
-    flexDirection:"row",
-    elevation: 5,
+    width: ResponsiveScreen.normalize(450),
+    height: ResponsiveScreen.normalize(120),
+    marginBottom: ResponsiveScreen.normalize(25),
+    borderRadius: ResponsiveScreen.normalize(18),
+    flexDirection: "row",
+    elevation: 3,
     backgroundColor: "#fff",
     shadowOffset: { width: 3, height: 3 },
     shadowColor: "#333",
     shadowOpacity: 0.3,
     shadowRadius: 3,
-    
   },
-  txtworkcard:{
+  workcard2: {
+    // backgroundColor:"gray",
+    fontFamily: "Roboto",
+    width: ResponsiveScreen.normalize(550),
+    height: ResponsiveScreen.normalize(120),
+    marginBottom: ResponsiveScreen.normalize(25),
+    marginLeft: ResponsiveScreen.normalize(35),
+    borderRadius: ResponsiveScreen.normalize(18),
+    flexDirection: "row",
+    elevation: 3,
+    backgroundColor: "#fff",
+    shadowOffset: { width: 3, height: 3 },
+    shadowColor: "#333",
+    shadowOpacity: 0.3,
+    shadowRadius: 3,
+  },
+  txtworkcard: {
     // backgroundColor:"yellow",
     fontFamily: "Roboto",
-    width:ResponsiveScreen.normalize(350),
-    height:ResponsiveScreen.normalize(150),
-    fontSize:ResponsiveScreen.normalize(35),
-    paddingTop:ResponsiveScreen.normalize(30),
-    paddingLeft:ResponsiveScreen.normalize(40),
-    borderRadius:20,
-    
-    
+    width: ResponsiveScreen.normalize(350),
+    height: ResponsiveScreen.normalize(150),
+    fontSize: ResponsiveScreen.normalize(35),
+    paddingTop: ResponsiveScreen.normalize(30),
+    paddingLeft: ResponsiveScreen.normalize(40),
+    borderRadius: 20,
   },
 });
-export { styles2, btn ,styles3};
+export { styles2, btn, styles3 };

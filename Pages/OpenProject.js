@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { EvilIcons, MaterialIcons } from "@expo/vector-icons";
+import { Cache } from "react-native-cache";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 // import createAnimatedSwitchNavigator from "react-navigation-animated-switch";
 // import { Transition } from 'react-native-reanimated';
@@ -13,8 +16,17 @@ import {
   Image,
   FlatList,
 } from "react-native";
-import { styles, styles2, btn } from "./styleSheets.js";
-
+import { styles2, btn, styles3 } from "./styleSheets.js";
+import ResponsiveScreen from "react-native-auto-responsive-screen";
+ResponsiveScreen.init(720, 1600);
+const cache = Cache({
+  namespace: "myapp",
+  policy: {
+      maxEntries: 50000, // if unspecified, it can have unlimited entries
+      stdTTL: 0 // the standard ttl as number in seconds, default: 0 (unlimited)
+  },
+  backend: AsyncStorage
+});
 // const MySwitch = createAnimatedSwitchNavigator(
 //   {
 //     Home: HomeScreen,
@@ -41,10 +53,13 @@ const LoginPage = (props) => {
   const onCChange = (textValue) => setCode(textValue);
   //   const [email, setEmail] = useState('ali@test.com');
   //   const onEChange = (textValue) => setEmail(textValue);
-  const [project, setProject] = useState([]);
   useEffect(() => {
     // props.navigation.navigate("NewPass"),
-
+   
+    const value = cache.get("token");
+    console.log("ooof")
+    console.log(value);
+// 'hello'
     axios({
       method: "get",
       url: "http://127.0.0.1:8000/USER/opproject/",
@@ -65,87 +80,60 @@ const LoginPage = (props) => {
       .catch((error) => console.log(error));
   });
   return (
-    <View style={styles2.page}>
-      <View style={styles2.topbox}>
+    <View style={styles3.page}>
+      <View style={styles3.topbox}>
         <Image
           source={require("../assets/app_ui2-13.png")}
-          style={styles2.logo}
+          style={styles3.logo}
         />
       </View>
-      <View style={[styles2.butbox, { alignItems: "center" }]}>
-        <Text
-          style={{
-            fontSize: 32,
-            color: "#f2ca30",
-            marginTop: "20%",
-            marginLeft: "-2%",
-            fontFamily: "Roboto",
-          }}
+      <View style={[styles3.butbox]}>
+        <View
+          style={[
+            styles3.workbox,
+            { alignItems: "center", flexDirection: "column" },
+          ]}
         >
-          Current Projects
-        </Text>
-
-        <View>
-          <TouchableOpacity>
+          <View
+            style={{
+              // backgroundColor: "blue",
+              width: ResponsiveScreen.normalize(600),
+              borderRadius: 20,
+              height: ResponsiveScreen.normalize(200),
+            }}
+          >
             <Text
-              style={styles2.card}
-              onPress={() =>
-                props.navigation.navigate("Bearing", { name: "Bearing" })
-              }
+              style={{
+                fontSize: ResponsiveScreen.normalize(60),
+                color: "#f2ca30",
+                marginTop: ResponsiveScreen.normalize(50),
+                marginLeft: ResponsiveScreen.normalize(50),
+                marginBottom: ResponsiveScreen.normalize(25),
+              }}
             >
-              Bearing
+              Current Projects
             </Text>
-          </TouchableOpacity>
-        </View>
-
-        <View>
-          <Text
+          </View>
+          <View
             style={{
-              marginTop: "-15%",
-              marginLeft: "9%",
-              paddingLeft: "170%",
-              zIndex: 1,
+              // backgroundColor:'red',
+              width: ResponsiveScreen.normalize(600),
+              height: ResponsiveScreen.normalize(1150),
+              borderRadius: 20,
+              flexDirection: "row",
             }}
           >
-            <EvilIcons name="gear" size={32} color="white" />
-          </Text>
-          <Text style={btn.trapezoid1}> Current Projects</Text>
+            <TouchableOpacity>
+              <View style={[styles3.workcard2]}>
+                <View>
+                  <Text style={styles3.txtworkcard}>Bearing</Text>
+                </View>
+                <View></View>
+              </View>
+            </TouchableOpacity>
+          </View>
         </View>
-
-        <View>
-          <Text
-            style={{
-              marginTop: "-20%",
-              paddingTop: "40%",
-              marginLeft: "9%",
-              paddingLeft: "170%",
-              zIndex: 1,
-            }}
-          >
-            <MaterialIcons name="history-toggle-off" size={30} color="white" />
-          </Text>
-          <Text style={btn.trapezoid2}> History of Your Projects</Text>
-        </View>
-
-        <View style={{ height: 150, width: "100%", padding: 10 }}>
-          <FlatList
-            data={project}
-            renderItem={({ item }) => (
-              <TouchableOpacity
-                style={[
-                  {
-                    backgroundColor: "blue",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    flex: 1,
-                  },
-                ]}
-              >
-                <Text key={item.id}>{item.name}</Text>
-              </TouchableOpacity>
-            )}
-          />
-        </View>
+        <View style={styles3.barbox}></View>
       </View>
     </View>
   );
