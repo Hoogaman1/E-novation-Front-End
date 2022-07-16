@@ -10,7 +10,7 @@ import { Text, View, TextInput, Image, TouchableOpacity } from "react-native";
 import { styles } from "./styleSheets.js";
 import ResponsiveScreen from "react-native-auto-responsive-screen";
 ResponsiveScreen.init(720, 1600);
-const LoginPage = (props) => {
+const ForgetPass = (props) => {
   // const [email, setEmail] = useState("");
 
   const [email, setEmail] = useState("");
@@ -18,20 +18,20 @@ const LoginPage = (props) => {
   const onEChange = (textValue) => setEmail(textValue);
   // const onPChange = (textValue) => setPassword(textValue);
   const setSend = () => {
-    props.navigation.navigate("Verification"), console.log(email);
+    props.navigation.navigate("Verification",{email: email});
     axios({
       method: "POST",
       url: "http://127.0.0.1:8000/USER/forget_password/",
       headers: {
         // 'Content-Type': "application/json",
-        Authorization: "7a5b55841e8ad94f989a789ef4d23e5809ce0c48",
+        // Authorization: "7a5b55841e8ad94f989a789ef4d23e5809ce0c48",
         // 'Accept': 'application/json'
       },
       data: {
         email: email,
       },
     })
-      .then((response) => console.log(response))
+      .then((response) => console.log(response.data))
 
       .catch((error) => console.log(error));
   };
@@ -86,7 +86,7 @@ const LoginPage = (props) => {
     </View>
   );
 };
-export default LoginPage;
+export default ForgetPass;
 
 // const styles = StyleSheet.create({
 

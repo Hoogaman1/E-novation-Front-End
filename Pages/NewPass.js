@@ -12,14 +12,16 @@ import ResponsiveScreen from "react-native-auto-responsive-screen";
 ResponsiveScreen.init(720, 1600);
 const NewPass = (props) => {
   // const [email, setEmail] = useState("");
-
+  const email = props.route.params.email;
+  const { navigation } = props;
   const [re_password, setRepass] = useState("");
   const [password, setPassword] = useState("");
   const onEChange = (textValue) => setRepass(textValue);
   const onPChange = (textValue) => setPassword(textValue);
-  var email = "ali@test.com";
+  // var email = "ali@test.com";
   const setSend = () => {
     props.navigation.navigate("LoginPage"),
+
       axios({
         method: "POST",
         url: "http://127.0.0.1:8000/USER/new_password/" + email,
@@ -28,7 +30,7 @@ const NewPass = (props) => {
         // },
         headers: {
           // 'Content-Type': "application/json",
-          Authorization: "7a5b55841e8ad94f989a789ef4d23e5809ce0c48",
+          // Authorization: "7a5b55841e8ad94f989a789ef4d23e5809ce0c48",
           // 'Accept': 'application/json'
         },
         data: {
@@ -36,7 +38,7 @@ const NewPass = (props) => {
           new_password: password,
         },
       })
-        .then((response) => console.log(response))
+        .then((response) => console.log(response.data))
 
         .catch((error) => console.log(error));
   };

@@ -1,5 +1,6 @@
 // import React,{ useState } from "react";
 // import axios from 'axios';
+
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -647,7 +648,7 @@ const styles3 = StyleSheet.create({
     height: ResponsiveScreen.normalize(1360),
     width: ResponsiveScreen.normalize(130),
     // marginLeft: wp("-19%"),
-    backgroundColor: "green",
+    // backgroundColor: "green",
   },
   logo: {
     height: ResponsiveScreen.normalize(160),
@@ -689,10 +690,11 @@ const styles3 = StyleSheet.create({
   },
   bartxt: {
     fontFamily: "Roboto",
-    width: wh / 5,
-    height: ww / 5,
-    marginTop: wh / 30,
-    marginLeft: ww / 10,
+    transform: [{ rotate: "90deg" }],
+    width:ResponsiveScreen.normalize(250),
+    height: ResponsiveScreen.normalize(50),
+    marginTop: ResponsiveScreen.normalize(-150),
+    marginLeft: ResponsiveScreen.normalize(-45),
   },
   workcard: {
     // backgroundColor:"gray",
@@ -734,6 +736,29 @@ const styles3 = StyleSheet.create({
     paddingTop: ResponsiveScreen.normalize(30),
     paddingLeft: ResponsiveScreen.normalize(40),
     borderRadius: 20,
+  },
+  barbut11: {
+    fontFamily: "Roboto",
+    // backgroundColor: "#f2ca30",
+    // transform: [{ rotate: "90deg" }],
+    // width: ResponsiveScreen.normalize(60),
+    // height: ResponsiveScreen.normalize(20),
+    marginTop: ResponsiveScreen.normalize(100),
+    marginLeft: ResponsiveScreen.normalize(-9),
+  },
+  barbut22: {
+    fontFamily: "Roboto",
+    backgroundColor: "#e5e5e5",
+    // transform: [{ rotate: "90deg" }],
+    width: ResponsiveScreen.normalize(115),
+    height: ResponsiveScreen.normalize(280),
+    marginTop: ResponsiveScreen.normalize(-21),
+    marginLeft: ResponsiveScreen.normalize(23.5),
+  },
+  barbut33: {
+    fontFamily: "Roboto",
+    marginTop: ResponsiveScreen.normalize(0),
+    marginLeft: ResponsiveScreen.normalize(20),
   },
 });
 export { styles2, btn, styles3 };

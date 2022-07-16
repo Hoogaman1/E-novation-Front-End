@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useIsFocused } from "@react-navigation/native";
 
 import {
   widthPercentageToDP as wp,
@@ -23,6 +24,7 @@ import {
   StyleSheet,
   Pressable,
   Dimensions,
+  RefreshControl,
 } from "react-native";
 import { styles3, styles2, btn } from "./styleSheets.js";
 import ResponsiveScreen from "react-native-auto-responsive-screen";
@@ -31,11 +33,19 @@ const wf = Dimensions.get("screen").fontScale;
 const ws = Dimensions.get("screen").scale;
 const wh = Dimensions.get("screen").height;
 const ww = Dimensions.get("screen").width;
-const LoginPage = (props) => {
+const Bearing = (props) => {
   // const [email, setEmail] = useState("");
-  var email = "ali@test.com";
+  const [id_select, setSelect] = useState("");
+  const tokenAuth = props.route.params.token;
+  // console.log(tokenAuth)
+  const obj = props.route.params.obj;
+  // console.log(tokenAuth)
+  console.log(obj[0][0])
+  const { navigation } = props;
+
   const [mydata, setData] = useState("");
   const onCChange = (textValue) => setCode(textValue);
+
   //   const [email, setEmail] = useState('ali@test.com');
   //   const onEChange = (textValue) => setEmail(textValue);
   // const[ project , setProject ] = useState([])
@@ -44,9 +54,37 @@ const LoginPage = (props) => {
   //   // 👇️ toggle
   //   setIsActive(true);
   // const[list , setList] = useState([''])
+  const  setPost = () => {
+    // console.log("qqqq")
+    // console.log(obj[0][0])
+    props.navigation.navigate('PhotoAlbum',{token:tokenAuth,obj:(obj[0][0])});
+  }
+    // const response 
+  //   axios({
+  //     method: "get",
+  //     url: "http://127.0.0.1:8000/BIGADMIN/listalbum/"+(obj[0][0]),
+  //     headers: {
+  //       // 'Content-Type': "application/json",
+  //       Authorization: "Token "+tokenAuth,
+  //       // 'Accept': 'application/json'
+  //     },
+  //     data: {
+  //       // id_number: id_select,
+  //     },
+  //   })
+  //   // .then((response) => console.log(response.status))
+  //   // .then(console.log('salam'))
+  //   .then((response) => {
+  //     console.log(response.data)
+  //     if (response.status == "200") {
+  //       // props.navigation.push({token:tokenAuth,obj:response.data});
+  //       props.navigation.navigate('PhotoAlbum',{token:tokenAuth,obje:response.data});
+  //     }
+  //     })
+  //     .catch((error) => console.log(error));
+  //  }
   useEffect(() => {
     // props.navigation.navigate("NewPass"),
-
     axios({
       method: "get",
       url: "http://127.0.0.1:8000/USER/opproject/",
@@ -55,17 +93,24 @@ const LoginPage = (props) => {
       // },
       headers: {
         // 'Content-Type': "application/json",
-        Authorization: "Token 7a5b55841e8ad94f989a789ef4d23e5809ce0c48",
+        Authorization: "Token " + tokenAuth,
         // 'Accept': 'application/json'
       },
       data: {
         // verification_code: code,
       },
     })
-      .then((response) => console.log(response))
+      // .then((response) => (console.log(response)))
       // console.log(response)})
       .catch((error) => console.log(error));
   });
+  React.useEffect(() => {
+    const unsubscribe = navigation.addListener("focus", () => {
+      console.log("Refreshed!");
+    });
+    return unsubscribe;
+  }, [navigation]);
+
   return (
     <View style={styles3.page}>
       <View style={styles3.topbox}>
@@ -103,7 +148,7 @@ const LoginPage = (props) => {
                 marginBottom: ResponsiveScreen.normalize(25),
               }}
             >
-              Bearing
+              {obj[0][2]}
             </Text>
           </View>
           <View
@@ -120,8 +165,121 @@ const LoginPage = (props) => {
                 width: ResponsiveScreen.normalize(150),
                 height: ResponsiveScreen.normalize(1150),
                 borderRadius: 20,
+                // backgroundColor:"pink"
               }}
-            ></View>
+            >
+              <View>
+                <View>
+                  <Text
+                    style={{
+                      width: ResponsiveScreen.normalize(50),
+                      height: ResponsiveScreen.normalize(950),
+                      backgroundColor: "#f2ca30",
+                      borderRadius: 100,
+                      marginHorizontal: ResponsiveScreen.normalize(50),
+                    }}
+                  ></Text>
+                </View>
+                {obj[0][7] === "1" ? (
+                  <Text
+                    style={{
+                      width: ResponsiveScreen.normalize(50),
+                      height: ResponsiveScreen.normalize(90),
+                      backgroundColor: "#192570",
+                      borderRadius: 100,
+                      marginHorizontal: ResponsiveScreen.normalize(50),
+                      marginTop: ResponsiveScreen.normalize(-945),
+                    }}
+                  ></Text>
+                ) : (
+                  <Text></Text>
+                )}
+                {obj[0][7] === "2" ? (
+                  <Text
+                    style={{
+                      width: ResponsiveScreen.normalize(50),
+                      height: ResponsiveScreen.normalize(220),
+                      backgroundColor: "#192570",
+                      borderRadius: 100,
+                      marginHorizontal: ResponsiveScreen.normalize(50),
+                      marginTop: ResponsiveScreen.normalize(-980),
+                    }}
+                  ></Text>
+                ) : (
+                  <Text></Text>
+                )}
+                {obj[0][7] === "3" ? (
+                  <Text
+                    style={{
+                      width: ResponsiveScreen.normalize(50),
+                      height: ResponsiveScreen.normalize(350),
+                      backgroundColor: "#192570",
+                      borderRadius: 100,
+                      marginHorizontal: ResponsiveScreen.normalize(50),
+                      marginTop: ResponsiveScreen.normalize(-1020),
+                    }}
+                  ></Text>
+                ) : (
+                  <Text></Text>
+                )}
+                {obj[0][7] === "4" ? (
+                  <Text
+                    style={{
+                      width: ResponsiveScreen.normalize(50),
+                      height: ResponsiveScreen.normalize(480),
+                      backgroundColor: "#192570",
+                      borderRadius: 100,
+                      marginHorizontal: ResponsiveScreen.normalize(50),
+                      marginTop: ResponsiveScreen.normalize(-1060),
+                    }}
+                  ></Text>
+                ) : (
+                  <Text></Text>
+                )}
+                {obj[0][7] === "5" ? (
+                  <Text
+                    style={{
+                      width: ResponsiveScreen.normalize(50),
+                      height: ResponsiveScreen.normalize(630),
+                      backgroundColor: "#192570",
+                      borderRadius: 100,
+                      marginHorizontal: ResponsiveScreen.normalize(50),
+                      marginTop: ResponsiveScreen.normalize(-1100),
+                    }}
+                  ></Text>
+                ) : (
+                  <Text></Text>
+                )}
+                {obj[0][7] === "6" ? (
+                  <Text
+                    style={{
+                      width: ResponsiveScreen.normalize(50),
+                      height: ResponsiveScreen.normalize(760),
+                      backgroundColor: "#192570",
+                      borderRadius: 100,
+                      marginHorizontal: ResponsiveScreen.normalize(50),
+                      marginTop: ResponsiveScreen.normalize(-1140),
+                    }}
+                  ></Text>
+                ) : (
+                  <Text></Text>
+                )}
+                {obj[0][7] === "7" ? (
+                  <Text
+                    style={{
+                      width: ResponsiveScreen.normalize(50),
+                      height: ResponsiveScreen.normalize(955),
+                      backgroundColor: "#192570",
+                      borderRadius: 100,
+                      marginHorizontal: ResponsiveScreen.normalize(50),
+                      marginTop: ResponsiveScreen.normalize(-1180),
+                    }}
+                  ></Text>
+                ) : (
+                  <Text></Text>
+                )}
+              </View>
+            </View>
 
             <View
               style={{
@@ -131,7 +289,12 @@ const LoginPage = (props) => {
               }}
             >
               <View style={styles3.workcard}>
-                <View style={{ marginTop: ResponsiveScreen.normalize(25) }}>
+                <View
+                  style={{
+                    marginTop: ResponsiveScreen.normalize(25),
+                    marginLeft: ResponsiveScreen.normalize(25),
+                  }}
+                >
                   <MaterialCommunityIcons
                     name="forklift"
                     size={ResponsiveScreen.normalize(70)}
@@ -265,7 +428,69 @@ const LoginPage = (props) => {
         </View>
 
         <View style={styles3.barbox}>
-          <TouchableOpacity style={styles3.barbut1}>
+          <TouchableOpacity>
+            <View style={styles3.barbut11}>
+              <Image
+                source={require("../assets/buttop.png")}
+                style={{
+                  width: ResponsiveScreen.normalize(170),
+                  height: ResponsiveScreen.normalize(400),
+                  resizeMode: "stretch",
+                }}
+              />
+            </View>
+            <View>
+              <Text
+                style={styles3.bartxt}
+                onPress={setPost}
+              >
+                Photo Album
+              </Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles3.barbut22}>
+            <View>
+              <Text
+                style={[
+                  styles3.bartxt,
+                  {
+                    marginTop: ResponsiveScreen.normalize(140),
+                    marginLeft: ResponsiveScreen.normalize(-66),
+                  },
+                ]}
+              >
+                Project Process
+              </Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <View style={styles3.barbut33}>
+              <Image
+                source={require("../assets/butbot2.png")}
+                style={{
+                  width: ResponsiveScreen.normalize(116),
+                  height: ResponsiveScreen.normalize(380),
+                  resizeMode: "stretch",
+                }}
+              />
+            </View>
+            <View>
+              <Text
+                style={[
+                  styles3.bartxt,
+                  {
+                    marginTop: ResponsiveScreen.normalize(-200),
+                    marginLeft: ResponsiveScreen.normalize(-50),
+                  },
+                ]}
+                onPress={()=>{setSelect(itemList.item.id_number);setPost()}
+                }
+              >
+                Documents
+              </Text>
+            </View>
+          </TouchableOpacity>
+          {/* <TouchableOpacity style={styles3.barbut1}>
             <View>
               <Text
                 style={styles3.bartxt}
@@ -285,16 +510,17 @@ const LoginPage = (props) => {
             </View>
           </TouchableOpacity>
           <TouchableOpacity style={styles3.barbut3}>
-            <View>
+            <View style={{marginTop:10}}>
+            
               <Text style={styles3.bartxt}>Documents</Text>
             </View>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
       </View>
     </View>
   );
 };
-export default LoginPage;
+export default Bearing;
 
 // {/* <View style={[styles2.butbox, { alignItems: "center" }]}>
 //           <Text

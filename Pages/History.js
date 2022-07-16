@@ -35,7 +35,7 @@ ResponsiveScreen.init(720, 1600);
 //     ),
 //   }
 // );
-const LoginPage = (props) => {
+const History = (props) => {
   // const [email, setEmail] = useState("");
   var email = "ali@test.com";
   const [mydata, setData] = useState("");
@@ -213,4 +213,4 @@ const LoginPage = (props) => {
   );
 };
 
-export default LoginPage;
+export default History;

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useNavigation } from '@react-navigation/native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -10,26 +10,24 @@ import { Cache } from "react-native-cache";
 import { styles } from "./styleSheets.js";
 import ResponsiveScreen from "react-native-auto-responsive-screen";
 ResponsiveScreen.init(720, 1600);
-const LoginPage = (props) => {
-  // const [email, setEmail] = useState("");
 
+const LoginPage = (props) => {
+  // const navigation = useNavigation();
+  // // const [email, setEmail] = useState("");
+  // const Auth = () => {
+  //   let auth = "mahdi";
+    
+  // };
+ 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const onEChange = (textValue) => setEmail(textValue);
   const onPChange = (textValue) => setPassword(textValue);
-  const cache = new Cache({
-    namespace: "myapp",
-    policy: {
-        maxEntries: 50000, // if unspecified, it can have unlimited entries
-        stdTTL: 0 // the standard ttl as number in seconds, default: 0 (unlimited)
-    },
-    backend: AsyncStorage
-});
   const isStatus = 404;
+  
   const  setSend = () => {
     // const response 
-    () => props.navigation.navigate("OpenProject");
-    
+  
     axios({
       method: "POST",
       url: "http://127.0.0.1:8000/USER/login/",
@@ -46,11 +44,7 @@ const LoginPage = (props) => {
       // .then((response) => console.log(response.status))
       .then((response) => {
         if (response.status == "202") {
-          props.navigation.navigate("OpenProject");
-          cache.set("token", response.data.data.token);
-          // console.log(response.data.data.token);
-          
-          // console.log('mahdi')
+              props.navigation.navigate("OpenProject",{token: response.data.data.token});
         }
       })
       

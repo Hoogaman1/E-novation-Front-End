@@ -9,16 +9,17 @@ import { Text, View, TextInput, TouchableOpacity, Image } from "react-native";
 import { styles } from "./styleSheets.js";
 import ResponsiveScreen from "react-native-auto-responsive-screen";
 ResponsiveScreen.init(720, 1600);
-const LoginPage = (props) => {
+const Verification = (props) => {
   // const [email, setEmail] = useState("");
-  var email = "ali@test.com";
-
+  // var email = "ali@test.com";
+  const email = props.route.params.email;
+  const { navigation } = props;
   const [code, setCode] = useState("");
   const onCChange = (textValue) => setCode(textValue);
   //   const [email, setEmail] = useState('ali@test.com');
   //   const onEChange = (textValue) => setEmail(textValue);
   const setSend = () => {
-    props.navigation.navigate("NewPass"),
+    props.navigation.navigate("NewPass",{email: email}),
       axios({
         method: "POST",
         url: "http://127.0.0.1:8000/USER/verification/" + email + "/",
@@ -27,14 +28,14 @@ const LoginPage = (props) => {
         // },
         headers: {
           // 'Content-Type': "application/json",
-          Authorization: "7a5b55841e8ad94f989a789ef4d23e5809ce0c48",
+          // Authorization: "7a5b55841e8ad94f989a789ef4d23e5809ce0c48",
           // 'Accept': 'application/json'
         },
         data: {
           verification_code: code,
         },
       })
-        .then((response) => console.log(response))
+        .then((response) => console.log(response.data))
 
         .catch((error) => console.log(error));
   };
@@ -90,7 +91,7 @@ const LoginPage = (props) => {
     </View>
   );
 };
-export default LoginPage;
+export default Verification;
 
 // const styles = StyleSheet.create({
 

@@ -39,7 +39,7 @@ ResponsiveScreen.init(720, 1600);
 //   }
 // );
 
-const LoginPage = (props) => {
+const Notif = (props) => {
   // const [email, setEmail] = useState("");
   var email = "ali@test.com";
   const [checked1, setChecked1] = useState(false);
@@ -190,7 +190,7 @@ const LoginPage = (props) => {
   );
 };
 
-export default LoginPage;
+export default Notif;
 
 const mystyles = StyleSheet.create({
   card: {

@@ -6,7 +6,8 @@ import {
   FontAwesome5,
   AntDesign,
 } from "@expo/vector-icons";
-
+import ResponsiveScreen from "react-native-auto-responsive-screen";
+ResponsiveScreen.init(720, 1600);
 import {
   Text,
   View,
@@ -21,7 +22,7 @@ import {
 } from "react-native";
 import { styles, styles2, btn, styles3 } from "./styleSheets.js";
 
-const LoginPage = (props) => {
+const PhotoAlbum = (props) => {
   // const DATA = [
   //   {
   //     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
@@ -63,8 +64,17 @@ const LoginPage = (props) => {
 
   // const [email, setEmail] = useState("");
   var email = "ali@test.com";
+  const { navigation } = props;
   const [mydata, setData] = useState("");
   const onCChange = (textValue) => setCode(textValue);
+  const [dummy, setDummy] = useState([]);
+  const tokenAuth = props.route.params.token;
+  const obj = props.route.params.obj;
+  // console.log(tokenAuth)
+  console.log('lasdlald')
+  console.log(obj)
+  console.log(tokenAuth)
+
   //   const [email, setEmail] = useState('ali@test.com');
   //   const onEChange = (textValue) => setEmail(textValue);
   // const[ project , setProject ] = useState([])
@@ -78,20 +88,22 @@ const LoginPage = (props) => {
 
     axios({
       method: "get",
-      url: "http://127.0.0.1:8000/USER/opproject/",
+      url: "http://127.0.0.1:8000/BIGADMIN/listalbum/"+(obj),
       // params:{
       //   email:email,
       // },
       headers: {
         // 'Content-Type': "application/json",
-        Authorization: "Token 7a5b55841e8ad94f989a789ef4d23e5809ce0c48",
+        Authorization: "Token " + tokenAuth,
         // 'Accept': 'application/json'
       },
       data: {
         // verification_code: code,
       },
     })
-      .then((response) => console.log(response))
+      .then((Response) => 
+      setDummy(Response.data))
+      .then(console.log(dummy))
       // console.log(response)})
       .catch((error) => console.log(error));
   });
@@ -109,174 +121,242 @@ const LoginPage = (props) => {
         </View>
       </View>
       <View style={[styles3.butbox, { alignItems: "center" }]}>
-        <Text
-          style={{
-            fontSize: 32,
-            color: "#f2ca30",
-            marginTop: "20%",
-            marginLeft: -50,
-          }}
+        <View
+          style={[
+            styles3.workbox,
+            {
+              alignItems: "center",
+              flexDirection: "column",
+              backgroundColor: "red",
+            },
+          ]}
         >
-          Photo Album
-        </Text>
-        <ScrollView
-          showsVerticalScrollIndicator={false}
-          alwaysBounceVertical={false}
-          style={{
-            color: "white",
-            flex: 1,
-            marginLeft: "0%",
-            marginRight: "-20%",
-          }}
-        >
-          <View>
-            <Image
-              source={require("../assets/2.jpg")}
-              style={{
-                width: 150,
-                height: 150,
-                marginLeft: "5%",
-                marginTop: "5%",
-                marginBottom: "-8%",
-                borderRadius: 10,
-              }}
-            />
-          </View>
-          <View>
-            <Image
-              source={require("../assets/2.jpg")}
-              style={{
-                width: 150,
-                height: 150,
-                marginLeft: "51%",
-                marginTop: "-36%",
-                marginBottom: "-8%",
-                borderRadius: 10,
-              }}
-            />
-          </View>
-          <View>
-            <Image
-              source={require("../assets/2.jpg")}
-              style={{
-                width: 150,
-                height: 150,
-                marginLeft: "5%",
-                marginTop: "10%",
-                marginBottom: "-8%",
-                borderRadius: 10,
-              }}
-            />
-          </View>
-          <View>
-            <Image
-              source={require("../assets/2.jpg")}
-              style={{
-                width: 150,
-                height: 150,
-                marginLeft: "51%",
-                marginTop: "-36%",
-                marginBottom: "-8%",
-                borderRadius: 10,
-              }}
-            />
-          </View>
-          <View>
-            <Image
-              source={require("../assets/2.jpg")}
-              style={{
-                width: 150,
-                height: 150,
-                marginLeft: "5%",
-                marginTop: "10%",
-                marginBottom: "-8%",
-                borderRadius: 10,
-              }}
-            />
-          </View>
-          <View>
-            <Image
-              source={require("../assets/2.jpg")}
-              style={{
-                width: 150,
-                height: 150,
-                marginLeft: "51%",
-                marginTop: "-36%",
-                marginBottom: "-8%",
-                borderRadius: 10,
-              }}
-            />
-          </View>
-          <View>
-            <Image
-              source={require("../assets/2.jpg")}
-              style={{
-                width: 150,
-                height: 150,
-                marginLeft: "5%",
-                marginTop: "10%",
-                marginBottom: "-8%",
-                borderRadius: 10,
-              }}
-            />
-          </View>
-          <View>
-            <Image
-              source={require("../assets/2.jpg")}
-              style={{
-                width: 150,
-                height: 150,
-                marginLeft: "51%",
-                marginTop: "-36%",
-                marginBottom: "5%",
-                borderRadius: 10,
-              }}
-            />
-          </View>
-        </ScrollView>
-        <View>
-          <Text
-            style={btn.trapezoidc}
-            onPress={() =>
-              props.navigation.navigate("Bearing", { name: "Bearing" })
-            }
+          <View
+            style={{
+              width: ResponsiveScreen.normalize(600),
+              borderRadius: 20,
+              height: ResponsiveScreen.normalize(200),
+            }}
           >
-            Project Process
-          </Text>
-        </View>
-        <View>
-          <Text style={btn.btnbb}>Photo Album</Text>
-        </View>
-        <View>
-          <Text style={btn.trapezoidd}>Documents</Text>
+            <Text
+              style={{
+                fontSize: ResponsiveScreen.normalize(75),
+                color: "#f2ca30",
+                marginTop: ResponsiveScreen.normalize(50),
+                marginLeft: ResponsiveScreen.normalize(50),
+                marginBottom: ResponsiveScreen.normalize(25),
+              }}
+            >
+              Photo Album
+            </Text>
+          </View>
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            alwaysBounceVertical={false}
+            style={{
+              color: "white",
+              flex: 1,
+              marginLeft: "0%",
+              marginRight: "-20%",
+            }}
+          >
+            <View>
+              <Image
+                source={require("../assets/2.jpg")}
+                style={{
+                  width: 150,
+                  height: 150,
+                  marginLeft: "5%",
+                  marginTop: "5%",
+                  marginBottom: "-8%",
+                  borderRadius: 10,
+                }}
+              />
+            </View>
+            <View>
+              <Image
+                source={require("../assets/2.jpg")}
+                style={{
+                  width: 150,
+                  height: 150,
+                  marginLeft: "51%",
+                  marginTop: "-36%",
+                  marginBottom: "-8%",
+                  borderRadius: 10,
+                }}
+              />
+            </View>
+            <View>
+              <Image
+                source={require("../assets/2.jpg")}
+                style={{
+                  width: 150,
+                  height: 150,
+                  marginLeft: "5%",
+                  marginTop: "10%",
+                  marginBottom: "-8%",
+                  borderRadius: 10,
+                }}
+              />
+            </View>
+            <View>
+              <Image
+                source={require("../assets/2.jpg")}
+                style={{
+                  width: 150,
+                  height: 150,
+                  marginLeft: "51%",
+                  marginTop: "-36%",
+                  marginBottom: "-8%",
+                  borderRadius: 10,
+                }}
+              />
+            </View>
+            <View>
+              <Image
+                source={require("../assets/2.jpg")}
+                style={{
+                  width: 150,
+                  height: 150,
+                  marginLeft: "5%",
+                  marginTop: "10%",
+                  marginBottom: "-8%",
+                  borderRadius: 10,
+                }}
+              />
+            </View>
+            <View>
+              <Image
+                source={require("../assets/2.jpg")}
+                style={{
+                  width: 150,
+                  height: 150,
+                  marginLeft: "51%",
+                  marginTop: "-36%",
+                  marginBottom: "-8%",
+                  borderRadius: 10,
+                }}
+              />
+            </View>
+          
+               {/* <View
+            style={{
+              // backgroundColor:'red',
+              width: ResponsiveScreen.normalize(600),
+              height: ResponsiveScreen.normalize(1150),
+              borderRadius: 20,
+              flexDirection: "row",
+            }}
+          >
+            <FlatList
+              data={dummy}
+              renderItem={(itemList) => (
+                <TouchableOpacity
+                //   onPress={() => {props.navigation.navigate("Bearing",{token:tokenAuth});
+                  
+                //   {setPost};
+                //   // console.log(id_select)
+                // }}
+                onPress={()=>{setSelect(itemList.item.id_number);setPost()}}
+                
+              
+                >
+                  
+                  <View style={[styles3.workcard2]}>
+                    <View>
+                      <Text style={styles3.txtworkcard} >
+                        {itemList.item.name}
+                      </Text>
+                    </View>
+
+                 
+                  </View>
+                </TouchableOpacity>
+              )}
+            />
+          </View> */}
+          </ScrollView>
         </View>
 
         <View style={{ height: 150, width: "100%", padding: 10 }}>
-          <FlatList
-            // data={DATA}
-            // renderItem={renderItem}
-            // keyExtractor={item => item.id}
-            renderItem={({ renderItem }) => (
-              <TouchableOpacity
+        
+        </View>
+        <View style={styles3.barbox}>
+          <TouchableOpacity>
+            <View style={styles3.barbut11}>
+              <Image
+                source={require("../assets/buttop.png")}
+                style={{
+                  width: ResponsiveScreen.normalize(170),
+                  height: ResponsiveScreen.normalize(400),
+                  resizeMode: "stretch",
+                }}
+              />
+            </View>
+            <View>
+              <Text
+                style={styles3.bartxt}
+                onPress={() =>
+                  props.navigation.navigate("PhotoAlbum", {
+                    name: "PhotoAlbum",
+                  })
+                }
+              >
+                Photo Album
+              </Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles3.barbut22}>
+            <View>
+              <Text
                 style={[
+                  styles3.bartxt,
                   {
-                    backgroundColor: "blue",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    flex: 1,
+                    marginTop: ResponsiveScreen.normalize(140),
+                    marginLeft: ResponsiveScreen.normalize(-66),
                   },
                 ]}
               >
-                <Text key={item.id}>{item.name}</Text>
-              </TouchableOpacity>
-            )}
-          />
+                Project Process
+              </Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <View style={styles3.barbut33}>
+              <Image
+                source={require("../assets/butbot2.png")}
+                style={{
+                  width: ResponsiveScreen.normalize(116),
+                  height: ResponsiveScreen.normalize(380),
+                  resizeMode: "stretch",
+                }}
+              />
+            </View>
+            <View>
+              <Text
+                style={[
+                  styles3.bartxt,
+                  {
+                    marginTop: ResponsiveScreen.normalize(-200),
+                    marginLeft: ResponsiveScreen.normalize(-50),
+                  },
+                ]}
+                onPress={() =>
+                  props.navigation.navigate("PhotoAlbum", {
+                    name: "PhotoAlbum",
+                  })
+                }
+              >
+                Documents
+              </Text>
+            </View>
+          </TouchableOpacity>
         </View>
       </View>
     </View>
   );
 };
-export default LoginPage;
+export default PhotoAlbum;
 
 // const styles = StyleSheet.create({
 
