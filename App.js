@@ -14,6 +14,9 @@ import OpenProject from './Pages/OpenProject'
 import Bearing from './Pages/Bearing'
 import History from './Pages/History'
 import Notif from './Pages/Notif'
+import DocAlbum from './Pages/DocAlbum'
+import test from './Pages/test'
+// import EditProject from './Pages/EditProject'
 // const getFonts = () => {
 //   return Font.loadAsync({
 //     Calibri: require("./assets/fonts/calibri.ttf"),
@@ -21,27 +24,29 @@ import Notif from './Pages/Notif'
 //   })
 // }
 
+
 const Stack = createNativeStackNavigator();
 
 // const config = {
-//   animation: 'spring',
-//   config: {
-//     stiffness: 1000,
-//     damping: 500,
-//     mass: 3,
-//     overshootClamping: false,
-//     restDisplacementThreshold: 0.01,
-//     restSpeedThreshold: 0.01,
-//   },
-// };
+  //   animation: 'spring',
+  //   config: {
+    //     stiffness: 1000,
+    //     damping: 500,
+    //     mass: 3,
+    //     overshootClamping: false,
+    //     restDisplacementThreshold: 0.01,
+    //     restSpeedThreshold: 0.01,
+    //   },
+    // };
 // const closeConfig = {
 //   animation:'timing',
 //   config: {
-//     duration:500,
-//     easing:Easing.linear
-//   }
-// }
-export default function App() {
+  //     duration:500,
+  //     easing:Easing.linear
+  //   }
+  // }
+  export default function App() {
+  
 // const [fontLoading, setFontLoading] = useState(false);
 // if (fontLoading)
 // {
@@ -57,15 +62,18 @@ export default function App() {
     // screenOptions={{gestureEnabled:true, gestsureDirection: 'horizontal', transitionSpec:{open: config, close: config}}}
     
         >
-      <Stack.Screen name="Bearing" component={Bearing} options={{ headerShown: false }}/>      
-      <Stack.Screen name="History" component={History} options={{ headerShown: false }}/>      
+      {/* <Stack.Screen name="EditProject" component={EditProject} options={{  headerShown: false,  }} /> */}
       <Stack.Screen name="LoginPage" component={LoginPage} options={{  headerShown: false,  }}/>
-      <Stack.Screen name="OpenProject" component={OpenProject} options={{  headerShown: false,  }} />
+      <Stack.Screen name="test" component={test} options={{  headerShown: false,  }}/>
+      <Stack.Screen name="DocAlbum" component={DocAlbum} options={{  headerShown: false,  }}/>
+      <Stack.Screen name="Bearing" component={Bearing} options={{ headerShown: false }}/>      
       <Stack.Screen name="PhotoAlbum" component={PhotoAlbum} options={{ headerShown: false }}/>      
-      <Stack.Screen name="Verification" component={Verification} options={{  headerShown: false,  }}/>
-      <Stack.Screen name="ForgetPass" component={ForgetPass} options={{  headerShown: false,  }}/>
-      <Stack.Screen name="NewPass" component={NewPass} options={{  headerShown: false,  }}/>
+      <Stack.Screen name="OpenProject" component={OpenProject} options={{  headerShown: false,  }} />
       <Stack.Screen name="Notif" component={Notif} options={{  headerShown: false,  }} />
+      <Stack.Screen name="History" component={History} options={{ headerShown: false }}/>      
+      <Stack.Screen name="ForgetPass" component={ForgetPass} options={{  headerShown: false,  }}/>
+      <Stack.Screen name="Verification" component={Verification} options={{  headerShown: false,  }}/>
+      <Stack.Screen name="NewPass" component={NewPass} options={{  headerShown: false,  }}/>
     </Stack.Navigator>
   </NavigationContainer>
   );

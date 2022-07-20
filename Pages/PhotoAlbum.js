@@ -1,12 +1,28 @@
-import React,{ useEffect, useState } from "react";
-import axios from 'axios';
-import { MaterialCommunityIcons, Octicons,FontAwesome5, AntDesign } from '@expo/vector-icons';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import {
+  MaterialCommunityIcons,
+  Octicons,
+  FontAwesome5,
+  AntDesign,
+} from "@expo/vector-icons";
+import ResponsiveScreen from "react-native-auto-responsive-screen";
+ResponsiveScreen.init(720, 1600);
+import {
+  Text,
+  View,
+  Button,
+  TextInput,
+  TouchableOpacity,
+  Image,
+  FlatList,
+  StyleSheet,
+  Pressable,
+  ScrollView,
+} from "react-native";
+import { styles, styles2, btn, styles3 } from "./styleSheets.js";
 
-import {Text, View, Button, TextInput, TouchableOpacity,Image,FlatList, StyleSheet, Pressable, ScrollView } from 'react-native';
-import {styles, styles2, btn} from './styleSheets.js'
-
-
-const LoginPage = props =>{
+const PhotoAlbum = (props) => {
   // const DATA = [
   //   {
   //     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
@@ -45,131 +61,253 @@ const LoginPage = props =>{
   //     <Text >{title}</Text>
   //   </View>
   // );
-  
 
   // const [email, setEmail] = useState("");
   var email = "ali@test.com";
-  const [mydata, setData] = useState('');
+  // const { navigation } = props;
+  const [mydata, setData] = useState("");
   const onCChange = (textValue) => setCode(textValue);
-//   const [email, setEmail] = useState('ali@test.com');
-//   const onEChange = (textValue) => setEmail(textValue);
+  const obj = props.route.params.obj;
+  const [dummy, setDummy] = useState([]);
+  const tokenAuth = props.route.params.token;
+  // console.log(tokenAuth)
+  console.log("albummmmmmmmm");
+  // console.log(obj)
+  // console.log(dummy);
+
+  //   const [email, setEmail] = useState('ali@test.com');
+  //   const onEChange = (textValue) => setEmail(textValue);
   // const[ project , setProject ] = useState([])
   // const [isActive, setIsActive] = useState(false);
   //   const handleClick = () => {
   //   // 👇️ toggle
   //   setIsActive(true);
   // const[list , setList] = useState([''])
-  useEffect(()  => {
+  const  setPost = () => {
+    props.navigation.navigate('Bearing',{token:tokenAuth,obj:obj});
+  }
+  const  setDPost = () => {
+    props.navigation.navigate('DocAlbum',{token:tokenAuth,obj:obj});
+  }
+  useEffect(() => {
     // props.navigation.navigate("NewPass"),
-    
+
     axios({
       method: "get",
-      url: "http://127.0.0.1:8000/USER/opproject/",
+      url: "http://127.0.0.1:8000/BIGADMIN/listalbum/" + obj.id,
       // params:{
       //   email:email,
       // },
       headers: {
-          // 'Content-Type': "application/json",
-          'Authorization':  "Token 7a5b55841e8ad94f989a789ef4d23e5809ce0c48",
-          // 'Accept': 'application/json'
+        // 'Content-Type': "application/json",
+        Authorization: "Token " + tokenAuth,
+        // 'Accept': 'application/json'
       },
       data: {
         // verification_code: code,
       },
-      
     })
-    .then((response) => console.log(response))
-      // console.log(response)})
+      .then((Response) => setDummy(Response.data))
+      .then(console.log(dummy))
+      .then(setDum)
       .catch((error) => console.log(error));
-  }); 
-  return(
+  }, []);
+  const setDum = () => {
+    // props.navigation.navigate("NewPass"),
 
-    <View style={styles2.page}>
-        <View style={styles2.topbox}>
+    axios({
+      method: "get",
+      url: "http://127.0.0.1:8000/BIGADMIN/listalbum/" + obj.id,
+      // params:{
+      //   email:email,
+      // },
+      headers: {
+        // 'Content-Type': "application/json",
+        Authorization: "Token " + tokenAuth,
+        // 'Accept': 'application/json'
+      },
+      data: {
+        // verification_code: code,
+      },
+    })
+      // .then((Response) => console.log(dummy))
+      .then(console.log("lalalala2"))
+      .then(console.log(dummy))
+      .catch((error) => console.log(error));
+  };
+  return (
+    <View style={styles3.page}>
+      <View style={styles3.topbox}>
+        <Image
+          source={require("../assets/app_ui2-13.png")}
+          style={styles3.logo}
+        />
+         <Image
+          source={require("../assets/app_ui2-11.png")}
+          style={styles3.logo2}
+        />
+      </View>
+      <View style={[styles3.butbox, { alignItems: "center" }]}>
         
-          <View>
-            <Image source={require('../assets/app_ui2-13.png')} style={styles2.logo}/>
+        <View
+          style={[
+            styles3.workbox,
+            {
+              alignItems: "center",
+              flexDirection: "column",
+              // backgroundColor: "red",
+            },
+          ]}
+        >
+          <View
+            style={{
+              width: ResponsiveScreen.normalize(600),
+              borderRadius: 20,
+              height: ResponsiveScreen.normalize(200),
+            }}
+          >
+            <Text
+              style={{
+                fontSize: ResponsiveScreen.normalize(60),
+                fontFamily: "Roboto",
+                color: "#f2ca30",
+                marginTop: ResponsiveScreen.normalize(50),
+                marginLeft: ResponsiveScreen.normalize(50),
+                marginBottom: ResponsiveScreen.normalize(25),
+              }}
+            >
+              Photo Album
+            </Text>
           </View>
-          <View>
-            <Image source={require('../assets/app_ui2-11.png')} />
-          </View>
+
+          <View
+            style={{
+              // backgroundColor: "pink",
+              width: ResponsiveScreen.normalize(600),
+              height: ResponsiveScreen.normalize(1150),
+              borderRadius: 20,
+              // flexDirection: "row",
+            }}
+          >
           
-        </View>
-        <View style={[styles2.butbox,{alignItems: 'center'}]}>
-          <Text style={{fontSize:32,color:'#f2ca30',marginTop:'20%', marginLeft:-50}}>Photo Album</Text>
-          <ScrollView showsVerticalScrollIndicator={false} alwaysBounceVertical={false} style={{color: 'white',flex: 1,marginLeft:'0%', marginRight:'-20%', }}>
-          <View>
-          <Image source={require('../assets/2.jpg')} style={{width:150, height:150, marginLeft:'5%', marginTop:'5%',marginBottom:'-8%', borderRadius:10 }}/>
-          </View>
-          <View>
-          <Image source={require('../assets/2.jpg')} style={{width:150, height:150, marginLeft:'51%', marginTop:'-36%',marginBottom:'-8%', borderRadius:10}}/>
-          </View>
-          <View>
-          <Image source={require('../assets/2.jpg')} style={{width:150, height:150, marginLeft:'5%', marginTop:'10%',marginBottom:'-8%', borderRadius:10}}/>
-          </View>
-          <View>
-          <Image source={require('../assets/2.jpg')} style={{width:150, height:150, marginLeft:'51%', marginTop:'-36%',marginBottom:'-8%', borderRadius:10}}/>
-          </View>
-          <View>
-          <Image source={require('../assets/2.jpg')} style={{width:150, height:150, marginLeft:'5%', marginTop:'10%',marginBottom:'-8%', borderRadius:10}}/>
-          </View>
-          <View>
-          <Image source={require('../assets/2.jpg')} style={{width:150, height:150, marginLeft:'51%', marginTop:'-36%',marginBottom:'-8%', borderRadius:10}}/>
-          </View>
-          <View>
-          <Image source={require('../assets/2.jpg')} style={{width:150, height:150, marginLeft:'5%', marginTop:'10%',marginBottom:'-8%', borderRadius:10}}/>
-          </View>
-          <View>
-          <Image source={require('../assets/2.jpg')} style={{width:150, height:150, marginLeft:'51%', marginTop:'-36%',marginBottom:'5%', borderRadius:10}}/>
-          </View>
-          </ScrollView>
-              <View>
-                <Text style={btn.trapezoidc}
-                onPress={() =>
-        props.navigation.navigate('Bearing', { name: 'Bearing' })
-      }>Project Process</Text>
-              </View>
-              <View>
-                <Text style={btn.btnbb}>Photo Album</Text>
-              </View>
-              <View>
-                <Text style={btn.trapezoidd}>Documents</Text>
-              </View>
-            
-          <View style={{height:150,width:'100%',padding:10}}>
-     
-            <FlatList 
-            // data={DATA}
-            // renderItem={renderItem}
-            // keyExtractor={item => item.id}
-            renderItem={({renderItem}) => (
-                <TouchableOpacity  style={[{backgroundColor:'blue',justifyContent:'center',alignItems:'center',flex:1,}]}  >
-                    <Text key = {item.id}>{item.name}</Text>
+            <FlatList
+              data={dummy}
+              numColumns={2}
+              renderItem={(itemList) => (
+                <View >
+                <TouchableOpacity
+                  //   onPress={() => {props.navigation.navigate("Bearing",{token:tokenAuth});
+                  style={{
+                    // backgroundColor: "pink",
+                    width: ResponsiveScreen.normalize(270),
+                    height: ResponsiveScreen.normalize(270),
+                    marginTop:ResponsiveScreen.normalize(30),
+                    marginLeft:ResponsiveScreen.normalize(30),
+                    // borderRadius: 50,
+                    // flexDirection: "row",
+                  }}
+                  //   {setPost};
+                  //   // console.log(id_select)
+                  // }}
+                  // onPress={()=>{setSelect(itemList.item)}}
+                >
+                    <Image
+                      source={{ uri: itemList.item.img }}
+                      style={{ width: ResponsiveScreen.normalize(270), height: ResponsiveScreen.normalize(270),borderRadius:ResponsiveScreen.normalize(30) }}
+                    />
+                  
+        
                 </TouchableOpacity>
-            )} 
-            
+                </View>
+              )}
             />
-            
-            </View>
-            
+          </View>
         </View>
+
+        <View>
+        <View style={styles3.barbox}>
+          <TouchableOpacity>
+            <View style={styles3.barbut11}>
+              <Image
+                source={require("../assets/buttop.png")}
+                style={{
+                  width: ResponsiveScreen.normalize(170),
+                  height: ResponsiveScreen.normalize(400),
+                  resizeMode: "stretch",
+                }}
+              />
+            </View>
+            <View>
+              <Text
+                style={styles3.bartxt}
+                // onPress={setPost}
+              >
+                Photo Album
+              </Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles3.barbut22}
+          onPress={setPost}>
+            <View>
+              <Text
+                style={[
+                  styles3.bartxt,
+                  {
+                    marginTop: ResponsiveScreen.normalize(140),
+                    marginLeft: ResponsiveScreen.normalize(-66),
+                  },
+                ]}
+              >
+                Project Process
+              </Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity
+          onPress={setDPost}>
+            <View style={styles3.barbut33}>
+              <Image
+                source={require("../assets/butbot2.png")}
+                style={{
+                  width: ResponsiveScreen.normalize(116),
+                  height: ResponsiveScreen.normalize(380),
+                  resizeMode: "stretch",
+                }}
+              />
+            </View>
+            <View>
+              <Text
+                style={[
+                  styles3.bartxt,
+                  {
+                    marginTop: ResponsiveScreen.normalize(-200),
+                    marginLeft: ResponsiveScreen.normalize(-50),
+                  },
+                ]}
+                // onPress={()=>{setSelect(itemList.item.id_number);setPost()}
+                // }
+              >
+                Documents
+              </Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+        </View>
+      </View>
     </View>
-   
-  
-  )
-
-}
-export default LoginPage;
-
+  );
+};
+export default PhotoAlbum;
 
 // const styles = StyleSheet.create({
 
- {/* <Button style={{
+{
+  /* <Button style={{
           backgroundColor: isActive ? 'yellow' : 'yellow',
           color: isActive ? 'yellow' : 'yellow',
         }} onPress={() =>
           {handleClick}
-      } title="Press Me"></Button> */}
+      } title="Press Me"></Button> */
+}
 //   page:{
 //     alignItems: 'center',
 //     backgroundColor: 'yellow',
@@ -230,4 +368,3 @@ export default LoginPage;
 
 // }
 // });
-
