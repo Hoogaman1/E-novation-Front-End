@@ -84,17 +84,19 @@ const PhotoAlbum = (props) => {
   //   setIsActive(true);
   // const[list , setList] = useState([''])
   const  setPost = () => {
+    // console.log(obj[0][0])
     props.navigation.navigate('Bearing',{token:tokenAuth,obj:obj});
   }
-  const  setDPost = () => {
-    props.navigation.navigate('DocAlbum',{token:tokenAuth,obj:obj});
+  const  setAPost = () => {
+    // console.log(obj[0][0])
+    props.navigation.navigate('PhotoAlbum',{token:tokenAuth,obj:obj});
   }
   useEffect(() => {
     // props.navigation.navigate("NewPass"),
 
     axios({
       method: "get",
-      url: "http://127.0.0.1:8000/BIGADMIN/listalbum/" + obj.id,
+      url: "http://127.0.0.1:8000/BIGADMIN/listdoc/" + obj.id,
       // params:{
       //   email:email,
       // },
@@ -168,15 +170,15 @@ const PhotoAlbum = (props) => {
           >
             <Text
               style={{
-                fontSize: ResponsiveScreen.normalize(60),
                 fontFamily: "Roboto",
+                fontSize: ResponsiveScreen.normalize(60),
                 color: "#f2ca30",
                 marginTop: ResponsiveScreen.normalize(50),
                 marginLeft: ResponsiveScreen.normalize(50),
                 marginBottom: ResponsiveScreen.normalize(25),
               }}
             >
-              Photo Album
+              Documents
             </Text>
           </View>
 
@@ -211,8 +213,9 @@ const PhotoAlbum = (props) => {
                   // }}
                   // onPress={()=>{setSelect(itemList.item)}}
                 >
+                    
                     <Image
-                      source={{ uri: itemList.item.img }}
+                      source={{ uri: itemList.item.att_file }}
                       style={{ width: ResponsiveScreen.normalize(270), height: ResponsiveScreen.normalize(270),borderRadius:ResponsiveScreen.normalize(30) }}
                     />
                   
@@ -226,7 +229,8 @@ const PhotoAlbum = (props) => {
 
         <View>
         <View style={styles3.barbox}>
-          <TouchableOpacity>
+          <TouchableOpacity
+          onPress={setAPost}>
             <View style={styles3.barbut11}>
               <Image
                 source={require("../assets/buttop.png")}
@@ -262,8 +266,7 @@ const PhotoAlbum = (props) => {
               </Text>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity
-          onPress={setDPost}>
+          <TouchableOpacity>
             <View style={styles3.barbut33}>
               <Image
                 source={require("../assets/butbot2.png")}

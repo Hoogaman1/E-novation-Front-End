@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   },
   box: {
     fontFamily: "Roboto",
-    marginTop: ResponsiveScreen.normalize(450),
+    marginTop: ResponsiveScreen.normalize(550),
     // height:hp("45%"),
     // width: hp("32%"),
     // marginLeft:wp("10%"),
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
     width: ResponsiveScreen.normalize(450),
     height: ResponsiveScreen.normalize(150),
     // marginRight: wp('30%'),
-    marginBottom: ResponsiveScreen.normalize(120),
+    marginBottom: ResponsiveScreen.normalize(140),
   },
 });
 
@@ -150,6 +150,7 @@ const styles2 = StyleSheet.create({
 
     flexDirection: "row",
     justifyContent: "space-between",
+  
 
     marginTop: hp("4%"),
     height: hp("9%"),
@@ -287,10 +288,10 @@ const styles2 = StyleSheet.create({
     borderRadius: 6,
     elevation: 3,
     backgroundColor: "#fff",
-    shadowOffset: { width: 1, height: 1 },
-    shadowColor: "#333",
-    shadowOpacity: 0.3,
-    shadowRadius: 2,
+    shadowOffset: { width: 3, height: 3 },
+    shadowColor: "#111",
+    shadowOpacity:3,
+    shadowRadius: 3,
   },
 
   icon1: {
@@ -651,12 +652,23 @@ const styles3 = StyleSheet.create({
     // backgroundColor: "green",
   },
   logo: {
-    height: ResponsiveScreen.normalize(160),
+    height: ResponsiveScreen.normalize(100),
     // width:50,
-    width: ResponsiveScreen.normalize(500),
+    width: ResponsiveScreen.normalize(400),
     // marginRight:30 ,
     // marginBottom:20 ,
     // marginTop:50 ,
+    // marginLeft:30 ,
+    // backgroundColor:'blue',
+    resizeMode: "cover",
+  },
+  logo2: {
+    height: ResponsiveScreen.normalize(100),
+    // width:50,
+    width: ResponsiveScreen.normalize(20),
+    marginRight:ResponsiveScreen.normalize(60) ,
+    // marginBottom:20 ,
+    marginTop:ResponsiveScreen.normalize(-10) ,
     // marginLeft:30 ,
     // backgroundColor:'blue',
     resizeMode: "cover",
@@ -700,8 +712,8 @@ const styles3 = StyleSheet.create({
     // backgroundColor:"gray",
     fontFamily: "Roboto",
     width: ResponsiveScreen.normalize(450),
-    height: ResponsiveScreen.normalize(120),
-    marginBottom: ResponsiveScreen.normalize(25),
+    height: ResponsiveScreen.normalize(110),
+    marginBottom: ResponsiveScreen.normalize(35),
     borderRadius: ResponsiveScreen.normalize(18),
     flexDirection: "row",
     elevation: 3,
@@ -732,8 +744,8 @@ const styles3 = StyleSheet.create({
     fontFamily: "Roboto",
     width: ResponsiveScreen.normalize(350),
     height: ResponsiveScreen.normalize(150),
-    fontSize: ResponsiveScreen.normalize(35),
-    paddingTop: ResponsiveScreen.normalize(30),
+    fontSize: ResponsiveScreen.normalize(30),
+    paddingTop: ResponsiveScreen.normalize(40),
     paddingLeft: ResponsiveScreen.normalize(40),
     borderRadius: 20,
   },

@@ -88,7 +88,7 @@ const NewPass = (props) => {
       </View>
       <Text
         style={{
-          marginTop: ResponsiveScreen.normalize(250),
+          marginTop: ResponsiveScreen.normalize(300),
           color: "white",
           fontSize: ResponsiveScreen.normalize(30),
           // marginLeft: "23%",

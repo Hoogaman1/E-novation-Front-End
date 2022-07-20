@@ -30,16 +30,18 @@ const OpenProject = (props) => {
   console.log(tokenAuth)
   const navigation = useNavigation();
   // const { navigation } = props;
-  const [id_select, setSelect] = useState("");
   
   const [mydata, setData] = useState("");
   const onCChange = (textValue) => setCode(textValue);
   const [dummy, setDummy] = useState([]);
+ 
+  
+  const [id_select, setSelect] = useState("");
   
   
-  
-  const  setPost = () => {
-    // const response 
+  const  setPost = (props) => {
+  //   useEffect(() => {
+  // }, [id_select]);
     axios({
       method: "POST",
       url: "http://127.0.0.1:8000/USER/opproject/",
@@ -57,43 +59,59 @@ const OpenProject = (props) => {
     .then((response) => {
       // console.log(response.data)
       if (response.status == "202") {
+       
         // props.navigation.push({token:tokenAuth,obj:response.data});
         props.navigation.navigate('Bearing',{token:tokenAuth,obj:response.data});
       }
       })
       .catch((error) => console.log(error));
    }
-  useEffect(() => {
+  const  setNPost = () => {
+    props.navigation.navigate('Notif',{token:tokenAuth});
+  }
+  const  setHPost = () => {
+    props.navigation.navigate('History',{token:tokenAuth});
+  }
+  useEffect( () => {
     const tokenAuth = props.route.params.token;
-    const { navigation } = props;
+    // const { navigation } = props;
+    // const tokenAuth = props.navigation.navigate.getParam('token',null)
+    // useEffect(() => {
+      // }, [id_select]);
     // console.log(tokenAuth);
     // const dummyData = []
     axios({
       method: "get",
       url: "http://127.0.0.1:8000/USER/opproject/",
       // params:{
-      //   email:email,
-      // },
-      headers: {
-        // 'Content-Type': "application/json",
-        Authorization: "Token " + tokenAuth,
-        // 'Accept': 'application/json'
-      },
-      data: {
-        // verification_code: code,
-      },
-    })
-      .then((Response) => setDummy(Response.data))
-      .then(console.log(dummy))
-      .catch((error) => console.log(error));
-  }, []);
+        //   email:email,
+        // },
+        headers: {
+          // 'Content-Type': "application/json",
+          Authorization: "Token " + tokenAuth,
+          // 'Accept': 'application/json'
+        },
+        data: {
+          // verification_code: code,
+        },
+      })
+      .then((Response) =>  setDummy(Response.data))
 
+      .catch((error) => console.log(error));
+    }, []);
+    const itemclick = (obj) =>{
+      props.navigation.navigate("Bearing",{token:tokenAuth,obj:obj})
+    }
   return (
     <View style={styles3.page}>
       <View style={styles3.topbox}>
         <Image
           source={require("../assets/app_ui2-13.png")}
           style={styles3.logo}
+        />
+         <Image
+          source={require("../assets/app_ui2-11.png")}
+          style={styles3.logo2}
         />
       </View>
       <View style={[styles3.butbox]}>
@@ -113,7 +131,8 @@ const OpenProject = (props) => {
           >
             <Text
               style={{
-                fontSize: ResponsiveScreen.normalize(60),
+                fontSize: ResponsiveScreen.normalize(50),
+                fontFamily: "Roboto",
                 color: "#f2ca30",
                 marginTop: ResponsiveScreen.normalize(50),
                 marginLeft: ResponsiveScreen.normalize(50),
@@ -141,10 +160,8 @@ const OpenProject = (props) => {
                 //   {setPost};
                 //   // console.log(id_select)
                 // }}
-                onPress={()=>{setSelect(itemList.item.id_number);setPost()}}
-                
-              
-                >
+                // onPress={()=>{setSelect(itemList.item.id_number);setPost()}}>
+                onPress={() => itemclick(itemList.item)}>
                   
                   <View style={[styles3.workcard2]}>
                     <View>
@@ -166,10 +183,79 @@ const OpenProject = (props) => {
             />
           </View>
         </View>
-        <View style={styles3.barbox}></View>
+        <View style={styles3.barbox}>
+        <TouchableOpacity 
+          onPress={setHPost}>
+          
+            <View style={styles3.barbut11}>
+              <Image
+                source={require("../assets/buttop.png")}
+                style={{
+                  width: ResponsiveScreen.normalize(170),
+                  height: ResponsiveScreen.normalize(400),
+                  resizeMode: "stretch",
+                }}
+              />
+            </View>
+            <View>
+              <Text
+                style={[styles3.bartxt,{marginTop:ResponsiveScreen.normalize(-110)}]}
+                // onPress={setPost}
+              >
+                History
+              </Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles3.barbut22}
+          // onPress={setPost}>
+          >
+            <View>
+              <Text
+                style={[
+                  styles3.bartxt,
+                  {
+                    marginTop: ResponsiveScreen.normalize(140),
+                    marginLeft: ResponsiveScreen.normalize(-66),
+                  },
+                ]}
+              >
+                Current Project
+              </Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={setNPost}
+          >
+            <View style={styles3.barbut33}>
+              <Image
+                source={require("../assets/butbot2.png")}
+                style={{
+                  width: ResponsiveScreen.normalize(116),
+                  height: ResponsiveScreen.normalize(380),
+                  resizeMode: "stretch",
+                }}
+              />
+            </View>
+            <View>
+              <Text
+                style={[
+                  styles3.bartxt,
+                  {
+                    marginTop: ResponsiveScreen.normalize(-200),
+                    marginLeft: ResponsiveScreen.normalize(-50),
+                  },
+                ]}
+                // onPress={()=>{setSelect(itemList.item.id_number);setPost()}
+                // }
+              >
+                Notification
+              </Text>
+            </View>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
+
 };
 
 export default OpenProject;

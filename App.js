@@ -14,6 +14,8 @@ import OpenProject from './Pages/OpenProject'
 import Bearing from './Pages/Bearing'
 import History from './Pages/History'
 import Notif from './Pages/Notif'
+import DocAlbum from './Pages/DocAlbum'
+import test from './Pages/test'
 // import EditProject from './Pages/EditProject'
 // const getFonts = () => {
 //   return Font.loadAsync({
@@ -62,6 +64,8 @@ const Stack = createNativeStackNavigator();
         >
       {/* <Stack.Screen name="EditProject" component={EditProject} options={{  headerShown: false,  }} /> */}
       <Stack.Screen name="LoginPage" component={LoginPage} options={{  headerShown: false,  }}/>
+      <Stack.Screen name="test" component={test} options={{  headerShown: false,  }}/>
+      <Stack.Screen name="DocAlbum" component={DocAlbum} options={{  headerShown: false,  }}/>
       <Stack.Screen name="Bearing" component={Bearing} options={{ headerShown: false }}/>      
       <Stack.Screen name="PhotoAlbum" component={PhotoAlbum} options={{ headerShown: false }}/>      
       <Stack.Screen name="OpenProject" component={OpenProject} options={{  headerShown: false,  }} />

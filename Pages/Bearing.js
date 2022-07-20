@@ -36,13 +36,15 @@ const ww = Dimensions.get("screen").width;
 const Bearing = (props) => {
   // const [email, setEmail] = useState("");
   const [id_select, setSelect] = useState("");
+  // console.log(tokenAuth)
+  // console.log(obj[0][0])
   const tokenAuth = props.route.params.token;
-  // console.log(tokenAuth)
-  const obj = props.route.params.obj;
-  // console.log(tokenAuth)
-  console.log(obj[0][0])
-  const { navigation } = props;
+    // const { navigation } = props;
 
+  const obj = props.route.params.obj;
+  console.log('1')
+  console.log(obj)
+  console.log('2')
   const [mydata, setData] = useState("");
   const onCChange = (textValue) => setCode(textValue);
 
@@ -54,12 +56,18 @@ const Bearing = (props) => {
   //   // 👇️ toggle
   //   setIsActive(true);
   // const[list , setList] = useState([''])
-  const  setPost = () => {
-    // console.log("qqqq")
-    // console.log(obj[0][0])
-    props.navigation.navigate('PhotoAlbum',{token:tokenAuth,obj:(obj[0][0])});
-  }
-    // const response 
+  // console.log("qqqq")
+  const setPost = () => {
+    const tokenAuth = props.route.params.token;
+    const obj = props.route.params.obj;
+    // const { navigation } = props;
+
+    props.navigation.navigate("PhotoAlbum", { token: tokenAuth, obj: obj });
+  };
+  const setDPost = () => {
+    props.navigation.navigate("DocAlbum", { token: tokenAuth, obj: obj });
+  };
+  // const response
   //   axios({
   //     method: "get",
   //     url: "http://127.0.0.1:8000/BIGADMIN/listalbum/"+(obj[0][0]),
@@ -84,6 +92,8 @@ const Bearing = (props) => {
   //     .catch((error) => console.log(error));
   //  }
   useEffect(() => {
+    const obj = props.route.params.obj;
+    // const { navigation } = props;
     // props.navigation.navigate("NewPass"),
     axios({
       method: "get",
@@ -104,25 +114,18 @@ const Bearing = (props) => {
       // console.log(response)})
       .catch((error) => console.log(error));
   });
-  React.useEffect(() => {
-    const unsubscribe = navigation.addListener("focus", () => {
-      console.log("Refreshed!");
-    });
-    return unsubscribe;
-  }, [navigation]);
 
   return (
     <View style={styles3.page}>
       <View style={styles3.topbox}>
-        <View>
-          <Image
-            source={require("../assets/app_ui2-13.png")}
-            style={styles3.logo}
-          />
-        </View>
-        <View>
-          <Image source={require("../assets/app_ui2-11.png")} />
-        </View>
+        <Image
+          source={require("../assets/app_ui2-13.png")}
+          style={styles3.logo}
+        />
+         <Image
+          source={require("../assets/app_ui2-11.png")}
+          style={styles3.logo2}
+        />
       </View>
 
       <View style={[styles3.butbox]}>
@@ -141,14 +144,15 @@ const Bearing = (props) => {
           >
             <Text
               style={{
-                fontSize: ResponsiveScreen.normalize(75),
+                fontSize: ResponsiveScreen.normalize(55),
+                fontFamily: "Roboto",
                 color: "#f2ca30",
                 marginTop: ResponsiveScreen.normalize(50),
                 marginLeft: ResponsiveScreen.normalize(50),
                 marginBottom: ResponsiveScreen.normalize(25),
               }}
             >
-              {obj[0][2]}
+              {obj.name}
             </Text>
           </View>
           <View
@@ -180,7 +184,7 @@ const Bearing = (props) => {
                     }}
                   ></Text>
                 </View>
-                {obj[0][7] === "1" ? (
+                {obj.status === "1" ? (
                   <Text
                     style={{
                       width: ResponsiveScreen.normalize(50),
@@ -194,7 +198,7 @@ const Bearing = (props) => {
                 ) : (
                   <Text></Text>
                 )}
-                {obj[0][7] === "2" ? (
+                {obj.status === "2" ? (
                   <Text
                     style={{
                       width: ResponsiveScreen.normalize(50),
@@ -208,7 +212,7 @@ const Bearing = (props) => {
                 ) : (
                   <Text></Text>
                 )}
-                {obj[0][7] === "3" ? (
+                {obj.status === "3" ? (
                   <Text
                     style={{
                       width: ResponsiveScreen.normalize(50),
@@ -222,7 +226,7 @@ const Bearing = (props) => {
                 ) : (
                   <Text></Text>
                 )}
-                {obj[0][7] === "4" ? (
+                {obj.status === "4" ? (
                   <Text
                     style={{
                       width: ResponsiveScreen.normalize(50),
@@ -236,7 +240,7 @@ const Bearing = (props) => {
                 ) : (
                   <Text></Text>
                 )}
-                {obj[0][7] === "5" ? (
+                {obj.status === "5" ? (
                   <Text
                     style={{
                       width: ResponsiveScreen.normalize(50),
@@ -250,7 +254,7 @@ const Bearing = (props) => {
                 ) : (
                   <Text></Text>
                 )}
-                {obj[0][7] === "6" ? (
+                {obj.status === "6" ? (
                   <Text
                     style={{
                       width: ResponsiveScreen.normalize(50),
@@ -264,7 +268,7 @@ const Bearing = (props) => {
                 ) : (
                   <Text></Text>
                 )}
-                {obj[0][7] === "7" ? (
+                {obj.status === "7" ? (
                   <Text
                     style={{
                       width: ResponsiveScreen.normalize(50),
@@ -291,13 +295,13 @@ const Bearing = (props) => {
               <View style={styles3.workcard}>
                 <View
                   style={{
-                    marginTop: ResponsiveScreen.normalize(25),
+                    marginTop: ResponsiveScreen.normalize(37),
                     marginLeft: ResponsiveScreen.normalize(25),
                   }}
                 >
                   <MaterialCommunityIcons
                     name="forklift"
-                    size={ResponsiveScreen.normalize(70)}
+                    size={ResponsiveScreen.normalize(60)}
                     color="orange"
                   />
                 </View>
@@ -309,13 +313,13 @@ const Bearing = (props) => {
               <View style={styles3.workcard}>
                 <View
                   style={{
-                    marginTop: ResponsiveScreen.normalize(25),
+                    marginTop: ResponsiveScreen.normalize(37),
                     marginLeft: ResponsiveScreen.normalize(25),
                   }}
                 >
                   <MaterialCommunityIcons
                     name="scissors-cutting"
-                    size={ResponsiveScreen.normalize(70)}
+                    size={ResponsiveScreen.normalize(60)}
                     color="orange"
                   />
                 </View>
@@ -326,13 +330,13 @@ const Bearing = (props) => {
               <View style={styles3.workcard}>
                 <View
                   style={{
-                    marginTop: ResponsiveScreen.normalize(25),
+                    marginTop: ResponsiveScreen.normalize(37),
                     marginLeft: ResponsiveScreen.normalize(25),
                   }}
                 >
                   <MaterialCommunityIcons
                     name="tools"
-                    size={ResponsiveScreen.normalize(70)}
+                    size={ResponsiveScreen.normalize(55)}
                     color="orange"
                   />
                 </View>
@@ -348,13 +352,13 @@ const Bearing = (props) => {
               >
                 <View
                   style={{
-                    marginTop: ResponsiveScreen.normalize(25),
+                    marginTop: ResponsiveScreen.normalize(37),
                     marginLeft: ResponsiveScreen.normalize(25),
                   }}
                 >
                   <FontAwesome5
                     name="paint-roller"
-                    size={ResponsiveScreen.normalize(70)}
+                    size={ResponsiveScreen.normalize(55)}
                     color="orange"
                   />
                 </View>
@@ -364,7 +368,7 @@ const Bearing = (props) => {
                       styles3.txtworkcard,
                       {
                         fontSize: ResponsiveScreen.normalize(27),
-                        marginTop: ResponsiveScreen.normalize(0),
+                        marginTop: ResponsiveScreen.normalize(-10),
                       },
                     ]}
                   >
@@ -375,13 +379,13 @@ const Bearing = (props) => {
               <View style={styles3.workcard}>
                 <View
                   style={{
-                    marginTop: ResponsiveScreen.normalize(25),
+                    marginTop: ResponsiveScreen.normalize(37),
                     marginLeft: ResponsiveScreen.normalize(25),
                   }}
                 >
                   <AntDesign
                     name="checksquare"
-                    size={ResponsiveScreen.normalize(70)}
+                    size={ResponsiveScreen.normalize(55)}
                     color="orange"
                   />
                 </View>
@@ -392,13 +396,13 @@ const Bearing = (props) => {
               <View style={styles3.workcard}>
                 <View
                   style={{
-                    marginTop: ResponsiveScreen.normalize(25),
+                    marginTop: ResponsiveScreen.normalize(37),
                     marginLeft: ResponsiveScreen.normalize(25),
                   }}
                 >
                   <Octicons
                     name="package-dependencies"
-                    size={ResponsiveScreen.normalize(70)}
+                    size={ResponsiveScreen.normalize(55)}
                     color="orange"
                   />
                 </View>
@@ -409,13 +413,13 @@ const Bearing = (props) => {
               <View style={styles3.workcard}>
                 <View
                   style={{
-                    marginTop: ResponsiveScreen.normalize(25),
+                    marginTop: ResponsiveScreen.normalize(37),
                     marginLeft: ResponsiveScreen.normalize(25),
                   }}
                 >
                   <MaterialCommunityIcons
                     name="truck-delivery"
-                    size={ResponsiveScreen.normalize(70)}
+                    size={ResponsiveScreen.normalize(55)}
                     color="orange"
                   />
                 </View>
@@ -428,7 +432,7 @@ const Bearing = (props) => {
         </View>
 
         <View style={styles3.barbox}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={setPost}>
             <View style={styles3.barbut11}>
               <Image
                 source={require("../assets/buttop.png")}
@@ -440,12 +444,7 @@ const Bearing = (props) => {
               />
             </View>
             <View>
-              <Text
-                style={styles3.bartxt}
-                onPress={setPost}
-              >
-                Photo Album
-              </Text>
+              <Text style={styles3.bartxt}>Photo Album</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity style={styles3.barbut22}>
@@ -463,7 +462,7 @@ const Bearing = (props) => {
               </Text>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={setDPost}>
             <View style={styles3.barbut33}>
               <Image
                 source={require("../assets/butbot2.png")}
@@ -483,8 +482,6 @@ const Bearing = (props) => {
                     marginLeft: ResponsiveScreen.normalize(-50),
                   },
                 ]}
-                onPress={()=>{setSelect(itemList.item.id_number);setPost()}
-                }
               >
                 Documents
               </Text>

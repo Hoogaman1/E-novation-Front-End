@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import axios from "axios";
 import { useNavigation } from '@react-navigation/native';
 import {
@@ -10,7 +10,7 @@ import { Cache } from "react-native-cache";
 import { styles } from "./styleSheets.js";
 import ResponsiveScreen from "react-native-auto-responsive-screen";
 ResponsiveScreen.init(720, 1600);
-
+// useEffect(() => {
 const LoginPage = (props) => {
   // const navigation = useNavigation();
   // // const [email, setEmail] = useState("");
@@ -44,12 +44,19 @@ const LoginPage = (props) => {
       // .then((response) => console.log(response.status))
       .then((response) => {
         if (response.status == "202") {
-              props.navigation.navigate("OpenProject",{token: response.data.data.token});
+          // console.log(response.data);
+              // props.navigation.navigate("OpenProject",{token: response.data.data.token});
+              // props.navigation.navigate("OpenProject",{token: response.data.data.token});
+             sendToken(response.data.data.token)
+
         }
       })
       
 
       .catch((error) => console.log(error));
+    }
+    const sendToken = (AuthToken) =>{
+      props.navigation.navigate("OpenProject",{token:AuthToken})
     }
   return (
     <View style={[styles.page, { flexDirection: "column" }]}>
@@ -118,7 +125,7 @@ const LoginPage = (props) => {
       >
         <Text
           style={{
-            marginTop: ResponsiveScreen.normalize(210),
+            marginTop: hp("20%"),
             color: "white",
             fontSize: ResponsiveScreen.normalize(30),
             // marginLeft: "23%",

@@ -12,6 +12,7 @@ import {
   TouchableOpacity,
   Image,
   FlatList,
+  StyleSheet
 } from "react-native";
 import { styles2, btn, styles3 } from "./styleSheets.js";
 import ResponsiveScreen from "react-native-auto-responsive-screen";
@@ -36,35 +37,41 @@ ResponsiveScreen.init(720, 1600);
 //   }
 // );
 const History = (props) => {
+  const tokenAuth = props.route.params.token;
+  const obj = props.route.params.obj;
+  // const { navigation } = props;
+  const [dummy, setDummy] = useState([]);
+
+  // console.log("ghabl")
+  // console.log(dummy[0].project[0].name)
+  // console.log('bad')
   // const [email, setEmail] = useState("");
   var email = "ali@test.com";
   const [mydata, setData] = useState("");
   const onCChange = (textValue) => setCode(textValue);
   //   const [email, setEmail] = useState('ali@test.com');
   //   const onEChange = (textValue) => setEmail(textValue);
-  const [project, setProject] = useState([]);
+  // const [project, setProject] = useState([]);
   useEffect(() => {
     // props.navigation.navigate("NewPass"),
 
     axios({
       method: "get",
-      url: "http://127.0.0.1:8000/USER/opproject/",
+      url: "http://127.0.0.1:8000/BIGADMIN/history/",
       // params:{
       //   email:email,
       // },
       headers: {
         // 'Content-Type': "application/json",
-        Authorization: "Token 7a5b55841e8ad94f989a789ef4d23e5809ce0c48",
+        Authorization: "Token " + tokenAuth,
         // 'Accept': 'application/json'
       },
       data: {
         // verification_code: code,
       },
-    })
-      .then((response) => console.log(response))
-      // console.log(response)})
-      .catch((error) => console.log(error));
-  });
+    }).then((Response) => setDummy(Response.data))
+    // .then((Response) => console.log(dummy))
+  }, []);
   return (
     <View style={styles3.page}>
       <View style={styles3.topbox}>
@@ -73,17 +80,11 @@ const History = (props) => {
           style={styles3.logo}
         />
       </View>
-      <View style={[styles3.butbox]}>
-        <View
-          style={[
-            styles3.workbox,
-            { alignItems: "center", flexDirection: "column" },
-          ]}
-        >
-          <View
+      <View style={[styles3.butbox,{alignItems:'center',flexDirection:'column'}]}>
+      <View
             style={{
               // backgroundColor: "blue",
-              width: ResponsiveScreen.normalize(600),
+              width: ResponsiveScreen.normalize(700),
               borderRadius: 20,
               height: ResponsiveScreen.normalize(200),
             }}
@@ -94,31 +95,32 @@ const History = (props) => {
                 color: "#f2ca30",
                 marginTop: ResponsiveScreen.normalize(50),
                 marginLeft: ResponsiveScreen.normalize(50),
-                marginBottom: ResponsiveScreen.normalize(25),
+                marginBottom: ResponsiveScreen.normalize(15),
               }}
             >
               History of your Projects
             </Text>
           </View>
-          <View
-            style={{
-              // backgroundColor:'red',
-              width: ResponsiveScreen.normalize(600),
-              height: ResponsiveScreen.normalize(1150),
-              borderRadius: 20,
-              flexDirection: "row",
-            }}
-          >
-            <View style={{ marginTop: ResponsiveScreen.normalize(-30) }}>
-              <TouchableOpacity>
+          <FlatList
+          style={{width:ResponsiveScreen.normalize(700),paddingHorizontal:ResponsiveScreen.normalize(50),height:ResponsiveScreen.normalize(300),backgroundColor:'yellow'}}
+            data={dummy}
+            renderItem={(itemList) => (
+              <TouchableOpacity style={mystyles.card}>
                 <Text
-                  style={[
-                    styles2.cardg,
+                  style={
                     {
-                      marginLeft: ResponsiveScreen.normalize(20),
-                      width: ResponsiveScreen.normalize(570),
-                    },
-                  ]}
+                      // backgroundColor:'red',
+                      padding: ResponsiveScreen.normalize(0),
+                      color: "gray",
+                      fontFamily: "Roboto",
+                      fontSize: ResponsiveScreen.fontSize(35),
+                      marginTop: ResponsiveScreen.normalize(35),
+                      paddingStart: ResponsiveScreen.normalize(25),
+                      textAlign: "left",
+                      lineHeight: ResponsiveScreen.normalize(110),
+                     
+                    }
+                  }
                   onPress={() =>
                     props.navigation.navigate("Bearing", { name: "Bearing" })
                   }
@@ -128,11 +130,13 @@ const History = (props) => {
 
                 <Text
                   style={{
-                    marginTop: ResponsiveScreen.normalize(-160),
+                    marginTop: ResponsiveScreen.normalize(-120),
                     marginLeft: ResponsiveScreen.normalize(230),
                     fontSize: ResponsiveScreen.normalize(20),
                     color: "#192570",
                     fontWeight: "bold",
+                    // backgroundColor:'blue',
+
                   }}
                 >
                   ID No.:<Text style={{ color: "gray" }}>123456</Text>
@@ -144,6 +148,8 @@ const History = (props) => {
                     fontSize: ResponsiveScreen.normalize(20),
                     color: "#192570",
                     fontWeight: "bold",
+                    // backgroundColor:'blue',
+
                   }}
                 >
                   Patent No.:<Text style={{ color: "gray" }}>123456</Text>
@@ -155,6 +161,8 @@ const History = (props) => {
                     fontSize: ResponsiveScreen.normalize(20),
                     color: "#192570",
                     fontWeight: "bold",
+                    // backgroundColor:'blue',
+
                   }}
                 >
                   Patent No:<Text style={{ color: "gray" }}>123456</Text>
@@ -166,6 +174,8 @@ const History = (props) => {
                     fontSize: ResponsiveScreen.normalize(20),
                     color: "#192570",
                     fontWeight: "bold",
+                    // backgroundColor:'yellow',
+
                   }}
                 >
                   Order No.:<Text style={{ color: "gray" }}>12</Text>
@@ -177,6 +187,8 @@ const History = (props) => {
                     fontSize: ResponsiveScreen.normalize(20),
                     color: "#192570",
                     fontWeight: "bold",
+                    // backgroundColor:'yellow',
+
                   }}
                 >
                   Req No.:<Text style={{ color: "gray" }}>123456</Text>
@@ -188,9 +200,12 @@ const History = (props) => {
                     fontSize: ResponsiveScreen.normalize(20),
                     color: "#192570",
                     fontWeight: "bold",
+                    // backgroundColor:'yellow',
+
                   }}
                 >
-                  End Date:<Text style={{ color: "gray" }}>2022/3/12</Text>
+                    
+                  End Date:<Text style={{ color: "gray" ,}}>2022/3/12</Text>
                 </Text>
                 <View
                   style={{
@@ -199,18 +214,45 @@ const History = (props) => {
                     backgroundColor: "#f2ca30",
                     marginLeft: ResponsiveScreen.normalize(200),
                     marginTop: ResponsiveScreen.normalize(-120),
+                    
                   }}
                 ></View>
-
-                <View></View>
               </TouchableOpacity>
-            </View>
-          </View>
-        </View>
-        <View style={styles3.barbox}></View>
+            )}
+          />
+        
       </View>
     </View>
   );
 };
 
 export default History;
+
+const mystyles = StyleSheet.create({
+
+  card: {
+    fontFamily: "Roboto",
+    marginTop: ResponsiveScreen.normalize(20),
+    width: ResponsiveScreen.normalize(600),
+    height: ResponsiveScreen.normalize(200),
+    textAlign: "left",
+    borderRadius: ResponsiveScreen.normalize(20),
+    // elevation: 1,
+    // // backgroundColor: "gray",
+    // shadowOffset: { width: 2, height: 2 },
+    // shadowColor: "black",
+    // shadowOpacity:3,
+    // shadowRadius: 3,
+    elevation: 5,
+    backgroundColor: "#fff",
+    shadowOffset: { width: -20, height: -20 },
+    shadowColor: "black",
+    shadowOpacity: 0.3,
+    shadowRadius: 3,
+    // alignItems:'stretch'
+    
+  },
+  
+
+})
+export { mystyles};

@@ -66,7 +66,7 @@ const ForgetPass = (props) => {
       </View>
       <Text
         style={{
-          marginTop: ResponsiveScreen.normalize(220),
+          marginTop: ResponsiveScreen.normalize(310),
           color: "white",
           fontSize: ResponsiveScreen.normalize(30),
           // marginLeft: "23%",
