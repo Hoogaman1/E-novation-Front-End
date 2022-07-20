@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { EvilIcons, MaterialIcons } from "@expo/vector-icons";
-
+import { Cache } from "react-native-cache";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import Login from "../Pages/Login";
+import { FontAwesome } from "@expo/vector-icons";
+import { useNavigation } from '@react-navigation/native';
 // import createAnimatedSwitchNavigator from "react-navigation-animated-switch";
 // import { Transition } from 'react-native-reanimated';
+import { useRoute } from "@react-navigation/native";
 import {
   Text,
   View,
@@ -13,145 +18,247 @@ import {
   Image,
   FlatList,
 } from "react-native";
-import { styles, styles2, btn } from "./styleSheets.js";
-
-// const MySwitch = createAnimatedSwitchNavigator(
-//   {
-//     Home: HomeScreen,
-//     Other: OtherScreen,
-//   },
-//   {
-//     // The previous screen will slide to the bottom while the next screen will fade in
-//     transition: (
-//       <Transition.Together>
-//         <Transition.Out
-//           type="slide-bottom"
-//           durationMs={400}
-//           interpolation="easeIn"
-//         />
-//         <Transition.In type="fade" durationMs={500} />
-//       </Transition.Together>
-//     ),
-//   }
-// );
-const LoginPage = (props) => {
+import { styles2, btn, styles3 } from "./styleSheets.js";
+import ResponsiveScreen from "react-native-auto-responsive-screen";
+import LoginPage from "../Pages/Login";
+ResponsiveScreen.init(720, 1600);
+const OpenProject = (props) => {
   // const [email, setEmail] = useState("");
-  var email = "ali@test.com";
+  const route = useRoute();
+  // const [dummy, setDummy] = useState([]);
+  const tokenAuth = props.route.params.token;
+  console.log(tokenAuth)
+  const navigation = useNavigation();
+  // const { navigation } = props;
+  
   const [mydata, setData] = useState("");
   const onCChange = (textValue) => setCode(textValue);
-  //   const [email, setEmail] = useState('ali@test.com');
-  //   const onEChange = (textValue) => setEmail(textValue);
-  const [project, setProject] = useState([]);
-  useEffect(() => {
-    // props.navigation.navigate("NewPass"),
-
+  const [dummy, setDummy] = useState([]);
+ 
+  
+  const [id_select, setSelect] = useState("");
+  
+  
+  const  setPost = (props) => {
+  //   useEffect(() => {
+  // }, [id_select]);
+    axios({
+      method: "POST",
+      url: "http://127.0.0.1:8000/USER/opproject/",
+      headers: {
+        // 'Content-Type': "application/json",
+        Authorization: "Token "+tokenAuth,
+        // 'Accept': 'application/json'
+      },
+      data: {
+        id_number: id_select,
+      },
+    })
+    // .then((response) => console.log(response.status))
+    // .then(console.log('salam'))
+    .then((response) => {
+      // console.log(response.data)
+      if (response.status == "202") {
+       
+        // props.navigation.push({token:tokenAuth,obj:response.data});
+        props.navigation.navigate('Bearing',{token:tokenAuth,obj:response.data});
+      }
+      })
+      .catch((error) => console.log(error));
+   }
+  const  setNPost = () => {
+    props.navigation.navigate('Notif',{token:tokenAuth});
+  }
+  const  setHPost = () => {
+    props.navigation.navigate('History',{token:tokenAuth});
+  }
+  useEffect( () => {
+    const tokenAuth = props.route.params.token;
+    // const { navigation } = props;
+    // const tokenAuth = props.navigation.navigate.getParam('token',null)
+    // useEffect(() => {
+      // }, [id_select]);
+    // console.log(tokenAuth);
+    // const dummyData = []
     axios({
       method: "get",
       url: "http://127.0.0.1:8000/USER/opproject/",
       // params:{
-      //   email:email,
-      // },
-      headers: {
-        // 'Content-Type': "application/json",
-        Authorization: "Token 7a5b55841e8ad94f989a789ef4d23e5809ce0c48",
-        // 'Accept': 'application/json'
-      },
-      data: {
-        // verification_code: code,
-      },
-    })
-      .then((response) => console.log(response))
-      // console.log(response)})
+        //   email:email,
+        // },
+        headers: {
+          // 'Content-Type': "application/json",
+          Authorization: "Token " + tokenAuth,
+          // 'Accept': 'application/json'
+        },
+        data: {
+          // verification_code: code,
+        },
+      })
+      .then((Response) =>  setDummy(Response.data))
+
       .catch((error) => console.log(error));
-  });
+    }, []);
+    const itemclick = (obj) =>{
+      props.navigation.navigate("Bearing",{token:tokenAuth,obj:obj})
+    }
   return (
-    <View style={styles2.page}>
-      <View style={styles2.topbox}>
+    <View style={styles3.page}>
+      <View style={styles3.topbox}>
         <Image
           source={require("../assets/app_ui2-13.png")}
-          style={styles2.logo}
+          style={styles3.logo}
+        />
+         <Image
+          source={require("../assets/app_ui2-11.png")}
+          style={styles3.logo2}
         />
       </View>
-      <View style={[styles2.butbox, { alignItems: "center" }]}>
-        <Text
-          style={{
-            fontSize: 32,
-            color: "#f2ca30",
-            marginTop: "20%",
-            marginLeft: "-2%",
-            fontFamily: "Roboto",
-          }}
+      <View style={[styles3.butbox]}>
+        <View
+          style={[
+            styles3.workbox,
+            { alignItems: "center", flexDirection: "column" },
+          ]}
         >
-          Current Projects
-        </Text>
-
-        <View>
-          <TouchableOpacity>
+          <View
+            style={{
+              // backgroundColor: "blue",
+              width: ResponsiveScreen.normalize(600),
+              borderRadius: 20,
+              height: ResponsiveScreen.normalize(200),
+            }}
+          >
             <Text
-              style={styles2.card}
-              onPress={() =>
-                props.navigation.navigate("Bearing", { name: "Bearing" })
-              }
+              style={{
+                fontSize: ResponsiveScreen.normalize(50),
+                fontFamily: "Roboto",
+                color: "#f2ca30",
+                marginTop: ResponsiveScreen.normalize(50),
+                marginLeft: ResponsiveScreen.normalize(50),
+                marginBottom: ResponsiveScreen.normalize(25),
+              }}
             >
-              Bearing
+              Current Projects
             </Text>
+          </View>
+          <View
+            style={{
+              // backgroundColor:'red',
+              width: ResponsiveScreen.normalize(600),
+              height: ResponsiveScreen.normalize(1150),
+              borderRadius: 20,
+              flexDirection: "row",
+            }}
+          >
+            <FlatList
+              data={dummy}
+              renderItem={(itemList) => (
+                <TouchableOpacity
+                //   onPress={() => {props.navigation.navigate("Bearing",{token:tokenAuth});
+                  
+                //   {setPost};
+                //   // console.log(id_select)
+                // }}
+                // onPress={()=>{setSelect(itemList.item.id_number);setPost()}}>
+                onPress={() => itemclick(itemList.item)}>
+                  
+                  <View style={[styles3.workcard2]}>
+                    <View>
+                      <Text style={styles3.txtworkcard} >
+                        {itemList.item.name}
+                      </Text>
+                    </View>
+
+                    <View  >
+                      {itemList.item.alarm === true ? (
+                        <FontAwesome name="bell-o" size={19} color="#f2ca30" style={{fontWeight: "bold",marginLeft:ResponsiveScreen.normalize(150),marginTop:ResponsiveScreen.normalize(20)}} />
+                      ) : (
+                        <Text></Text>
+                      )}
+                    </View>
+                  </View>
+                </TouchableOpacity>
+              )}
+            />
+          </View>
+        </View>
+        <View style={styles3.barbox}>
+        <TouchableOpacity 
+          onPress={setHPost}>
+          
+            <View style={styles3.barbut11}>
+              <Image
+                source={require("../assets/buttop.png")}
+                style={{
+                  width: ResponsiveScreen.normalize(170),
+                  height: ResponsiveScreen.normalize(400),
+                  resizeMode: "stretch",
+                }}
+              />
+            </View>
+            <View>
+              <Text
+                style={[styles3.bartxt,{marginTop:ResponsiveScreen.normalize(-110)}]}
+                // onPress={setPost}
+              >
+                History
+              </Text>
+            </View>
           </TouchableOpacity>
-        </View>
-
-        <View>
-          <Text
-            style={{
-              marginTop: "-15%",
-              marginLeft: "9%",
-              paddingLeft: "170%",
-              zIndex: 1,
-            }}
+          <TouchableOpacity style={styles3.barbut22}
+          // onPress={setPost}>
           >
-            <EvilIcons name="gear" size={32} color="white" />
-          </Text>
-          <Text style={btn.trapezoid1}> Current Projects</Text>
-        </View>
-
-        <View>
-          <Text
-            style={{
-              marginTop: "-20%",
-              paddingTop: "40%",
-              marginLeft: "9%",
-              paddingLeft: "170%",
-              zIndex: 1,
-            }}
-          >
-            <MaterialIcons name="history-toggle-off" size={30} color="white" />
-          </Text>
-          <Text style={btn.trapezoid2}> History of Your Projects</Text>
-        </View>
-
-        <View style={{ height: 150, width: "100%", padding: 10 }}>
-          <FlatList
-            data={project}
-            renderItem={({ item }) => (
-              <TouchableOpacity
+            <View>
+              <Text
                 style={[
+                  styles3.bartxt,
                   {
-                    backgroundColor: "blue",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    flex: 1,
+                    marginTop: ResponsiveScreen.normalize(140),
+                    marginLeft: ResponsiveScreen.normalize(-66),
                   },
                 ]}
               >
-                <Text key={item.id}>{item.name}</Text>
-              </TouchableOpacity>
-            )}
-          />
+                Current Project
+              </Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={setNPost}
+          >
+            <View style={styles3.barbut33}>
+              <Image
+                source={require("../assets/butbot2.png")}
+                style={{
+                  width: ResponsiveScreen.normalize(116),
+                  height: ResponsiveScreen.normalize(380),
+                  resizeMode: "stretch",
+                }}
+              />
+            </View>
+            <View>
+              <Text
+                style={[
+                  styles3.bartxt,
+                  {
+                    marginTop: ResponsiveScreen.normalize(-200),
+                    marginLeft: ResponsiveScreen.normalize(-50),
+                  },
+                ]}
+                // onPress={()=>{setSelect(itemList.item.id_number);setPost()}
+                // }
+              >
+                Notification
+              </Text>
+            </View>
+          </TouchableOpacity>
         </View>
       </View>
     </View>
   );
+
 };
 
-export default LoginPage;
+export default OpenProject;
 
 // const styles = StyleSheet.create({
 

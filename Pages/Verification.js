@@ -1,19 +1,25 @@
 import React, { useState } from "react";
 import axios from "axios";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 import { Text, View, TextInput, TouchableOpacity, Image } from "react-native";
 import { styles } from "./styleSheets.js";
-
-const LoginPage = (props) => {
+import ResponsiveScreen from "react-native-auto-responsive-screen";
+ResponsiveScreen.init(720, 1600);
+const Verification = (props) => {
   // const [email, setEmail] = useState("");
-  var email = "ali@test.com";
-
+  // var email = "ali@test.com";
+  const email = props.route.params.email;
+  const { navigation } = props;
   const [code, setCode] = useState("");
   const onCChange = (textValue) => setCode(textValue);
   //   const [email, setEmail] = useState('ali@test.com');
   //   const onEChange = (textValue) => setEmail(textValue);
   const setSend = () => {
-    props.navigation.navigate("NewPass"),
+    props.navigation.navigate("NewPass",{email: email}),
       axios({
         method: "POST",
         url: "http://127.0.0.1:8000/USER/verification/" + email + "/",
@@ -22,19 +28,19 @@ const LoginPage = (props) => {
         // },
         headers: {
           // 'Content-Type': "application/json",
-          Authorization: "7a5b55841e8ad94f989a789ef4d23e5809ce0c48",
+          // Authorization: "7a5b55841e8ad94f989a789ef4d23e5809ce0c48",
           // 'Accept': 'application/json'
         },
         data: {
           verification_code: code,
         },
       })
-        .then((response) => console.log(response))
+        .then((response) => console.log(response.data))
 
         .catch((error) => console.log(error));
   };
   return (
-    <View style={styles.page}>
+    <View style={[styles.page, { flexDirection: "column" }]}>
       <View style={styles.box}>
         <View>
           <Image
@@ -53,18 +59,39 @@ const LoginPage = (props) => {
         </View>
         <View style={styles.butbox}>
           <View>
-            <TouchableOpacity style={[styles.Button,{flexDirection:"row"}]} onPress={setSend}>
-              <Text style={styles.ButtonText}>Next</Text>
-              <Text style={{transform: [{ rotate: "90deg" }],fontSize:20,color:"#fff"}}> ^ </Text>
-
+            <TouchableOpacity
+              style={[styles.Button, { flexDirection: "row" }]}
+              onPress={setSend}
+            >
+              <Text style={styles.ButtonText}> Next</Text>
+              {/* <Text style={{transform: [{ rotate: "90deg" }],fontSize:20,color:"#fff"}}> ^ </Text> */}
             </TouchableOpacity>
           </View>
         </View>
       </View>
+      <Text
+        style={{
+          marginTop: ResponsiveScreen.normalize(310),
+          color: "white",
+          fontSize: ResponsiveScreen.normalize(30),
+          // marginLeft: "23%",
+        }}
+      >
+        Client Application
+      </Text>
+      <Text
+        style={{
+          marginTop: ResponsiveScreen.normalize(20),
+          color: "white",
+          fontSize: ResponsiveScreen.normalize(20),
+        }}
+      >
+        All rights reserved by E-novation engineering Co.{" "}
+      </Text>
     </View>
   );
 };
-export default LoginPage;
+export default Verification;
 
 // const styles = StyleSheet.create({
 
