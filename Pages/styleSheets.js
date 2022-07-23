@@ -733,12 +733,12 @@ const styles3 = StyleSheet.create({
     marginLeft: ResponsiveScreen.normalize(35),
     borderRadius: ResponsiveScreen.normalize(18),
     flexDirection: "row",
-    elevation: 3,
+    // elevation: 3,
     backgroundColor: "#fff",
-    shadowOffset: { width: 3, height: 3 },
-    shadowColor: "#333",
-    shadowOpacity: 0.3,
-    shadowRadius: 3,
+    // shadowOffset: { width: 1, height: 1 },
+    // shadowColor: "red",
+    // shadowOpacity: 0.3,
+    // shadowRadius: 1,
     zIndex:3
   },
   txtworkcard: {

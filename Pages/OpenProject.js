@@ -9,6 +9,7 @@ import { useNavigation } from '@react-navigation/native';
 // import createAnimatedSwitchNavigator from "react-navigation-animated-switch";
 // import { Transition } from 'react-native-reanimated';
 import { useRoute } from "@react-navigation/native";
+
 import {
   Text,
   View,
@@ -17,6 +18,7 @@ import {
   TouchableOpacity,
   Image,
   FlatList,
+  StyleSheet,
 } from "react-native";
 import { styles2, btn, styles3 } from "./styleSheets.js";
 import ResponsiveScreen from "react-native-auto-responsive-screen";
@@ -40,6 +42,7 @@ const OpenProject = (props) => {
   
   
   const  setPost = (props) => {
+
   //   useEffect(() => {
   // }, [id_select]);
     axios({
@@ -155,9 +158,10 @@ const OpenProject = (props) => {
           >
             <FlatList
               data={dummy}
+              style={{width:ResponsiveScreen.normalize(650),paddingHorizontal:ResponsiveScreen.normalize(10),height:ResponsiveScreen.normalize(1100)}}
               renderItem={(itemList) => (
                 <TouchableOpacity
-                style={{elevation:1,marginTop: ResponsiveScreen.normalize(5)}}
+                style={[mystyles.card,{marginTop: ResponsiveScreen.normalize(5)}]}
                 //   onPress={() => {props.navigation.navigate("Bearing",{token:tokenAuth});
                   
                 //   {setPost};
@@ -166,7 +170,7 @@ const OpenProject = (props) => {
                 // onPress={()=>{setSelect(itemList.item.id_number);setPost()}}>
                 onPress={() => itemclick(itemList.item)}>
                   
-                  <View style={[styles3.workcard2,{elevation:3,zIndex:999}]}>
+                  <View style={{flexDirection:'row'}}>
                     <View>
                       <Text style={styles3.txtworkcard} >
                         {itemList.item.name}
@@ -325,3 +329,33 @@ export default OpenProject;
 
 // }
 // });
+const mystyles = StyleSheet.create({
+
+  card: {
+    fontFamily: "Roboto",
+    marginTop: ResponsiveScreen.normalize(25),
+    width: ResponsiveScreen.normalize(550),
+    height: ResponsiveScreen.normalize(125),
+    // textAlign: "left",
+    marginLeft:ResponsiveScreen.normalize(25),
+    marginBottom:ResponsiveScreen.normalize(10),
+    borderRadius: ResponsiveScreen.normalize(20),
+    // elevation: 6,
+    // backgroundColor: "gray",
+    // shadowOffset: { width: 2, height: 2 },
+    // shadowColor: "black",
+    // shadowOpacity:3,
+    // shadowRadius: 3,
+    elevation: 4,
+    backgroundColor: "#fff",
+    shadowOffset: { width: 2, height: 2 },
+    shadowColor: "black",
+    shadowOpacity: 0.3,
+    shadowRadius: 3,
+    // alignItems:'stretch'
+    
+  },
+  
+
+})
+export { mystyles};
