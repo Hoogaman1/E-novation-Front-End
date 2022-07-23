@@ -15,7 +15,7 @@ import {
   FlatList,
   StyleSheet,
 } from "react-native";
-import { styles, styles2, btn } from "./styleSheets.js";
+import { styles3, styles2, btn } from "./styleSheets.js";
 import ResponsiveScreen from "react-native-auto-responsive-screen";
 ResponsiveScreen.init(720, 1600);
 
@@ -129,16 +129,15 @@ const Notif = (props) => {
 
   return (
     <View style={styles2.page}>
-      <View style={styles2.topbox}>
-        <View>
-          <Image
-            source={require("../assets/app_ui2-13.png")}
-            style={styles2.logo}
-          />
-        </View>
-        <View>
-          <Image source={require("../assets/app_ui2-11.png")} />
-        </View>
+       <View style={styles3.topbox}>
+        <Image
+          source={require("../assets/app_ui2-13.png")}
+          style={styles3.logo}
+        />
+         <Image
+          source={require("../assets/app_ui2-11.png")}
+          style={styles3.logo2}
+        />
       </View>
       <View
         style={[
