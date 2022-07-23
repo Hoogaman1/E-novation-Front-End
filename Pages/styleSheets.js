@@ -727,6 +727,7 @@ const styles3 = StyleSheet.create({
     // backgroundColor:"gray",
     fontFamily: "Roboto",
     width: ResponsiveScreen.normalize(550),
+    
     height: ResponsiveScreen.normalize(120),
     marginBottom: ResponsiveScreen.normalize(25),
     marginLeft: ResponsiveScreen.normalize(35),
@@ -738,10 +739,13 @@ const styles3 = StyleSheet.create({
     shadowColor: "#333",
     shadowOpacity: 0.3,
     shadowRadius: 3,
+    zIndex:3
   },
   txtworkcard: {
     // backgroundColor:"yellow",
-    fontFamily: "Roboto",
+    fontWeight:'500',
+    color:'#525151',
+    // fontFamily: "Roboto",
     width: ResponsiveScreen.normalize(350),
     height: ResponsiveScreen.normalize(150),
     fontSize: ResponsiveScreen.normalize(30),

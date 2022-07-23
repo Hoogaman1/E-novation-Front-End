@@ -125,7 +125,7 @@ const LoginPage = (props) => {
       >
         <Text
           style={{
-            marginTop: hp("20%"),
+            marginTop: hp("21%"),
             color: "white",
             fontSize: ResponsiveScreen.normalize(30),
             // marginLeft: "23%",
@@ -135,7 +135,7 @@ const LoginPage = (props) => {
         </Text>
         <Text
           style={{
-            marginTop: ResponsiveScreen.normalize(20),
+            marginTop: ResponsiveScreen.normalize(8),
             marginBottom: ResponsiveScreen.normalize(320),
             color: "white",
             fontSize: ResponsiveScreen.normalize(20),

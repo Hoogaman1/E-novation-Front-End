@@ -16,6 +16,7 @@ import {
 } from "react-native";
 import { styles2, btn, styles3 } from "./styleSheets.js";
 import ResponsiveScreen from "react-native-auto-responsive-screen";
+import Item from "antd/lib/list/Item.js";
 ResponsiveScreen.init(720, 1600);
 // const MySwitch = createAnimatedSwitchNavigator(
 //   {
@@ -38,17 +39,18 @@ ResponsiveScreen.init(720, 1600);
 // );
 const History = (props) => {
   const tokenAuth = props.route.params.token;
-  const obj = props.route.params.obj;
+  // const obj = props.route.params.obj;
   // const { navigation } = props;
   const [dummy, setDummy] = useState([]);
+  console.log(dummy.project)
 
   // console.log("ghabl")
   // console.log(dummy[0].project[0].name)
   // console.log('bad')
   // const [email, setEmail] = useState("");
-  var email = "ali@test.com";
-  const [mydata, setData] = useState("");
-  const onCChange = (textValue) => setCode(textValue);
+  // var email = "ali@test.com";
+  // const [mydata, setData] = useState("");
+  // const onCChange = (textValue) => setCode(textValue);
   //   const [email, setEmail] = useState('ali@test.com');
   //   const onEChange = (textValue) => setEmail(textValue);
   // const [project, setProject] = useState([]);
@@ -56,8 +58,8 @@ const History = (props) => {
     // props.navigation.navigate("NewPass"),
 
     axios({
-      method: "get",
-      url: "http://127.0.0.1:8000/BIGADMIN/history/",
+      method: "GET",
+      url: "http://127.0.0.1:8000/BIGADMIN/history/amirco",
       // params:{
       //   email:email,
       // },
@@ -69,7 +71,7 @@ const History = (props) => {
       data: {
         // verification_code: code,
       },
-    }).then((Response) => setDummy(Response.data))
+    }).then((Response) => setDummy(Response.data[0]))
     // .then((Response) => console.log(dummy))
   }, []);
   return (
@@ -102,14 +104,17 @@ const History = (props) => {
             </Text>
           </View>
           <FlatList
-          style={{width:ResponsiveScreen.normalize(700),paddingHorizontal:ResponsiveScreen.normalize(50),height:ResponsiveScreen.normalize(300),backgroundColor:'yellow'}}
-            data={dummy}
+          style={{width:ResponsiveScreen.normalize(700),paddingHorizontal:ResponsiveScreen.normalize(50),height:ResponsiveScreen.normalize(300),backgroundColor:'#fff'}}
+            data={dummy.project}
             renderItem={(itemList) => (
               <TouchableOpacity style={mystyles.card}>
                 <Text
                   style={
                     {
                       // backgroundColor:'red',
+                      // maxWidth:200,
+                      flexShrink: 1,
+                      flexGrow: 1,
                       padding: ResponsiveScreen.normalize(0),
                       color: "gray",
                       fontFamily: "Roboto",
@@ -118,6 +123,8 @@ const History = (props) => {
                       paddingStart: ResponsiveScreen.normalize(25),
                       textAlign: "left",
                       lineHeight: ResponsiveScreen.normalize(110),
+                      width:ResponsiveScreen.normalize(180),
+                      marginLeft:ResponsiveScreen.normalize(20)
                      
                     }
                   }
@@ -125,7 +132,7 @@ const History = (props) => {
                     props.navigation.navigate("Bearing", { name: "Bearing" })
                   }
                 >
-                  Bearing
+                  {itemList.item.name}
                 </Text>
 
                 <Text
@@ -139,7 +146,7 @@ const History = (props) => {
 
                   }}
                 >
-                  ID No.:<Text style={{ color: "gray" }}>123456</Text>
+                  ID No.:<Text style={{ color: "gray" }}> {itemList.item.id_number}</Text>
                 </Text>
                 <Text
                   style={{
@@ -152,7 +159,7 @@ const History = (props) => {
 
                   }}
                 >
-                  Patent No.:<Text style={{ color: "gray" }}>123456</Text>
+                  Drowing No.:<Text style={{ color: "gray" }}> {itemList.item.drawing_num}</Text>
                 </Text>
                 <Text
                   style={{
@@ -165,7 +172,7 @@ const History = (props) => {
 
                   }}
                 >
-                  Patent No:<Text style={{ color: "gray" }}>123456</Text>
+                  Amount:<Text style={{ color: "gray" }}> {itemList.item.amount}</Text>
                 </Text>
                 <Text
                   style={{
@@ -178,7 +185,7 @@ const History = (props) => {
 
                   }}
                 >
-                  Order No.:<Text style={{ color: "gray" }}>12</Text>
+                  Order No.:<Text style={{ color: "gray" }}> {itemList.item.order_number}</Text>
                 </Text>
                 <Text
                   style={{
@@ -235,15 +242,17 @@ const mystyles = StyleSheet.create({
     marginTop: ResponsiveScreen.normalize(20),
     width: ResponsiveScreen.normalize(600),
     height: ResponsiveScreen.normalize(200),
-    textAlign: "left",
+    // textAlign: "left",
+    marginLeft:ResponsiveScreen.normalize(5),
+    marginBottom:ResponsiveScreen.normalize(10),
     borderRadius: ResponsiveScreen.normalize(20),
     // elevation: 1,
-    // // backgroundColor: "gray",
+    // backgroundColor: "gray",
     // shadowOffset: { width: 2, height: 2 },
     // shadowColor: "black",
     // shadowOpacity:3,
     // shadowRadius: 3,
-    elevation: 5,
+    elevation: 2,
     backgroundColor: "#fff",
     shadowOffset: { width: -20, height: -20 },
     shadowColor: "black",

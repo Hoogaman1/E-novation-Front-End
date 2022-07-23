@@ -131,12 +131,12 @@ const OpenProject = (props) => {
           >
             <Text
               style={{
-                fontSize: ResponsiveScreen.normalize(50),
+                fontSize: ResponsiveScreen.normalize(45),
                 fontFamily: "Roboto",
                 color: "#f2ca30",
                 marginTop: ResponsiveScreen.normalize(50),
-                marginLeft: ResponsiveScreen.normalize(50),
-                marginBottom: ResponsiveScreen.normalize(25),
+                marginLeft: ResponsiveScreen.normalize(35),
+                marginBottom: ResponsiveScreen.normalize(30),
               }}
             >
               Current Projects
@@ -147,6 +147,8 @@ const OpenProject = (props) => {
               // backgroundColor:'red',
               width: ResponsiveScreen.normalize(600),
               height: ResponsiveScreen.normalize(1150),
+              marginTop: ResponsiveScreen.normalize(50),
+              // elevation:3,
               borderRadius: 20,
               flexDirection: "row",
             }}
@@ -155,6 +157,7 @@ const OpenProject = (props) => {
               data={dummy}
               renderItem={(itemList) => (
                 <TouchableOpacity
+                style={{elevation:1,marginTop: ResponsiveScreen.normalize(5)}}
                 //   onPress={() => {props.navigation.navigate("Bearing",{token:tokenAuth});
                   
                 //   {setPost};
@@ -163,7 +166,7 @@ const OpenProject = (props) => {
                 // onPress={()=>{setSelect(itemList.item.id_number);setPost()}}>
                 onPress={() => itemclick(itemList.item)}>
                   
-                  <View style={[styles3.workcard2]}>
+                  <View style={[styles3.workcard2,{elevation:3,zIndex:999}]}>
                     <View>
                       <Text style={styles3.txtworkcard} >
                         {itemList.item.name}
