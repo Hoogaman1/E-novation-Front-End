@@ -67,10 +67,10 @@ const PhotoAlbum = (props) => {
   // const { navigation } = props;
   const [mydata, setData] = useState("");
   const onCChange = (textValue) => setCode(textValue);
-  const obj = props.route.params.obj;
+  // const obj = global.OBJ;
   const [dummy, setDummy] = useState([]);
-  const tokenAuth = props.route.params.token;
-  // console.log(tokenAuth)
+  const tokenAuth = global.TOKEN;
+  // console.log(global.OBJ)
   console.log("albummmmmmmmm");
   // console.log(obj)
   // console.log(dummy);
@@ -84,17 +84,17 @@ const PhotoAlbum = (props) => {
   //   setIsActive(true);
   // const[list , setList] = useState([''])
   const  setPost = () => {
-    props.navigation.navigate('Bearing',{token:tokenAuth,obj:obj});
+    props.navigation.navigate('Bearing',{token:tokenAuth,obj:global.OBJ});
   }
   const  setDPost = () => {
-    props.navigation.navigate('DocAlbum',{token:tokenAuth,obj:obj});
+    props.navigation.navigate('DocAlbum',{token:tokenAuth,obj:global.OBJ});
   }
   useEffect(() => {
     // props.navigation.navigate("NewPass"),
 
     axios({
       method: "get",
-      url: "http://127.0.0.1:8000/BIGADMIN/listalbum/" + obj.id,
+      url: "http://127.0.0.1:8000/BIGADMIN/listalbum/" + global.OBJ.id,
       // params:{
       //   email:email,
       // },
@@ -117,7 +117,7 @@ const PhotoAlbum = (props) => {
 
     axios({
       method: "get",
-      url: "http://127.0.0.1:8000/BIGADMIN/listalbum/" + obj.id,
+      url: "http://127.0.0.1:8000/BIGADMIN/listalbum/" + global.OBJ.id,
       // params:{
       //   email:email,
       // },

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { EvilIcons, MaterialIcons } from "@expo/vector-icons";
+import { useNavigation } from '@react-navigation/native';
 
 // import createAnimatedSwitchNavigator from "react-navigation-animated-switch";
 // import { Transition } from 'react-native-reanimated';
@@ -38,7 +39,10 @@ ResponsiveScreen.init(720, 1600);
 //   }
 // );
 const History = (props) => {
-  const tokenAuth = props.route.params.token;
+  // const tokenAuth = props.route.params.token;
+  const navigation = useNavigation();
+
+  const tokenAuth = global.TOKEN;
   // const obj = props.route.params.obj;
   // const { navigation } = props;
   const [dummy, setDummy] = useState([]);
@@ -81,10 +85,14 @@ const History = (props) => {
           source={require("../assets/app_ui2-13.png")}
           style={styles3.logo}
         />
+         <TouchableOpacity
+        onPress={() => {navigation.openDrawer({token:tokenAuth});}}
+        >
          <Image
           source={require("../assets/app_ui2-11.png")}
           style={styles3.logo2}
         />
+        </TouchableOpacity>
       </View>
       <View style={[styles3.butbox,{alignItems:'center',flexDirection:'column'}]}>
       <View

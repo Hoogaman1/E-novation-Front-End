@@ -48,6 +48,11 @@ const LoginPage = (props) => {
               // props.navigation.navigate("OpenProject",{token: response.data.data.token});
               // props.navigation.navigate("OpenProject",{token: response.data.data.token});
              sendToken(response.data.data.token)
+             global.TOKEN=response.data.data.token;
+             global.DATA=response.data.data;
+             console.log("okkkkkkkkkkk")
+            
+
 
         }
       })

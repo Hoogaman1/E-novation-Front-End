@@ -28,7 +28,7 @@ const OpenProject = (props) => {
   // const [email, setEmail] = useState("");
   const route = useRoute();
   // const [dummy, setDummy] = useState([]);
-  const tokenAuth = props.route.params.token;
+  const tokenAuth = global.TOKEN;
   console.log(tokenAuth)
   const navigation = useNavigation();
   // const { navigation } = props;
@@ -50,7 +50,7 @@ const OpenProject = (props) => {
       url: "http://127.0.0.1:8000/USER/opproject/",
       headers: {
         // 'Content-Type': "application/json",
-        Authorization: "Token "+tokenAuth,
+        Authorization: "Token "+global.TOKEN,
         // 'Accept': 'application/json'
       },
       data: {
@@ -64,7 +64,12 @@ const OpenProject = (props) => {
       if (response.status == "202") {
        
         // props.navigation.push({token:tokenAuth,obj:response.data});
-        props.navigation.navigate('Bearing',{token:tokenAuth,obj:response.data});
+        global.OBJ=response.data;
+        console.log("oooooooooooooooooooooooooooobj")
+        console.log(response.data)
+        console.log("okkkkkkkkddddddddddoooooobj")
+
+        props.navigation.navigate('Bearing',{token:tokenAuth,obj:global.OBJ});
       }
       })
       .catch((error) => console.log(error));
@@ -76,7 +81,7 @@ const OpenProject = (props) => {
     props.navigation.navigate('History',{token:tokenAuth});
   }
   useEffect( () => {
-    const tokenAuth = props.route.params.token;
+    const tokenAuth = global.TOKEN;
     // const { navigation } = props;
     // const tokenAuth = props.navigation.navigate.getParam('token',null)
     // useEffect(() => {
@@ -103,7 +108,8 @@ const OpenProject = (props) => {
       .catch((error) => console.log(error));
     }, []);
     const itemclick = (obj) =>{
-      props.navigation.navigate("Bearing",{token:tokenAuth,obj:obj})
+      global.OBJ=obj
+      props.navigation.navigate("Bearing")
     }
   return (
     <View style={styles3.page}>
@@ -112,10 +118,14 @@ const OpenProject = (props) => {
           source={require("../assets/app_ui2-13.png")}
           style={styles3.logo}
         />
+        <TouchableOpacity
+        onPress={() => {navigation.openDrawer({token:tokenAuth});}}
+        >
          <Image
           source={require("../assets/app_ui2-11.png")}
           style={styles3.logo2}
         />
+        </TouchableOpacity>
       </View>
       <View style={[styles3.butbox]}>
         <View

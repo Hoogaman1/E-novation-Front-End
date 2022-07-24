@@ -38,10 +38,10 @@ const Bearing = (props) => {
   const [id_select, setSelect] = useState("");
   // console.log(tokenAuth)
   // console.log(obj[0][0])
-  const tokenAuth = props.route.params.token;
+  const tokenAuth = global.TOKEN;
     // const { navigation } = props;
 
-  const obj = props.route.params.obj;
+  const obj = global.OBJ;
   console.log('1')
   console.log(obj)
   console.log('2')
@@ -58,14 +58,14 @@ const Bearing = (props) => {
   // const[list , setList] = useState([''])
   // console.log("qqqq")
   const setPost = () => {
-    const tokenAuth = props.route.params.token;
-    const obj = props.route.params.obj;
+    const tokenAuth = global.TOKEN;
+    const obj = global.OBJ;
     // const { navigation } = props;
 
-    props.navigation.navigate("PhotoAlbum", { token: tokenAuth, obj: obj });
+    props.navigation.navigate("PhotoAlbum");
   };
   const setDPost = () => {
-    props.navigation.navigate("DocAlbum", { token: tokenAuth, obj: obj });
+    props.navigation.navigate("DocAlbum");
   };
   // const response
   //   axios({
@@ -92,7 +92,7 @@ const Bearing = (props) => {
   //     .catch((error) => console.log(error));
   //  }
   useEffect(() => {
-    const obj = props.route.params.obj;
+    const obj = global.OBJ;
     // const { navigation } = props;
     // props.navigation.navigate("NewPass"),
     axios({

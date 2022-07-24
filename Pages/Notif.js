@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigation } from '@react-navigation/native';
+
 // import { EvilIcons  , MaterialIcons  } from '@expo/vector-icons';
 import { CheckBox } from "@rneui/themed";
 // import TimeInput from '@tighten/react-native-time-input';
@@ -42,6 +44,8 @@ ResponsiveScreen.init(720, 1600);
 const Notif = (props) => {
   const [dummy, setDummy] = useState([]);
   // const [email, setEmail] = useState("");
+  const navigation = useNavigation();
+
   var email = "ali@test.com";
   const [checked1, setChecked1] = useState(dummy.every_five_hour);
   const [checked2, setChecked2] = useState(dummy.every_hour);
@@ -49,7 +53,7 @@ const Notif = (props) => {
   const [checked4, setChecked4] = useState(dummy.sq_clock);
   const [mydata, setData] = useState("");
 
-  const tokenAuth = props.route.params.token;
+  const tokenAuth = global.TOKEN;
   // const obj = props.route.params.obj;
   // const { navigation } = props;
   // const [time, setTime] = useState('');
@@ -134,10 +138,14 @@ const Notif = (props) => {
           source={require("../assets/app_ui2-13.png")}
           style={styles3.logo}
         />
+        <TouchableOpacity
+        onPress={() => {navigation.openDrawer({token:tokenAuth});}}
+        >
          <Image
           source={require("../assets/app_ui2-11.png")}
           style={styles3.logo2}
         />
+        </TouchableOpacity>
       </View>
       <View
         style={[
