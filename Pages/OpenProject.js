@@ -131,7 +131,7 @@ const OpenProject = (props) => {
         <View
           style={[
             styles3.workbox,
-            { alignItems: "center", flexDirection: "column" },
+            { alignItems: "center", flexDirection: "column" ,width:ResponsiveScreen.normalize(720)},
           ]}
         >
           <View
@@ -182,14 +182,14 @@ const OpenProject = (props) => {
                   
                   <View style={{flexDirection:'row'}}>
                     <View>
-                      <Text style={styles3.txtworkcard} >
+                      <Text style={[styles3.txtworkcard,{paddingTop:ResponsiveScreen.normalize(39)}]} >
                         {itemList.item.name}
                       </Text>
                     </View>
 
                     <View  >
                       {itemList.item.alarm === true ? (
-                        <FontAwesome name="bell-o" size={19} color="#f2ca30" style={{fontWeight: "bold",marginLeft:ResponsiveScreen.normalize(150),marginTop:ResponsiveScreen.normalize(20)}} />
+                        <FontAwesome name="bell-o" size={19} color="#f2ca30" style={{fontWeight: "bold",marginLeft:ResponsiveScreen.normalize(150),marginTop:ResponsiveScreen.normalize(40)}} />
                       ) : (
                         <Text></Text>
                       )}
@@ -200,7 +200,7 @@ const OpenProject = (props) => {
             />
           </View>
         </View>
-        <View style={styles3.barbox}>
+        {/* <View style={styles3.barbox}>
         <TouchableOpacity 
           onPress={setHPost}>
           
@@ -268,7 +268,7 @@ const OpenProject = (props) => {
               </Text>
             </View>
           </TouchableOpacity>
-        </View>
+        </View> */}
       </View>
     </View>
   );
@@ -277,75 +277,14 @@ const OpenProject = (props) => {
 
 export default OpenProject;
 
-// const styles = StyleSheet.create({
 
-//   page:{
-//     alignItems: 'center',
-//     backgroundColor: 'yellow',
-//     justifyContent: 'center',
-//     height: '100%',
-//     width: '100%',
-//     flexDirection: 'column',
-//     flexDirection: 'row',
-//     // flexWrap: 'wrap',
-//     flex: 1
-//   },
-//   fields: {
-//       height: 50,
-//       width: '100%',
-//       padding:10,
-//       backgroundColor: 'white',
-//       textAlign:'center',
-//       borderRadius:30,
-//       marginTop: 10,
-//   },
-//   Button : {
-//       // justifyContent:'center',
-//       // alignItems:'center',
-//       // borderColor:'#fff',
-//       backgroundColor:'blue',
-//       // color :"red",
-//       // Color:'blue',
-//       // underlayColor:'#fff',
-//       borderRadius:25,
-//       height: 50,
-//       width: '100%',
-//       padding:10,
-//       textAlign:'center',
-//       marginTop:1,
-//       // Align:'left',
-//       // flex:0,
-//   },
-//   box: {
-//     marginTop: '70%',
-//     height: '50%',
-//     width: '70%',
-//     padding:10,
-//     // backgroundColor:"green"
-// },
-// ButtonText:{
-//   color:'white',
-// },
-// butbox:{
-//   justifyContent:'space-between',
-
-//   // marginTop: '10%',
-//   height: '50%',
-//   width: '100%',
-//   padding:10,
-//   flexDirection: 'row',
-//   // backgroundColor:"green",
-//   // flexDirection: 'column',
-
-// }
-// });
 const mystyles = StyleSheet.create({
 
   card: {
     fontFamily: "Roboto",
     marginTop: ResponsiveScreen.normalize(25),
     width: ResponsiveScreen.normalize(550),
-    height: ResponsiveScreen.normalize(125),
+    height: ResponsiveScreen.normalize(115),
     // textAlign: "left",
     marginLeft:ResponsiveScreen.normalize(25),
     marginBottom:ResponsiveScreen.normalize(10),

@@ -8,6 +8,8 @@ import {
 } from "@expo/vector-icons";
 import ResponsiveScreen from "react-native-auto-responsive-screen";
 ResponsiveScreen.init(720, 1600);
+import { useNavigation } from '@react-navigation/native';
+
 import {
   Text,
   View,
@@ -23,6 +25,8 @@ import {
 import { styles, styles2, btn, styles3 } from "./styleSheets.js";
 
 const PhotoAlbum = (props) => {
+  const navigation = useNavigation();
+
   // const DATA = [
   //   {
   //     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
@@ -67,7 +71,9 @@ const PhotoAlbum = (props) => {
   // const { navigation } = props;
   const [mydata, setData] = useState("");
   const onCChange = (textValue) => setCode(textValue);
-  const obj = props.route.params.obj;
+  // const obj = props.route.params.obj;
+  const obj = global.OBJ;
+
   const [dummy, setDummy] = useState([]);
   const tokenAuth = props.route.params.token;
   // console.log(tokenAuth)
@@ -144,10 +150,14 @@ const PhotoAlbum = (props) => {
           source={require("../assets/app_ui2-13.png")}
           style={styles3.logo}
         />
+         <TouchableOpacity
+        onPress={() => {navigation.openDrawer({token:tokenAuth});}}
+        >
          <Image
           source={require("../assets/app_ui2-11.png")}
           style={styles3.logo2}
         />
+        </TouchableOpacity>
       </View>
       <View style={[styles3.butbox, { alignItems: "center" }]}>
         

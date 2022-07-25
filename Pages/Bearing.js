@@ -6,6 +6,8 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
+import { useNavigation } from '@react-navigation/native';
+
 import {
   MaterialCommunityIcons,
   Octicons,
@@ -40,6 +42,8 @@ const Bearing = (props) => {
   // console.log(obj[0][0])
   const tokenAuth = global.TOKEN;
     // const { navigation } = props;
+  const navigation = useNavigation();
+
 
   const obj = global.OBJ;
   console.log('1')
@@ -122,10 +126,14 @@ const Bearing = (props) => {
           source={require("../assets/app_ui2-13.png")}
           style={styles3.logo}
         />
+         <TouchableOpacity
+        onPress={() => {navigation.openDrawer({token:tokenAuth});}}
+        >
          <Image
           source={require("../assets/app_ui2-11.png")}
           style={styles3.logo2}
         />
+        </TouchableOpacity>
       </View>
 
       <View style={[styles3.butbox]}>
@@ -176,7 +184,7 @@ const Bearing = (props) => {
                 <View>
                   <Text
                     style={{
-                      width: ResponsiveScreen.normalize(50),
+                      width: ResponsiveScreen.normalize(30),
                       height: ResponsiveScreen.normalize(950),
                       backgroundColor: "#f2ca30",
                       borderRadius: 100,
@@ -186,98 +194,70 @@ const Bearing = (props) => {
                 </View>
                 {obj.status === "1" ? (
                   <Text
-                    style={{
-                      width: ResponsiveScreen.normalize(50),
-                      height: ResponsiveScreen.normalize(90),
-                      backgroundColor: "#192570",
-                      borderRadius: 100,
-                      marginHorizontal: ResponsiveScreen.normalize(50),
-                      marginTop: ResponsiveScreen.normalize(-945),
-                    }}
+                  style={[styles3.checkline,{
+                    height: ResponsiveScreen.normalize(90),
+                    marginTop: ResponsiveScreen.normalize(-945),
+                  }]}
                   ></Text>
                 ) : (
                   <Text></Text>
                 )}
                 {obj.status === "2" ? (
                   <Text
-                    style={{
-                      width: ResponsiveScreen.normalize(50),
+                    style={[styles3.checkline,{
                       height: ResponsiveScreen.normalize(220),
-                      backgroundColor: "#192570",
-                      borderRadius: 100,
-                      marginHorizontal: ResponsiveScreen.normalize(50),
                       marginTop: ResponsiveScreen.normalize(-980),
-                    }}
+                    }]}
                   ></Text>
                 ) : (
                   <Text></Text>
                 )}
                 {obj.status === "3" ? (
                   <Text
-                    style={{
-                      width: ResponsiveScreen.normalize(50),
-                      height: ResponsiveScreen.normalize(350),
-                      backgroundColor: "#192570",
-                      borderRadius: 100,
-                      marginHorizontal: ResponsiveScreen.normalize(50),
-                      marginTop: ResponsiveScreen.normalize(-1020),
-                    }}
+                  style={[styles3.checkline,{
+                    height: ResponsiveScreen.normalize(350),
+                    marginTop: ResponsiveScreen.normalize(-1020),
+                  }]}
                   ></Text>
                 ) : (
                   <Text></Text>
                 )}
                 {obj.status === "4" ? (
                   <Text
-                    style={{
-                      width: ResponsiveScreen.normalize(50),
-                      height: ResponsiveScreen.normalize(480),
-                      backgroundColor: "#192570",
-                      borderRadius: 100,
-                      marginHorizontal: ResponsiveScreen.normalize(50),
-                      marginTop: ResponsiveScreen.normalize(-1060),
-                    }}
+                  style={[styles3.checkline,{
+                    height: ResponsiveScreen.normalize(480),
+                    marginTop: ResponsiveScreen.normalize(-1060),
+                  }]}
                   ></Text>
                 ) : (
                   <Text></Text>
                 )}
                 {obj.status === "5" ? (
                   <Text
-                    style={{
-                      width: ResponsiveScreen.normalize(50),
-                      height: ResponsiveScreen.normalize(630),
-                      backgroundColor: "#192570",
-                      borderRadius: 100,
-                      marginHorizontal: ResponsiveScreen.normalize(50),
-                      marginTop: ResponsiveScreen.normalize(-1100),
-                    }}
+                  style={[styles3.checkline,{
+                    height: ResponsiveScreen.normalize(630),
+                    marginTop: ResponsiveScreen.normalize(-1100),
+                  }]}
                   ></Text>
                 ) : (
                   <Text></Text>
                 )}
                 {obj.status === "6" ? (
                   <Text
-                    style={{
-                      width: ResponsiveScreen.normalize(50),
-                      height: ResponsiveScreen.normalize(760),
-                      backgroundColor: "#192570",
-                      borderRadius: 100,
-                      marginHorizontal: ResponsiveScreen.normalize(50),
-                      marginTop: ResponsiveScreen.normalize(-1140),
-                    }}
+                  style={[styles3.checkline,{
+                    height: ResponsiveScreen.normalize(760),
+                    marginTop: ResponsiveScreen.normalize(-1140),
+                  }]}
                   ></Text>
                 ) : (
                   <Text></Text>
                 )}
                 {obj.status === "7" ? (
                   <Text
-                    style={{
-                      width: ResponsiveScreen.normalize(50),
-                      height: ResponsiveScreen.normalize(955),
-                      backgroundColor: "#192570",
-                      borderRadius: 100,
-                      marginHorizontal: ResponsiveScreen.normalize(50),
-                      marginTop: ResponsiveScreen.normalize(-1180),
-                    }}
+                  style={[styles3.checkline,{
+                    height: ResponsiveScreen.normalize(955),
+                    marginTop: ResponsiveScreen.normalize(-1180),
+                  }]}
                   ></Text>
                 ) : (
                   <Text></Text>
@@ -290,12 +270,14 @@ const Bearing = (props) => {
                 width: ResponsiveScreen.normalize(450),
                 height: ResponsiveScreen.normalize(1150),
                 borderRadius: 20,
+                // backgroundColor:"red",
+                marginHorizontal:ResponsiveScreen.normalize(-20),
               }}
             >
               <View style={styles3.workcard}>
                 <View
                   style={{
-                    marginTop: ResponsiveScreen.normalize(37),
+                    marginTop: ResponsiveScreen.normalize(22),
                     marginLeft: ResponsiveScreen.normalize(25),
                   }}
                 >
@@ -313,7 +295,7 @@ const Bearing = (props) => {
               <View style={styles3.workcard}>
                 <View
                   style={{
-                    marginTop: ResponsiveScreen.normalize(37),
+                    marginTop: ResponsiveScreen.normalize(22),
                     marginLeft: ResponsiveScreen.normalize(25),
                   }}
                 >
@@ -330,7 +312,7 @@ const Bearing = (props) => {
               <View style={styles3.workcard}>
                 <View
                   style={{
-                    marginTop: ResponsiveScreen.normalize(37),
+                    marginTop: ResponsiveScreen.normalize(24),
                     marginLeft: ResponsiveScreen.normalize(25),
                   }}
                 >
@@ -352,7 +334,7 @@ const Bearing = (props) => {
               >
                 <View
                   style={{
-                    marginTop: ResponsiveScreen.normalize(37),
+                    marginTop: ResponsiveScreen.normalize(27),
                     marginLeft: ResponsiveScreen.normalize(25),
                   }}
                 >
@@ -367,7 +349,7 @@ const Bearing = (props) => {
                     style={[
                       styles3.txtworkcard,
                       {
-                        fontSize: ResponsiveScreen.normalize(27),
+                        fontSize: ResponsiveScreen.normalize(25),
                         marginTop: ResponsiveScreen.normalize(-10),
                       },
                     ]}
@@ -379,7 +361,7 @@ const Bearing = (props) => {
               <View style={styles3.workcard}>
                 <View
                   style={{
-                    marginTop: ResponsiveScreen.normalize(37),
+                    marginTop: ResponsiveScreen.normalize(22),
                     marginLeft: ResponsiveScreen.normalize(25),
                   }}
                 >
@@ -396,7 +378,7 @@ const Bearing = (props) => {
               <View style={styles3.workcard}>
                 <View
                   style={{
-                    marginTop: ResponsiveScreen.normalize(37),
+                    marginTop: ResponsiveScreen.normalize(22),
                     marginLeft: ResponsiveScreen.normalize(25),
                   }}
                 >
@@ -413,7 +395,7 @@ const Bearing = (props) => {
               <View style={styles3.workcard}>
                 <View
                   style={{
-                    marginTop: ResponsiveScreen.normalize(37),
+                    marginTop: ResponsiveScreen.normalize(22),
                     marginLeft: ResponsiveScreen.normalize(25),
                   }}
                 >

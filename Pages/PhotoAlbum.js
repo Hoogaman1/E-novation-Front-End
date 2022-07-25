@@ -21,8 +21,12 @@ import {
   ScrollView,
 } from "react-native";
 import { styles, styles2, btn, styles3 } from "./styleSheets.js";
+import { useNavigation } from '@react-navigation/native';
+
 
 const PhotoAlbum = (props) => {
+  const navigation = useNavigation();
+
   // const DATA = [
   //   {
   //     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
@@ -142,10 +146,14 @@ const PhotoAlbum = (props) => {
           source={require("../assets/app_ui2-13.png")}
           style={styles3.logo}
         />
+         <TouchableOpacity
+        onPress={() => {navigation.openDrawer({token:tokenAuth});}}
+        >
          <Image
           source={require("../assets/app_ui2-11.png")}
           style={styles3.logo2}
         />
+        </TouchableOpacity>
       </View>
       <View style={[styles3.butbox, { alignItems: "center" }]}>
         
