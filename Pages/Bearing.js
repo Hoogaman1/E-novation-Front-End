@@ -27,6 +27,7 @@ import {
   Pressable,
   Dimensions,
   RefreshControl,
+  Alert,
 } from "react-native";
 import { styles3, styles2, btn } from "./styleSheets.js";
 import ResponsiveScreen from "react-native-auto-responsive-screen";
@@ -61,6 +62,24 @@ const Bearing = (props) => {
   //   setIsActive(true);
   // const[list , setList] = useState([''])
   // console.log("qqqq")
+  const BellAlert = () =>
+    Alert.alert(
+      "New Event",
+      "My Alert Msg",
+      [
+        // {
+        //   text: "Ask me later",
+        //   onPress: () => console.log("Ask me later pressed")
+        // },
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        { text: "OK", onPress: () => console.log("OK Pressed") }
+      
+      ]
+    );
   const setPost = () => {
     const tokenAuth = global.TOKEN;
     const obj = global.OBJ;
@@ -126,6 +145,11 @@ const Bearing = (props) => {
           source={require("../assets/app_ui2-13.png")}
           style={styles3.logo}
         />
+        <TouchableOpacity
+        onPress={() => {BellAlert()}}
+        >
+         <FontAwesome5 name="bell" size={25} color="black" style={{marginLeft: ResponsiveScreen.normalize(120)}}/>
+        </TouchableOpacity>
          <TouchableOpacity
         onPress={() => {navigation.openDrawer({token:tokenAuth});}}
         >
@@ -437,6 +461,7 @@ const Bearing = (props) => {
                   {
                     marginTop: ResponsiveScreen.normalize(140),
                     marginLeft: ResponsiveScreen.normalize(-66),
+                    color:"black",
                   },
                 ]}
               >

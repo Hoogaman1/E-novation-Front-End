@@ -707,6 +707,7 @@ const styles3 = StyleSheet.create({
     height: ResponsiveScreen.normalize(50),
     marginTop: ResponsiveScreen.normalize(-150),
     marginLeft: ResponsiveScreen.normalize(-45),
+    color:"#fff"
   },
   workcard: {
     // backgroundColor:"gray",
@@ -773,7 +774,7 @@ const styles3 = StyleSheet.create({
   },
   barbut22: {
     fontFamily: "Roboto",
-    backgroundColor: "#e5e5e5",
+    backgroundColor: "#fafafa",
     // transform: [{ rotate: "90deg" }],
     width: ResponsiveScreen.normalize(115),
     height: ResponsiveScreen.normalize(280),

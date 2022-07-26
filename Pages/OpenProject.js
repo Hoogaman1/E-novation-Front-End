@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { EvilIcons, MaterialIcons } from "@expo/vector-icons";
+import { EvilIcons, MaterialIcons ,FontAwesome5  } from "@expo/vector-icons";
 import { Cache } from "react-native-cache";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Login from "../Pages/Login";
-import { FontAwesome } from "@expo/vector-icons";
+import { FontAwesome,Ionicons } from "@expo/vector-icons";
 import { useNavigation } from '@react-navigation/native';
 // import createAnimatedSwitchNavigator from "react-navigation-animated-switch";
 // import { Transition } from 'react-native-reanimated';
@@ -65,9 +65,7 @@ const OpenProject = (props) => {
        
         // props.navigation.push({token:tokenAuth,obj:response.data});
         global.OBJ=response.data;
-        console.log("oooooooooooooooooooooooooooobj")
-        console.log(response.data)
-        console.log("okkkkkkkkddddddddddoooooobj")
+        
 
         props.navigation.navigate('Bearing',{token:tokenAuth,obj:global.OBJ});
       }
@@ -121,10 +119,9 @@ const OpenProject = (props) => {
         <TouchableOpacity
         onPress={() => {navigation.openDrawer({token:tokenAuth});}}
         >
-         <Image
-          source={require("../assets/app_ui2-11.png")}
-          style={styles3.logo2}
-        />
+          
+          <Ionicons name="ios-menu-sharp" size={35} color="black" style={{marginTop:ResponsiveScreen.normalize(-10),marginRight:ResponsiveScreen.normalize(30)}} />
+     
         </TouchableOpacity>
       </View>
       <View style={[styles3.butbox]}>
