@@ -30,7 +30,8 @@ const LoginPage = (props) => {
   
     axios({
       method: "POST",
-      url: "http://127.0.0.1:8000/USER/login/",
+      // url: "http://127.0.0.1:8000/USER/login/",
+      url: "http://192.168.17.160:8000/USER/login/",
       headers: {
         // 'Content-Type': "application/json",
         // Authorization: `Token ${mahdi}`,
@@ -50,7 +51,10 @@ const LoginPage = (props) => {
              sendToken(response.data.data.token)
              global.TOKEN=response.data.data.token;
              global.DATA=response.data.data;
-             console.log("okkkkkkkkkkk")
+             
+             console.log('ghabl')
+             console.log(global.DATA)
+             console.log('bad')
             
 
 

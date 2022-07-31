@@ -22,7 +22,7 @@ const Verification = (props) => {
     props.navigation.navigate("NewPass",{email: email}),
       axios({
         method: "POST",
-        url: "http://127.0.0.1:8000/USER/verification/" + email + "/",
+        url: "http://192.168.17.160:8000/USER/verification/" + email + "/",
         // params:{
         //   email:email,
         // },

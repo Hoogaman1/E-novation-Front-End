@@ -102,7 +102,7 @@ const PhotoAlbum = (props) => {
 
     axios({
       method: "get",
-      url: "http://127.0.0.1:8000/BIGADMIN/listdoc/" + obj.id,
+      url: "http://192.168.17.160:8000/BIGADMIN/listdoc/" + obj.id,
       // params:{
       //   email:email,
       // },
@@ -125,7 +125,7 @@ const PhotoAlbum = (props) => {
 
     axios({
       method: "get",
-      url: "http://127.0.0.1:8000/BIGADMIN/listalbum/" + obj.id,
+      url: "http://192.168.17.160:8000/BIGADMIN/listalbum/" + obj.id,
       // params:{
       //   email:email,
       // },

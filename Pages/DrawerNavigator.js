@@ -52,7 +52,7 @@ function CustomDrawerContent(props) {
       <View style={{ flexDirection: "column" }}>
         <View>
           <Image
-            source={{ uri: "http://127.0.0.1:8000/media/" + global.DATA.img }}
+            source={{ uri: "http://192.168.17.160:8000/media/" + global.DATA.img }}
             style={{
               width: ResponsiveScreen.normalize(130),
               height: ResponsiveScreen.normalize(130),

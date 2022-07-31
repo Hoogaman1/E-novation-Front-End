@@ -74,7 +74,7 @@ const Notif = (props) => {
     // }, [id_select]);
       axios({
         method: "PUT",
-        url: "http://127.0.0.1:8000/USER/notif/",
+        url: "http://192.168.17.160:8000/USER/notif/",
         headers: {
           // 'Content-Type': "application/json",
           Authorization: "Token "+tokenAuth,
@@ -110,7 +110,7 @@ const Notif = (props) => {
 
     axios({
       method: "get",
-      url: "http://127.0.0.1:8000/USER/notif/",
+      url: "http://192.168.17.160:8000/USER/notif/",
       // params:{
       //   email:email,
       // },

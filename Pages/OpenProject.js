@@ -47,7 +47,7 @@ const OpenProject = (props) => {
   // }, [id_select]);
     axios({
       method: "POST",
-      url: "http://127.0.0.1:8000/USER/opproject/",
+      url: "http://192.168.17.160:8000/USER/opproject/",
       headers: {
         // 'Content-Type': "application/json",
         Authorization: "Token "+global.TOKEN,
@@ -88,7 +88,7 @@ const OpenProject = (props) => {
     // const dummyData = []
     axios({
       method: "get",
-      url: "http://127.0.0.1:8000/USER/opproject/",
+      url: "http://192.168.17.160:8000/USER/opproject/",
       // params:{
         //   email:email,
         // },

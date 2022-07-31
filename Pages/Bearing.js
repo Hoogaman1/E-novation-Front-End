@@ -120,7 +120,7 @@ const Bearing = (props) => {
     // props.navigation.navigate("NewPass"),
     axios({
       method: "get",
-      url: "http://127.0.0.1:8000/USER/opproject/",
+      url: "http://192.168.17.160:8000/USER/opproject/",
       // params:{
       //   email:email,
       // },

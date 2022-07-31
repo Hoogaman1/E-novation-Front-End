@@ -46,7 +46,7 @@ const History = (props) => {
   // const obj = props.route.params.obj;
   // const { navigation } = props;
   const [dummy, setDummy] = useState([]);
-  console.log(dummy.project)
+  // console.log(dummy.project)
 
   // console.log("ghabl")
   // console.log(dummy[0].project[0].name)
@@ -63,7 +63,7 @@ const History = (props) => {
 
     axios({
       method: "GET",
-      url: "http://127.0.0.1:8000/BIGADMIN/history/amirco",
+      url: "http://192.168.17.160:8000/BIGADMIN/history/amirco",
       // params:{
       //   email:email,
       // },
