@@ -1,33 +1,44 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigation } from '@react-navigation/native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-import { Text, View, TextInput, TouchableOpacity, Image } from "react-native";
+import { Text, View, TextInput, TouchableOpacity, Image, Dimensions } from "react-native";
 import { Cache } from "react-native-cache";
 import { styles } from "./styleSheets.js";
 import ResponsiveScreen from "react-native-auto-responsive-screen";
 ResponsiveScreen.init(720, 1600);
+const wf = Dimensions.get("screen").fontScale;
+// console.log(wh)
+const ws = Dimensions.get("screen").scale;
+// console.log(wh)
+
+const wh = Dimensions.get("screen").height;
+console.log(wh)
+
+const ww = Dimensions.get("screen").width;
+console.log(ww)
+
 // useEffect(() => {
 const LoginPage = (props) => {
   // const navigation = useNavigation();
   // // const [email, setEmail] = useState("");
   // const Auth = () => {
   //   let auth = "mahdi";
-    
+
   // };
- 
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const onEChange = (textValue) => setEmail(textValue);
   const onPChange = (textValue) => setPassword(textValue);
   const isStatus = 404;
-  
-  const  setSend = () => {
+
+  const setSend = () => {
     // const response 
-  
+
     axios({
       method: "POST",
       // url: "http://127.0.0.1:8000/USER/login/",
@@ -46,31 +57,37 @@ const LoginPage = (props) => {
       .then((response) => {
         if (response.status == "202") {
           // console.log(response.data);
-              // props.navigation.navigate("OpenProject",{token: response.data.data.token});
-              // props.navigation.navigate("OpenProject",{token: response.data.data.token});
-             sendToken(response.data.data.token)
-             global.TOKEN=response.data.data.token;
-             global.DATA=response.data.data;
-             
-             console.log('ghabl')
-             console.log(global.DATA)
-             console.log('bad')
-            
+          // props.navigation.navigate("OpenProject",{token: response.data.data.token});
+          // props.navigation.navigate("OpenProject",{token: response.data.data.token});
+          sendToken(response.data.data.token)
+          global.TOKEN = response.data.data.token;
+          global.DATA = response.data.data;
+
+          console.log('ghabl')
+          console.log(global.DATA)
+          console.log('bad')
+
 
 
         }
       })
-      
+
 
       .catch((error) => console.log(error));
-    }
-    const sendToken = (AuthToken) =>{
-      props.navigation.navigate("OpenProject",{token:AuthToken})
-    }
+  }
+  const sendToken = (AuthToken) => {
+    props.navigation.navigate("OpenProject", { token: AuthToken })
+  }
   return (
+
     <View style={[styles.page, { flexDirection: "column" }]}>
-      <View style={styles.box}>
+      <View>
+        {wh/ww < 1.8 ? (
+          <View>
+            <View style={styles.box}>
         <View>
+        <Text>wide</Text>
+
           <Image
             source={require("../assets/app_ui2-12.png")}
             style={styles.logo}
@@ -79,18 +96,18 @@ const LoginPage = (props) => {
         </View>
         <View style={styles.fields}>
           <TextInput
-            placeholder="Type your email address  "
+            placeholder="Type your email addresss  "
             style={styles.text}
             onChangeText={onEChange}
           />
         </View>
         <View
-          style={[styles.fields, { marginTop: ResponsiveScreen.normalize(20) }]}
+          style={[styles.fields, { marginTop: wh * 1 / 100 }]}
         >
           <TextInput
             secureTextEntry={true}
             placeholder="password"
-            style={styles.text}
+            style={[styles.text]}
             onChangeText={onPChange}
           />
         </View>
@@ -108,18 +125,18 @@ const LoginPage = (props) => {
             <TouchableOpacity
               style={[{ backgroundColor: "transparent" }]}
               onPress={setSend}
-              >
+            >
               <Text
                 style={[
                   styles.ButtonText,
                   {
-                    marginTop: ResponsiveScreen.normalize(10),
-                    marginLeft: ResponsiveScreen.normalize(20),
+                    marginTop: wh * 1 / 100,
+                    marginLeft: ww * 2 / 100,
                   },
                 ]}
                 onPress={() => props.navigation.navigate("ForgetPass")}
-                >
-                
+              >
+
                 Forgot Password
               </Text>
             </TouchableOpacity>
@@ -128,15 +145,17 @@ const LoginPage = (props) => {
       </View>
       <View
         style={{
-          height: ResponsiveScreen.normalize(530),
+          height: wh * 10 / 100,
           alignItems: "center",
+          // backgroundColor:"red",
+          marginTop: wh * 22 / 100
         }}
       >
         <Text
           style={{
-            marginTop: hp("21%"),
+            // marginTop: 0,
             color: "white",
-            fontSize: ResponsiveScreen.normalize(30),
+            fontSize: ResponsiveScreen.fontSize(22)
             // marginLeft: "23%",
           }}
         >
@@ -144,15 +163,119 @@ const LoginPage = (props) => {
         </Text>
         <Text
           style={{
-            marginTop: ResponsiveScreen.normalize(8),
-            marginBottom: ResponsiveScreen.normalize(320),
+            marginTop: wh * 1 / 100,
+            // marginBottom: ResponsiveScreen.normalize(320),
             color: "white",
-            fontSize: ResponsiveScreen.normalize(20),
+            fontSize: ResponsiveScreen.fontSize(17),
           }}
         >
           All rights reserved by E-novation engineering Co.{" "}
         </Text>
       </View>
+          </View>
+        ) : (
+
+
+
+
+
+
+
+
+          <View>
+            <View style={[styles.box,{marginLeft:-ww*5/100}]}>
+        <View>
+        <Text>phone</Text>
+
+          <Image
+            source={require("../assets/app_ui2-12.png")}
+            style={[styles.logo,{marginBottom:wh*0.4/100}]}
+            resizeMode="cover"
+          />
+        </View>
+        
+        <View style={[styles.fields,{height:wh*3/100}]}>
+          <TextInput
+            placeholder="Type your email addresss  "
+            style={[styles.text,{marginBottom:wh*0.5/100}]}
+            onChangeText={onEChange}
+          />
+        </View>
+        <View
+          style={[styles.fields, { marginTop: wh * 1 / 100 ,height:wh*3/100}]}
+        >
+          <TextInput
+            secureTextEntry={true}
+            placeholder="password"
+            style={[styles.text,{marginBottom:wh*0.5/100}]}
+            onChangeText={onPChange}
+          />
+        </View>
+        <View style={styles.butbox}>
+          <View>
+            <TouchableOpacity
+              style={[styles.Button, { flexDirection: "row",height:wh*3/100,marginTop:wh*1/100 }]}
+              onPress={setSend}
+            >
+              <Text style={[styles.ButtonText,{marginTop:wh*0.1/100}]}> Login</Text>
+              {/* <Text style={{transform: [{ rotate: "90deg" }],fontSize:hp('2%'),color:"#fff"}}> ^ </Text> */}
+            </TouchableOpacity>
+          </View>
+          <View>
+            <TouchableOpacity
+              style={[{ backgroundColor: "transparent" }]}
+              onPress={setSend}
+            >
+              <Text
+                style={[
+                  styles.ButtonText,
+                  {
+                    marginTop: wh * 1 / 100,
+                    marginLeft: ww * 2 / 100,
+                  },
+                ]}
+                onPress={() => props.navigation.navigate("ForgetPass")}
+              >
+
+                Forgot Password
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </View>
+      <View
+        style={{
+          height: wh * 10 / 100,
+          alignItems: "center",
+          // backgroundColor:"red",
+          marginTop: wh * 26 / 100
+        }}
+      >
+        <Text
+          style={{
+            // marginTop: 0,
+            color: "white",
+            fontSize: ResponsiveScreen.fontSize(22)
+            // marginLeft: "23%",
+          }}
+        >
+          Client Application
+        </Text>
+        <Text
+          style={{
+            marginTop: wh * 1 / 100,
+            // marginBottom: ResponsiveScreen.normalize(320),
+            color: "white",
+            fontSize: ResponsiveScreen.fontSize(17),
+          }}
+        >
+          All rights reserved by E-novation engineering Co.{" "}
+        </Text>
+      </View>
+          </View>
+        )}
+      </View>
+      
     </View>
   );
 };
