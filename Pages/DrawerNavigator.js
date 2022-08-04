@@ -30,6 +30,7 @@ import { mystyles } from "./OpenProject";
 ResponsiveScreen.init(720, 1600);
 // import TabNavigator from "./TabNavigator";
 global.DATA = "";
+global.URl="192.168.108.160:8000";
 let phoneNumber = 'tel:${+6186117749}';
 const makeCall = () => {
   Linking.openURL(phoneNumber);
@@ -52,7 +53,7 @@ function CustomDrawerContent(props) {
       <View style={{ flexDirection: "column" }}>
         <View>
           <Image
-            source={{ uri: "http://192.168.17.160:8000/media/" + global.DATA.img }}
+            source={{ uri: "http://"+global.URl+"/media/" + global.DATA.img }}
             style={{
               width: ResponsiveScreen.normalize(130),
               height: ResponsiveScreen.normalize(130),

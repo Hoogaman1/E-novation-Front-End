@@ -120,7 +120,7 @@ const Bearing = (props) => {
     // props.navigation.navigate("NewPass"),
     axios({
       method: "get",
-      url: "http://192.168.17.160:8000/USER/opproject/",
+      url: "http://"+global.URl+"/USER/opproject/",
       // params:{
       //   email:email,
       // },
@@ -148,7 +148,7 @@ const Bearing = (props) => {
         <TouchableOpacity
         onPress={() => {BellAlert()}}
         >
-         <FontAwesome5 name="bell" size={25} color="black" style={{marginLeft: ResponsiveScreen.normalize(120)}}/>
+         <FontAwesome5 name="bell" size={25} color="black" style={{marginLeft: ww*18/100}}/>
         </TouchableOpacity>
          <TouchableOpacity
         onPress={() => {navigation.openDrawer({token:tokenAuth});}}
@@ -169,9 +169,10 @@ const Bearing = (props) => {
         >
           <View
             style={{
-              width: ResponsiveScreen.normalize(600),
+              // backgroundColor:'red',
+              width: ww*85/100,
               borderRadius: 20,
-              height: ResponsiveScreen.normalize(200),
+              height: wh*12/100,
             }}
           >
             <Text
@@ -179,9 +180,9 @@ const Bearing = (props) => {
                 fontSize: ResponsiveScreen.normalize(55),
                 fontFamily: "Roboto",
                 color: "#f2ca30",
-                marginTop: ResponsiveScreen.normalize(50),
-                marginLeft: ResponsiveScreen.normalize(50),
-                marginBottom: ResponsiveScreen.normalize(25),
+                marginTop: wh*4/100,
+                marginLeft: ww*7/100,
+                // marginBottom:wh*5/100,
               }}
             >
               {obj.name}
@@ -189,8 +190,9 @@ const Bearing = (props) => {
           </View>
           <View
             style={{
-              width: ResponsiveScreen.normalize(600),
-              height: ResponsiveScreen.normalize(1150),
+              // backgroundColor:"red",
+              width: ww*85/100,
+              height: wh*65/100,
               borderRadius: 20,
               flexDirection: "row",
             }}
@@ -198,8 +200,8 @@ const Bearing = (props) => {
             <View
               style={{
                 backgroundColor: "#fff",
-                width: ResponsiveScreen.normalize(150),
-                height: ResponsiveScreen.normalize(1150),
+                width: ww*20/100,
+                height: wh*65/100,
                 borderRadius: 20,
                 // backgroundColor:"pink"
               }}
@@ -208,19 +210,19 @@ const Bearing = (props) => {
                 <View>
                   <Text
                     style={{
-                      width: ResponsiveScreen.normalize(30),
-                      height: ResponsiveScreen.normalize(950),
+                      width: ww*3.8/100,
+                      height: wh*61/100,
                       backgroundColor: "#f2ca30",
                       borderRadius: 100,
-                      marginHorizontal: ResponsiveScreen.normalize(50),
+                      marginHorizontal: ww*6.4/100,
                     }}
                   ></Text>
                 </View>
                 {obj.status === "1" ? (
                   <Text
                   style={[styles3.checkline,{
-                    height: ResponsiveScreen.normalize(90),
-                    marginTop: ResponsiveScreen.normalize(-945),
+                    height: wh*3.5/100,
+                    marginTop: -wh*61/100,
                   }]}
                   ></Text>
                 ) : (
@@ -229,8 +231,8 @@ const Bearing = (props) => {
                 {obj.status === "2" ? (
                   <Text
                     style={[styles3.checkline,{
-                      height: ResponsiveScreen.normalize(220),
-                      marginTop: ResponsiveScreen.normalize(-980),
+                      height: wh*13/100,
+                      marginTop: -wh*63.5/100,
                     }]}
                   ></Text>
                 ) : (
@@ -239,8 +241,8 @@ const Bearing = (props) => {
                 {obj.status === "3" ? (
                   <Text
                   style={[styles3.checkline,{
-                    height: ResponsiveScreen.normalize(350),
-                    marginTop: ResponsiveScreen.normalize(-1020),
+                    height: wh*22/100,
+                    marginTop:-wh*65.6/100,
                   }]}
                   ></Text>
                 ) : (
@@ -249,8 +251,8 @@ const Bearing = (props) => {
                 {obj.status === "4" ? (
                   <Text
                   style={[styles3.checkline,{
-                    height: ResponsiveScreen.normalize(480),
-                    marginTop: ResponsiveScreen.normalize(-1060),
+                    height: wh*31/100,
+                    marginTop: -wh*67.9/100,
                   }]}
                   ></Text>
                 ) : (
@@ -259,8 +261,8 @@ const Bearing = (props) => {
                 {obj.status === "5" ? (
                   <Text
                   style={[styles3.checkline,{
-                    height: ResponsiveScreen.normalize(630),
-                    marginTop: ResponsiveScreen.normalize(-1100),
+                    height: wh*41/100,
+                    marginTop: -wh*70.2/100,
                   }]}
                   ></Text>
                 ) : (
@@ -269,8 +271,8 @@ const Bearing = (props) => {
                 {obj.status === "6" ? (
                   <Text
                   style={[styles3.checkline,{
-                    height: ResponsiveScreen.normalize(760),
-                    marginTop: ResponsiveScreen.normalize(-1140),
+                    height:  wh*49.5/100,
+                    marginTop: -wh*72.5/100,
                   }]}
                   ></Text>
                 ) : (
@@ -279,8 +281,8 @@ const Bearing = (props) => {
                 {obj.status === "7" ? (
                   <Text
                   style={[styles3.checkline,{
-                    height: ResponsiveScreen.normalize(955),
-                    marginTop: ResponsiveScreen.normalize(-1180),
+                    height: wh*62/100,
+                    marginTop: -wh*74.5/100,
                   }]}
                   ></Text>
                 ) : (
@@ -291,23 +293,23 @@ const Bearing = (props) => {
 
             <View
               style={{
-                width: ResponsiveScreen.normalize(450),
-                height: ResponsiveScreen.normalize(1150),
+                width: ww*62/100,
+                height: wh*65/100,
                 borderRadius: 20,
                 // backgroundColor:"red",
-                marginHorizontal:ResponsiveScreen.normalize(-20),
+                marginHorizontal:-ww*3.5/100,
               }}
             >
               <View style={styles3.workcard}>
                 <View
                   style={{
-                    marginTop: ResponsiveScreen.normalize(22),
-                    marginLeft: ResponsiveScreen.normalize(25),
+                    marginTop: wh*1/100,
+                    marginLeft: ww*4/100,
                   }}
                 >
                   <MaterialCommunityIcons
                     name="forklift"
-                    size={ResponsiveScreen.normalize(60)}
+                    size={ww*8/100}
                     color="orange"
                   />
                 </View>
@@ -319,13 +321,13 @@ const Bearing = (props) => {
               <View style={styles3.workcard}>
                 <View
                   style={{
-                    marginTop: ResponsiveScreen.normalize(22),
-                    marginLeft: ResponsiveScreen.normalize(25),
+                    marginTop: wh*1/100,
+                    marginLeft:  ww*4/100,
                   }}
                 >
                   <MaterialCommunityIcons
                     name="scissors-cutting"
-                    size={ResponsiveScreen.normalize(60)}
+                    size={ww*8/100}
                     color="orange"
                   />
                 </View>
@@ -336,13 +338,13 @@ const Bearing = (props) => {
               <View style={styles3.workcard}>
                 <View
                   style={{
-                    marginTop: ResponsiveScreen.normalize(24),
-                    marginLeft: ResponsiveScreen.normalize(25),
+                    marginTop: wh*1/100,
+                    marginLeft: ww*4/100,
                   }}
                 >
                   <MaterialCommunityIcons
                     name="tools"
-                    size={ResponsiveScreen.normalize(55)}
+                    size={ww*7/100}
                     color="orange"
                   />
                 </View>
@@ -358,13 +360,13 @@ const Bearing = (props) => {
               >
                 <View
                   style={{
-                    marginTop: ResponsiveScreen.normalize(27),
-                    marginLeft: ResponsiveScreen.normalize(25),
+                    marginTop: wh*1/100,
+                    marginLeft: ww*4/100,
                   }}
                 >
                   <FontAwesome5
                     name="paint-roller"
-                    size={ResponsiveScreen.normalize(55)}
+                    size={ww*7/100}
                     color="orange"
                   />
                 </View>
@@ -373,8 +375,8 @@ const Bearing = (props) => {
                     style={[
                       styles3.txtworkcard,
                       {
-                        fontSize: ResponsiveScreen.normalize(25),
-                        marginTop: ResponsiveScreen.normalize(-10),
+                        fontSize: ResponsiveScreen.normalize(26),
+                        marginTop:wh*-1/100,
                       },
                     ]}
                   >
@@ -385,13 +387,13 @@ const Bearing = (props) => {
               <View style={styles3.workcard}>
                 <View
                   style={{
-                    marginTop: ResponsiveScreen.normalize(22),
-                    marginLeft: ResponsiveScreen.normalize(25),
+                    marginTop: wh*1/100,
+                    marginLeft: ww*4/100,
                   }}
                 >
                   <AntDesign
                     name="checksquare"
-                    size={ResponsiveScreen.normalize(55)}
+                    size={ww*7/100}
                     color="orange"
                   />
                 </View>
@@ -402,13 +404,13 @@ const Bearing = (props) => {
               <View style={styles3.workcard}>
                 <View
                   style={{
-                    marginTop: ResponsiveScreen.normalize(22),
-                    marginLeft: ResponsiveScreen.normalize(25),
+                    marginTop:wh*1/100,
+                    marginLeft: ww*4/100,
                   }}
                 >
                   <Octicons
                     name="package-dependencies"
-                    size={ResponsiveScreen.normalize(55)}
+                    size={ww*7/100}
                     color="orange"
                   />
                 </View>
@@ -419,13 +421,13 @@ const Bearing = (props) => {
               <View style={styles3.workcard}>
                 <View
                   style={{
-                    marginTop: ResponsiveScreen.normalize(22),
-                    marginLeft: ResponsiveScreen.normalize(25),
+                    marginTop: wh*1/100,
+                    marginLeft:  ww*4/100,
                   }}
                 >
                   <MaterialCommunityIcons
                     name="truck-delivery"
-                    size={ResponsiveScreen.normalize(55)}
+                    size={ww*7/100}
                     color="orange"
                   />
                 </View>

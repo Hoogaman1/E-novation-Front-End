@@ -19,10 +19,15 @@ import {
   Image,
   FlatList,
   StyleSheet,
+  Dimensions,
 } from "react-native";
 import { styles2, btn, styles3 } from "./styleSheets.js";
 import ResponsiveScreen from "react-native-auto-responsive-screen";
 import LoginPage from "../Pages/Login";
+const wf = Dimensions.get("screen").fontScale;
+const ws = Dimensions.get("screen").scale;
+const wh = Dimensions.get("screen").height;
+const ww = Dimensions.get("screen").width;
 ResponsiveScreen.init(720, 1600);
 const OpenProject = (props) => {
   // const [email, setEmail] = useState("");
@@ -47,7 +52,7 @@ const OpenProject = (props) => {
   // }, [id_select]);
     axios({
       method: "POST",
-      url: "http://192.168.17.160:8000/USER/opproject/",
+      url: "http://"+global.URl+"/USER/opproject/",
       headers: {
         // 'Content-Type': "application/json",
         Authorization: "Token "+global.TOKEN,
@@ -88,7 +93,7 @@ const OpenProject = (props) => {
     // const dummyData = []
     axios({
       method: "get",
-      url: "http://192.168.17.160:8000/USER/opproject/",
+      url: "http://"+global.URl+"/USER/opproject/",
       // params:{
         //   email:email,
         // },
@@ -120,7 +125,7 @@ const OpenProject = (props) => {
         onPress={() => {navigation.openDrawer({token:tokenAuth});}}
         >
           
-          <Ionicons name="ios-menu-sharp" size={35} color="black" style={{marginTop:ResponsiveScreen.normalize(-10),marginRight:ResponsiveScreen.normalize(30)}} />
+          <Ionicons name="ios-menu-sharp" size={35} color="black" style={{marginTop:-wh*2/100,marginRight:ww*5/100}} />
      
         </TouchableOpacity>
       </View>
@@ -128,15 +133,15 @@ const OpenProject = (props) => {
         <View
           style={[
             styles3.workbox,
-            { alignItems: "center", flexDirection: "column" ,width:ResponsiveScreen.normalize(720)},
+            { alignItems: "center", flexDirection: "column" ,width:ww},
           ]}
         >
           <View
             style={{
               // backgroundColor: "blue",
-              width: ResponsiveScreen.normalize(600),
+              width: ww,
               borderRadius: 20,
-              height: ResponsiveScreen.normalize(200),
+              height: wh*12/100,
             }}
           >
             <Text
@@ -144,9 +149,9 @@ const OpenProject = (props) => {
                 fontSize: ResponsiveScreen.normalize(45),
                 fontFamily: "Roboto",
                 color: "#f2ca30",
-                marginTop: ResponsiveScreen.normalize(50),
-                marginLeft: ResponsiveScreen.normalize(35),
-                marginBottom: ResponsiveScreen.normalize(30),
+                marginTop: wh*5/100,
+                marginLeft: ww*12/100,
+                // marginBottom: wh*1/100,
               }}
             >
               Current Projects
@@ -155,9 +160,9 @@ const OpenProject = (props) => {
           <View
             style={{
               // backgroundColor:'red',
-              width: ResponsiveScreen.normalize(600),
-              height: ResponsiveScreen.normalize(1150),
-              marginTop: ResponsiveScreen.normalize(50),
+              width: ww*82/100,
+              height: wh*65/100,
+              marginTop: wh*1/100,
               // elevation:3,
               borderRadius: 20,
               flexDirection: "row",
@@ -165,10 +170,10 @@ const OpenProject = (props) => {
           >
             <FlatList
               data={dummy}
-              style={{width:ResponsiveScreen.normalize(650),paddingHorizontal:ResponsiveScreen.normalize(10),height:ResponsiveScreen.normalize(1100)}}
+              style={{width:ww*81/100,paddingHorizontal:ww*-1/100,height:wh*63/100}}
               renderItem={(itemList) => (
                 <TouchableOpacity
-                style={[mystyles.card,{marginTop: ResponsiveScreen.normalize(5)}]}
+                style={[mystyles.card,{marginTop: wh*0.7/100}]}
                 //   onPress={() => {props.navigation.navigate("Bearing",{token:tokenAuth});
                   
                 //   {setPost};
@@ -179,14 +184,14 @@ const OpenProject = (props) => {
                   
                   <View style={{flexDirection:'row'}}>
                     <View>
-                      <Text style={[styles3.txtworkcard,{paddingTop:ResponsiveScreen.normalize(39)}]} >
+                      <Text style={[styles3.txtworkcard,{paddingTop:wh*2.5/100}]} >
                         {itemList.item.name}
                       </Text>
                     </View>
 
                     <View  >
                       {itemList.item.alarm === true ? (
-                        <FontAwesome name="bell-o" size={19} color="#f2ca30" style={{fontWeight: "bold",marginLeft:ResponsiveScreen.normalize(150),marginTop:ResponsiveScreen.normalize(40)}} />
+                        <FontAwesome name="bell-o" size={19} color="#f2ca30" style={{fontWeight: "bold",marginLeft:ww*18/100,marginTop:wh*2.3/100}} />
                       ) : (
                         <Text></Text>
                       )}
@@ -279,13 +284,13 @@ const mystyles = StyleSheet.create({
 
   card: {
     fontFamily: "Roboto",
-    marginTop: ResponsiveScreen.normalize(25),
-    width: ResponsiveScreen.normalize(550),
-    height: ResponsiveScreen.normalize(115),
+    marginTop: wh*10/100,
+    width: ww*75/100,
+    height: wh*7/100,
     // textAlign: "left",
-    marginLeft:ResponsiveScreen.normalize(25),
-    marginBottom:ResponsiveScreen.normalize(10),
-    borderRadius: ResponsiveScreen.normalize(20),
+    marginLeft:ww*4/100,
+    marginBottom:wh*0.7/100,
+    borderRadius: ww*2/100,
     // elevation: 6,
     // backgroundColor: "gray",
     // shadowOffset: { width: 2, height: 2 },

@@ -16,10 +16,15 @@ import {
   Image,
   FlatList,
   StyleSheet,
+  Dimensions
 } from "react-native";
 import { styles3, styles2, btn } from "./styleSheets.js";
 import ResponsiveScreen from "react-native-auto-responsive-screen";
 ResponsiveScreen.init(720, 1600);
+const wf = Dimensions.get("screen").fontScale;
+const ws = Dimensions.get("screen").scale;
+const wh = Dimensions.get("screen").height;
+const ww = Dimensions.get("screen").width;
 
 // const MySwitch = createAnimatedSwitchNavigator(
 //   {
@@ -110,7 +115,7 @@ const Notif = (props) => {
 
     axios({
       method: "get",
-      url: "http://192.168.17.160:8000/USER/notif/",
+      url: "http://"+global.URl+"/USER/notif/",
       // params:{
       //   email:email,
       // },
@@ -153,8 +158,8 @@ const Notif = (props) => {
           {
             alignItems: "center",
             // backgroundColor: "red",
-            width: ResponsiveScreen.normalize(720),
-            marginLeft: ResponsiveScreen.normalize(3),
+            width: ww,
+            marginLeft: ww*0.5/100,
           },
         ]}
       >
@@ -162,7 +167,7 @@ const Notif = (props) => {
           style={{
             fontSize: ResponsiveScreen.normalize(50),
             color: "#f2ca30",
-            marginTop: ResponsiveScreen.normalize(230),
+            marginTop: wh*15/100,
             fontFamily: "Roboto",
           }}
         >
@@ -178,7 +183,7 @@ const Notif = (props) => {
                     mystyles.card,
                     {
                       alignItems: "flex-start",
-                      marginTop: ResponsiveScreen.normalize(70),
+                      marginTop: wh*4/100,
                     },
                   ]}
                 >
@@ -223,9 +228,10 @@ const Notif = (props) => {
 
         <View
           style={{
-            height: ResponsiveScreen.normalize(150),
-            width: ResponsiveScreen.normalize(530),
-            padding: ResponsiveScreen.normalize(60),
+            // backgroundColor:'red',
+            height: wh*10/100,
+            width: ww*70/100,
+            padding: ww*10/100,
           }}
         >
           <FlatList
@@ -255,18 +261,18 @@ export default Notif;
 
 const mystyles = StyleSheet.create({
   card: {
-    marginLeft: ResponsiveScreen.normalize(0),
+    marginLeft: ww*0/100,
     // marginVertical:"10%",
     fontFamily: "Roboto",
     fontSize: ResponsiveScreen.normalize(60),
-    marginTop: ResponsiveScreen.normalize(20),
+    marginTop: wh*1/100,
     // marginStart:35,
     // paddingStart:15,
-    width: ResponsiveScreen.normalize(500),
-    height: ResponsiveScreen.normalize(100),
+    width: ww*70/100,
+    height: wh*6/100,
     textAlign: "left",
     lineHeight: 50,
-    borderRadius: 6,
+    borderRadius: ww*2/100,
     elevation: 3,
     backgroundColor: "#fff",
     shadowOffset: { width: 1, height: 1 },

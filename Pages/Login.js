@@ -7,19 +7,13 @@ import {
 } from "react-native-responsive-screen";
 import { Text, View, TextInput, TouchableOpacity, Image, Dimensions } from "react-native";
 import { Cache } from "react-native-cache";
-import { styles } from "./styleSheets.js";
+import { styles ,Tabletstyles} from "./styleSheets.js";
 import ResponsiveScreen from "react-native-auto-responsive-screen";
 ResponsiveScreen.init(720, 1600);
 const wf = Dimensions.get("screen").fontScale;
-// console.log(wh)
 const ws = Dimensions.get("screen").scale;
-// console.log(wh)
-
 const wh = Dimensions.get("screen").height;
-console.log(wh)
-
 const ww = Dimensions.get("screen").width;
-console.log(ww)
 
 // useEffect(() => {
 const LoginPage = (props) => {
@@ -42,7 +36,7 @@ const LoginPage = (props) => {
     axios({
       method: "POST",
       // url: "http://127.0.0.1:8000/USER/login/",
-      url: "http://192.168.17.160:8000/USER/login/",
+      url: "http://"+global.URl+"/USER/login/",
       headers: {
         // 'Content-Type': "application/json",
         // Authorization: `Token ${mahdi}`,
@@ -82,42 +76,42 @@ const LoginPage = (props) => {
 
     <View style={[styles.page, { flexDirection: "column" }]}>
       <View>
-        {wh/ww < 1.8 ? (
+        {wh/ww < 1.6 ? (
           <View>
-            <View style={styles.box}>
+            <View style={Tabletstyles.box}>
         <View>
         <Text>wide</Text>
 
           <Image
             source={require("../assets/app_ui2-12.png")}
-            style={styles.logo}
+            style={Tabletstyles.logo}
             resizeMode="cover"
           />
         </View>
-        <View style={styles.fields}>
+        <View style={Tabletstyles.fields}>
           <TextInput
             placeholder="Type your email addresss  "
-            style={styles.text}
+            style={Tabletstyles.text}
             onChangeText={onEChange}
           />
         </View>
         <View
-          style={[styles.fields, { marginTop: wh * 1 / 100 }]}
+          style={[Tabletstyles.fields, { marginTop: wh * 1 / 100 }]}
         >
           <TextInput
             secureTextEntry={true}
             placeholder="password"
-            style={[styles.text]}
+            style={[Tabletstyles.text]}
             onChangeText={onPChange}
           />
         </View>
-        <View style={styles.butbox}>
+        <View style={Tabletstyles.butbox}>
           <View>
             <TouchableOpacity
-              style={[styles.Button, { flexDirection: "row" }]}
+              style={[Tabletstyles.Button, { flexDirection: "row" }]}
               onPress={setSend}
             >
-              <Text style={styles.ButtonText}> Login</Text>
+              <Text style={Tabletstyles.ButtonText}> Login</Text>
               {/* <Text style={{transform: [{ rotate: "90deg" }],fontSize:hp('2%'),color:"#fff"}}> ^ </Text> */}
             </TouchableOpacity>
           </View>
@@ -128,9 +122,9 @@ const LoginPage = (props) => {
             >
               <Text
                 style={[
-                  styles.ButtonText,
+                  Tabletstyles.ButtonText,
                   {
-                    marginTop: wh * 1 / 100,
+                    marginTop: wh * 0.4 / 100,
                     marginLeft: ww * 2 / 100,
                   },
                 ]}
@@ -148,7 +142,7 @@ const LoginPage = (props) => {
           height: wh * 10 / 100,
           alignItems: "center",
           // backgroundColor:"red",
-          marginTop: wh * 22 / 100
+          marginTop: wh * 25 / 100
         }}
       >
         <Text
@@ -173,7 +167,7 @@ const LoginPage = (props) => {
         </Text>
       </View>
           </View>
-        ) : (
+        ) :  wh/ww > 1.85 ?(
 
 
 
@@ -249,6 +243,97 @@ const LoginPage = (props) => {
           alignItems: "center",
           // backgroundColor:"red",
           marginTop: wh * 26 / 100
+        }}
+      >
+        <Text
+          style={{
+            marginTop: wh * -5 / 100,
+            color: "white",
+            fontSize: ResponsiveScreen.fontSize(22)
+            // marginLeft: "23%",
+          }}
+        >
+          Client Application
+        </Text>
+        <Text
+          style={{
+            marginTop: wh * 1 / 100,
+            // marginBottom: ResponsiveScreen.normalize(320),
+            color: "white",
+            fontSize: ResponsiveScreen.fontSize(17),
+          }}
+        >
+          All rights reserved by E-novation engineering Co.{" "}
+        </Text>
+      </View>
+          </View>
+        ):(
+          <View>
+            <View style={Tabletstyles.box}>
+        <View>
+        <Text>normal</Text>
+
+          <Image
+            source={require("../assets/app_ui2-12.png")}
+            style={Tabletstyles.logo}
+            resizeMode="cover"
+          />
+        </View>
+        <View style={Tabletstyles.fields}>
+          <TextInput
+            placeholder="Type your email addresss  "
+            style={Tabletstyles.text}
+            onChangeText={onEChange}
+          />
+        </View>
+        <View
+          style={[Tabletstyles.fields, { marginTop: wh * 1 / 100 }]}
+        >
+          <TextInput
+            secureTextEntry={true}
+            placeholder="password"
+            style={[Tabletstyles.text]}
+            onChangeText={onPChange}
+          />
+        </View>
+        <View style={Tabletstyles.butbox}>
+          <View>
+            <TouchableOpacity
+              style={[Tabletstyles.Button, { flexDirection: "row" }]}
+              onPress={setSend}
+            >
+              <Text style={Tabletstyles.ButtonText}> Login</Text>
+              {/* <Text style={{transform: [{ rotate: "90deg" }],fontSize:hp('2%'),color:"#fff"}}> ^ </Text> */}
+            </TouchableOpacity>
+          </View>
+          <View>
+            <TouchableOpacity
+              style={[{ backgroundColor: "transparent" }]}
+              onPress={setSend}
+            >
+              <Text
+                style={[
+                  Tabletstyles.ButtonText,
+                  {
+                    marginTop: wh * 0.4 / 100,
+                    marginLeft: ww * 2 / 100,
+                  },
+                ]}
+                onPress={() => props.navigation.navigate("ForgetPass")}
+              >
+
+                Forgot Password
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </View>
+      <View
+        style={{
+          height: wh * 10 / 100,
+          alignItems: "center",
+          // backgroundColor:"red",
+          marginTop: wh * 25 / 100
         }}
       >
         <Text

@@ -63,7 +63,7 @@ const History = (props) => {
 
     axios({
       method: "GET",
-      url: "http://192.168.17.160:8000/BIGADMIN/history/amirco",
+      url: "http://"+global.URl+"/BIGADMIN/history/amirco",
       // params:{
       //   email:email,
       // },
