@@ -747,6 +747,24 @@ const styles3 = StyleSheet.create({
     // marginLeft: wp("-19%"),
     // backgroundColor:"orange"
   },
+  closeButton: {
+    color: 'white',
+    // borderWidth: 1,
+    // borderColor: 'white',
+    // padding: 7,
+    // backgroundColor: "#545454",
+    // paddingHorizontal: ww * 3 / 100,
+    // paddingVertical: wh * .5 / 100,
+    // borderRadius: 5,
+    textAlign: 'center',
+    // margin: 10,
+    marginRight: ww * 5 / 100,
+    fontSize: ResponsiveScreen.fontSize(50),
+    // fontFamily: 'SANS',
+    alignSelf: 'flex-end',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
   barbox: {
     fontFamily: "Roboto",
     flexDirection: "column",
@@ -815,19 +833,20 @@ const styles3 = StyleSheet.create({
     color: "#fff"
   },
   workcard: {
-    // backgroundColor:"gray",
+    // backgroundColor: "gray",
     fontFamily: "Roboto",
     width: ww * 64 / 100,
     height: wh * 6 / 100,
     marginBottom: ResponsiveScreen.normalize(49),
     borderRadius: ResponsiveScreen.normalize(18),
     flexDirection: "row",
-    elevation: 10,
+    elevation: 3,
     backgroundColor: "#fff",
     shadowOffset: { width: 3, height: 3 },
     shadowColor: "#333",
     shadowOpacity: 0.3,
     shadowRadius: 3,
+    alignItems: 'center'
   },
   workcard2: {
     // backgroundColor:"gray",
@@ -847,19 +866,19 @@ const styles3 = StyleSheet.create({
     // shadowRadius: 1,
     zIndex: 3
   },
+  Viewtxtworkcard: {
+    width: ww * 45 / 100,
+    justifyContent: 'center',
+    // backgroundColor: 'red',
+    marginLeft: ww * 4 / 100
+  },
   txtworkcard: {
-    // backgroundColor:"yellow",
-    fontWeight: '500',
-    fontFamily: 'sans-serif-medium',
-
+    fontWeight: '600',
+    fontFamily: 'sans-serif',
     color: '#525151',
-    // fontFamily: "Roboto",
-    width: ww * 47 / 100,
-    height: wh * 10 / 100,
-    fontSize: ResponsiveScreen.normalize(29),
-    paddingTop: wh * 1.7 / 100,
-    paddingLeft: ww * 7 / 100,
-    borderRadius: 20,
+    // backgroundColor: "green",
+    fontSize: ResponsiveScreen.normalize(34),
+    // borderRadius: 20,
   },
   checkline: {
     width: ww * 3.8 / 100,
@@ -874,8 +893,7 @@ const styles3 = StyleSheet.create({
     // transform: [{ rotate: "90deg" }],
     // width: ResponsiveScreen.normalize(60),
     // height: ResponsiveScreen.normalize(20),
-    marginTop: ResponsiveScreen.normalize(100),
-    marginLeft: ResponsiveScreen.normalize(-9),
+
   },
   barbut22: {
     fontFamily: "Roboto",

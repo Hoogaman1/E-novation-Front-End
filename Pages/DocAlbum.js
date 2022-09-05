@@ -24,6 +24,7 @@ import {
   Dimensions
 } from "react-native";
 import { styles, styles2, btn, styles3 } from "./styleSheets.js";
+import Lightbox from 'react-native-lightbox-v2';
 const wf = Dimensions.get("screen").fontScale;
 const ws = Dimensions.get("screen").scale;
 const wh = Dimensions.get("screen").height;
@@ -80,9 +81,9 @@ const PhotoAlbum = (props) => {
   const obj = global.OBJ;
 
   const [dummy, setDummy] = useState([]);
-  const tokenAuth = props.route.params.token;
+  const tokenAuth = global.TOKEN;
   // console.log(tokenAuth)
-  
+
   // console.log(obj)
   // console.log(dummy);
 
@@ -94,20 +95,20 @@ const PhotoAlbum = (props) => {
   //   // 👇️ toggle
   //   setIsActive(true);
   // const[list , setList] = useState([''])
-  const  setPost = () => {
+  const setPost = () => {
     // console.log(obj[0][0])
-    props.navigation.navigate('Bearing',{token:tokenAuth,obj:obj});
+    props.navigation.navigate('Bearing', { token: tokenAuth, obj: obj });
   }
-  const  setAPost = () => {
+  const setAPost = () => {
     // console.log(obj[0][0])
-    props.navigation.navigate('PhotoAlbum',{token:tokenAuth,obj:obj});
+    props.navigation.navigate('PhotoAlbum', { token: tokenAuth, obj: obj });
   }
   useEffect(() => {
     // props.navigation.navigate("NewPass"),
 
     axios({
       method: "get",
-      url: "http://"+global.URl+"/BIGADMIN/listdoc/" + obj.id,
+      url: "http://" + global.UURL + "/BIGADMIN/listdoc/" + obj.id,
       // params:{
       //   email:email,
       // },
@@ -130,7 +131,7 @@ const PhotoAlbum = (props) => {
 
     axios({
       method: "get",
-      url: "http://"+global.URl+"/BIGADMIN/listalbum/" + obj.id,
+      url: "http://" + global.UURL + "/BIGADMIN/listalbum/" + obj.id,
       // params:{
       //   email:email,
       // },
@@ -145,7 +146,7 @@ const PhotoAlbum = (props) => {
     })
       // .then((Response) => console.log(dummy))
 
- 
+
       .catch((error) => console.log(error));
   };
   return (
@@ -155,17 +156,17 @@ const PhotoAlbum = (props) => {
           source={require("../assets/app_ui2-13.png")}
           style={styles3.logo}
         />
-         <TouchableOpacity
-        onPress={() => {navigation.openDrawer({token:tokenAuth});}}
+        <TouchableOpacity
+          onPress={() => { navigation.openDrawer({ token: tokenAuth }); }}
         >
-         <Image
-          source={require("../assets/app_ui2-11.png")}
-          style={styles3.logo2}
-        />
+          <Image
+            source={require("../assets/app_ui2-11.png")}
+            style={styles3.logo2}
+          />
         </TouchableOpacity>
       </View>
       <View style={[styles3.butbox, { alignItems: "center" }]}>
-        
+
         <View
           style={[
             styles3.workbox,
@@ -178,10 +179,10 @@ const PhotoAlbum = (props) => {
         >
           <View
             style={{
-              width: ww*85/100,
+              width: ww * 85 / 100,
               borderRadius: 20,
-              height: wh*13/100,
-              height: wh*13/100,
+              height: wh * 13 / 100,
+              height: wh * 13 / 100,
               // backgroundColor:'red'
 
             }}
@@ -189,10 +190,10 @@ const PhotoAlbum = (props) => {
             <Text
               style={{
                 fontFamily: "Roboto",
-                fontSize: ResponsiveScreen.normalize(60),
+                fontSize: ResponsiveScreen.normalize(55),
                 color: "#f2ca30",
-                marginTop: wh*4/100,
-                marginLeft: ww*6/100,
+                marginTop: wh * 4 / 100,
+                marginLeft: ww * 6 / 100,
                 // marginBottom: ResponsiveScreen.normalize(25),
               }}
             >
@@ -203,42 +204,75 @@ const PhotoAlbum = (props) => {
           <View
             style={{
               // backgroundColor: "pink",
-              width: ww*85/100,
-              height: wh*67/100,
+              width: ww * 85 / 100,
+              height: wh * 67 / 100,
               borderRadius: 20,
               // flexDirection: "row",
             }}
           >
-          
+
             <FlatList
               data={dummy}
               numColumns={2}
               renderItem={(itemList) => (
                 <View >
-                <TouchableOpacity
-                  //   onPress={() => {props.navigation.navigate("Bearing",{token:tokenAuth});
-                  style={{
-                    // backgroundColor: "pink",
-                    width: ww*37/100,
-                    height: ww*37/100,
-                    marginTop:wh*1/100,
-                    marginLeft:ww*4.5/100,
-                    // borderRadius: 50,
-                    // flexDirection: "row",
-                  }}
+                  <TouchableOpacity
+                    //   onPress={() => {props.navigation.navigate("Bearing",{token:tokenAuth});
+                    style={{
+                      // backgroundColor: "pink",
+                      width: ww * 37 / 100,
+                      height: ww * 37 / 100,
+                      marginTop: wh * 1 / 100,
+                      marginLeft: ww * 4.5 / 100,
+                      // borderRadius: 50,
+                      // flexDirection: "row",
+                    }}
                   //   {setPost};
                   //   // console.log(id_select)
                   // }}
                   // onPress={()=>{setSelect(itemList.item)}}
-                >
-                    
-                    <Image
+                  >
+
+                    {/* <Image
                       source={{ uri: itemList.item.att_file }}
-                      style={{ width: ww*37/100, height: ww*37/100,borderRadius:ww*3/100 }}
-                    />
-                  
-        
-                </TouchableOpacity>
+                      style={{ width: ww * 37 / 100, height: ww * 37 / 100, borderRadius: ww * 3 / 100 }}
+                    /> */}
+
+                    <Lightbox
+                      // backgroundColor='transparent'
+                      useNativeDriver={false}
+
+                      backgroundColor='rgba(0,0,0,0.8)'
+                      springConfig={{
+                        tension: 1000000,
+                        friction: 1000000
+
+                      }}
+                      swipeToDismiss={false}
+                      renderHeader={close => (
+                        <TouchableOpacity onPress={close} style={{ marginTop: wh * 10 / 100, }}>
+                          <Text style={styles3.closeButton}>X</Text>
+                        </TouchableOpacity>
+                      )}
+                      renderContent={() => (
+                        <View style={{ marginTop: wh * 10 / 100 }}>
+                          <Image
+                            style={{ width: ww * 100 / 100, height: ww * 100 / 100, borderRadius: ww * 3 / 100 }}
+                            resizeMode='cover'
+                            source={{ uri: itemList.item.att_file }}
+                          />
+                        </View>
+                      )}
+                    >
+                      <Image
+                        style={{ width: ww * 37 / 100, height: ww * 37 / 100, borderRadius: ww * 3 / 100 }}
+                        resizeMode="cover"
+                        source={{ uri: itemList.item.att_file }}
+                      />
+                    </Lightbox>
+
+
+                  </TouchableOpacity>
                 </View>
               )}
             />
@@ -246,73 +280,76 @@ const PhotoAlbum = (props) => {
         </View>
 
         <View>
-        <View style={styles3.barbox}>
-          <TouchableOpacity
-          onPress={setAPost}>
-            <View style={styles3.barbut11}>
-              <Image
-                source={require("../assets/buttop.png")}
-                style={{
-                  width: ResponsiveScreen.normalize(170),
-                  height: ResponsiveScreen.normalize(400),
-                  resizeMode: "stretch",
-                }}
-              />
-            </View>
-            <View>
-              <Text
-                style={styles3.bartxt}
+          <View style={styles3.barbox}>
+            <TouchableOpacity style={{
+              marginTop: ResponsiveScreen.normalize(40),
+              marginLeft: ResponsiveScreen.normalize(-9),
+            }}
+              onPress={setAPost}>
+              <View style={styles3.barbut11}>
+                <Image
+                  source={require("../assets/buttop.png")}
+                  style={{
+                    width: ResponsiveScreen.normalize(170),
+                    height: ResponsiveScreen.normalize(400),
+                    resizeMode: "stretch",
+                  }}
+                />
+              </View>
+              <View>
+                <Text
+                  style={styles3.bartxt}
                 // onPress={setPost}
-              >
-                Photo Album
-              </Text>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles3.barbut22}
-          onPress={setPost}>
-            <View>
-              <Text
-                style={[
-                  styles3.bartxt,
-                  {
-                    color:"#000",
-                    marginTop: ResponsiveScreen.normalize(140),
-                    marginLeft: ResponsiveScreen.normalize(-66),
-                  },
-                ]}
-              >
-                Project Process
-              </Text>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <View style={styles3.barbut33}>
-              <Image
-                source={require("../assets/butbot2.png")}
-                style={{
-                  width: ResponsiveScreen.normalize(116),
-                  height: ResponsiveScreen.normalize(380),
-                  resizeMode: "stretch",
-                }}
-              />
-            </View>
-            <View>
-              <Text
-                style={[
-                  styles3.bartxt,
-                  {
-                    marginTop: ResponsiveScreen.normalize(-200),
-                    marginLeft: ResponsiveScreen.normalize(-50),
-                  },
-                ]}
+                >
+                  Photo Album
+                </Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles3.barbut22}
+              onPress={setPost}>
+              <View>
+                <Text
+                  style={[
+                    styles3.bartxt,
+                    {
+                      color: "#000",
+                      marginTop: ResponsiveScreen.normalize(140),
+                      marginLeft: ResponsiveScreen.normalize(-66),
+                    },
+                  ]}
+                >
+                  Project Process
+                </Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <View style={styles3.barbut33}>
+                <Image
+                  source={require("../assets/butbot2.png")}
+                  style={{
+                    width: ResponsiveScreen.normalize(116),
+                    height: ResponsiveScreen.normalize(380),
+                    resizeMode: "stretch",
+                  }}
+                />
+              </View>
+              <View>
+                <Text
+                  style={[
+                    styles3.bartxt,
+                    {
+                      marginTop: ResponsiveScreen.normalize(-200),
+                      marginLeft: ResponsiveScreen.normalize(-50),
+                    },
+                  ]}
                 // onPress={()=>{setSelect(itemList.item.id_number);setPost()}
                 // }
-              >
-                Documents
-              </Text>
-            </View>
-          </TouchableOpacity>
-        </View>
+                >
+                  Documents
+                </Text>
+              </View>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     </View>

@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { EvilIcons, MaterialIcons } from "@expo/vector-icons";
-import { useNavigation } from '@react-navigation/native';
+import { EvilIcons, MaterialIcons, Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 
 // import createAnimatedSwitchNavigator from "react-navigation-animated-switch";
 // import { Transition } from 'react-native-reanimated';
@@ -13,12 +17,20 @@ import {
   TouchableOpacity,
   Image,
   FlatList,
-  StyleSheet
+  StyleSheet,
+  Dimensions,
 } from "react-native";
 import { styles2, btn, styles3 } from "./styleSheets.js";
 import ResponsiveScreen from "react-native-auto-responsive-screen";
 import Item from "antd/lib/list/Item.js";
+
+const wf = Dimensions.get("screen").fontScale;
+const ws = Dimensions.get("screen").scale;
+const wh = Dimensions.get("screen").height;
+const ww = Dimensions.get("screen").width;
+
 ResponsiveScreen.init(720, 1600);
+
 // const MySwitch = createAnimatedSwitchNavigator(
 //   {
 //     Home: HomeScreen,
@@ -38,16 +50,18 @@ ResponsiveScreen.init(720, 1600);
 //     ),
 //   }
 // );
-const History = (props) => {
+
+const History = () => {
   // const tokenAuth = props.route.params.token;
   const navigation = useNavigation();
-
-  const tokenAuth = global.TOKEN;
+  // const tokenAuth = "";
+  // console.log(global.OBJ)
   // const obj = props.route.params.obj;
   // const { navigation } = props;
-  const [dummy, setDummy] = useState([]);
+  // console.log(dummy[0].project)
   // console.log(dummy.project)
 
+  const tokenAuth = global.TOKEN;
   // console.log("ghabl")
   // console.log(dummy[0].project[0].name)
   // console.log('bad')
@@ -58,12 +72,16 @@ const History = (props) => {
   //   const [email, setEmail] = useState('ali@test.com');
   //   const onEChange = (textValue) => setEmail(textValue);
   // const [project, setProject] = useState([]);
+  const [dummy, setDummy] = useState([]);
   useEffect(() => {
     // props.navigation.navigate("NewPass"),
+    // const tokenAuth = global.TOKEN;
+    const obj = global.OBJ;
+    // console.log(global.OBJ)
 
     axios({
       method: "GET",
-      url: "http://"+global.URl+"/BIGADMIN/history/amirco",
+      url: "http://" + global.UURL + "/BIGADMIN/history/" + global.DATA.company,
       // params:{
       //   email:email,
       // },
@@ -75,117 +93,296 @@ const History = (props) => {
       data: {
         // verification_code: code,
       },
-    }).then((Response) => setDummy(Response.data[0]))
-    // .then((Response) => console.log(dummy))
+      // }).then((Response) => console.log(Response.data))
+      // }).then((Response) => {
+      //   // if (Response.status == "200") {
+      //     if(Response.data[0].project!='undefined') {
+      //       console.log(Response.data[0].project)
+      //       setDummy(Response.data[0].project);}
+
+      // })
+    }).then((Response) => {
+      try {
+        setDummy(Response.data[0].project);
+      } catch (e) {
+        console.log('Error')
+      }
+    }
+    )
+    // .then((Response) => console.log(Response.data))
   }, []);
+
   return (
-    <View style={styles3.page}>
-       <View style={styles3.topbox}>
+    <View style={[styles3.page, { flex: 1 }]}>
+      <View style={styles3.topbox}>
         <Image
           source={require("../assets/app_ui2-13.png")}
           style={styles3.logo}
         />
-         <TouchableOpacity
-        onPress={() => {navigation.openDrawer({token:tokenAuth});}}
+        <TouchableOpacity
+
+          onPress={() => { navigation.openDrawer({ token: tokenAuth }); }}
+
         >
-         <Image
-          source={require("../assets/app_ui2-11.png")}
-          style={styles3.logo2}
-        />
+          <Ionicons
+            name="ios-menu-sharp"
+            size={35}
+            color="black"
+            style={{
+              marginTop: ResponsiveScreen.normalize(-10),
+              marginRight: ResponsiveScreen.normalize(30),
+            }}
+
+          />
         </TouchableOpacity>
       </View>
-      <View style={[styles3.butbox,{alignItems:'center',flexDirection:'column'}]}>
       <View
+        style={[
+          styles3.butbox,
+          { alignItems: "center", flexDirection: "column" },
+        ]}
+      >
+        <View
+          style={{
+            width: (ww * 85) / 100,
+            borderRadius: 20,
+            height: (wh * 10) / 100,
+            // backgroundColor: 'red'
+          }}
+        >
+          <View
             style={{
-              // backgroundColor: "blue",
-              width: ResponsiveScreen.normalize(700),
-              borderRadius: 20,
-              height: ResponsiveScreen.normalize(200),
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              width: ww * 85 / 100,
+              // backgroundColor: 'green'
+
             }}
           >
-            <Text
+            <View
               style={{
-                fontSize: ResponsiveScreen.normalize(47),
-                color: "#f2ca30",
-                marginTop: ResponsiveScreen.normalize(50),
-                marginLeft: ResponsiveScreen.normalize(50),
-                marginBottom: ResponsiveScreen.normalize(15),
+                marginLeft: ResponsiveScreen.normalize(17),
+                borderRadius: 60,
+                width: ResponsiveScreen.normalize(140),
+                height: ResponsiveScreen.normalize(140),
+                // backgroundColor: 'green'
               }}
             >
-              History of your Projects
-            </Text>
+              <Image
+                source={{
+                  uri: global.DATA.img,
+                }}
+                style={{
+                  width: ww * 19 / 100,
+                  height: wh * 9 / 100,
+                  borderRadius: 60
+                }}
+                resizeMode={'center'}
+              />
+            </View>
+            <View
+              style={{
+                width: ww * 60 / 100,
+                // backgroundColor: 'green'
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: ResponsiveScreen.fontSize(42),
+                  color: "#f2ca30",
+                  marginTop: wh * 2.5 / 100,
+                  marginRight: ww * 5 / 100,
+                  textAlign: 'left',
+                  // backgroundColor: 'pink'
+                }}
+              >
+                {global.DATA.company}
+              </Text>
+            </View>
           </View>
+        </View>
+
+        <View style={{ width: ww * 100 / 100, height: wh / 1.6, }}>
           <FlatList
-          style={{width:ResponsiveScreen.normalize(700),paddingHorizontal:ResponsiveScreen.normalize(50),height:ResponsiveScreen.normalize(1000),flexDirection:'column'}}
-            data={dummy.project}
+            style={{
+              width: ww * 100 / 100,
+              paddingHorizontal: ww * 0 / 100,
+              height: wh * 100 / 100,
+              flexDirection: 'column',
+            }}
+            data={dummy}
             renderItem={(itemList) => (
               <TouchableOpacity style={mystyles.card}>
-                <View style={{height:ResponsiveScreen.normalize(80),width:ResponsiveScreen.normalize(600)}}> 
-                <Text style={{
-                  color: "gray",
-                  fontFamily: "Roboto",
-                  fontSize: ResponsiveScreen.fontSize(40),
-                  // backgroundColor:'red',
-                }}> {itemList.item.name}</Text>
+                <View style={{ height: wh * 5 / 100, width: ww * 85 / 100 }}>
+                  <Text
+                    style={{
+                      color: "gray",
+                      fontFamily: "Roboto",
+                      fontSize: ResponsiveScreen.fontSize(40),
+                      padding: ww && wh * .5 / 100,
+                      // backgroundColor: 'red',
+                      textAlign: 'center'
+                    }}
+                  >
+                    {" "}
+                    {itemList.item.name}
+                  </Text>
                 </View>
-                <View style={{height:ResponsiveScreen.normalize(5),width:ResponsiveScreen.normalize(580),backgroundColor:"#f2ca30",borderRadius:100,marginHorizontal:ResponsiveScreen.normalize(12)}}></View>
-                <View style={{height:ResponsiveScreen.normalize(115),width:ResponsiveScreen.normalize(600),flexDirection:'row'}}>
+                <View style={{ height: wh * .1 / 100, width: ww * 81 / 100, backgroundColor: "#f2ca30", borderRadius: 100, marginHorizontal: ww * 2 / 100 }}></View>
 
-                <View style={{height:ResponsiveScreen.normalize(225),width:ResponsiveScreen.normalize(200),flexDirection:'column'}}>
-                <Text style={{
-                    marginTop: ResponsiveScreen.normalize(20),
-                    marginLeft: ResponsiveScreen.normalize(30),
-                    fontSize: ResponsiveScreen.normalize(22),
-                    color: "#192570",
-                    fontWeight: "bold",
-                  }}> ID No.:<Text style={{ color: "gray" }}> {itemList.item.id_number}</Text></Text>
-                   <Text style={{
-                    marginTop: ResponsiveScreen.normalize(20),
-                    marginLeft: ResponsiveScreen.normalize(30),
-                    fontSize: ResponsiveScreen.normalize(22),
-                    color: "#192570",
-                    fontWeight: "bold",
-                  }}> Drowing No.:<Text style={{ color: "gray" }}> {itemList.item.drawing_num}</Text></Text>
-                  
+                <View
+                  style={{
+                    height: wh * 0.05 / 100,
+                    width: ww * 80 / 100,
+                    backgroundColor: "#f2ca30",
+                    borderRadius: 100,
+                    marginHorizontal: ww * 1.5 / 100,
+                  }}
+                ></View>
+                <View
+                  style={{
+                    height: wh * 8 / 100,
+                    width: ww * 80 / 100,
+                    flexDirection: "row",
+                    // backgroundColor:'red'
+                  }}
+                >
+                  <View
+                    style={{
+                      height: wh * 8 / 100,
+                      width: ww * 28 / 100,
+                      flexDirection: "column",
+                      // backgroundColor:'red'
+
+                    }}
+                  >
+                    <Text
+                      style={{
+                        marginTop: wh * 1 / 100,
+                        marginLeft: ww * 3.5 / 100,
+                        fontSize: ResponsiveScreen.fontSize(19),
+                        color: "#192570",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      {" "}
+                      ID No.:
+                      <Text style={{ color: "gray" }}>
+                        {" "}
+                        {itemList.item.id_number}
+                      </Text>
+                    </Text>
+                    <Text
+                      style={{
+                        marginTop: wh * 1 / 100,
+                        marginLeft: ww * 3.5 / 100,
+                        fontSize: ResponsiveScreen.fontSize(19),
+                        color: "#192570",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      {" "}
+                      Drowing No.:
+                      <Text style={{ color: "gray" }}>
+                        {" "}
+                        {itemList.item.drawing_num}
+                      </Text>
+                    </Text>
+                  </View>
+
+                  <View
+                    style={{
+                      height: wh * 8 / 100,
+                      width: ww * 27 / 100,
+                      flexDirection: "column",
+                      // backgroundColor:'red'
+                    }}
+                  >
+                    <Text
+                      style={{
+                        marginTop: wh * 1 / 100,
+                        marginLeft: ww * 2 / 100,
+                        fontSize: ResponsiveScreen.fontSize(18),
+                        color: "#192570",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      {" "}
+                      Amount:
+                      <Text style={{ color: "gray" }}>
+                        {" "}
+                        {itemList.item.amount}
+                      </Text>
+                    </Text>
+                    <Text
+                      style={{
+                        marginTop: wh * 1.4 / 100,
+                        marginLeft: ww * 2 / 100,
+                        fontSize: ResponsiveScreen.fontSize(18),
+                        color: "#192570",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      {" "}
+                      Order No.:
+                      <Text style={{ color: "gray" }}>
+                        {" "}
+                        {itemList.item.order_number}
+                      </Text>
+                    </Text>
+                  </View>
+
+                  <View
+                    style={{
+                      height: wh * 7 / 100,
+                      width: ww * 28 / 100,
+                      flexDirection: "column",
+                      // backgroundColor:'red'
+                    }}
+                  >
+                    <Text
+                      style={{
+                        marginTop: wh * 1 / 100,
+                        // marginLeft: ResponsiveScreen.normalize(0),
+                        fontSize: ResponsiveScreen.fontSize(18),
+                        color: "#192570",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      {" "}
+                      State.:
+                      <Text style={{ color: "gray" }}>
+                        {" "}
+                        {itemList.item.status}
+                      </Text>
+                    </Text>
+                    <Text
+                      style={{
+                        marginTop: wh * 1 / 100,
+                        // marginLeft: ResponsiveScreen.normalize(0),
+                        fontSize: ResponsiveScreen.fontSize(18),
+                        color: "#192570",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      {" "}
+                      End Date:<Text style={{ color: "gray" }}> 2022/3/12</Text>
+                    </Text>
+                  </View>
                 </View>
-                <View style={{height:ResponsiveScreen.normalize(225),width:ResponsiveScreen.normalize(180),flexDirection:'column'}}>
-                <Text style={{
-                    marginTop: ResponsiveScreen.normalize(20),
-                    marginLeft: ResponsiveScreen.normalize(20),
-                    fontSize: ResponsiveScreen.normalize(22),
-                    color: "#192570",
-                    fontWeight: "bold",
-                  }}> Amount:<Text style={{ color: "gray" }}> {itemList.item.amount}</Text></Text>
-                   <Text style={{
-                    marginTop: ResponsiveScreen.normalize(20),
-                    marginLeft: ResponsiveScreen.normalize(20),
-                    fontSize: ResponsiveScreen.normalize(22),
-                    color: "#192570",
-                    fontWeight: "bold",
-                  }}> Order No.:<Text style={{ color: "gray" }}> {itemList.item.order_number}</Text></Text>
-                </View>
-                <View style={{height:ResponsiveScreen.normalize(225),width:ResponsiveScreen.normalize(220),flexDirection:'column'}}>
-                <Text style={{
-                    marginTop: ResponsiveScreen.normalize(20),
-                    marginLeft: ResponsiveScreen.normalize(0),
-                    fontSize: ResponsiveScreen.normalize(22),
-                    color: "#192570",
-                    fontWeight: "bold",
-                  }}> State.:<Text style={{ color: "gray" }}> {itemList.item.status}</Text></Text>
-                   <Text style={{
-                    marginTop: ResponsiveScreen.normalize(20),
-                    marginLeft: ResponsiveScreen.normalize(0),
-                    fontSize: ResponsiveScreen.normalize(21),
-                    color: "#192570",
-                    fontWeight: "bold",
-                  }}> End Date:<Text style={{ color: "gray" ,}}> 2022/3/12</Text></Text>
-                </View>
-                </View>
-                
               </TouchableOpacity>
             )}
           />
-        
+        </View>
+
+        {/* <TouchableOpacity style={{ flexDirection: "row", justifyContent: 'space-between', width: ResponsiveScreen.normalize(650), marginTop: ResponsiveScreen.normalize(20), backgroundColor: 'white', borderRadius: ResponsiveScreen.normalize(50), elevation: 5, }}>
+          <View style={{ padding: ResponsiveScreen.normalize(20), backgroundColor: '#f2ca30', borderRadius: ResponsiveScreen.normalize(50), width: ResponsiveScreen.normalize(170) }}>
+            <Text style={{ color: 'white', textAlign: 'center', fontSize: ResponsiveScreen.normalize(40), }}>+</Text>
+          </View>
+          <View style={{ padding: ResponsiveScreen.normalize(20), borderRadius: ResponsiveScreen.normalize(50), }}>
+            <Text style={{ paddingRight: ResponsiveScreen.normalize(130), color: '#192570' }}> Add New Project </Text>
+          </View>
+        </TouchableOpacity> */}
       </View>
     </View>
   );
@@ -194,15 +391,14 @@ const History = (props) => {
 export default History;
 
 const mystyles = StyleSheet.create({
-
   card: {
     fontFamily: "Roboto",
-    marginTop: ResponsiveScreen.normalize(25),
-    width: ResponsiveScreen.normalize(600),
-    height: ResponsiveScreen.normalize(200),
+    marginTop: wh * 2 / 100,
+    width: ww * 84 / 100,
+    height: wh * 13 / 100,
     // textAlign: "left",
-    marginLeft:ResponsiveScreen.normalize(5),
-    marginBottom:ResponsiveScreen.normalize(10),
+    marginLeft: ww * 8 / 100,
+    marginBottom: wh * 1 / 100,
     borderRadius: ResponsiveScreen.normalize(20),
     // elevation: 6,
     // backgroundColor: "gray",
@@ -217,9 +413,6 @@ const mystyles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 3,
     // alignItems:'stretch'
-    
   },
-  
-
-})
-export { mystyles};
+});
+export { mystyles };

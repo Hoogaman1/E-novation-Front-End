@@ -5,7 +5,7 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 
-import { Text, View, TextInput, TouchableOpacity, Image ,Dimensions} from "react-native";
+import { Text, View, TextInput, TouchableOpacity, Image, Dimensions } from "react-native";
 import { styles } from "./styleSheets.js";
 import ResponsiveScreen from "react-native-auto-responsive-screen";
 const wf = Dimensions.get("screen").fontScale;
@@ -23,10 +23,10 @@ const Verification = (props) => {
   //   const [email, setEmail] = useState('ali@test.com');
   //   const onEChange = (textValue) => setEmail(textValue);
   const setSend = () => {
-    props.navigation.navigate("NewPass",{email: email}),
+    props.navigation.navigate("NewPass", { email: email }),
       axios({
         method: "POST",
-        url: "http://"+global.URl+"/USER/verification/" + email + "/",
+        url: "http://" + global.UURL + "/USER/verification/" + email + "/",
         // params:{
         //   email:email,
         // },
@@ -45,26 +45,26 @@ const Verification = (props) => {
   };
   return (
     <View style={[styles.page, { flexDirection: "column" }]}>
-      <View style={[styles.box,{marginLeft:-ww*5/100}]}>
+      <View style={[styles.box, { marginLeft: -ww * 5 / 100 }]}>
         <View>
           <Image
             source={require("../assets/app_ui2-12.png")}
-            style={[styles.logo,{marginBottom:wh*0.4/100}]}
+            style={[styles.logo, { marginBottom: wh * 0.4 / 100 }]}
             resizeMode="cover"
           />
         </View>
 
-        <View style={[styles.fields,{height:wh*3/100}]}>
+        <View style={[styles.fields, { height: wh * 3 / 100 }]}>
           <TextInput
             placeholder="Confirmation Code  "
-            style={[styles.text,{marginBottom:wh*0.5/100}]}
+            style={[styles.text, { marginBottom: wh * 0.5 / 100 }]}
             onChangeText={onCChange}
           />
         </View>
         <View style={styles.butbox}>
           <View>
             <TouchableOpacity
-              style={[styles.Button, { flexDirection: "row",height:wh*3/100,marginTop:wh*1/100 }]}
+              style={[styles.Button, { flexDirection: "row", height: wh * 3 / 100, marginTop: wh * 1 / 100 }]}
               onPress={setSend}
             >
               <Text style={styles.ButtonText}>Next</Text>
@@ -74,12 +74,12 @@ const Verification = (props) => {
         </View>
       </View>
       <Text
-      style={{
-        marginTop: wh * 21 / 100,
-        color: "white",
-        fontSize: ResponsiveScreen.fontSize(22)
-        // marginLeft: "23%",
-      }}
+        style={{
+          marginTop: wh * 21 / 100,
+          color: "white",
+          fontSize: ResponsiveScreen.fontSize(22)
+          // marginLeft: "23%",
+        }}
       >
         Client Application
       </Text>
