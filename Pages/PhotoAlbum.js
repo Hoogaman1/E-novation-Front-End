@@ -19,10 +19,18 @@ import {
   StyleSheet,
   Pressable,
   ScrollView,
+  Dimensions,
 } from "react-native";
 import { styles, styles2, btn, styles3 } from "./styleSheets.js";
+import { useNavigation } from '@react-navigation/native';
+const wf = Dimensions.get("screen").fontScale;
+const ws = Dimensions.get("screen").scale;
+const wh = Dimensions.get("screen").height;
+const ww = Dimensions.get("screen").width;
 
 const PhotoAlbum = (props) => {
+  const navigation = useNavigation();
+
   // const DATA = [
   //   {
   //     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
@@ -32,7 +40,7 @@ const PhotoAlbum = (props) => {
   //     id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
   //     title: '2- Cutting',
   //   },
-  //   {
+  //   { 
   //     id: '58694a0f-3da1-471f-bd96-145571e29d72',
   //     title: '3- Machining',
   //   },
@@ -67,11 +75,11 @@ const PhotoAlbum = (props) => {
   // const { navigation } = props;
   const [mydata, setData] = useState("");
   const onCChange = (textValue) => setCode(textValue);
-  const obj = props.route.params.obj;
+  // const obj = global.OBJ;
   const [dummy, setDummy] = useState([]);
-  const tokenAuth = props.route.params.token;
-  // console.log(tokenAuth)
-  console.log("albummmmmmmmm");
+  const tokenAuth = global.TOKEN;
+  // console.log(global.OBJ)
+  
   // console.log(obj)
   // console.log(dummy);
 
@@ -84,17 +92,17 @@ const PhotoAlbum = (props) => {
   //   setIsActive(true);
   // const[list , setList] = useState([''])
   const  setPost = () => {
-    props.navigation.navigate('Bearing',{token:tokenAuth,obj:obj});
+    props.navigation.navigate('Bearing',{token:tokenAuth,obj:global.OBJ});
   }
   const  setDPost = () => {
-    props.navigation.navigate('DocAlbum',{token:tokenAuth,obj:obj});
+    props.navigation.navigate('DocAlbum',{token:tokenAuth,obj:global.OBJ});
   }
   useEffect(() => {
     // props.navigation.navigate("NewPass"),
 
     axios({
       method: "get",
-      url: "http://127.0.0.1:8000/BIGADMIN/listalbum/" + obj.id,
+      url: "http://"+global.URl+"/BIGADMIN/listalbum/" + global.OBJ.id,
       // params:{
       //   email:email,
       // },
@@ -117,7 +125,7 @@ const PhotoAlbum = (props) => {
 
     axios({
       method: "get",
-      url: "http://127.0.0.1:8000/BIGADMIN/listalbum/" + obj.id,
+      url: "http://"+global.URl+"/BIGADMIN/listalbum/" + global.OBJ.id,
       // params:{
       //   email:email,
       // },
@@ -131,8 +139,7 @@ const PhotoAlbum = (props) => {
       },
     })
       // .then((Response) => console.log(dummy))
-      .then(console.log("lalalala2"))
-      .then(console.log(dummy))
+   
       .catch((error) => console.log(error));
   };
   return (
@@ -142,10 +149,14 @@ const PhotoAlbum = (props) => {
           source={require("../assets/app_ui2-13.png")}
           style={styles3.logo}
         />
+         <TouchableOpacity
+        onPress={() => {navigation.openDrawer({token:tokenAuth});}}
+        >
          <Image
           source={require("../assets/app_ui2-11.png")}
           style={styles3.logo2}
         />
+        </TouchableOpacity>
       </View>
       <View style={[styles3.butbox, { alignItems: "center" }]}>
         
@@ -161,9 +172,10 @@ const PhotoAlbum = (props) => {
         >
           <View
             style={{
-              width: ResponsiveScreen.normalize(600),
+              width: ww*85/100,
               borderRadius: 20,
-              height: ResponsiveScreen.normalize(200),
+              height: wh*13/100,
+              // backgroundColor:'red'
             }}
           >
             <Text
@@ -171,9 +183,9 @@ const PhotoAlbum = (props) => {
                 fontSize: ResponsiveScreen.normalize(60),
                 fontFamily: "Roboto",
                 color: "#f2ca30",
-                marginTop: ResponsiveScreen.normalize(50),
-                marginLeft: ResponsiveScreen.normalize(50),
-                marginBottom: ResponsiveScreen.normalize(25),
+                marginTop: wh*4/100,
+                marginLeft: ww*6/100,
+                // marginBottom: ResponsiveScreen.normalize(25),
               }}
             >
               Photo Album
@@ -183,8 +195,8 @@ const PhotoAlbum = (props) => {
           <View
             style={{
               // backgroundColor: "pink",
-              width: ResponsiveScreen.normalize(600),
-              height: ResponsiveScreen.normalize(1150),
+              width: ww*85/100,
+              height: wh*67/100,
               borderRadius: 20,
               // flexDirection: "row",
             }}
@@ -199,10 +211,10 @@ const PhotoAlbum = (props) => {
                   //   onPress={() => {props.navigation.navigate("Bearing",{token:tokenAuth});
                   style={{
                     // backgroundColor: "pink",
-                    width: ResponsiveScreen.normalize(270),
-                    height: ResponsiveScreen.normalize(270),
-                    marginTop:ResponsiveScreen.normalize(30),
-                    marginLeft:ResponsiveScreen.normalize(30),
+                    width: ww*37/100,
+                    height: ww*37/100,
+                    marginTop:wh*1/100,
+                    marginLeft:ww*4.5/100,
                     // borderRadius: 50,
                     // flexDirection: "row",
                   }}
@@ -213,7 +225,7 @@ const PhotoAlbum = (props) => {
                 >
                     <Image
                       source={{ uri: itemList.item.img }}
-                      style={{ width: ResponsiveScreen.normalize(270), height: ResponsiveScreen.normalize(270),borderRadius:ResponsiveScreen.normalize(30) }}
+                      style={{ width: ww*37/100, height: ww*37/100,borderRadius:ww*3/100 }}
                     />
                   
         
@@ -253,6 +265,7 @@ const PhotoAlbum = (props) => {
                 style={[
                   styles3.bartxt,
                   {
+                    color:"#000",
                     marginTop: ResponsiveScreen.normalize(140),
                     marginLeft: ResponsiveScreen.normalize(-66),
                   },

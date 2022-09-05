@@ -4,11 +4,14 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-
 // import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import { Text, View, TextInput, Image, TouchableOpacity } from "react-native";
+import { Text, View, TextInput, Image, TouchableOpacity ,Dimensions} from "react-native";
 import { styles } from "./styleSheets.js";
 import ResponsiveScreen from "react-native-auto-responsive-screen";
+const wf = Dimensions.get("screen").fontScale;
+const ws = Dimensions.get("screen").scale;
+const wh = Dimensions.get("screen").height;
+const ww = Dimensions.get("screen").width;
 ResponsiveScreen.init(720, 1600);
 const ForgetPass = (props) => {
   // const [email, setEmail] = useState("");
@@ -21,7 +24,7 @@ const ForgetPass = (props) => {
     props.navigation.navigate("Verification",{email: email});
     axios({
       method: "POST",
-      url: "http://127.0.0.1:8000/USER/forget_password/",
+      url: "http://"+global.URl+"/USER/forget_password/",
       headers: {
         // 'Content-Type': "application/json",
         // Authorization: "7a5b55841e8ad94f989a789ef4d23e5809ce0c48",
@@ -37,25 +40,25 @@ const ForgetPass = (props) => {
   };
   return (
     <View style={[styles.page, { flexDirection: "column" }]}>
-      <View style={styles.box}>
+      <View style={[styles.box,{marginLeft:-ww*5/100}]}>
         <View>
           <Image
             source={require("../assets/app_ui2-12.png")}
-            style={styles.logo}
+            style={[styles.logo,{marginBottom:wh*0.4/100}]}
             resizeMode="cover"
           />
         </View>
-        <View style={styles.fields}>
+        <View style={[styles.fields,{height:wh*3/100}]}>
           <TextInput
             placeholder="Type your email address  "
-            style={styles.text}
+            style={[styles.text,{marginBottom:wh*0.5/100}]}
             onChangeText={onEChange}
           />
         </View>
         <View style={styles.butbox}>
           <View>
             <TouchableOpacity
-              style={[styles.Button, { flexDirection: "row" }]}
+              style={[styles.Button, { flexDirection: "row",height:wh*3/100,marginTop:wh*1/100 }]}
               onPress={setSend}
             >
               <Text style={styles.ButtonText}>Next</Text>
@@ -66,20 +69,21 @@ const ForgetPass = (props) => {
       </View>
       <Text
         style={{
-          marginTop: ResponsiveScreen.normalize(310),
+          marginTop: wh * 21 / 100,
           color: "white",
-          fontSize: ResponsiveScreen.normalize(30),
+          fontSize: ResponsiveScreen.fontSize(22)
           // marginLeft: "23%",
         }}
       >
         Client Application
       </Text>
       <Text
-        style={{
-          marginTop: ResponsiveScreen.normalize(20),
-          color: "white",
-          fontSize: ResponsiveScreen.normalize(20),
-        }}
+          style={{
+            marginTop: wh * 1 / 100,
+            // marginBottom: ResponsiveScreen.normalize(320),
+            color: "white",
+            fontSize: ResponsiveScreen.fontSize(17),
+          }}
       >
         All rights reserved by E-novation engineering Co.{" "}
       </Text>

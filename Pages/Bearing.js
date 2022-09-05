@@ -6,6 +6,8 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
+import { useNavigation } from '@react-navigation/native';
+
 import {
   MaterialCommunityIcons,
   Octicons,
@@ -25,6 +27,7 @@ import {
   Pressable,
   Dimensions,
   RefreshControl,
+  Alert,
 } from "react-native";
 import { styles3, styles2, btn } from "./styleSheets.js";
 import ResponsiveScreen from "react-native-auto-responsive-screen";
@@ -38,10 +41,12 @@ const Bearing = (props) => {
   const [id_select, setSelect] = useState("");
   // console.log(tokenAuth)
   // console.log(obj[0][0])
-  const tokenAuth = props.route.params.token;
+  const tokenAuth = global.TOKEN;
     // const { navigation } = props;
+  const navigation = useNavigation();
 
-  const obj = props.route.params.obj;
+
+  const obj = global.OBJ;
   console.log('1')
   console.log(obj)
   console.log('2')
@@ -57,15 +62,33 @@ const Bearing = (props) => {
   //   setIsActive(true);
   // const[list , setList] = useState([''])
   // console.log("qqqq")
+  const BellAlert = () =>
+    Alert.alert(
+      "New Event",
+      "My Alert Msg",
+      [
+        // {
+        //   text: "Ask me later",
+        //   onPress: () => console.log("Ask me later pressed")
+        // },
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        { text: "OK", onPress: () => console.log("OK Pressed") }
+      
+      ]
+    );
   const setPost = () => {
-    const tokenAuth = props.route.params.token;
-    const obj = props.route.params.obj;
+    const tokenAuth = global.TOKEN;
+    const obj = global.OBJ;
     // const { navigation } = props;
 
-    props.navigation.navigate("PhotoAlbum", { token: tokenAuth, obj: obj });
+    props.navigation.navigate("PhotoAlbum");
   };
   const setDPost = () => {
-    props.navigation.navigate("DocAlbum", { token: tokenAuth, obj: obj });
+    props.navigation.navigate("DocAlbum");
   };
   // const response
   //   axios({
@@ -92,12 +115,12 @@ const Bearing = (props) => {
   //     .catch((error) => console.log(error));
   //  }
   useEffect(() => {
-    const obj = props.route.params.obj;
+    const obj = global.OBJ;
     // const { navigation } = props;
     // props.navigation.navigate("NewPass"),
     axios({
       method: "get",
-      url: "http://127.0.0.1:8000/USER/opproject/",
+      url: "http://"+global.URl+"/USER/opproject/",
       // params:{
       //   email:email,
       // },
@@ -122,10 +145,19 @@ const Bearing = (props) => {
           source={require("../assets/app_ui2-13.png")}
           style={styles3.logo}
         />
+        <TouchableOpacity
+        onPress={() => {BellAlert()}}
+        >
+         <FontAwesome5 name="bell" size={25} color="black" style={{marginLeft: ww*18/100}}/>
+        </TouchableOpacity>
+         <TouchableOpacity
+        onPress={() => {navigation.openDrawer({token:tokenAuth});}}
+        >
          <Image
           source={require("../assets/app_ui2-11.png")}
           style={styles3.logo2}
         />
+        </TouchableOpacity>
       </View>
 
       <View style={[styles3.butbox]}>
@@ -137,9 +169,10 @@ const Bearing = (props) => {
         >
           <View
             style={{
-              width: ResponsiveScreen.normalize(600),
+              // backgroundColor:'red',
+              width: ww*85/100,
               borderRadius: 20,
-              height: ResponsiveScreen.normalize(200),
+              height: wh*12/100,
             }}
           >
             <Text
@@ -147,9 +180,9 @@ const Bearing = (props) => {
                 fontSize: ResponsiveScreen.normalize(55),
                 fontFamily: "Roboto",
                 color: "#f2ca30",
-                marginTop: ResponsiveScreen.normalize(50),
-                marginLeft: ResponsiveScreen.normalize(50),
-                marginBottom: ResponsiveScreen.normalize(25),
+                marginTop: wh*4/100,
+                marginLeft: ww*7/100,
+                // marginBottom:wh*5/100,
               }}
             >
               {obj.name}
@@ -157,8 +190,9 @@ const Bearing = (props) => {
           </View>
           <View
             style={{
-              width: ResponsiveScreen.normalize(600),
-              height: ResponsiveScreen.normalize(1150),
+              // backgroundColor:"red",
+              width: ww*85/100,
+              height: wh*65/100,
               borderRadius: 20,
               flexDirection: "row",
             }}
@@ -166,8 +200,8 @@ const Bearing = (props) => {
             <View
               style={{
                 backgroundColor: "#fff",
-                width: ResponsiveScreen.normalize(150),
-                height: ResponsiveScreen.normalize(1150),
+                width: ww*20/100,
+                height: wh*65/100,
                 borderRadius: 20,
                 // backgroundColor:"pink"
               }}
@@ -176,108 +210,80 @@ const Bearing = (props) => {
                 <View>
                   <Text
                     style={{
-                      width: ResponsiveScreen.normalize(50),
-                      height: ResponsiveScreen.normalize(950),
+                      width: ww*3.8/100,
+                      height: wh*61/100,
                       backgroundColor: "#f2ca30",
                       borderRadius: 100,
-                      marginHorizontal: ResponsiveScreen.normalize(50),
+                      marginHorizontal: ww*6.4/100,
                     }}
                   ></Text>
                 </View>
                 {obj.status === "1" ? (
                   <Text
-                    style={{
-                      width: ResponsiveScreen.normalize(50),
-                      height: ResponsiveScreen.normalize(90),
-                      backgroundColor: "#192570",
-                      borderRadius: 100,
-                      marginHorizontal: ResponsiveScreen.normalize(50),
-                      marginTop: ResponsiveScreen.normalize(-945),
-                    }}
+                  style={[styles3.checkline,{
+                    height: wh*3.5/100,
+                    marginTop: -wh*61/100,
+                  }]}
                   ></Text>
                 ) : (
                   <Text></Text>
                 )}
                 {obj.status === "2" ? (
                   <Text
-                    style={{
-                      width: ResponsiveScreen.normalize(50),
-                      height: ResponsiveScreen.normalize(220),
-                      backgroundColor: "#192570",
-                      borderRadius: 100,
-                      marginHorizontal: ResponsiveScreen.normalize(50),
-                      marginTop: ResponsiveScreen.normalize(-980),
-                    }}
+                    style={[styles3.checkline,{
+                      height: wh*13/100,
+                      marginTop: -wh*63.5/100,
+                    }]}
                   ></Text>
                 ) : (
                   <Text></Text>
                 )}
                 {obj.status === "3" ? (
                   <Text
-                    style={{
-                      width: ResponsiveScreen.normalize(50),
-                      height: ResponsiveScreen.normalize(350),
-                      backgroundColor: "#192570",
-                      borderRadius: 100,
-                      marginHorizontal: ResponsiveScreen.normalize(50),
-                      marginTop: ResponsiveScreen.normalize(-1020),
-                    }}
+                  style={[styles3.checkline,{
+                    height: wh*22/100,
+                    marginTop:-wh*65.6/100,
+                  }]}
                   ></Text>
                 ) : (
                   <Text></Text>
                 )}
                 {obj.status === "4" ? (
                   <Text
-                    style={{
-                      width: ResponsiveScreen.normalize(50),
-                      height: ResponsiveScreen.normalize(480),
-                      backgroundColor: "#192570",
-                      borderRadius: 100,
-                      marginHorizontal: ResponsiveScreen.normalize(50),
-                      marginTop: ResponsiveScreen.normalize(-1060),
-                    }}
+                  style={[styles3.checkline,{
+                    height: wh*31/100,
+                    marginTop: -wh*67.9/100,
+                  }]}
                   ></Text>
                 ) : (
                   <Text></Text>
                 )}
                 {obj.status === "5" ? (
                   <Text
-                    style={{
-                      width: ResponsiveScreen.normalize(50),
-                      height: ResponsiveScreen.normalize(630),
-                      backgroundColor: "#192570",
-                      borderRadius: 100,
-                      marginHorizontal: ResponsiveScreen.normalize(50),
-                      marginTop: ResponsiveScreen.normalize(-1100),
-                    }}
+                  style={[styles3.checkline,{
+                    height: wh*41/100,
+                    marginTop: -wh*70.2/100,
+                  }]}
                   ></Text>
                 ) : (
                   <Text></Text>
                 )}
                 {obj.status === "6" ? (
                   <Text
-                    style={{
-                      width: ResponsiveScreen.normalize(50),
-                      height: ResponsiveScreen.normalize(760),
-                      backgroundColor: "#192570",
-                      borderRadius: 100,
-                      marginHorizontal: ResponsiveScreen.normalize(50),
-                      marginTop: ResponsiveScreen.normalize(-1140),
-                    }}
+                  style={[styles3.checkline,{
+                    height:  wh*49.5/100,
+                    marginTop: -wh*72.5/100,
+                  }]}
                   ></Text>
                 ) : (
                   <Text></Text>
                 )}
                 {obj.status === "7" ? (
                   <Text
-                    style={{
-                      width: ResponsiveScreen.normalize(50),
-                      height: ResponsiveScreen.normalize(955),
-                      backgroundColor: "#192570",
-                      borderRadius: 100,
-                      marginHorizontal: ResponsiveScreen.normalize(50),
-                      marginTop: ResponsiveScreen.normalize(-1180),
-                    }}
+                  style={[styles3.checkline,{
+                    height: wh*62/100,
+                    marginTop: -wh*74.5/100,
+                  }]}
                   ></Text>
                 ) : (
                   <Text></Text>
@@ -287,21 +293,23 @@ const Bearing = (props) => {
 
             <View
               style={{
-                width: ResponsiveScreen.normalize(450),
-                height: ResponsiveScreen.normalize(1150),
+                width: ww*62/100,
+                height: wh*65/100,
                 borderRadius: 20,
+                // backgroundColor:"red",
+                marginHorizontal:-ww*3.5/100,
               }}
             >
               <View style={styles3.workcard}>
                 <View
                   style={{
-                    marginTop: ResponsiveScreen.normalize(37),
-                    marginLeft: ResponsiveScreen.normalize(25),
+                    marginTop: wh*1/100,
+                    marginLeft: ww*4/100,
                   }}
                 >
                   <MaterialCommunityIcons
                     name="forklift"
-                    size={ResponsiveScreen.normalize(60)}
+                    size={ww*8/100}
                     color="orange"
                   />
                 </View>
@@ -313,13 +321,13 @@ const Bearing = (props) => {
               <View style={styles3.workcard}>
                 <View
                   style={{
-                    marginTop: ResponsiveScreen.normalize(37),
-                    marginLeft: ResponsiveScreen.normalize(25),
+                    marginTop: wh*1/100,
+                    marginLeft:  ww*4/100,
                   }}
                 >
                   <MaterialCommunityIcons
                     name="scissors-cutting"
-                    size={ResponsiveScreen.normalize(60)}
+                    size={ww*8/100}
                     color="orange"
                   />
                 </View>
@@ -330,13 +338,13 @@ const Bearing = (props) => {
               <View style={styles3.workcard}>
                 <View
                   style={{
-                    marginTop: ResponsiveScreen.normalize(37),
-                    marginLeft: ResponsiveScreen.normalize(25),
+                    marginTop: wh*1/100,
+                    marginLeft: ww*4/100,
                   }}
                 >
                   <MaterialCommunityIcons
                     name="tools"
-                    size={ResponsiveScreen.normalize(55)}
+                    size={ww*7/100}
                     color="orange"
                   />
                 </View>
@@ -352,13 +360,13 @@ const Bearing = (props) => {
               >
                 <View
                   style={{
-                    marginTop: ResponsiveScreen.normalize(37),
-                    marginLeft: ResponsiveScreen.normalize(25),
+                    marginTop: wh*1/100,
+                    marginLeft: ww*4/100,
                   }}
                 >
                   <FontAwesome5
                     name="paint-roller"
-                    size={ResponsiveScreen.normalize(55)}
+                    size={ww*7/100}
                     color="orange"
                   />
                 </View>
@@ -367,8 +375,8 @@ const Bearing = (props) => {
                     style={[
                       styles3.txtworkcard,
                       {
-                        fontSize: ResponsiveScreen.normalize(27),
-                        marginTop: ResponsiveScreen.normalize(-10),
+                        fontSize: ResponsiveScreen.normalize(26),
+                        marginTop:wh*-1/100,
                       },
                     ]}
                   >
@@ -379,13 +387,13 @@ const Bearing = (props) => {
               <View style={styles3.workcard}>
                 <View
                   style={{
-                    marginTop: ResponsiveScreen.normalize(37),
-                    marginLeft: ResponsiveScreen.normalize(25),
+                    marginTop: wh*1/100,
+                    marginLeft: ww*4/100,
                   }}
                 >
                   <AntDesign
                     name="checksquare"
-                    size={ResponsiveScreen.normalize(55)}
+                    size={ww*7/100}
                     color="orange"
                   />
                 </View>
@@ -396,13 +404,13 @@ const Bearing = (props) => {
               <View style={styles3.workcard}>
                 <View
                   style={{
-                    marginTop: ResponsiveScreen.normalize(37),
-                    marginLeft: ResponsiveScreen.normalize(25),
+                    marginTop:wh*1/100,
+                    marginLeft: ww*4/100,
                   }}
                 >
                   <Octicons
                     name="package-dependencies"
-                    size={ResponsiveScreen.normalize(55)}
+                    size={ww*7/100}
                     color="orange"
                   />
                 </View>
@@ -413,13 +421,13 @@ const Bearing = (props) => {
               <View style={styles3.workcard}>
                 <View
                   style={{
-                    marginTop: ResponsiveScreen.normalize(37),
-                    marginLeft: ResponsiveScreen.normalize(25),
+                    marginTop: wh*1/100,
+                    marginLeft:  ww*4/100,
                   }}
                 >
                   <MaterialCommunityIcons
                     name="truck-delivery"
-                    size={ResponsiveScreen.normalize(55)}
+                    size={ww*7/100}
                     color="orange"
                   />
                 </View>
@@ -455,6 +463,7 @@ const Bearing = (props) => {
                   {
                     marginTop: ResponsiveScreen.normalize(140),
                     marginLeft: ResponsiveScreen.normalize(-66),
+                    color:"black",
                   },
                 ]}
               >

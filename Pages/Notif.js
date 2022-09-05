@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigation } from '@react-navigation/native';
+
 // import { EvilIcons  , MaterialIcons  } from '@expo/vector-icons';
 import { CheckBox } from "@rneui/themed";
 // import TimeInput from '@tighten/react-native-time-input';
@@ -14,10 +16,15 @@ import {
   Image,
   FlatList,
   StyleSheet,
+  Dimensions
 } from "react-native";
 import { styles3, styles2, btn } from "./styleSheets.js";
 import ResponsiveScreen from "react-native-auto-responsive-screen";
 ResponsiveScreen.init(720, 1600);
+const wf = Dimensions.get("screen").fontScale;
+const ws = Dimensions.get("screen").scale;
+const wh = Dimensions.get("screen").height;
+const ww = Dimensions.get("screen").width;
 
 // const MySwitch = createAnimatedSwitchNavigator(
 //   {
@@ -42,6 +49,8 @@ ResponsiveScreen.init(720, 1600);
 const Notif = (props) => {
   const [dummy, setDummy] = useState([]);
   // const [email, setEmail] = useState("");
+  const navigation = useNavigation();
+
   var email = "ali@test.com";
   const [checked1, setChecked1] = useState(dummy.every_five_hour);
   const [checked2, setChecked2] = useState(dummy.every_hour);
@@ -49,7 +58,7 @@ const Notif = (props) => {
   const [checked4, setChecked4] = useState(dummy.sq_clock);
   const [mydata, setData] = useState("");
 
-  const tokenAuth = props.route.params.token;
+  const tokenAuth = global.TOKEN;
   // const obj = props.route.params.obj;
   // const { navigation } = props;
   // const [time, setTime] = useState('');
@@ -70,7 +79,7 @@ const Notif = (props) => {
     // }, [id_select]);
       axios({
         method: "PUT",
-        url: "http://127.0.0.1:8000/USER/notif/",
+        url: "http://192.168.17.160:8000/USER/notif/",
         headers: {
           // 'Content-Type': "application/json",
           Authorization: "Token "+tokenAuth,
@@ -106,7 +115,7 @@ const Notif = (props) => {
 
     axios({
       method: "get",
-      url: "http://127.0.0.1:8000/USER/notif/",
+      url: "http://"+global.URl+"/USER/notif/",
       // params:{
       //   email:email,
       // },
@@ -134,10 +143,14 @@ const Notif = (props) => {
           source={require("../assets/app_ui2-13.png")}
           style={styles3.logo}
         />
+        <TouchableOpacity
+        onPress={() => {navigation.openDrawer({token:tokenAuth});}}
+        >
          <Image
           source={require("../assets/app_ui2-11.png")}
           style={styles3.logo2}
         />
+        </TouchableOpacity>
       </View>
       <View
         style={[
@@ -145,8 +158,8 @@ const Notif = (props) => {
           {
             alignItems: "center",
             // backgroundColor: "red",
-            width: ResponsiveScreen.normalize(720),
-            marginLeft: ResponsiveScreen.normalize(3),
+            width: ww,
+            marginLeft: ww*0.5/100,
           },
         ]}
       >
@@ -154,7 +167,7 @@ const Notif = (props) => {
           style={{
             fontSize: ResponsiveScreen.normalize(50),
             color: "#f2ca30",
-            marginTop: ResponsiveScreen.normalize(230),
+            marginTop: wh*15/100,
             fontFamily: "Roboto",
           }}
         >
@@ -170,7 +183,7 @@ const Notif = (props) => {
                     mystyles.card,
                     {
                       alignItems: "flex-start",
-                      marginTop: ResponsiveScreen.normalize(70),
+                      marginTop: wh*4/100,
                     },
                   ]}
                 >
@@ -215,9 +228,10 @@ const Notif = (props) => {
 
         <View
           style={{
-            height: ResponsiveScreen.normalize(150),
-            width: ResponsiveScreen.normalize(530),
-            padding: ResponsiveScreen.normalize(60),
+            // backgroundColor:'red',
+            height: wh*10/100,
+            width: ww*70/100,
+            padding: ww*10/100,
           }}
         >
           <FlatList
@@ -247,18 +261,18 @@ export default Notif;
 
 const mystyles = StyleSheet.create({
   card: {
-    marginLeft: ResponsiveScreen.normalize(0),
+    marginLeft: ww*0/100,
     // marginVertical:"10%",
     fontFamily: "Roboto",
     fontSize: ResponsiveScreen.normalize(60),
-    marginTop: ResponsiveScreen.normalize(20),
+    marginTop: wh*1/100,
     // marginStart:35,
     // paddingStart:15,
-    width: ResponsiveScreen.normalize(500),
-    height: ResponsiveScreen.normalize(100),
+    width: ww*70/100,
+    height: wh*6/100,
     textAlign: "left",
     lineHeight: 50,
-    borderRadius: 6,
+    borderRadius: ww*2/100,
     elevation: 3,
     backgroundColor: "#fff",
     shadowOffset: { width: 1, height: 1 },

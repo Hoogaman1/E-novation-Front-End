@@ -8,6 +8,8 @@ import {
 } from "@expo/vector-icons";
 import ResponsiveScreen from "react-native-auto-responsive-screen";
 ResponsiveScreen.init(720, 1600);
+import { useNavigation } from '@react-navigation/native';
+
 import {
   Text,
   View,
@@ -19,10 +21,17 @@ import {
   StyleSheet,
   Pressable,
   ScrollView,
+  Dimensions
 } from "react-native";
 import { styles, styles2, btn, styles3 } from "./styleSheets.js";
+const wf = Dimensions.get("screen").fontScale;
+const ws = Dimensions.get("screen").scale;
+const wh = Dimensions.get("screen").height;
+const ww = Dimensions.get("screen").width;
 
 const PhotoAlbum = (props) => {
+  const navigation = useNavigation();
+
   // const DATA = [
   //   {
   //     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
@@ -67,11 +76,13 @@ const PhotoAlbum = (props) => {
   // const { navigation } = props;
   const [mydata, setData] = useState("");
   const onCChange = (textValue) => setCode(textValue);
-  const obj = props.route.params.obj;
+  // const obj = props.route.params.obj;
+  const obj = global.OBJ;
+
   const [dummy, setDummy] = useState([]);
   const tokenAuth = props.route.params.token;
   // console.log(tokenAuth)
-  console.log("albummmmmmmmm");
+  
   // console.log(obj)
   // console.log(dummy);
 
@@ -96,7 +107,7 @@ const PhotoAlbum = (props) => {
 
     axios({
       method: "get",
-      url: "http://127.0.0.1:8000/BIGADMIN/listdoc/" + obj.id,
+      url: "http://"+global.URl+"/BIGADMIN/listdoc/" + obj.id,
       // params:{
       //   email:email,
       // },
@@ -119,7 +130,7 @@ const PhotoAlbum = (props) => {
 
     axios({
       method: "get",
-      url: "http://127.0.0.1:8000/BIGADMIN/listalbum/" + obj.id,
+      url: "http://"+global.URl+"/BIGADMIN/listalbum/" + obj.id,
       // params:{
       //   email:email,
       // },
@@ -133,8 +144,8 @@ const PhotoAlbum = (props) => {
       },
     })
       // .then((Response) => console.log(dummy))
-      .then(console.log("lalalala2"))
-      .then(console.log(dummy))
+
+ 
       .catch((error) => console.log(error));
   };
   return (
@@ -144,10 +155,14 @@ const PhotoAlbum = (props) => {
           source={require("../assets/app_ui2-13.png")}
           style={styles3.logo}
         />
+         <TouchableOpacity
+        onPress={() => {navigation.openDrawer({token:tokenAuth});}}
+        >
          <Image
           source={require("../assets/app_ui2-11.png")}
           style={styles3.logo2}
         />
+        </TouchableOpacity>
       </View>
       <View style={[styles3.butbox, { alignItems: "center" }]}>
         
@@ -163,9 +178,12 @@ const PhotoAlbum = (props) => {
         >
           <View
             style={{
-              width: ResponsiveScreen.normalize(600),
+              width: ww*85/100,
               borderRadius: 20,
-              height: ResponsiveScreen.normalize(200),
+              height: wh*13/100,
+              height: wh*13/100,
+              // backgroundColor:'red'
+
             }}
           >
             <Text
@@ -173,9 +191,9 @@ const PhotoAlbum = (props) => {
                 fontFamily: "Roboto",
                 fontSize: ResponsiveScreen.normalize(60),
                 color: "#f2ca30",
-                marginTop: ResponsiveScreen.normalize(50),
-                marginLeft: ResponsiveScreen.normalize(50),
-                marginBottom: ResponsiveScreen.normalize(25),
+                marginTop: wh*4/100,
+                marginLeft: ww*6/100,
+                // marginBottom: ResponsiveScreen.normalize(25),
               }}
             >
               Documents
@@ -185,8 +203,8 @@ const PhotoAlbum = (props) => {
           <View
             style={{
               // backgroundColor: "pink",
-              width: ResponsiveScreen.normalize(600),
-              height: ResponsiveScreen.normalize(1150),
+              width: ww*85/100,
+              height: wh*67/100,
               borderRadius: 20,
               // flexDirection: "row",
             }}
@@ -201,10 +219,10 @@ const PhotoAlbum = (props) => {
                   //   onPress={() => {props.navigation.navigate("Bearing",{token:tokenAuth});
                   style={{
                     // backgroundColor: "pink",
-                    width: ResponsiveScreen.normalize(270),
-                    height: ResponsiveScreen.normalize(270),
-                    marginTop:ResponsiveScreen.normalize(30),
-                    marginLeft:ResponsiveScreen.normalize(30),
+                    width: ww*37/100,
+                    height: ww*37/100,
+                    marginTop:wh*1/100,
+                    marginLeft:ww*4.5/100,
                     // borderRadius: 50,
                     // flexDirection: "row",
                   }}
@@ -216,7 +234,7 @@ const PhotoAlbum = (props) => {
                     
                     <Image
                       source={{ uri: itemList.item.att_file }}
-                      style={{ width: ResponsiveScreen.normalize(270), height: ResponsiveScreen.normalize(270),borderRadius:ResponsiveScreen.normalize(30) }}
+                      style={{ width: ww*37/100, height: ww*37/100,borderRadius:ww*3/100 }}
                     />
                   
         
@@ -257,6 +275,7 @@ const PhotoAlbum = (props) => {
                 style={[
                   styles3.bartxt,
                   {
+                    color:"#000",
                     marginTop: ResponsiveScreen.normalize(140),
                     marginLeft: ResponsiveScreen.normalize(-66),
                   },

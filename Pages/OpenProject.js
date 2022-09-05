@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { EvilIcons, MaterialIcons } from "@expo/vector-icons";
+import { EvilIcons, MaterialIcons ,FontAwesome5  } from "@expo/vector-icons";
 import { Cache } from "react-native-cache";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Login from "../Pages/Login";
-import { FontAwesome } from "@expo/vector-icons";
+import { FontAwesome,Ionicons } from "@expo/vector-icons";
 import { useNavigation } from '@react-navigation/native';
 // import createAnimatedSwitchNavigator from "react-navigation-animated-switch";
 // import { Transition } from 'react-native-reanimated';
@@ -19,16 +19,21 @@ import {
   Image,
   FlatList,
   StyleSheet,
+  Dimensions,
 } from "react-native";
 import { styles2, btn, styles3 } from "./styleSheets.js";
 import ResponsiveScreen from "react-native-auto-responsive-screen";
 import LoginPage from "../Pages/Login";
+const wf = Dimensions.get("screen").fontScale;
+const ws = Dimensions.get("screen").scale;
+const wh = Dimensions.get("screen").height;
+const ww = Dimensions.get("screen").width;
 ResponsiveScreen.init(720, 1600);
 const OpenProject = (props) => {
   // const [email, setEmail] = useState("");
   const route = useRoute();
   // const [dummy, setDummy] = useState([]);
-  const tokenAuth = props.route.params.token;
+  const tokenAuth = global.TOKEN;
   console.log(tokenAuth)
   const navigation = useNavigation();
   // const { navigation } = props;
@@ -47,10 +52,10 @@ const OpenProject = (props) => {
   // }, [id_select]);
     axios({
       method: "POST",
-      url: "http://127.0.0.1:8000/USER/opproject/",
+      url: "http://"+global.URl+"/USER/opproject/",
       headers: {
         // 'Content-Type': "application/json",
-        Authorization: "Token "+tokenAuth,
+        Authorization: "Token "+global.TOKEN,
         // 'Accept': 'application/json'
       },
       data: {
@@ -64,7 +69,10 @@ const OpenProject = (props) => {
       if (response.status == "202") {
        
         // props.navigation.push({token:tokenAuth,obj:response.data});
-        props.navigation.navigate('Bearing',{token:tokenAuth,obj:response.data});
+        global.OBJ=response.data;
+        
+
+        props.navigation.navigate('Bearing',{token:tokenAuth,obj:global.OBJ});
       }
       })
       .catch((error) => console.log(error));
@@ -76,7 +84,7 @@ const OpenProject = (props) => {
     props.navigation.navigate('History',{token:tokenAuth});
   }
   useEffect( () => {
-    const tokenAuth = props.route.params.token;
+    const tokenAuth = global.TOKEN;
     // const { navigation } = props;
     // const tokenAuth = props.navigation.navigate.getParam('token',null)
     // useEffect(() => {
@@ -85,7 +93,7 @@ const OpenProject = (props) => {
     // const dummyData = []
     axios({
       method: "get",
-      url: "http://127.0.0.1:8000/USER/opproject/",
+      url: "http://"+global.URl+"/USER/opproject/",
       // params:{
         //   email:email,
         // },
@@ -103,7 +111,8 @@ const OpenProject = (props) => {
       .catch((error) => console.log(error));
     }, []);
     const itemclick = (obj) =>{
-      props.navigation.navigate("Bearing",{token:tokenAuth,obj:obj})
+      global.OBJ=obj
+      props.navigation.navigate("Bearing")
     }
   return (
     <View style={styles3.page}>
@@ -112,24 +121,27 @@ const OpenProject = (props) => {
           source={require("../assets/app_ui2-13.png")}
           style={styles3.logo}
         />
-         <Image
-          source={require("../assets/app_ui2-11.png")}
-          style={styles3.logo2}
-        />
+        <TouchableOpacity
+        onPress={() => {navigation.openDrawer({token:tokenAuth});}}
+        >
+          
+          <Ionicons name="ios-menu-sharp" size={35} color="black" style={{marginTop:-wh*2/100,marginRight:ww*5/100}} />
+     
+        </TouchableOpacity>
       </View>
       <View style={[styles3.butbox]}>
         <View
           style={[
             styles3.workbox,
-            { alignItems: "center", flexDirection: "column" },
+            { alignItems: "center", flexDirection: "column" ,width:ww},
           ]}
         >
           <View
             style={{
               // backgroundColor: "blue",
-              width: ResponsiveScreen.normalize(600),
+              width: ww,
               borderRadius: 20,
-              height: ResponsiveScreen.normalize(200),
+              height: wh*12/100,
             }}
           >
             <Text
@@ -137,9 +149,9 @@ const OpenProject = (props) => {
                 fontSize: ResponsiveScreen.normalize(45),
                 fontFamily: "Roboto",
                 color: "#f2ca30",
-                marginTop: ResponsiveScreen.normalize(50),
-                marginLeft: ResponsiveScreen.normalize(35),
-                marginBottom: ResponsiveScreen.normalize(30),
+                marginTop: wh*5/100,
+                marginLeft: ww*12/100,
+                // marginBottom: wh*1/100,
               }}
             >
               Current Projects
@@ -148,9 +160,9 @@ const OpenProject = (props) => {
           <View
             style={{
               // backgroundColor:'red',
-              width: ResponsiveScreen.normalize(600),
-              height: ResponsiveScreen.normalize(1150),
-              marginTop: ResponsiveScreen.normalize(50),
+              width: ww*82/100,
+              height: wh*65/100,
+              marginTop: wh*1/100,
               // elevation:3,
               borderRadius: 20,
               flexDirection: "row",
@@ -158,10 +170,10 @@ const OpenProject = (props) => {
           >
             <FlatList
               data={dummy}
-              style={{width:ResponsiveScreen.normalize(650),paddingHorizontal:ResponsiveScreen.normalize(10),height:ResponsiveScreen.normalize(1100)}}
+              style={{width:ww*81/100,paddingHorizontal:ww*-1/100,height:wh*63/100}}
               renderItem={(itemList) => (
                 <TouchableOpacity
-                style={[mystyles.card,{marginTop: ResponsiveScreen.normalize(5)}]}
+                style={[mystyles.card,{marginTop: wh*0.7/100}]}
                 //   onPress={() => {props.navigation.navigate("Bearing",{token:tokenAuth});
                   
                 //   {setPost};
@@ -172,14 +184,14 @@ const OpenProject = (props) => {
                   
                   <View style={{flexDirection:'row'}}>
                     <View>
-                      <Text style={styles3.txtworkcard} >
+                      <Text style={[styles3.txtworkcard,{paddingTop:wh*2.5/100}]} >
                         {itemList.item.name}
                       </Text>
                     </View>
 
                     <View  >
                       {itemList.item.alarm === true ? (
-                        <FontAwesome name="bell-o" size={19} color="#f2ca30" style={{fontWeight: "bold",marginLeft:ResponsiveScreen.normalize(150),marginTop:ResponsiveScreen.normalize(20)}} />
+                        <FontAwesome name="bell-o" size={19} color="#f2ca30" style={{fontWeight: "bold",marginLeft:ww*18/100,marginTop:wh*2.3/100}} />
                       ) : (
                         <Text></Text>
                       )}
@@ -190,7 +202,7 @@ const OpenProject = (props) => {
             />
           </View>
         </View>
-        <View style={styles3.barbox}>
+        {/* <View style={styles3.barbox}>
         <TouchableOpacity 
           onPress={setHPost}>
           
@@ -258,7 +270,7 @@ const OpenProject = (props) => {
               </Text>
             </View>
           </TouchableOpacity>
-        </View>
+        </View> */}
       </View>
     </View>
   );
@@ -267,79 +279,18 @@ const OpenProject = (props) => {
 
 export default OpenProject;
 
-// const styles = StyleSheet.create({
 
-//   page:{
-//     alignItems: 'center',
-//     backgroundColor: 'yellow',
-//     justifyContent: 'center',
-//     height: '100%',
-//     width: '100%',
-//     flexDirection: 'column',
-//     flexDirection: 'row',
-//     // flexWrap: 'wrap',
-//     flex: 1
-//   },
-//   fields: {
-//       height: 50,
-//       width: '100%',
-//       padding:10,
-//       backgroundColor: 'white',
-//       textAlign:'center',
-//       borderRadius:30,
-//       marginTop: 10,
-//   },
-//   Button : {
-//       // justifyContent:'center',
-//       // alignItems:'center',
-//       // borderColor:'#fff',
-//       backgroundColor:'blue',
-//       // color :"red",
-//       // Color:'blue',
-//       // underlayColor:'#fff',
-//       borderRadius:25,
-//       height: 50,
-//       width: '100%',
-//       padding:10,
-//       textAlign:'center',
-//       marginTop:1,
-//       // Align:'left',
-//       // flex:0,
-//   },
-//   box: {
-//     marginTop: '70%',
-//     height: '50%',
-//     width: '70%',
-//     padding:10,
-//     // backgroundColor:"green"
-// },
-// ButtonText:{
-//   color:'white',
-// },
-// butbox:{
-//   justifyContent:'space-between',
-
-//   // marginTop: '10%',
-//   height: '50%',
-//   width: '100%',
-//   padding:10,
-//   flexDirection: 'row',
-//   // backgroundColor:"green",
-//   // flexDirection: 'column',
-
-// }
-// });
 const mystyles = StyleSheet.create({
 
   card: {
     fontFamily: "Roboto",
-    marginTop: ResponsiveScreen.normalize(25),
-    width: ResponsiveScreen.normalize(550),
-    height: ResponsiveScreen.normalize(125),
+    marginTop: wh*10/100,
+    width: ww*75/100,
+    height: wh*7/100,
     // textAlign: "left",
-    marginLeft:ResponsiveScreen.normalize(25),
-    marginBottom:ResponsiveScreen.normalize(10),
-    borderRadius: ResponsiveScreen.normalize(20),
+    marginLeft:ww*4/100,
+    marginBottom:wh*0.7/100,
+    borderRadius: ww*2/100,
     // elevation: 6,
     // backgroundColor: "gray",
     // shadowOffset: { width: 2, height: 2 },
