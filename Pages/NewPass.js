@@ -22,7 +22,7 @@ const NewPass = (props) => {
   const [password, setPassword] = useState("");
   const onEChange = (textValue) => setRepass(textValue);
   const onPChange = (textValue) => setPassword(textValue);
-  // var email = "ali@test.com";
+  
   const setSend = () => {
     props.navigation.navigate("LoginPage"),
 
