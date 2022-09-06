@@ -90,6 +90,9 @@ const Bearing = (props) => {
   const setDPost = () => {
     props.navigation.navigate("DocAlbum");
   };
+  const setAlert = () => {
+    props.navigation.navigate('Alert', { token: tokenAuth });
+  }
   // const response
   //   axios({
   //     method: "get",
@@ -146,7 +149,7 @@ const Bearing = (props) => {
           style={styles3.logo}
         />
         <TouchableOpacity
-          onPress={() => { BellAlert() }}
+          onPress={setAlert}
         >
           <FontAwesome5 name="bell" size={25} color="black" style={{ marginLeft: ww * 18 / 100, marginTop: wh * -1 / 100 }} />
         </TouchableOpacity>
@@ -519,7 +522,7 @@ const Bearing = (props) => {
           </TouchableOpacity> */}
         </View>
       </View>
-    </View>
+    </View >
   );
 };
 export default Bearing;

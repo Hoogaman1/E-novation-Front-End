@@ -19,6 +19,8 @@ import {
   Dimensions
 } from "react-native";
 import { styles3, styles2, btn } from "./styleSheets.js";
+
+import { EvilIcons, MaterialIcons, Ionicons, FontAwesome5, } from "@expo/vector-icons";
 import ResponsiveScreen from "react-native-auto-responsive-screen";
 ResponsiveScreen.init(720, 1600);
 const wf = Dimensions.get("screen").fontScale;
@@ -73,7 +75,9 @@ const Notif = (props) => {
   const [project, setProject] = useState([]);
 
 
-
+  const setAlert = () => {
+    props.navigation.navigate('Alert', { token: tokenAuth });
+  }
   const setPost = () => {
     //   useEffect(() => {
     // }, [id_select]);
@@ -144,6 +148,11 @@ const Notif = (props) => {
           style={styles3.logo}
         />
         <TouchableOpacity
+          onPress={setAlert}
+        >
+          <FontAwesome5 name="bell" size={25} color="black" style={{ marginLeft: ww * 18 / 100, marginTop: wh * -1 / 100 }} />
+        </TouchableOpacity>
+        <TouchableOpacity
           onPress={() => { navigation.openDrawer({ token: tokenAuth }); }}
         >
           <Image
@@ -167,8 +176,9 @@ const Notif = (props) => {
           style={{
             fontSize: ResponsiveScreen.normalize(50),
             color: "#f2ca30",
-            marginTop: wh * 15 / 100,
+            marginTop: wh * 10 / 100,
             fontFamily: "Roboto",
+            // backgroundColor: 'green'
           }}
         >
           Notification Settings
@@ -265,11 +275,11 @@ const mystyles = StyleSheet.create({
     // marginVertical:"10%",
     fontFamily: "Roboto",
     fontSize: ResponsiveScreen.normalize(60),
-    marginTop: wh * 1 / 100,
+    marginTop: wh * 1.5 / 100,
     // marginStart:35,
     // paddingStart:15,
     width: ww * 70 / 100,
-    height: wh * 6 / 100,
+    height: wh * 7 / 100,
     textAlign: "left",
     lineHeight: 50,
     borderRadius: ww * 2 / 100,

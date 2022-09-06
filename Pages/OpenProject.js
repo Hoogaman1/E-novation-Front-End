@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { EvilIcons, MaterialIcons, FontAwesome5 } from "@expo/vector-icons";
 import { Cache } from "react-native-cache";
@@ -9,6 +9,8 @@ import { useNavigation } from '@react-navigation/native';
 // import createAnimatedSwitchNavigator from "react-navigation-animated-switch";
 // import { Transition } from 'react-native-reanimated';
 import { useRoute } from "@react-navigation/native";
+
+// import { Modalize } from 'react-native-modalize';
 
 import {
   Text,
@@ -21,6 +23,7 @@ import {
   StyleSheet,
   Dimensions,
 } from "react-native";
+
 import { styles2, btn, styles3 } from "./styleSheets.js";
 import ResponsiveScreen from "react-native-auto-responsive-screen";
 import LoginPage from "../Pages/Login";
@@ -29,7 +32,20 @@ const ws = Dimensions.get("screen").scale;
 const wh = Dimensions.get("screen").height;
 const ww = Dimensions.get("screen").width;
 ResponsiveScreen.init(720, 1600);
+
+// const modalizeRef = useRef < Modalize > (null);
+
+// const onOpen = () => {
+//   modalizeRef.current?.open();
+// };
+
 const OpenProject = (props) => {
+
+
+
+
+
+
   // const [email, setEmail] = useState("");
   const route = useRoute();
   // const [dummy, setDummy] = useState([]);
@@ -83,6 +99,9 @@ const OpenProject = (props) => {
   const setHPost = () => {
     props.navigation.navigate('History', { token: tokenAuth });
   }
+  const setAlert = () => {
+    props.navigation.navigate('Alert', { token: tokenAuth });
+  }
   useEffect(() => {
     const tokenAuth = global.TOKEN;
     // const { navigation } = props;
@@ -114,6 +133,8 @@ const OpenProject = (props) => {
     global.OBJ = obj
     props.navigation.navigate("Bearing")
   }
+
+
   return (
     <View style={styles3.page}>
       <View style={styles3.topbox}>
@@ -121,6 +142,15 @@ const OpenProject = (props) => {
           source={require("../assets/app_ui2-13.png")}
           style={styles3.logo}
         />
+        <TouchableOpacity
+          onPress={setAlert}
+        >
+          <FontAwesome5 name="bell" size={25} color="black"
+            style={{
+              marginLeft: ww * 18 / 100,
+              marginTop: wh * -1 / 100
+            }} />
+        </TouchableOpacity>
         <TouchableOpacity
           onPress={() => { navigation.openDrawer({ token: tokenAuth }); }}
         >
@@ -130,6 +160,13 @@ const OpenProject = (props) => {
           />
         </TouchableOpacity>
       </View>
+
+      {/* <TouchableOpacity onPress={onOpen}>
+        <Text>Open the modal</Text>
+      </TouchableOpacity> */}
+
+      {/* <Modalize ref={modalizeRef}>...your content</Modalize> */}
+
       <View style={[styles3.butbox]}>
         <View
           style={[

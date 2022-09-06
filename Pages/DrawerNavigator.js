@@ -62,28 +62,39 @@ function CustomDrawerContent(props) {
               marginTop: ResponsiveScreen.normalize(15),
               marginHorizontal: ResponsiveScreen.normalize(-10),
             }}
+            resizeMode={'center'}
           />
         </View>
         <View>
           <Text style={Dstyles.toptext}>Welcome...!</Text>
-          <Text style={[Dstyles.toptext, { marginTop: ResponsiveScreen.normalize(-68), width: ResponsiveScreen.normalize(455) }]}>{global.DATA.company}</Text>
+          <Text style={{
+            width: ResponsiveScreen.normalize(380),
+            color: "#fff",
+            fontSize: ResponsiveScreen.normalize(40),
+            marginLeft: ResponsiveScreen.normalize(-13),
+            marginTop: ResponsiveScreen.normalize(10),
+            marginBottom: ResponsiveScreen.normalize(70),
+
+          }}>{global.DATA.company}</Text>
           {/* <Text style={[Dstyles.toptext,{marginTop:ResponsiveScreen.normalize(-68),width:ResponsiveScreen.normalize(455)}]}>saman</Text> */}
         </View>
       </View>
       <View
         style={{
           backgroundColor: "rgba(255,255,255,0.3)",
+          // backgroundColor: "gray",
           width: ResponsiveScreen.normalize(420),
           height: ResponsiveScreen.normalize(70),
           marginLeft: ResponsiveScreen.normalize(-13),
           marginTop: ResponsiveScreen.normalize(-10),
           borderRadius: ResponsiveScreen.normalize(20),
+          justifyContent: 'center'
         }}
       >
         <Text
           style={[
             Dstyles.Ctext,
-            { marginTop: ResponsiveScreen.normalize(14), color: "#fff" },
+            { marginTop: ResponsiveScreen.normalize(0), color: "#fff" },
           ]}
         >
           Your Open Projects:{" "}
@@ -98,12 +109,13 @@ function CustomDrawerContent(props) {
           marginLeft: ResponsiveScreen.normalize(-13),
           marginTop: ResponsiveScreen.normalize(8),
           borderRadius: ResponsiveScreen.normalize(20),
+          justifyContent: 'center'
         }}
       >
         <Text
           style={[
             Dstyles.Ctext,
-            { marginTop: ResponsiveScreen.normalize(14), color: "#fff" },
+            { marginTop: ResponsiveScreen.normalize(0), color: "#fff" },
           ]}
         >
           Your All Projects:
@@ -336,7 +348,7 @@ const Dstyles = StyleSheet.create({
   },
   toptext: {
     width: ResponsiveScreen.normalize(380),
-    height: ResponsiveScreen.normalize(120),
+    // height: ResponsiveScreen.normalize(100),
     // backgroundColor: "red",
     // color: "#192570",
     color: "#fff",
@@ -356,10 +368,10 @@ const Dstyles = StyleSheet.create({
   },
   Ctext: {
     width: ResponsiveScreen.normalize(370),
-    height: ResponsiveScreen.normalize(90),
+    // height: ResponsiveScreen.normalize(50),
     // backgroundColor: "red",
     color: "#192570",
-    fontSize: ResponsiveScreen.normalize(26),
+    fontSize: ResponsiveScreen.normalize(27),
     // fontFamily: 'sans-serif-medium',
     marginLeft: ResponsiveScreen.normalize(15),
   },

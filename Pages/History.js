@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { EvilIcons, MaterialIcons, Ionicons } from "@expo/vector-icons";
+import { EvilIcons, MaterialIcons, Ionicons, FontAwesome5, } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import {
   widthPercentageToDP as wp,
@@ -51,7 +51,10 @@ ResponsiveScreen.init(720, 1600);
 //     ),
 //   }
 // );
-const History = () => {
+const History = (props) => {
+  const setAlert = () => {
+    props.navigation.navigate('Alert', { token: tokenAuth });
+  }
   const [check, setCheck] = useState('3');
   // const tokenAuth = props.route.params.token;
   const navigation = useNavigation();
@@ -130,19 +133,16 @@ const History = () => {
           style={styles3.logo}
         />
         <TouchableOpacity
-
-          onPress={() => { navigation.openDrawer({ token: tokenAuth }); }}
-
+          onPress={setAlert}
         >
-          <Ionicons
-            name="ios-menu-sharp"
-            size={35}
-            color="black"
-            style={{
-              marginTop: ResponsiveScreen.normalize(-10),
-              marginRight: ResponsiveScreen.normalize(30),
-            }}
-
+          <FontAwesome5 name="bell" size={25} color="black" style={{ marginLeft: ww * 18 / 100, marginTop: wh * -1 / 100 }} />
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => { navigation.openDrawer({ token: tokenAuth }); }}
+        >
+          <Image
+            source={require("../assets/app_ui2-11.png")}
+            style={styles3.logo2}
           />
         </TouchableOpacity>
       </View>

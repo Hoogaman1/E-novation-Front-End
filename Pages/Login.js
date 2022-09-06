@@ -44,8 +44,8 @@ const LoginPage = (props) => {
         // 'Content-Type': "application/json",
         // Authorization: `Token ${mahdi}`,
         // 'Accept': 'application/json'
-      }, 
-      
+      },
+
       data: {
         email: email,
         password: password,

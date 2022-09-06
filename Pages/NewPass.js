@@ -22,9 +22,9 @@ const NewPass = (props) => {
   const [password, setPassword] = useState("");
   const onEChange = (textValue) => setRepass(textValue);
   const onPChange = (textValue) => setPassword(textValue);
-  
+
   const setSend = () => {
-    props.navigation.navigate("LoginPage"),
+    props.navigation.navigate("Login"),
 
       axios({
         method: "POST",

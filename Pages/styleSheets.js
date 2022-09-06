@@ -237,7 +237,7 @@ const styles2 = StyleSheet.create({
     fontFamily: "Roboto",
 
     // alignItems: 'center',
-    // backgroundColor: "red",
+    backgroundColor: "#fff",
     justifyContent: "center",
     height: wh,
     width: ww,
@@ -268,7 +268,7 @@ const styles2 = StyleSheet.create({
   butbox: {
     fontFamily: "Roboto",
 
-    borderRadius: wh * 10 / 100,
+    // borderRadius: wh * 10 / 100,
     height: wh * 85 / 100,
     width: hp("40%"),
     marginLeft: wp("-19%"),
@@ -793,7 +793,7 @@ const styles3 = StyleSheet.create({
     // marginBottom:20 ,
     marginTop: wh * -1 / 100,
     // marginLeft:30 ,
-    // backgroundColor:'blue',
+    // backgroundColor: 'blue',
     resizeMode: "cover",
   },
   barbut1: {

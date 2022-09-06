@@ -97,6 +97,9 @@ const PhotoAlbum = (props) => {
   const setDPost = () => {
     props.navigation.navigate('DocAlbum', { token: tokenAuth, obj: global.OBJ });
   }
+  const setAlert = () => {
+    props.navigation.navigate('Alert', { token: tokenAuth });
+  }
   useEffect(() => {
     // props.navigation.navigate("NewPass"),
 
@@ -149,6 +152,11 @@ const PhotoAlbum = (props) => {
           source={require("../assets/app_ui2-13.png")}
           style={styles3.logo}
         />
+        <TouchableOpacity
+          onPress={setAlert}
+        >
+          <FontAwesome5 name="bell" size={25} color="black" style={{ marginLeft: ww * 18 / 100, marginTop: wh * -1 / 100 }} />
+        </TouchableOpacity>
         <TouchableOpacity
           onPress={() => { navigation.openDrawer({ token: tokenAuth }); }}
         >
