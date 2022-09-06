@@ -222,7 +222,8 @@ const OpenProject = (props) => {
                 <TouchableOpacity
                     onPress={setAlert}
                 >
-                    <FontAwesome name="bell" size={25} color="#f2ca30"
+                    {/* <FontAwesome name="bell" size={25} color="#f2ca30" */}
+                    <FontAwesome5 name="bell" size={25} color="#f2ca30"
                         style={{
                             marginLeft: ww * 18 / 100,
                             marginTop: wh * -1 / 100
@@ -292,11 +293,30 @@ const OpenProject = (props) => {
                                 >
                                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                         <View style={{
+                                            width: ww * 49 / 100,
+                                            height: wh * 3.5 / 100,
+                                            paddingLeft: ww * 4 / 100,
+                                            // backgroundColor: "yellow",
+                                            justifyContent: 'center'
+                                        }}>
+                                            <Text style={{
+                                                fontWeight: '600',
+                                                // fontFamily: 'sans-serif',
+                                                // color: '#f2ca30',
+                                                color: 'gray',
+                                                // backgroundColor: "green",
+                                                fontSize: ResponsiveScreen.normalize(40),
+                                                textAlign: 'left'
+                                            }}>
+                                                arian
+                                            </Text>
+                                        </View>
+                                        <View style={{
                                             width: ww * 39.5 / 100,
                                             height: wh * 4 / 100,
                                             marginLeft: ww * 2 / 100,
                                             // backgroundColor: "green",
-                                            marginTop: wh * .5 / 100,
+                                            // marginTop: wh *  / 100,
                                             justifyContent: 'center'
                                         }}>
                                             {/* <Text style={{
@@ -308,27 +328,10 @@ const OpenProject = (props) => {
                                         }}>
 
                                         </Text> */}
-                                            <View style={{ backgroundColor: '#f00001', width: ww * 24 / 100, justifyContent: 'center', alignItems: 'center', borderRadius: ww && wh * 1 / 100 }}><Text style={{ paddingHorizontal: ww * .5 / 100, paddingVertical: wh * .8 / 100, color: '#fff', fontWeight: '600', fontSize: 12.5 }}> New Massege </Text></View>
+                                            <View style={{ backgroundColor: '#192570', width: ww * 24 / 100, justifyContent: 'center', alignItems: 'center', borderTopLeftRadius: ww && wh * .6 / 100, borderBottomLeftRadius: ww && wh * .6 / 100, marginTop: wh * 1 / 100 }}><Text style={{ paddingHorizontal: ww * .5 / 100, paddingVertical: wh * .3 / 100, color: '#fff', fontWeight: '400', fontSize: 12.5 }}> New Massege </Text></View>
 
                                         </View>
-                                        <View style={{
-                                            width: ww * 30 / 100,
-                                            height: wh * 3.5 / 100,
-                                            paddingLeft: ww * 2 / 100,
-                                            // backgroundColor: "yellow",
-                                            justifyContent: 'center'
-                                        }}>
-                                            <Text style={{
-                                                fontWeight: '600',
-                                                // fontFamily: 'sans-serif',
-                                                color: '#505050',
-                                                // backgroundColor: "green",
-                                                fontSize: ResponsiveScreen.normalize(38),
-                                                textAlign: 'right'
-                                            }}>
-                                                arian
-                                            </Text>
-                                        </View>
+
                                     </View>
                                     <View style={{
                                         width: ww * 30 / 100,
@@ -398,7 +401,7 @@ const mystyles = StyleSheet.create({
         fontFamily: "Roboto",
         marginTop: wh * 10 / 100,
         width: ww * 75 / 100,
-        height: wh * 12 / 100,
+        height: wh * 11 / 100,
         // textAlign: "left",
         marginLeft: ww * 4 / 100,
         marginBottom: wh * 0.7 / 100,
