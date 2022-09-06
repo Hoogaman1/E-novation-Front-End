@@ -30,7 +30,8 @@ import { mystyles } from "./OpenProject";
 ResponsiveScreen.init(720, 1600);
 // import TabNavigator from "./TabNavigator";
 global.DATA = "";
-global.URl = "192.168.108.160:8000";
+// global.URl = "192.168.108.160:8000";
+global.UURL = "192.168.1.135:8000"
 let phoneNumber = 'tel:${+6186117749}';
 const makeCall = () => {
   Linking.openURL(phoneNumber);
@@ -53,7 +54,7 @@ function CustomDrawerContent(props) {
       <View style={{ flexDirection: "column" }}>
         <View>
           <Image
-            source={{ uri: "http://" + global.URl + "/media/" + global.DATA.img }}
+            source={{ uri: "http://" + global.UURL + "/media/" + global.DATA.img }}
             style={{
               width: ResponsiveScreen.normalize(130),
               height: ResponsiveScreen.normalize(130),
@@ -147,7 +148,7 @@ function CustomDrawerContent(props) {
         style={Dstyles.box}
         onPress={() => {
           // Navigate using the `navigation` prop that you received
-          props.navigation.navigate("History");
+          props.navigation.navigate('History', { token: global.TOKEN });
         }}
       >
         <View style={Dstyles.icon}>

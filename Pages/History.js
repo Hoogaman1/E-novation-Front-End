@@ -23,6 +23,7 @@ import {
 import { styles2, btn, styles3 } from "./styleSheets.js";
 import ResponsiveScreen from "react-native-auto-responsive-screen";
 import Item from "antd/lib/list/Item.js";
+import { set } from "react-native-reanimated";
 
 const wf = Dimensions.get("screen").fontScale;
 const ws = Dimensions.get("screen").scale;
@@ -50,8 +51,8 @@ ResponsiveScreen.init(720, 1600);
 //     ),
 //   }
 // );
-
 const History = () => {
+  const [check, setCheck] = useState('3');
   // const tokenAuth = props.route.params.token;
   const navigation = useNavigation();
   // const tokenAuth = "";
@@ -73,15 +74,16 @@ const History = () => {
   //   const onEChange = (textValue) => setEmail(textValue);
   // const [project, setProject] = useState([]);
   const [dummy, setDummy] = useState([]);
+  const Ddata = global.DATA;
   useEffect(() => {
     // props.navigation.navigate("NewPass"),
-    // const tokenAuth = global.TOKEN;
-    const obj = global.OBJ;
+    const tokenAuth = global.TOKEN;
+    // const obj = global.OBJ;
     // console.log(global.OBJ)
 
     axios({
       method: "GET",
-      url: "http://" + global.UURL + "/BIGADMIN/history/" + global.DATA.company,
+      url: "http://" + global.UURL + "/BIGADMIN/history/" + Ddata.company,
       // params:{
       //   email:email,
       // },
@@ -103,14 +105,22 @@ const History = () => {
       // })
     }).then((Response) => {
       try {
-        setDummy(Response.data[0].project);
+        setDummy(Response.data[0].project)
+
+        if (check > 0) {
+          setCheck(check - 1)
+        }
+
+        console.log(check);
+
       } catch (e) {
-        console.log('Error')
+        // console.log('Error')
       }
-    }
-    )
+    })
+
     // .then((Response) => console.log(Response.data))
-  }, []);
+  }, [check]);
+  // console.log(check);
 
   return (
     <View style={[styles3.page, { flex: 1 }]}>
@@ -170,7 +180,7 @@ const History = () => {
             >
               <Image
                 source={{
-                  uri: global.DATA.img,
+                  uri: Ddata.img,
                 }}
                 style={{
                   width: ww * 19 / 100,
@@ -196,7 +206,7 @@ const History = () => {
                   // backgroundColor: 'pink'
                 }}
               >
-                {global.DATA.company}
+                {Ddata.company}
               </Text>
             </View>
           </View>
@@ -376,12 +386,14 @@ const History = () => {
         </View>
 
         {/* <TouchableOpacity style={{ flexDirection: "row", justifyContent: 'space-between', width: ResponsiveScreen.normalize(650), marginTop: ResponsiveScreen.normalize(20), backgroundColor: 'white', borderRadius: ResponsiveScreen.normalize(50), elevation: 5, }}>
+
           <View style={{ padding: ResponsiveScreen.normalize(20), backgroundColor: '#f2ca30', borderRadius: ResponsiveScreen.normalize(50), width: ResponsiveScreen.normalize(170) }}>
             <Text style={{ color: 'white', textAlign: 'center', fontSize: ResponsiveScreen.normalize(40), }}>+</Text>
           </View>
           <View style={{ padding: ResponsiveScreen.normalize(20), borderRadius: ResponsiveScreen.normalize(50), }}>
             <Text style={{ paddingRight: ResponsiveScreen.normalize(130), color: '#192570' }}> Add New Project </Text>
           </View>
+
         </TouchableOpacity> */}
       </View>
     </View>
