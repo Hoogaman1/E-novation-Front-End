@@ -7,7 +7,7 @@ import {
 } from "react-native-responsive-screen";
 import { Text, View, TextInput, TouchableOpacity, Image, Dimensions } from "react-native";
 import { Cache } from "react-native-cache";
-import { styles ,Tabletstyles} from "./styleSheets.js";
+import { styles, Tabletstyles } from "./styleSheets.js";
 import ResponsiveScreen from "react-native-auto-responsive-screen";
 ResponsiveScreen.init(720, 1600);
 const wf = Dimensions.get("screen").fontScale;
@@ -30,18 +30,22 @@ const LoginPage = (props) => {
   const onPChange = (textValue) => setPassword(textValue);
   const isStatus = 404;
 
+
+
   const setSend = () => {
     // const response 
 
+    console.log(global.UURL);
     axios({
       method: "POST",
       // url: "http://127.0.0.1:8000/USER/login/",
-      url: "http://"+global.URl+"/USER/login/",
+      url: "http://" + global.UURL + "/USER/login/",
       headers: {
         // 'Content-Type': "application/json",
         // Authorization: `Token ${mahdi}`,
         // 'Accept': 'application/json'
       },
+
       data: {
         email: email,
         password: password,
@@ -76,98 +80,98 @@ const LoginPage = (props) => {
 
     <View style={[styles.page, { flexDirection: "column" }]}>
       <View>
-        {wh/ww < 1.6 ? (
+        {wh / ww < 1.6 ? (
           <View>
             <View style={Tabletstyles.box}>
-        <View>
-        <Text>wide</Text>
+              <View>
+                <Text>wide</Text>
 
-          <Image
-            source={require("../assets/app_ui2-12.png")}
-            style={Tabletstyles.logo}
-            resizeMode="cover"
-          />
-        </View>
-        <View style={Tabletstyles.fields}>
-          <TextInput
-            placeholder="Type your email addresss  "
-            style={Tabletstyles.text}
-            onChangeText={onEChange}
-          />
-        </View>
-        <View
-          style={[Tabletstyles.fields, { marginTop: wh * 1 / 100 }]}
-        >
-          <TextInput
-            secureTextEntry={true}
-            placeholder="password"
-            style={[Tabletstyles.text]}
-            onChangeText={onPChange}
-          />
-        </View>
-        <View style={Tabletstyles.butbox}>
-          <View>
-            <TouchableOpacity
-              style={[Tabletstyles.Button, { flexDirection: "row" }]}
-              onPress={setSend}
-            >
-              <Text style={Tabletstyles.ButtonText}> Login</Text>
-              {/* <Text style={{transform: [{ rotate: "90deg" }],fontSize:hp('2%'),color:"#fff"}}> ^ </Text> */}
-            </TouchableOpacity>
-          </View>
-          <View>
-            <TouchableOpacity
-              style={[{ backgroundColor: "transparent" }]}
-              onPress={setSend}
+                <Image
+                  source={require("../assets/app_ui2-12.png")}
+                  style={Tabletstyles.logo}
+                  resizeMode="cover"
+                />
+              </View>
+              <View style={Tabletstyles.fields}>
+                <TextInput
+                  placeholder="Type your email addresss  "
+                  style={Tabletstyles.text}
+                  onChangeText={onEChange}
+                />
+              </View>
+              <View
+                style={[Tabletstyles.fields, { marginTop: wh * 1 / 100 }]}
+              >
+                <TextInput
+                  secureTextEntry={true}
+                  placeholder="password"
+                  style={[Tabletstyles.text]}
+                  onChangeText={onPChange}
+                />
+              </View>
+              <View style={Tabletstyles.butbox}>
+                <View>
+                  <TouchableOpacity
+                    style={[Tabletstyles.Button, { flexDirection: "row" }]}
+                    onPress={setSend}
+                  >
+                    <Text style={Tabletstyles.ButtonText}> Login</Text>
+                    {/* <Text style={{transform: [{ rotate: "90deg" }],fontSize:hp('2%'),color:"#fff"}}> ^ </Text> */}
+                  </TouchableOpacity>
+                </View>
+                <View>
+                  <TouchableOpacity
+                    style={[{ backgroundColor: "transparent" }]}
+                    onPress={setSend}
+                  >
+                    <Text
+                      style={[
+                        Tabletstyles.ButtonText,
+                        {
+                          marginTop: wh * 0.4 / 100,
+                          marginLeft: ww * 2 / 100,
+                        },
+                      ]}
+                      onPress={() => props.navigation.navigate("ForgetPass")}
+                    >
+
+                      Forgot Password
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </View>
+            <View
+              style={{
+                height: wh * 10 / 100,
+                alignItems: "center",
+                // backgroundColor:"red",
+                marginTop: wh * 25 / 100
+              }}
             >
               <Text
-                style={[
-                  Tabletstyles.ButtonText,
-                  {
-                    marginTop: wh * 0.4 / 100,
-                    marginLeft: ww * 2 / 100,
-                  },
-                ]}
-                onPress={() => props.navigation.navigate("ForgetPass")}
+                style={{
+                  // marginTop: 0,
+                  color: "white",
+                  fontSize: ResponsiveScreen.fontSize(22)
+                  // marginLeft: "23%",
+                }}
               >
-
-                Forgot Password
+                Client Application
               </Text>
-            </TouchableOpacity>
+              <Text
+                style={{
+                  marginTop: wh * 1 / 100,
+                  // marginBottom: ResponsiveScreen.normalize(320),
+                  color: "white",
+                  fontSize: ResponsiveScreen.fontSize(17),
+                }}
+              >
+                All rights reserved by E-novation engineering Co.{" "}
+              </Text>
+            </View>
           </View>
-        </View>
-      </View>
-      <View
-        style={{
-          height: wh * 10 / 100,
-          alignItems: "center",
-          // backgroundColor:"red",
-          marginTop: wh * 25 / 100
-        }}
-      >
-        <Text
-          style={{
-            // marginTop: 0,
-            color: "white",
-            fontSize: ResponsiveScreen.fontSize(22)
-            // marginLeft: "23%",
-          }}
-        >
-          Client Application
-        </Text>
-        <Text
-          style={{
-            marginTop: wh * 1 / 100,
-            // marginBottom: ResponsiveScreen.normalize(320),
-            color: "white",
-            fontSize: ResponsiveScreen.fontSize(17),
-          }}
-        >
-          All rights reserved by E-novation engineering Co.{" "}
-        </Text>
-      </View>
-          </View>
-        ) :  wh/ww > 1.85 ?(
+        ) : wh / ww > 1.85 ? (
 
 
 
@@ -177,190 +181,190 @@ const LoginPage = (props) => {
 
 
           <View>
-            <View style={[styles.box,{marginLeft:-ww*5/100}]}>
-        <View>
-        <Text>phone</Text>
+            <View style={[styles.box, { marginLeft: -ww * 5 / 100 }]}>
+              <View>
+                <Text>phone</Text>
 
-          <Image
-            source={require("../assets/app_ui2-12.png")}
-            style={[styles.logo,{marginBottom:wh*0.4/100}]}
-            resizeMode="cover"
-          />
-        </View>
-        
-        <View style={[styles.fields,{height:wh*3/100}]}>
-          <TextInput
-            placeholder="Type your email addresss  "
-            style={[styles.text,{marginBottom:wh*0.5/100}]}
-            onChangeText={onEChange}
-          />
-        </View>
-        <View
-          style={[styles.fields, { marginTop: wh * 1 / 100 ,height:wh*3/100}]}
-        >
-          <TextInput
-            secureTextEntry={true}
-            placeholder="password"
-            style={[styles.text,{marginBottom:wh*0.5/100}]}
-            onChangeText={onPChange}
-          />
-        </View>
-        <View style={styles.butbox}>
-          <View>
-            <TouchableOpacity
-              style={[styles.Button, { flexDirection: "row",height:wh*3/100,marginTop:wh*1/100 }]}
-              onPress={setSend}
-            >
-              <Text style={[styles.ButtonText,{marginTop:wh*0.1/100}]}> Login</Text>
-              {/* <Text style={{transform: [{ rotate: "90deg" }],fontSize:hp('2%'),color:"#fff"}}> ^ </Text> */}
-            </TouchableOpacity>
-          </View>
-          <View>
-            <TouchableOpacity
-              style={[{ backgroundColor: "transparent" }]}
-              onPress={setSend}
+                <Image
+                  source={require("../assets/app_ui2-12.png")}
+                  style={[styles.logo, { marginBottom: wh * 0.4 / 100 }]}
+                  resizeMode="cover"
+                />
+              </View>
+
+              <View style={[styles.fields, { height: wh * 3 / 100 }]}>
+                <TextInput
+                  placeholder="Type your email addresss  "
+                  style={[styles.text, { marginBottom: wh * 0.5 / 100 }]}
+                  onChangeText={onEChange}
+                />
+              </View>
+              <View
+                style={[styles.fields, { marginTop: wh * 1 / 100, height: wh * 3 / 100 }]}
+              >
+                <TextInput
+                  secureTextEntry={true}
+                  placeholder="password"
+                  style={[styles.text, { marginBottom: wh * 0.5 / 100 }]}
+                  onChangeText={onPChange}
+                />
+              </View>
+              <View style={styles.butbox}>
+                <View>
+                  <TouchableOpacity
+                    style={[styles.Button, { flexDirection: "row", height: wh * 3 / 100, marginTop: wh * 1 / 100 }]}
+                    onPress={setSend}
+                  >
+                    <Text style={[styles.ButtonText, { marginTop: wh * 0.1 / 100 }]}> Login</Text>
+                    {/* <Text style={{transform: [{ rotate: "90deg" }],fontSize:hp('2%'),color:"#fff"}}> ^ </Text> */}
+                  </TouchableOpacity>
+                </View>
+                <View>
+                  <TouchableOpacity
+                    style={[{ backgroundColor: "transparent" }]}
+                    onPress={setSend}
+                  >
+                    <Text
+                      style={[
+                        styles.ButtonText,
+                        {
+                          marginTop: wh * 1 / 100,
+                          marginLeft: ww * 2 / 100,
+                        },
+                      ]}
+                      onPress={() => props.navigation.navigate("ForgetPass")}
+                    >
+
+                      Forgot Password
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </View>
+            <View
+              style={{
+                height: wh * 10 / 100,
+                alignItems: "center",
+                // backgroundColor:"red",
+                marginTop: wh * 26 / 100
+              }}
             >
               <Text
-                style={[
-                  styles.ButtonText,
-                  {
-                    marginTop: wh * 1 / 100,
-                    marginLeft: ww * 2 / 100,
-                  },
-                ]}
-                onPress={() => props.navigation.navigate("ForgetPass")}
+                style={{
+                  marginTop: wh * -5 / 100,
+                  color: "white",
+                  fontSize: ResponsiveScreen.fontSize(22)
+                  // marginLeft: "23%",
+                }}
               >
-
-                Forgot Password
+                Client Application
               </Text>
-            </TouchableOpacity>
+              <Text
+                style={{
+                  marginTop: wh * 1 / 100,
+                  // marginBottom: ResponsiveScreen.normalize(320),
+                  color: "white",
+                  fontSize: ResponsiveScreen.fontSize(17),
+                }}
+              >
+                All rights reserved by E-novation engineering Co.{" "}
+              </Text>
+            </View>
           </View>
-        </View>
-      </View>
-      <View
-        style={{
-          height: wh * 10 / 100,
-          alignItems: "center",
-          // backgroundColor:"red",
-          marginTop: wh * 26 / 100
-        }}
-      >
-        <Text
-          style={{
-            marginTop: wh * -5 / 100,
-            color: "white",
-            fontSize: ResponsiveScreen.fontSize(22)
-            // marginLeft: "23%",
-          }}
-        >
-          Client Application
-        </Text>
-        <Text
-          style={{
-            marginTop: wh * 1 / 100,
-            // marginBottom: ResponsiveScreen.normalize(320),
-            color: "white",
-            fontSize: ResponsiveScreen.fontSize(17),
-          }}
-        >
-          All rights reserved by E-novation engineering Co.{" "}
-        </Text>
-      </View>
-          </View>
-        ):(
+        ) : (
           <View>
             <View style={Tabletstyles.box}>
-        <View>
-        <Text>normal</Text>
+              <View>
+                <Text>normal</Text>
 
-          <Image
-            source={require("../assets/app_ui2-12.png")}
-            style={Tabletstyles.logo}
-            resizeMode="cover"
-          />
-        </View>
-        <View style={Tabletstyles.fields}>
-          <TextInput
-            placeholder="Type your email addresss  "
-            style={Tabletstyles.text}
-            onChangeText={onEChange}
-          />
-        </View>
-        <View
-          style={[Tabletstyles.fields, { marginTop: wh * 1 / 100 }]}
-        >
-          <TextInput
-            secureTextEntry={true}
-            placeholder="password"
-            style={[Tabletstyles.text]}
-            onChangeText={onPChange}
-          />
-        </View>
-        <View style={Tabletstyles.butbox}>
-          <View>
-            <TouchableOpacity
-              style={[Tabletstyles.Button, { flexDirection: "row" }]}
-              onPress={setSend}
-            >
-              <Text style={Tabletstyles.ButtonText}> Login</Text>
-              {/* <Text style={{transform: [{ rotate: "90deg" }],fontSize:hp('2%'),color:"#fff"}}> ^ </Text> */}
-            </TouchableOpacity>
-          </View>
-          <View>
-            <TouchableOpacity
-              style={[{ backgroundColor: "transparent" }]}
-              onPress={setSend}
+                <Image
+                  source={require("../assets/app_ui2-12.png")}
+                  style={Tabletstyles.logo}
+                  resizeMode="cover"
+                />
+              </View>
+              <View style={Tabletstyles.fields}>
+                <TextInput
+                  placeholder="Type your email addresss  "
+                  style={Tabletstyles.text}
+                  onChangeText={onEChange}
+                />
+              </View>
+              <View
+                style={[Tabletstyles.fields, { marginTop: wh * 1 / 100 }]}
+              >
+                <TextInput
+                  secureTextEntry={true}
+                  placeholder="password"
+                  style={[Tabletstyles.text]}
+                  onChangeText={onPChange}
+                />
+              </View>
+              <View style={Tabletstyles.butbox}>
+                <View>
+                  <TouchableOpacity
+                    style={[Tabletstyles.Button, { flexDirection: "row" }]}
+                    onPress={setSend}
+                  >
+                    <Text style={Tabletstyles.ButtonText}> Login</Text>
+                    {/* <Text style={{transform: [{ rotate: "90deg" }],fontSize:hp('2%'),color:"#fff"}}> ^ </Text> */}
+                  </TouchableOpacity>
+                </View>
+                <View>
+                  <TouchableOpacity
+                    style={[{ backgroundColor: "transparent" }]}
+                    onPress={setSend}
+                  >
+                    <Text
+                      style={[
+                        Tabletstyles.ButtonText,
+                        {
+                          marginTop: wh * 0.4 / 100,
+                          marginLeft: ww * 2 / 100,
+                        },
+                      ]}
+                      onPress={() => props.navigation.navigate("ForgetPass")}
+                    >
+
+                      Forgot Password
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </View>
+            <View
+              style={{
+                height: wh * 10 / 100,
+                alignItems: "center",
+                // backgroundColor:"red",
+                marginTop: wh * 25 / 100
+              }}
             >
               <Text
-                style={[
-                  Tabletstyles.ButtonText,
-                  {
-                    marginTop: wh * 0.4 / 100,
-                    marginLeft: ww * 2 / 100,
-                  },
-                ]}
-                onPress={() => props.navigation.navigate("ForgetPass")}
+                style={{
+                  // marginTop: 0,
+                  color: "white",
+                  fontSize: ResponsiveScreen.fontSize(22)
+                  // marginLeft: "23%",
+                }}
               >
-
-                Forgot Password
+                Client Application
               </Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </View>
-      <View
-        style={{
-          height: wh * 10 / 100,
-          alignItems: "center",
-          // backgroundColor:"red",
-          marginTop: wh * 25 / 100
-        }}
-      >
-        <Text
-          style={{
-            // marginTop: 0,
-            color: "white",
-            fontSize: ResponsiveScreen.fontSize(22)
-            // marginLeft: "23%",
-          }}
-        >
-          Client Application
-        </Text>
-        <Text
-          style={{
-            marginTop: wh * 1 / 100,
-            // marginBottom: ResponsiveScreen.normalize(320),
-            color: "white",
-            fontSize: ResponsiveScreen.fontSize(17),
-          }}
-        >
-          All rights reserved by E-novation engineering Co.{" "}
-        </Text>
-      </View>
+              <Text
+                style={{
+                  marginTop: wh * 1 / 100,
+                  // marginBottom: ResponsiveScreen.normalize(320),
+                  color: "white",
+                  fontSize: ResponsiveScreen.fontSize(17),
+                }}
+              >
+                All rights reserved by E-novation engineering Co.{" "}
+              </Text>
+            </View>
           </View>
         )}
       </View>
-      
+
     </View>
   );
 };

@@ -8,7 +8,7 @@ import {
   Feather,
   AntDesign,
   Ionicons,
-  
+
   // MaterialCommunityIcons
 } from "@expo/vector-icons";
 import {
@@ -30,7 +30,8 @@ import { mystyles } from "./OpenProject";
 ResponsiveScreen.init(720, 1600);
 // import TabNavigator from "./TabNavigator";
 global.DATA = "";
-global.URl="192.168.108.160:8000";
+// global.URl = "192.168.108.160:8000";
+global.UURL = "192.168.1.135:8000"
 let phoneNumber = 'tel:${+6186117749}';
 const makeCall = () => {
   Linking.openURL(phoneNumber);
@@ -53,7 +54,7 @@ function CustomDrawerContent(props) {
       <View style={{ flexDirection: "column" }}>
         <View>
           <Image
-            source={{ uri: "http://"+global.URl+"/media/" + global.DATA.img }}
+            source={{ uri: "http://" + global.UURL + "/media/" + global.DATA.img }}
             style={{
               width: ResponsiveScreen.normalize(130),
               height: ResponsiveScreen.normalize(130),
@@ -61,28 +62,39 @@ function CustomDrawerContent(props) {
               marginTop: ResponsiveScreen.normalize(15),
               marginHorizontal: ResponsiveScreen.normalize(-10),
             }}
+            resizeMode={'center'}
           />
         </View>
         <View>
           <Text style={Dstyles.toptext}>Welcome...!</Text>
-          <Text style={[Dstyles.toptext,{marginTop:ResponsiveScreen.normalize(-68),width:ResponsiveScreen.normalize(455)}]}>{global.DATA.company}</Text>
+          <Text style={{
+            width: ResponsiveScreen.normalize(380),
+            color: "#fff",
+            fontSize: ResponsiveScreen.normalize(40),
+            marginLeft: ResponsiveScreen.normalize(-13),
+            marginTop: ResponsiveScreen.normalize(10),
+            marginBottom: ResponsiveScreen.normalize(70),
+
+          }}>{global.DATA.company}</Text>
           {/* <Text style={[Dstyles.toptext,{marginTop:ResponsiveScreen.normalize(-68),width:ResponsiveScreen.normalize(455)}]}>saman</Text> */}
         </View>
       </View>
       <View
         style={{
           backgroundColor: "rgba(255,255,255,0.3)",
+          // backgroundColor: "gray",
           width: ResponsiveScreen.normalize(420),
           height: ResponsiveScreen.normalize(70),
           marginLeft: ResponsiveScreen.normalize(-13),
           marginTop: ResponsiveScreen.normalize(-10),
           borderRadius: ResponsiveScreen.normalize(20),
+          justifyContent: 'center'
         }}
       >
         <Text
           style={[
             Dstyles.Ctext,
-            { marginTop: ResponsiveScreen.normalize(14), color: "#fff" },
+            { marginTop: ResponsiveScreen.normalize(0), color: "#fff" },
           ]}
         >
           Your Open Projects:{" "}
@@ -97,12 +109,13 @@ function CustomDrawerContent(props) {
           marginLeft: ResponsiveScreen.normalize(-13),
           marginTop: ResponsiveScreen.normalize(8),
           borderRadius: ResponsiveScreen.normalize(20),
+          justifyContent: 'center'
         }}
       >
         <Text
           style={[
             Dstyles.Ctext,
-            { marginTop: ResponsiveScreen.normalize(14), color: "#fff" },
+            { marginTop: ResponsiveScreen.normalize(0), color: "#fff" },
           ]}
         >
           Your All Projects:
@@ -126,7 +139,7 @@ function CustomDrawerContent(props) {
         }}
       >
         <View style={Dstyles.icon}>
-        <AntDesign name="setting" size={24} color="#fff" />
+          <AntDesign name="setting" size={24} color="#fff" />
         </View>
         <Text
           style={[Dstyles.text, { marginLeft: ResponsiveScreen.normalize(12) }]}
@@ -147,7 +160,7 @@ function CustomDrawerContent(props) {
         style={Dstyles.box}
         onPress={() => {
           // Navigate using the `navigation` prop that you received
-          props.navigation.navigate("History");
+          props.navigation.navigate('History', { token: global.TOKEN });
         }}
       >
         <View style={Dstyles.icon}>
@@ -220,7 +233,7 @@ function CustomDrawerContent(props) {
         onPress={makeCall}
       >
         <View style={Dstyles.icon}>
-        <AntDesign name="appstore-o" size={21} color="#fff" />
+          <AntDesign name="appstore-o" size={21} color="#fff" />
         </View>
         <Text
           style={[Dstyles.text, { marginLeft: ResponsiveScreen.normalize(23) }]}
@@ -335,7 +348,7 @@ const Dstyles = StyleSheet.create({
   },
   toptext: {
     width: ResponsiveScreen.normalize(380),
-    height: ResponsiveScreen.normalize(120),
+    // height: ResponsiveScreen.normalize(100),
     // backgroundColor: "red",
     // color: "#192570",
     color: "#fff",
@@ -355,10 +368,10 @@ const Dstyles = StyleSheet.create({
   },
   Ctext: {
     width: ResponsiveScreen.normalize(370),
-    height: ResponsiveScreen.normalize(90),
+    // height: ResponsiveScreen.normalize(50),
     // backgroundColor: "red",
     color: "#192570",
-    fontSize: ResponsiveScreen.normalize(26),
+    fontSize: ResponsiveScreen.normalize(27),
     // fontFamily: 'sans-serif-medium',
     marginLeft: ResponsiveScreen.normalize(15),
   },

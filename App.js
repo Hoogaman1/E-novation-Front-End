@@ -93,7 +93,7 @@ import { MainStackNavigator } from "./Pages/StackNavigator";
 //     easing:Easing.linear
 //   }
 // }
-export default function App({navigation}) {
+export default function App({ navigation }) {
   // const [fontLoading, setFontLoading] = useState(false);
   // if (fontLoading)
   // {
@@ -103,6 +103,7 @@ export default function App({navigation}) {
   //       onError={console.warn}
   //     />
   // }
+  global.UURL = "192.168.1.135:8000"
   return (
     <NavigationContainer>
       {/* <Stack.Navigator>
@@ -120,7 +121,7 @@ export default function App({navigation}) {
       <Stack.Screen name="NewPass" component={NewPass} options={{  headerShown: false,  }}/>
       <Stack.Screen name="DrawerOpen" component={NotificationsScreen} options={{  headerShown: false,  }}/>
     </Stack.Navigator> */}
-      <DrawerNavigator drawerContent={(props) => <CustomDrawerContent {...props} />}/>
+      <DrawerNavigator drawerContent={(props) => <CustomDrawerContent {...props} />} />
       {/* <MainStackNavigator /> */}
     </NavigationContainer>
   );
