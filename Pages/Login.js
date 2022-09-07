@@ -64,9 +64,6 @@ const LoginPage = (props) => {
           console.log('ghabl')
           console.log(global.DATA)
           console.log('bad')
-
-
-
         }
       })
 

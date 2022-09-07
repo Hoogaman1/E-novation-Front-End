@@ -156,6 +156,7 @@ const PhotoAlbum = (props) => {
           onPress={setAlert}
         >
           <FontAwesome5 name="bell" size={25} color="black" style={{ marginLeft: ww * 18 / 100, marginTop: wh * -1 / 100 }} />
+          <View style={{ backgroundColor: 'red', width: ww * 5 / 100, height: ww * 5 / 100, borderRadius: ww * 50 / 100, position: 'absolute', right: ww * -3.5 / 100, bottom: wh * 2 / 100, justifyContent: 'center', alignItems: 'center' }}><Text style={{ color: '#fff', fontSize: ResponsiveScreen.fontSize(20), fontWeight: '500' }}>24</Text></View>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => { navigation.openDrawer({ token: tokenAuth }); }}

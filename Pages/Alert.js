@@ -39,25 +39,25 @@ ResponsiveScreen.init(720, 1600);
 //   modalizeRef.current?.open();
 // };
 
+
+
 const OpenProject = (props) => {
 
 
+    // const [next, setNext] = useState("");
 
-
-
-
-    // const [email, setEmail] = useState("");
     const route = useRoute();
+
     // const [dummy, setDummy] = useState([]);
     const tokenAuth = global.TOKEN;
     console.log(tokenAuth)
     const navigation = useNavigation();
-    // const { navigation } = props;
 
     const [mydata, setData] = useState("");
     const onCChange = (textValue) => setCode(textValue);
 
     const [dummy, setDummy] = useState([]);
+    console.log(dummy);
 
 
 
@@ -184,33 +184,64 @@ const OpenProject = (props) => {
     const setAlert = () => {
         props.navigation.navigate('Alert', { token: tokenAuth });
     }
-    // useEffect(() => {
-    //     const tokenAuth = global.TOKEN;
-    //     // const { navigation } = props;
-    //     // const tokenAuth = props.navigation.navigate.getParam('token',null)
-    //     // useEffect(() => {
-    //     // }, [id_select]);
-    //     // console.log(tokenAuth);
-    //     // const dummyData = []
+    const setBr = (pp) => {
+
+        global.OBJ = ({ "id": Number(pp) })
+        // console.log('RRRRRRRRRRRRRRRRRRRRRRRRRRR');
+        console.log(global.OBJ);
+        props.navigation.navigate('Bearing', { token: tokenAuth });
+
+        // console.log("asadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaasollah")
+    }
+
+
+    // const setSend = (pq) => {
+    //     // const response 
+
+    //     // console.log(global.UURL);
     //     axios({
-    //         method: "get",
-    //         url: "http://" + global.UURL + "/USER/opproject/",
-    //         // params:{
-    //         //   email:email,
-    //         // },
+    //         method: "patch",
+    //         // url: "http://127.0.0.1:8000/USER/login/",
+    //         url: "http://" + global.UURL + "/BIGADMIN/alertedit/" + pq,
     //         headers: {
-    //             // 'Content-Type': "application/json",
     //             Authorization: "Token " + tokenAuth,
-    //             // 'Accept': 'application/json'
     //         },
     //         data: {
-    //             // verification_code: code,
+    //             active: false,
     //         },
     //     })
-    //         .then((Response) => setDummy(Response.data))
+    //         .then((response) => console.log(response.data))
 
     //         .catch((error) => console.log(error));
-    // }, []);
+    // }
+
+
+
+    useEffect(() => {
+        const tokenAuth = global.TOKEN;
+        // console.log("asadollah")
+        // const { navigation } = props;
+        // const tokenAuth = props.navigation.navigate.getParam('token',null)
+        // useEffect(() => {
+        // }, [id_select]);
+        // console.log(tokenAuth);
+        // const dummyData = []
+        axios({
+            method: "get",
+            url: "http://" + global.UURL + "/BIGADMIN/alertlist/",
+
+            headers: {
+                Authorization: "Token " + tokenAuth,
+            },
+            data: {
+
+            },
+        })
+            .then((response) => setDummy(response.data))
+            // .then((response) => console.log("asadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaasollah"))
+
+            .catch((error) => console.log(error));
+    }, []);
 
     return (
         <View style={styles3.page}>
@@ -222,12 +253,16 @@ const OpenProject = (props) => {
                 <TouchableOpacity
                     onPress={setAlert}
                 >
-                    {/* <FontAwesome name="bell" size={25} color="#f2ca30" */}
-                    <FontAwesome5 name="bell" size={25} color="#f2ca30"
-                        style={{
-                            marginLeft: ww * 18 / 100,
-                            marginTop: wh * -1 / 100
-                        }} />
+                    <View style={{ backgroundColor: "#f2ca30", width: ww * 10 / 100, marginLeft: ww * 18 / 100, marginTop: wh * -1 / 100, height: wh * 5 / 100, borderRadius: ww && wh * 1 / 100, justifyContent: 'center', alignItems: 'center' }}>
+                        {/* <FontAwesome name="bell" size={25} color="#f2ca30" */}
+                        <FontAwesome5 name="bell" size={25} color="#fff"
+                            style={{
+                                // marginLeft: ww * 18 / 100,
+                                // marginTop: wh * -1 / 100
+                            }} />
+
+                        <View style={{ backgroundColor: 'red', width: ww * 5 / 100, height: ww * 5 / 100, borderRadius: ww * 50 / 100, position: 'absolute', right: ww * -2.2 / 100, bottom: wh * 3 / 100, justifyContent: 'center', alignItems: 'center' }}><Text style={{ color: '#fff', fontSize: ResponsiveScreen.fontSize(20), fontWeight: '500' }}>24</Text></View>
+                    </View>
                 </TouchableOpacity>
                 <TouchableOpacity
                     onPress={() => { navigation.openDrawer({ token: tokenAuth }); }}
@@ -285,10 +320,14 @@ const OpenProject = (props) => {
                         }}
                     >
                         <FlatList
-                            data={Alert}
+                            data={dummy}
                             style={{ width: ww * 81 / 100, paddingHorizontal: ww * -0 / 100, height: wh * 63 / 100 }}
                             renderItem={(itemList) => (
-                                <TouchableOpacity
+
+                                <TouchableOpacity onPress={() => {
+                                    setBr(itemList.item.project)
+                                }}
+
                                     style={[mystyles.card, { marginTop: wh * 0.7 / 100 }]}
                                 >
                                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -308,7 +347,7 @@ const OpenProject = (props) => {
                                                 fontSize: ResponsiveScreen.normalize(40),
                                                 textAlign: 'left'
                                             }}>
-                                                arian
+                                                {itemList.item.pname}
                                             </Text>
                                         </View>
                                         <View style={{
@@ -319,20 +358,43 @@ const OpenProject = (props) => {
                                             // marginTop: wh *  / 100,
                                             justifyContent: 'center'
                                         }}>
-                                            {/* <Text style={{
-                                            fontWeight: '600',
-                                            fontFamily: 'sans-serif',
-                                            color: '#525151',
-                                            // backgroundColor: "green",
-                                            fontSize: ResponsiveScreen.normalize(32),
-                                        }}>
 
-                                        </Text> */}
-                                            <View style={{ backgroundColor: '#192570', width: ww * 24 / 100, justifyContent: 'center', alignItems: 'center', borderTopLeftRadius: ww && wh * .6 / 100, borderBottomLeftRadius: ww && wh * .6 / 100, marginTop: wh * 1 / 100 }}><Text style={{ paddingHorizontal: ww * .5 / 100, paddingVertical: wh * .3 / 100, color: '#fff', fontWeight: '400', fontSize: 12.5 }}> New Massege </Text></View>
+
+
+                                            {itemList.item.active === true ? (
+                                                <View
+                                                    style={{
+                                                        backgroundColor: '#192570',
+                                                        width: ww * 24 / 100,
+                                                        justifyContent: 'center',
+                                                        alignItems: 'center',
+                                                        borderTopLeftRadius: ww && wh * .6 / 100,
+                                                        borderBottomLeftRadius: ww && wh * .6 / 100,
+                                                        marginTop: wh * 1 / 100
+                                                    }}>
+                                                    <Text
+                                                        style={{
+                                                            paddingHorizontal: ww * .5 / 100,
+                                                            paddingVertical: wh * .3 / 100,
+                                                            color: '#fff',
+                                                            fontWeight: '400',
+                                                            fontSize: 12.5
+                                                        }}>
+                                                        New Massege
+                                                    </Text>
+                                                </View>
+                                            ) : (
+                                                <Text></Text>
+
+                                            )}
 
                                         </View>
 
                                     </View>
+
+
+
+
                                     <View style={{
                                         width: ww * 30 / 100,
                                         height: wh * 3 / 100,
@@ -347,9 +409,13 @@ const OpenProject = (props) => {
                                             // backgroundColor: "green",
                                             fontSize: ResponsiveScreen.normalize(30),
                                         }}>
-                                            {itemList.item.time}
+                                            {itemList.item.time.slice(0, 10)}
                                         </Text>
                                     </View>
+
+
+
+
 
                                     <View style={{ flexDirection: 'row' }}>
 

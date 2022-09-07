@@ -36,9 +36,12 @@ const wf = Dimensions.get("screen").fontScale;
 const ws = Dimensions.get("screen").scale;
 const wh = Dimensions.get("screen").height;
 const ww = Dimensions.get("screen").width;
+
+
+
 const Bearing = (props) => {
   // const [email, setEmail] = useState("");
-  const [id_select, setSelect] = useState("");
+  // const [id_select, setSelect] = useState("");
   // console.log(tokenAuth)
   // console.log(obj[0][0])
   const tokenAuth = global.TOKEN;
@@ -46,12 +49,14 @@ const Bearing = (props) => {
   const navigation = useNavigation();
 
 
-  const obj = global.OBJ;
-  console.log('1')
+  const [obj, setObj] = useState({});
+
+  // console.log('ooooooooooooooooooooooooooooooo')
   console.log(obj)
-  console.log('2')
-  const [mydata, setData] = useState("");
-  const onCChange = (textValue) => setCode(textValue);
+  // console.log('bbbbbbbbbbbbbbbbbbbbbbbb')
+
+  // console.log(mydata);
+  // const onCChange = (textValue) => setCode(textValue);
 
   //   const [email, setEmail] = useState('ali@test.com');
   //   const onEChange = (textValue) => setEmail(textValue);
@@ -62,29 +67,28 @@ const Bearing = (props) => {
   //   setIsActive(true);
   // const[list , setList] = useState([''])
   // console.log("qqqq")
-  const BellAlert = () =>
-    Alert.alert(
-      "New Event",
-      "My Alert Msg",
-      [
-        // {
-        //   text: "Ask me later",
-        //   onPress: () => console.log("Ask me later pressed")
-        // },
-        {
-          text: "Cancel",
-          onPress: () => console.log("Cancel Pressed"),
-          style: "cancel"
-        },
-        { text: "OK", onPress: () => console.log("OK Pressed") }
+  // const BellAlert = () =>
+  //   Alert.alert(
+  //     "New Event",
+  //     "My Alert Msg",
+  //     [
+  //       // {
+  //       //   text: "Ask me later",
+  //       //   onPress: () => console.log("Ask me later pressed")
+  //       // },
+  //       {
+  //         text: "Cancel",
+  //         onPress: () => console.log("Cancel Pressed"),
+  //         style: "cancel"
+  //       },
+  //       { text: "OK", onPress: () => console.log("OK Pressed") }
 
-      ]
-    );
+  //     ]
+  //   );
   const setPost = () => {
-    const tokenAuth = global.TOKEN;
-    const obj = global.OBJ;
+    // const tokenAuth = global.TOKEN;
+    // const obj = ;
     // const { navigation } = props;
-
     props.navigation.navigate("PhotoAlbum");
   };
   const setDPost = () => {
@@ -92,7 +96,7 @@ const Bearing = (props) => {
   };
   const setAlert = () => {
     props.navigation.navigate('Alert', { token: tokenAuth });
-  }
+  };
   // const response
   //   axios({
   //     method: "get",
@@ -117,13 +121,21 @@ const Bearing = (props) => {
   //     })
   //     .catch((error) => console.log(error));
   //  }
+  const [mydata, setData] = useState([]);
+  // console.log(mydata);
+  // console.log(setData);
+  const [refreshKey, setRefreshKey] = useState(0);
+  console.log('hhhhhhhhhhhhhhhhhhh');
+  console.log(global.OBJ.id);
+  console.log('fffffffffffffff');
   useEffect(() => {
-    const obj = global.OBJ;
+    // const Obj = global.OBJ;
     // const { navigation } = props;
     // props.navigation.navigate("NewPass"),
+    // setRefreshKey(1)
     axios({
       method: "get",
-      url: "http://" + global.UURL + "/USER/opproject/",
+      url: "http://" + global.UURL + "/BIGADMIN/uprojectedit/" + global.OBJ.id,
       // params:{
       //   email:email,
       // },
@@ -136,10 +148,25 @@ const Bearing = (props) => {
         // verification_code: code,
       },
     })
-      // .then((response) => (console.log(response)))
-      // console.log(response)})
+      .then(setRefreshKey(1))
+      // .then((Response) => setData(Response.data))
+      // setRefreshKey(oldKey => oldKey == 1)
+      .then((response) => {
+        if (refreshKey === 0) {
+          setData(response.data)
+          setObj(response.data)
+          // console.log('mishe');
+        } else {
+          // console.log('Nemishe');
+        }
+      })
+      // .then((response) => 
+
+      // .then((response) => console.log(mydata))
+      // .then(console.log(refreshKey))
       .catch((error) => console.log(error));
-  });
+  }), [refreshKey];
+
 
   return (
     <View style={styles3.page}>
@@ -152,6 +179,7 @@ const Bearing = (props) => {
           onPress={setAlert}
         >
           <FontAwesome5 name="bell" size={25} color="black" style={{ marginLeft: ww * 18 / 100, marginTop: wh * -1 / 100 }} />
+          <View style={{ backgroundColor: 'red', width: ww * 5 / 100, height: ww * 5 / 100, borderRadius: ww * 50 / 100, position: 'absolute', right: ww * -3.5 / 100, bottom: wh * 2 / 100, justifyContent: 'center', alignItems: 'center' }}><Text style={{ color: '#fff', fontSize: ResponsiveScreen.fontSize(20), fontWeight: '500' }}>24</Text></View>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => { navigation.openDrawer({ token: tokenAuth }); }}
@@ -188,7 +216,7 @@ const Bearing = (props) => {
                 // marginBottom:wh*5/100,
               }}
             >
-              {obj.name}
+              {mydata.name}
             </Text>
           </View>
           <View
@@ -224,7 +252,7 @@ const Bearing = (props) => {
                 {obj.status === "1" ? (
                   <Text
                     style={[styles3.checkline, {
-                      height: wh * 6.2 / 100,
+                      height: wh * 6.1 / 100,
                       marginTop: -wh * 61 / 100,
                     }]}
                   ></Text>
@@ -234,8 +262,8 @@ const Bearing = (props) => {
                 {obj.status === "2" ? (
                   <Text
                     style={[styles3.checkline, {
-                      height: wh * 15.5 / 100,
-                      marginTop: -wh * 63.3 / 100,
+                      height: wh * 15.2 / 100,
+                      marginTop: -wh * 63.4 / 100,
                     }]}
                   ></Text>
                 ) : (
@@ -244,8 +272,8 @@ const Bearing = (props) => {
                 {obj.status === "3" ? (
                   <Text
                     style={[styles3.checkline, {
-                      height: wh * 24.2 / 100,
-                      marginTop: -wh * 65.6 / 100,
+                      height: wh * 24.4 / 100,
+                      marginTop: -wh * 65.9 / 100,
                     }]}
                   ></Text>
                 ) : (
@@ -254,8 +282,8 @@ const Bearing = (props) => {
                 {obj.status === "4" ? (
                   <Text
                     style={[styles3.checkline, {
-                      height: wh * 33.2 / 100,
-                      marginTop: -wh * 67.9 / 100,
+                      height: wh * 33.6 / 100,
+                      marginTop: -wh * 68.3 / 100,
                     }]}
                   ></Text>
                 ) : (
@@ -264,8 +292,8 @@ const Bearing = (props) => {
                 {obj.status === "5" ? (
                   <Text
                     style={[styles3.checkline, {
-                      height: wh * 42.2 / 100,
-                      marginTop: -wh * 70.2 / 100,
+                      height: wh * 42.7 / 100,
+                      marginTop: -wh * 70.8 / 100,
                     }]}
                   ></Text>
                 ) : (
@@ -274,8 +302,8 @@ const Bearing = (props) => {
                 {obj.status === "6" ? (
                   <Text
                     style={[styles3.checkline, {
-                      height: wh * 51.5 / 100,
-                      marginTop: -wh * 72.6 / 100,
+                      height: wh * 51.9 / 100,
+                      marginTop: -wh * 73.2 / 100,
                     }]}
                   ></Text>
                 ) : (
@@ -284,8 +312,8 @@ const Bearing = (props) => {
                 {obj.status === "7" ? (
                   <Text
                     style={[styles3.checkline, {
-                      height: wh * 60.9 / 100,
-                      marginTop: -wh * 74.9 / 100,
+                      height: wh * 60.95 / 100,
+                      marginTop: -wh * 75.7 / 100,
                     }]}
                   ></Text>
                 ) : (
