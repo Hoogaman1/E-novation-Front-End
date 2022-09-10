@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { EvilIcons, MaterialIcons, Ionicons, FontAwesome5, } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
@@ -51,13 +51,64 @@ ResponsiveScreen.init(720, 1600);
 //     ),
 //   }
 // );
+
+// console.log("alooooooooooooooooooooooooooo");
+
+
+
 const History = (props) => {
+  const [dummy, setDummy] = useState([]);
+  console.log(dummy)
+  const [myRef, setRef] = useState(0)
+
+
+  const navigation = useNavigation();
+  const tokenAuth = global.TOKEN;
+  console.log(global.TOKEN)
+  const afterToken = ''
+  const Ddata = global.DATA;
+  // useEffect(() => {
+  //   console.log('saaaaaaaaa')
+  //   // const Obj = global.OBJ;
+  //   // const { navigation } = props;
+  //   // props.navigation.navigate("NewPass"),
+  //   // setRefreshKey(1)
+  //   // ref.setRefreshKey = ref.setRefreshKey + 1;
+
+  //   // refreshKey = - 1;
+
+  //   axios({
+  //     method: "get",
+  //     url: "http://" + global.UURL + "/BIGADMIN/history/" + Ddata.company,
+
+  //     // params:{
+  //     //   email:email,
+  //     // },
+  //     headers: {
+  //       // 'Content-Type': "application/json",
+  //       Authorization: "Token " + tokenAuth,
+  //       // 'Accept': 'application/json'
+  //     },
+  //     data: {
+  //       // verification_code: code,
+  //     },
+  //   })
+
+  //     .then((Response) => {
+  //       if (myRef < 6) {
+  //         setDummy(Response.data[0].project), setRef(myRef = + 1)
+  //       }
+  //     })
+
+  //     .catch((error) => console.log(error));
+
+  // }, []);
+
   const setAlert = () => {
     props.navigation.navigate('Alert', { token: tokenAuth });
   }
-  const [check, setCheck] = useState('3');
+  // const [check, setCheck] = useState('3');
   // const tokenAuth = props.route.params.token;
-  const navigation = useNavigation();
   // const tokenAuth = "";
   // console.log(global.OBJ)
   // const obj = props.route.params.obj;
@@ -65,7 +116,6 @@ const History = (props) => {
   // console.log(dummy[0].project)
   // console.log(dummy.project)
 
-  const tokenAuth = global.TOKEN;
   // console.log("ghabl")
   // console.log(dummy[0].project[0].name)
   // console.log('bad')
@@ -76,54 +126,71 @@ const History = (props) => {
   //   const [email, setEmail] = useState('ali@test.com');
   //   const onEChange = (textValue) => setEmail(textValue);
   // const [project, setProject] = useState([]);
-  const [dummy, setDummy] = useState([]);
-  const Ddata = global.DATA;
-  useEffect(() => {
-    // props.navigation.navigate("NewPass"),
-    const tokenAuth = global.TOKEN;
-    // const obj = global.OBJ;
-    // console.log(global.OBJ)
+  // const [dummy, setDummy] = useState([]);
 
-    axios({
-      method: "GET",
-      url: "http://" + global.UURL + "/BIGADMIN/history/" + Ddata.company,
-      // params:{
-      //   email:email,
-      // },
-      headers: {
-        // 'Content-Type': "application/json",
-        Authorization: "Token " + tokenAuth,
-        // 'Accept': 'application/json'
-      },
-      data: {
-        // verification_code: code,
-      },
-      // }).then((Response) => console.log(Response.data))
-      // }).then((Response) => {
-      //   // if (Response.status == "200") {
-      //     if(Response.data[0].project!='undefined') {
-      //       console.log(Response.data[0].project)
-      //       setDummy(Response.data[0].project);}
+  // console.log(mydata);
+  // console.log("aaaaaaaaaaaaasddddddddddddddd");
+  // console.log(Ddata);
+  // useEffect(() => {
+  //   // props.navigation.navigate("NewPass"),
+  //   const tokenAuth = global.TOKEN;
+  //   // const obj = global.OBJ;
+  //   // console.log(global.OBJ)
 
-      // })
-    }).then((Response) => {
-      try {
-        setDummy(Response.data[0].project)
+  //   axios({
+  //     method: "GET",
+  //     url: "http://" + global.UURL + "/BIGADMIN/history/" + Ddata.company,
+  //     // params:{
+  //     //   email:email,
+  //     // },
+  //     headers: {
+  //       // 'Content-Type': "application/json",
+  //       Authorization: "Token " + tokenAuth,
+  //       // 'Accept': 'application/json'
+  //     },
+  //     data: {
+  //       // verification_code: code,
+  //     },
+  //     // }).then((Response) => console.log(Response.data))
+  //     // }).then((Response) => {
+  //     //   // if (Response.status == "200") {
+  //     //     if(Response.data[0].project!='undefined') {
+  //     //       console.log(Response.data[0].project)
+  //     //       setDummy(Response.data[0].project);}
 
-        if (check > 0) {
-          setCheck(check - 1)
-        }
+  //     // })
+  //   }).then((Response) => {
+  //     try {
+  //       setDummy(Response.data[0].project)
 
-        console.log(check);
+  //       if (check > 0) {
+  //         setCheck(check - 1)
+  //       }
 
-      } catch (e) {
-        // console.log('Error')
-      }
-    })
+  //       console.log(check);
 
-    // .then((Response) => console.log(Response.data))
-  }, [check]);
+  //     } catch (e) {
+  //       // console.log('Error')
+
+  //     }
+  //   })
+
+  //   // .then((Response) => console.log(Response.data))
+  // }, [check]);
   // console.log(check);
+
+  // console.log()
+
+  // const [refreshKey, setRefreshKey] = useState(0);
+
+  // const ref = useRef(0);
+  // ref.setRefreshKey = ref.setRefreshKey + 1;
+
+  // console.log('mmmmmmmmmmmmmmmmmmmmmmmmmmmm');
+  // console.log(refreshKey);
+  // console.log("llllllllllllllllllllllllllll");
+
+
 
   return (
     <View style={[styles3.page, { flex: 1 }]}>

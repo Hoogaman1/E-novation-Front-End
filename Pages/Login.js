@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigation } from '@react-navigation/native';
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from "react-native-responsive-screen";
-import { Text, View, TextInput, TouchableOpacity, Image, Dimensions } from "react-native";
+
+import { Text, View, TextInput, TouchableOpacity, Image, Dimensions, Alert } from "react-native";
 import { Cache } from "react-native-cache";
 import { styles, Tabletstyles } from "./styleSheets.js";
 import ResponsiveScreen from "react-native-auto-responsive-screen";
+// import { Alert } from "react-native-web";
 ResponsiveScreen.init(720, 1600);
 const wf = Dimensions.get("screen").fontScale;
 const ws = Dimensions.get("screen").scale;
@@ -28,7 +26,7 @@ const LoginPage = (props) => {
   const [password, setPassword] = useState("");
   const onEChange = (textValue) => setEmail(textValue);
   const onPChange = (textValue) => setPassword(textValue);
-  const isStatus = 404;
+  // const isStatus = 404;
 
 
 
@@ -54,7 +52,7 @@ const LoginPage = (props) => {
       // .then((response) => console.log(response.status))
       .then((response) => {
         if (response.status == "202") {
-          // console.log(response.data);
+          console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
           // props.navigation.navigate("OpenProject",{token: response.data.data.token});
           // props.navigation.navigate("OpenProject",{token: response.data.data.token});
           sendToken(response.data.data.token)
@@ -65,10 +63,47 @@ const LoginPage = (props) => {
           console.log(global.DATA)
           console.log('bad')
         }
+        // if (response.status == "404") {
+        //   // Alert.alert(
+        //   //   "Username and password are wrong ",
+        //   //   // "My Alert Msg",
+        //   //   [
+        //   //     {
+        //   //       text: "Cancel",
+        //   //       onPress: () => console.log("Cancel Pressed"),
+        //   //       style: "cancel"
+        //   //     },
+        //   //     { text: "OK", onPress: () => console.log("OK Pressed") }
+        //   //   ]
+        //   // );
+
+        //   console.log("bodo binm");
+        // }
+        else {
+          console.log('aaaaaaaaaaa');
+        }
       })
 
 
-      .catch((error) => console.log(error));
+      .catch((error) =>
+
+        // Alert.alert(
+        //   "Username and password are wrong ",
+        //   // "My Alert Msg",
+        //   [
+        //     {
+        //       text: "Cancel",
+        //       onPress: () => console.log("Cancel Pressed"),
+        //       style: "cancel"
+        //     },
+        //     { text: "OK", onPress: () => console.log("OK Pressed") }
+        //   ]
+        // )
+
+        Alert.alert('Username and password are wrong', error.message)
+
+        // console.log('bbbbbbbbbbbbbbbbbbbbbbbbbbbb')
+      );
   }
   const sendToken = (AuthToken) => {
     props.navigation.navigate("OpenProject", { token: AuthToken })

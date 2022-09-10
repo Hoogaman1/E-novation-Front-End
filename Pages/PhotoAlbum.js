@@ -20,6 +20,7 @@ import {
   Pressable,
   ScrollView,
   Dimensions,
+  BackHandler
 } from "react-native";
 import { styles, styles2, btn, styles3 } from "./styleSheets.js";
 import { useNavigation } from '@react-navigation/native';
@@ -29,7 +30,46 @@ const ws = Dimensions.get("screen").scale;
 const wh = Dimensions.get("screen").height;
 const ww = Dimensions.get("screen").width;
 
+// global.Ref = 0
+
 const PhotoAlbum = (props) => {
+
+
+
+
+
+  // if (global.Ref == 1) {
+  //   const backAction = () => {
+
+  //     BackHandler.exitApp()
+
+  //     return true;
+  //   };
+
+  //   useEffect(() => {
+  //     BackHandler.addEventListener("hardwareBackPress", backAction);
+
+  //     return () =>
+  //       BackHandler.removeEventListener("hardwareBackPress", backAction);
+  //   }, []);
+  // } else {
+  //   const backAction = () => {
+
+  //     // BackHandler.exitApp()
+
+  //     return false;
+  //   };
+  //   useEffect(() => {
+  //     BackHandler.addEventListener("hardwareBackPress", backAction);
+
+  //     return () =>
+  //       BackHandler.removeEventListener("hardwareBackPress", backAction);
+  //   }, []);
+  // }
+
+
+
+
   const navigation = useNavigation();
   // const DATA = [
   //   {

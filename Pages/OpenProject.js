@@ -22,6 +22,8 @@ import {
   FlatList,
   StyleSheet,
   Dimensions,
+  BackHandler,
+  Alert
 } from "react-native";
 
 import { styles2, btn, styles3 } from "./styleSheets.js";
@@ -39,7 +41,55 @@ ResponsiveScreen.init(720, 1600);
 //   modalizeRef.current?.open();
 // };
 
+// global.Ref = 1
+
 const OpenProject = (props) => {
+
+
+
+  // if (global.Ref == 1) {
+  //   const backAction = () => {
+
+  //     BackHandler.exitApp()
+
+  //     return true;
+  //   };
+
+  //   useEffect(() => {
+  //     BackHandler.addEventListener("hardwareBackPress", backAction);
+
+  //     return () =>
+  //       BackHandler.removeEventListener("hardwareBackPress", backAction);
+  //   }, []);
+  // } else {
+  //   const backAction = () => {
+
+  //     // BackHandler.exitApp()
+
+  //     return false;
+  //   };
+  //   useEffect(() => {
+  //     BackHandler.addEventListener("hardwareBackPress", backAction);
+
+  //     return () =>
+  //       BackHandler.removeEventListener("hardwareBackPress", backAction);
+  //   }, []);
+  // }
+
+
+  // const backAction = () => {
+
+  //   // BackHandler.exitApp()
+
+  //   return false;
+  // };
+
+  // useEffect(() => {
+  //   BackHandler.addEventListener("hardwareBackPress", backAction);
+
+  //   return () =>
+  //     BackHandler.removeEventListener("hardwareBackPress", backAction);
+  // }, []);
 
 
 
@@ -129,6 +179,7 @@ const OpenProject = (props) => {
 
       .catch((error) => console.log(error));
   }, []);
+
   const itemclick = (obj) => {
     global.OBJ = obj
     props.navigation.navigate("Bearing")
