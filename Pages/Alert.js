@@ -22,9 +22,10 @@ import {
     FlatList,
     StyleSheet,
     Dimensions,
+    StatusBar
 } from "react-native";
 
-import { styles2, btn, styles3 } from "./styleSheets.js";
+import { styles2, btn, styles3 } from "./styleSheets2.js";
 import ResponsiveScreen from "react-native-auto-responsive-screen";
 import LoginPage from "../Pages/Login";
 const wf = Dimensions.get("screen").fontScale;
@@ -186,18 +187,42 @@ const OpenProject = (props) => {
     }
     const setBr = (pp) => {
 
-        global.OBJ = ({ "id": Number(pp) })
+        // global.OBJ = ({ "id": Number(pp.project) ,name:pp.pname})
+        global.PROJ = ({ "id": pp.project,"name":pp.pname })
         // console.log('RRRRRRRRRRRRRRRRRRRRRRRRRRR');
-        console.log(global.OBJ);
-        props.navigation.navigate('Bearing', { token: tokenAuth });
-
-        // console.log("asadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaasollah")
-    }
-
-
-    // const setSend = (pq) => {
-    //     // const response 
-
+        // console.log(global.OBJ);
+        navigation.navigate(pp.state);
+        axios({
+            method: "patch",
+                    url: "http://" + global.UURL + "/BIGADMIN/alertedit/"+pp.id,
+                    headers: {
+                        // 'Content-Type': "application/json",
+                        Authorization: "Token " + global.TOKEN,
+                        // 'Accept': 'application/json'
+                    },
+                    data: {
+                        // id_number: id_select,
+                    },
+                })
+                // .then((response) => console.log(response.status))
+                // .then(console.log('salam'))
+                .then((response) => {
+                    console.log(response.data)
+                    
+                    if (response.status == "202") {
+                        
+                          console.log('okkkkk')
+                        }
+                    })
+                    .catch((error) => console.log(error));
+                    
+                    // console.log("asadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaasollah")
+                }
+                
+                
+                // const setSend = (pq) => {
+                    //     // const response 
+                    
     //     // console.log(global.UURL);
     //     axios({
     //         method: "patch",
@@ -216,7 +241,8 @@ const OpenProject = (props) => {
     // }
 
 
-
+    const [refresh, setRefresh] = useState(false);
+    setTimeout(() => setRefresh( !refresh), 3500)
     useEffect(() => {
         const tokenAuth = global.TOKEN;
         // console.log("asadollah")
@@ -241,11 +267,11 @@ const OpenProject = (props) => {
             // .then((response) => console.log("asadaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaasollah"))
 
             .catch((error) => console.log(error));
-    }, []);
+    },[refresh]);
 
     return (
         <View style={styles3.page}>
-            <View style={styles3.topbox}>
+            {/* <View style={[styles3.topbox,{marginTop:'7%'}]}>
                 <Image
                     source={require("../assets/app_ui2-13.png")}
                     style={styles3.logo}
@@ -253,9 +279,9 @@ const OpenProject = (props) => {
                 <TouchableOpacity
                     onPress={setAlert}
                 >
-                    <View style={{ backgroundColor: "#f2ca30", width: ww * 10 / 100, marginLeft: ww * 18 / 100, marginTop: wh * -1 / 100, height: wh * 5 / 100, borderRadius: ww && wh * 1 / 100, justifyContent: 'center', alignItems: 'center' }}>
-                        {/* <FontAwesome name="bell" size={25} color="#f2ca30" */}
-                        <FontAwesome5 name="bell" size={25} color="#fff"
+                    <View style={{ backgroundColor: "#f2ca30", width: ww * 7.5 / 100, marginLeft: ww * 18 / 100, marginTop: wh * -1 / 100, height: ww * 7.5 / 100, borderRadius: ww && wh * 1 / 100, justifyContent: 'center', alignItems: 'center' }}>
+                    
+                        <FontAwesome5 name="bell" size={ResponsiveScreen.fontSize(35)} color="#fff"
                             style={{
                                 // marginLeft: ww * 18 / 100,
                                 // marginTop: wh * -1 / 100
@@ -267,12 +293,92 @@ const OpenProject = (props) => {
                 <TouchableOpacity
                     onPress={() => { navigation.openDrawer({ token: tokenAuth }); }}
                 >
-                    <Image
-                        source={require("../assets/app_ui2-11.png")}
-                        style={styles3.logo2}
-                    />
+                    <Ionicons
+            name="ios-menu-sharp"
+            size={ResponsiveScreen.fontSize(60)}
+            color="black"
+            style={{
+              marginTop: ResponsiveScreen.normalize(10),
+              marginRight: ResponsiveScreen.normalize(30),
+            }}
+          />
+                    
                 </TouchableOpacity>
-            </View>
+            </View> */}
+<StatusBar
+        animated={true}
+        backgroundColor="#fff"
+        barStyle={"dark-content"}
+        translucent={true}
+        hidden={false}
+      />
+
+      <View
+        style={[
+          styles3.topbox,
+          {
+            flex: 0.45,
+            // backgroundColor: 'red'
+            marginTop:'10%'
+          },
+        ]}
+      >
+        <Image
+          source={require("../assets/app_ui2-13.png")}
+          style={[styles3.logo, { height: (wh * 7) / 100 }]}
+        />
+        <View style={{flexDirection:'row',justifyContent:'space-between',width:ww*25/100}}>
+        <TouchableOpacity onPress={setAlert} style={{width:ww*7.5/100,height:ww*7.5/100,backgroundColor:"#f2ca30",borderRadius:ww*2/100,alignItems:'center',justifyContent:'center',marginTop:'5%'}}>
+          <FontAwesome5
+            name="bell"
+            size={ResponsiveScreen.fontSize(45)}
+            color="#fff"
+            style={{
+            //   marginLeft: (ww * 18) / 100,
+            //   marginTop: (wh * 1) / 100,
+            }}
+          />
+          {/* <View
+            style={{
+              backgroundColor: "red",
+              width: (ww * 5) / 100,
+              height: (ww * 5) / 100,
+              borderRadius: (ww * 50) / 100,
+              position: "absolute",
+              right: (ww * -3.5) / 100,
+              bottom: (wh * 2) / 100,
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Text
+              style={{
+                color: "#fff",
+                fontSize: ResponsiveScreen.fontSize(20),
+                fontWeight: "500",
+              }}
+            >
+              24
+            </Text>
+          </View> */}
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.openDrawer({ token: tokenAuth });
+          }}
+        >
+          <Ionicons
+            name="ios-menu-sharp"
+            size={ResponsiveScreen.fontSize(60)}
+            color="black"
+            style={{
+              marginTop: ResponsiveScreen.normalize(10),
+              marginRight: ResponsiveScreen.normalize(30),
+            }}
+          />
+        </TouchableOpacity>
+        </View>
+      </View>
 
             {/* <TouchableOpacity onPress={onOpen}>
         <Text>Open the modal</Text>
@@ -288,31 +394,86 @@ const OpenProject = (props) => {
                     ]}
                 >
                     <View
-                        style={{
-                            // backgroundColor: "blue",
-                            width: ww,
-                            borderRadius: 20,
-                            height: wh * 11 / 100,
-                        }}
-                    >
-                        <Text
-                            style={{
-                                fontSize: ResponsiveScreen.normalize(46),
-                                fontFamily: "Roboto",
-                                color: "#f2ca30",
-                                marginTop: wh * 5 / 100,
-                                marginLeft: ww * 14 / 100,
-                                // marginBottom: wh*1/100,
-                            }}
-                        >
-                            Alert Page
-                        </Text>
-                    </View>
+            style={{
+              alignSelf: "center",
+              marginTop: "1%",
+              width: "85%",
+              height: (ww * 10) / 100,
+              paddingHorizontal: "0.8%",
+              borderRadius: (ww * 4) / 200,
+              flexDirection: "row",
+              // marginRight:'-3%',
+              alignItems: "center",
+              // backgroundColor: "#fff",
+              justifyContent: "space-between",
+              // borderColor:"#575757",
+              // borderWidth:0.3,
+              elevation: 3,
+              backgroundColor: "#fff",
+              shadowOffset: { width: 3, height: 3 },
+              shadowColor: "#000",
+              shadowOpacity: 1,
+              shadowRadius: 8,
+            }}
+          >
+            <View
+              style={{
+                height: "90%",
+                backgroundColor: "#fff",
+                borderRadius: (ww * 2) / 200,
+                alignItems: "flex-start",
+                justifyContent: "center",
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: ResponsiveScreen.fontSize(30),
+                  color: "#575757",
+                  fontWeight:'700',
+
+                  // marginTop: wh * 2.5 / 100,
+                  // marginLeft: ww * 5 / 100,
+                  textAlign: "left",
+                //   backgroundColor: 'pink'
+                }}
+              >
+                {"  "}
+                {global.OBJ.company}
+                {"  "}
+              </Text>
+            </View>
+            <View
+              style={{
+                // width: "45%",
+                height: "75%",
+                backgroundColor: "#f2ca30",
+                borderRadius: (ww * 2) / 200,
+                alignItems: "flex-end",
+                justifyContent: "center",
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: ResponsiveScreen.normalize(30),
+                  fontFamily: "Roboto",
+                  color: "#fff",
+                  textAlign: "right",
+                  // backgroundColor:'pink'
+
+                  // marginTop: ResponsiveScreen.normalize(50),
+                  // marginLeft: ResponsiveScreen.normalize(35),
+                  // marginBottom: ResponsiveScreen.normalize(30),
+                }}
+              >
+                {"     "}Notifications{"     "}
+              </Text>
+            </View>
+          </View>
                     <View
                         style={{
                             // backgroundColor: 'red',
                             width: ww * 82 / 100,
-                            height: wh * 65 / 100,
+                            height: wh * 70 / 100,
                             marginTop: wh * 1 / 100,
                             // elevation:3,
                             borderRadius: 20,
@@ -321,11 +482,11 @@ const OpenProject = (props) => {
                     >
                         <FlatList
                             data={dummy}
-                            style={{ width: ww * 81 / 100, paddingHorizontal: ww * -0 / 100, height: wh * 63 / 100 }}
+                            style={{ width: ww * 81 / 100, paddingHorizontal: ww * -0 / 100, height: '100%' }}
                             renderItem={(itemList) => (
 
                                 <TouchableOpacity onPress={() => {
-                                    setBr(itemList.item.project)
+                                    setBr(itemList.item)
                                 }}
 
                                     style={[mystyles.card, { marginTop: wh * 0.7 / 100 }]}
@@ -351,12 +512,16 @@ const OpenProject = (props) => {
                                             </Text>
                                         </View>
                                         <View style={{
-                                            width: ww * 39.5 / 100,
-                                            height: wh * 4 / 100,
-                                            marginLeft: ww * 2 / 100,
-                                            // backgroundColor: "green",
+                                            // width: ww * 39.5 / 100,
+                                            // height: wh * 4 / 100,
+                                            // marginLeft: ww * 2 / 100,
+                                            backgroundColor: "green",
                                             // marginTop: wh *  / 100,
-                                            justifyContent: 'center'
+                                            justifyContent: 'center',
+                                            position:'absolute',
+                                            top:'15%',
+                                            right:'2%'
+
                                         }}>
 
 
@@ -365,12 +530,16 @@ const OpenProject = (props) => {
                                                 <View
                                                     style={{
                                                         backgroundColor: '#192570',
-                                                        width: ww * 24 / 100,
+                                                        // width: ww * 24 / 100,
                                                         justifyContent: 'center',
                                                         alignItems: 'center',
-                                                        borderTopLeftRadius: ww && wh * .6 / 100,
-                                                        borderBottomLeftRadius: ww && wh * .6 / 100,
-                                                        marginTop: wh * 1 / 100
+                                                        borderRadius: ww && wh * .6 / 100,
+                                                        position:'absolute',
+                                                        top:'2%',
+                                                        right:'2%'
+
+                                                        // marginTop: ww * 4 / 100,
+                                                        // marginRight: ww * 4 / 100,
                                                     }}>
                                                     <Text
                                                         style={{
@@ -380,7 +549,7 @@ const OpenProject = (props) => {
                                                             fontWeight: '400',
                                                             fontSize: 12.5
                                                         }}>
-                                                        New Massege
+                                                        {'  '}New Notification{'  '}
                                                     </Text>
                                                 </View>
                                             ) : (
@@ -417,20 +586,22 @@ const OpenProject = (props) => {
 
 
 
-                                    <View style={{ flexDirection: 'row' }}>
+                                    <View style={{ flexDirection: 'row',justifyContent:'space-between',paddingRight:'5%' }}>
 
 
                                         <View style={{
-                                            width: ww * 67 / 100,
+                                            // width: ww * 67 / 100,
+                                            borderRadius: ww && wh * .6 / 100,
                                             height: wh * 3 / 100,
-                                            paddingLeft: ww * 4 / 100,
-                                            // backgroundColor: "yellow",
-                                            justifyContent: 'center'
+                                            paddingHorizontal: ww * 4 / 100,
+                                            backgroundColor: "#f2ca30",
+                                            justifyContent: 'center',
+                                            marginLeft:'5.5%'
                                         }}>
                                             <Text style={{
                                                 fontWeight: '600',
                                                 // fontFamily: 'sans-serif',
-                                                color: '#525151',
+                                                color: '#fff',
                                                 // backgroundColor: "green",
                                                 fontSize: ResponsiveScreen.normalize(30),
                                             }}>
@@ -438,13 +609,13 @@ const OpenProject = (props) => {
                                             </Text>
                                         </View>
 
-                                        <View  >
+                                        {/* <View  >
                                             {itemList.item.alarm === true ? (
                                                 <Text></Text>
                                             ) : (
                                                 <FontAwesome name="bell" size={19} color="#f2ca30" style={{ fontWeight: "bold", marginLeft: ww * 0 / 100, marginTop: wh * -0 / 100 }} />
                                             )}
-                                        </View>
+                                        </View> */}
                                     </View>
                                 </TouchableOpacity>
                             )}

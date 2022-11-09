@@ -16,9 +16,10 @@ import {
   Image,
   FlatList,
   StyleSheet,
-  Dimensions
+  Dimensions,
+  StatusBar,
 } from "react-native";
-import { styles3, styles2, btn } from "./styleSheets.js";
+import { styles3, styles2, btn } from "./styleSheets2.js";
 
 import { EvilIcons, MaterialIcons, Ionicons, FontAwesome5, } from "@expo/vector-icons";
 import ResponsiveScreen from "react-native-auto-responsive-screen";
@@ -141,24 +142,75 @@ const Notif = (props) => {
   }, []);
 
   return (
-    <View style={styles2.page}>
-      <View style={styles3.topbox}>
+<View style={styles3.page}>
+      <StatusBar
+        animated={true}
+        backgroundColor="#fff"
+        barStyle={"dark-content"}
+        translucent={true}
+        hidden={false}
+      />
+
+      <View
+        style={[
+          styles3.topbox,
+          {
+            flex: 0.45,
+            // backgroundColor: 'red'
+          },
+        ]}
+      >
         <Image
           source={require("../assets/app_ui2-13.png")}
-          style={styles3.logo}
+          style={[styles3.logo, { height: (wh * 7) / 100 }]}
         />
-        <TouchableOpacity
-          onPress={setAlert}
-        >
-          <FontAwesome5 name="bell" size={25} color="black" style={{ marginLeft: ww * 18 / 100, marginTop: wh * -1 / 100 }} />
-          <View style={{ backgroundColor: 'red', width: ww * 5 / 100, height: ww * 5 / 100, borderRadius: ww * 50 / 100, position: 'absolute', right: ww * -3.5 / 100, bottom: wh * 2 / 100, justifyContent: 'center', alignItems: 'center' }}><Text style={{ color: '#fff', fontSize: ResponsiveScreen.fontSize(20), fontWeight: '500' }}>24</Text></View>
+        <TouchableOpacity onPress={setAlert}>
+          <FontAwesome5
+            name="bell"
+            size={ResponsiveScreen.fontSize(45)}
+            color="black"
+            style={{
+              marginLeft: (ww * 18) / 100,
+              marginTop: (wh * 1) / 100,
+            }}
+          />
+          {/* <View
+            style={{
+              backgroundColor: "red",
+              width: (ww * 5) / 100,
+              height: (ww * 5) / 100,
+              borderRadius: (ww * 50) / 100,
+              position: "absolute",
+              right: (ww * -3.5) / 100,
+              bottom: (wh * 2) / 100,
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Text
+              style={{
+                color: "#fff",
+                fontSize: ResponsiveScreen.fontSize(20),
+                fontWeight: "500",
+              }}
+            >
+              24
+            </Text>
+          </View> */}
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => { navigation.openDrawer({ token: tokenAuth }); }}
+          onPress={() => {
+            navigation.openDrawer({ token: tokenAuth });
+          }}
         >
-          <Image
-            source={require("../assets/app_ui2-11.png")}
-            style={styles3.logo2}
+          <Ionicons
+            name="ios-menu-sharp"
+            size={ResponsiveScreen.fontSize(60)}
+            color="black"
+            style={{
+              marginTop: ResponsiveScreen.normalize(10),
+              marginRight: ResponsiveScreen.normalize(30),
+            }}
           />
         </TouchableOpacity>
       </View>
@@ -167,22 +219,99 @@ const Notif = (props) => {
           styles2.butbox,
           {
             alignItems: "center",
+            // flex:1,
             // backgroundColor: "red",
             width: ww,
+            marginTop:ww*35/100,
             marginLeft: ww * 0.5 / 100,
           },
         ]}
       >
+        <View
+            style={{
+              // marginTop: "-5%",
+              width: "85%",
+              height: (ww * 10) / 100,
+              paddingHorizontal: "0.8%",
+              borderRadius: (ww * 4) / 200,
+              flexDirection: "row",
+              // marginRight:'-3%',
+              alignItems: "center",
+              // backgroundColor: "#fff",
+              justifyContent: "space-between",
+              // borderColor:"#575757",
+              // borderWidth:0.3,
+              elevation: 3,
+              backgroundColor: "#fff",
+              shadowOffset: { width: 3, height: 3 },
+              shadowColor: "#000",
+              shadowOpacity: 1,
+              shadowRadius: 8,
+            }}
+          >
+            <View
+              style={{
+                height: "90%",
+                backgroundColor: "#fff",
+                borderRadius: (ww * 2) / 200,
+                alignItems: "flex-start",
+                justifyContent: "center",
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: ResponsiveScreen.fontSize(30),
+                  color: "#575757",
+                  fontWeight:'700',
+
+                  // marginTop: wh * 2.5 / 100,
+                  // marginLeft: ww * 5 / 100,
+                  textAlign: "left",
+                  // backgroundColor: 'pink'
+                }}
+              >
+                {"  "}
+                {global.OBJ.company}
+                {"  "}
+              </Text>
+            </View>
+            <View
+              style={{
+                width: "45%",
+                height: "75%",
+                backgroundColor: "#f2ca30",
+                borderRadius: (ww * 2) / 200,
+                alignItems: "flex-end",
+                justifyContent: "center",
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: ResponsiveScreen.normalize(30),
+                  fontFamily: "Roboto",
+                  color: "#fff",
+                  textAlign: "right",
+                  // backgroundColor:'pink'
+
+                  // marginTop: ResponsiveScreen.normalize(50),
+                  // marginLeft: ResponsiveScreen.normalize(35),
+                  // marginBottom: ResponsiveScreen.normalize(30),
+                }}
+              >
+                Notification Settings{"  "}
+              </Text>
+            </View>
+          </View>
         <Text
           style={{
             fontSize: ResponsiveScreen.normalize(50),
             color: "#f2ca30",
-            marginTop: wh * 10 / 100,
+            marginTop: wh * 6 / 100,
             fontFamily: "Roboto",
             // backgroundColor: 'green'
           }}
         >
-          Notification Settings
+          {/* Notification Settings */}
         </Text>
         <View>
           {/* <FlatList
@@ -200,6 +329,21 @@ const Notif = (props) => {
             >
               <CheckBox
                 center
+                size={ResponsiveScreen.fontSize(45)}
+                checkedColor="#f2ca30"
+                containerStyle={{
+                  // backgroundColor: "#f2ca30",
+                  height: (wh * 4) / 100,
+                  padding: 0,
+                  margin: 0,
+                  // marginRight: "-5%",
+                  alignSelf:'flex-start'
+                }}
+                textStyle={{
+                  color: "#575757",
+                  fontSize: ResponsiveScreen.normalize(30),
+                }}
+                wrapperStyle={{ height: (wh * 4) / 100 }}
                 title="After Each Update"
                 checked={checked1}
                 onPress={() => { setChecked1(!checked1), setChecked2(false), setChecked3(false), setChecked4(false); setPost() }}
@@ -209,6 +353,21 @@ const Notif = (props) => {
             <View style={[mystyles.card, { alignItems: "flex-start" }]}>
               <CheckBox
                 center
+                size={ResponsiveScreen.fontSize(45)}
+                checkedColor="#f2ca30"
+                containerStyle={{
+                  // backgroundColor: "#f2ca30",
+                  height: (wh * 4) / 100,
+                  padding: 0,
+                  margin: 0,
+                  // marginRight: "-5%",
+                  alignSelf:'flex-start'
+                }}
+                textStyle={{
+                  color: "#575757",
+                  fontSize: ResponsiveScreen.normalize(30),
+                }}
+                wrapperStyle={{ height: (wh * 4) / 100 }}
                 title="Once per Hour"
                 checked={checked2}
                 onPress={() => { setChecked2(!checked2), setChecked1(false), setChecked3(false), setChecked4(false); setPost() }}
@@ -217,6 +376,21 @@ const Notif = (props) => {
             <View style={[mystyles.card, { alignItems: "flex-start" }]}>
               <CheckBox
                 center
+                size={ResponsiveScreen.fontSize(45)}
+                checkedColor="#f2ca30"
+                containerStyle={{
+                  // backgroundColor: "#f2ca30",
+                  height: (wh * 4) / 100,
+                  padding: 0,
+                  margin: 0,
+                  // marginRight: "-5%",
+                  alignSelf:'flex-start'
+                }}
+                textStyle={{
+                  color: "#575757",
+                  fontSize: ResponsiveScreen.normalize(30),
+                }}
+                wrapperStyle={{ height: (wh * 4) / 100 }}
                 title="Once after 5 Hours"
                 checked={checked3}
                 // onPress={()=>{setSelect(itemList.item.id_number);setPost()}}>
@@ -227,6 +401,21 @@ const Notif = (props) => {
             <View style={[mystyles.card, { alignItems: "flex-start" }]}>
               <CheckBox
                 center
+                size={ResponsiveScreen.fontSize(45)}
+                checkedColor="#f2ca30"
+                containerStyle={{
+                  // backgroundColor: "#f2ca30",
+                  height: (wh * 4) / 100,
+                  padding: 0,
+                  margin: 0,
+                  // marginRight: "-5%",
+                  alignSelf:'flex-start'
+                }}
+                textStyle={{
+                  color: "#575757",
+                  fontSize: ResponsiveScreen.normalize(30),
+                }}
+                wrapperStyle={{ height: (wh * 4) / 100 }}
                 title="Once per Day"
                 checked={checked4}
                 onPress={() => { setChecked4(!checked4), setChecked2(false), setChecked3(false), setChecked1(false); setPost() }}
@@ -275,12 +464,14 @@ const mystyles = StyleSheet.create({
     marginLeft: ww * 0 / 100,
     // marginVertical:"10%",
     fontFamily: "Roboto",
-    fontSize: ResponsiveScreen.normalize(60),
+    fontSize: ResponsiveScreen.normalize(40),
     marginTop: wh * 1.5 / 100,
     // marginStart:35,
     // paddingStart:15,
-    width: ww * 70 / 100,
-    height: wh * 7 / 100,
+    width: ww * 50 / 100,
+    // height: wh * 7 / 100,
+    paddingVertical:'2%',
+    paddingLeft:'3%',
     textAlign: "left",
     lineHeight: 50,
     borderRadius: ww * 2 / 100,

@@ -26,7 +26,7 @@ import History from "./Pages/History";
 import Notif from "./Pages/Notif";
 import DocAlbum from "./Pages/DocAlbum";
 // import test from "./Pages/test";
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import DrawerNavigator from "./Pages/DrawerNavigator";
 import { MainStackNavigator } from "./Pages/StackNavigator";
 // import EditProject from './Pages/EditProject'
@@ -93,6 +93,39 @@ import { MainStackNavigator } from "./Pages/StackNavigator";
 //     easing:Easing.linear
 //   }
 // }
+// const getData = async () => {
+//   // console.log('bbbbbbbbbbbbbb')
+  
+//     try {
+//       const value = await AsyncStorage.getItem('@token')
+//       const value2 = await AsyncStorage.getItem('@obj')
+//       if(value !== '1') {
+//         // value previously stored
+//         global.TOKEN=value
+//         global.OBJ = JSON.parse(value2);
+//         // global.OBJ=JSON.parse(parsed_data);
+//         console.log('salammmmat')
+//         // setToggle(true)
+//         // setTimeout(() => 
+//         // props.navigation.navigate("OpenProject")
+//         // ,1000)
+//       //   props.navigation.navigate("Users");
+
+//       }else {
+//           setTimeout(() => 
+//           props.navigation.navigate("Login")
+//            ,1000)
+           
+//       }
+//     } catch(e) {
+//       // setToggle(false)
+
+//       // error reading value
+//       console.log(e)
+
+//     }
+//   };
+//   getData()
 export default function App({ navigation }) {
   // const [fontLoading, setFontLoading] = useState(false);
   // if (fontLoading)
@@ -103,8 +136,9 @@ export default function App({ navigation }) {
   //       onError={console.warn}
   //     />
   // }
-  // global.UURL = "192.168.1.135:8000"
-  global.UURL = "192.168.43.223:8000"
+  global.UURL = "154.26.136.182:8001"
+
+  // global.UURL = "192.168.43.223:8000"
   return (
     <NavigationContainer>
       {/* <Stack.Navigator>

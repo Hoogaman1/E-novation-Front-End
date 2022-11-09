@@ -1,6 +1,7 @@
 // ./navigation/DrawerNavigator.js
 // import LoginPage from './Login';
 import React, { Component } from "react";
+// import { setTimeout } from "timers/promises";
 import {
   EvilIcons,
   MaterialCommunityIcons,
@@ -11,6 +12,8 @@ import {
 
   // MaterialCommunityIcons
 } from "@expo/vector-icons";
+const wh = Dimensions.get("screen").height;
+const ww = Dimensions.get("screen").width;
 import {
   Text,
   View,
@@ -20,8 +23,10 @@ import {
   Image,
   FlatList,
   StyleSheet,
+  Dimensions,
   Linking,
 } from "react-native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
 import { MainStackNavigator, HistoryStackNavigator } from "./StackNavigator";
@@ -33,13 +38,68 @@ global.DATA = "";
 // global.URl = "192.168.108.160:8000";
 global.UURL = "192.168.1.135:8000"
 let phoneNumber = 'tel:${+6186117749}';
+// const getData = async () => {
+//   try {
+//     const value2 = await AsyncStorage.getItem('@obj')
+//     const value = await AsyncStorage.getItem('@token')
+//       console.log('2222222222222objjjjjjjjjjjjjjjjj2222222222222222')
+//       console.log(value2)
+//       console.log('22222222222222objjjjjjjjjjjj222222')
+
+//     if(value !== null && value !== '1') {
+//       // value previously stored
+//       global.TOKEN=value
+//       global.OBJ=value2
+//       console.log('111111111111111111111111111111111111111111111111111111111111111111111111111111111111111')
+//       console.log(global.OBJ)
+//       console.log('111111111111111111111111111111111111111111111111111111111111111111111111111111111111111')
+//       setToggle(true)
+//       // setconut(conut+1)
+
+//     }else {console.log('cant')}
+//   } catch(e) {}
+// };
+// getData()
 const makeCall = () => {
   Linking.openURL(phoneNumber);
 };
+const makeMessage = () => {
+  Linking.openURL('sms:+6186117749');
+};
+const seti = async () => {
+  await AsyncStorage.setItem('@token', '1')
+  // await AsyncStorage.setItem('@OBJ', global.OBJ)
+  console.log('log outttttttttttttttttt')
+};
+
+
 function CustomDrawerContent(props) {
+  const getDataa = async () => {
+   
+    
+      const value = await AsyncStorage.getItem('@token')
+      const value2 = await AsyncStorage.getItem('@obj')
+      return({value2,value})
+  
+    };
+    getDataa().then((response) => {
+  
+  
+      if(response.value !== '1') {
+      // value previously stored
+      global.TOKEN=response.value
+      global.OBJ = JSON.parse(response.value2);
+
+    }else {
+      console.log('khatar')
+
+    }})
+  
+
   return (
     <View
       style={{
+        alignSelf:'flex-end',
         width: ResponsiveScreen.normalize(500),
         height: ResponsiveScreen.normalize(1600),
         // backgroundColor: "#e5e5e5",
@@ -53,8 +113,9 @@ function CustomDrawerContent(props) {
     >
       <View style={{ flexDirection: "column" }}>
         <View>
+          {typeof global.OBJ != "undefined" &&  global.OBJ !== null?(
           <Image
-            source={{ uri: "http://" + global.UURL + "/media/" + global.DATA.img }}
+            source={{ uri: "http://" + global.UURL + "/media/" + global.OBJ.img }}
             style={{
               width: ResponsiveScreen.normalize(130),
               height: ResponsiveScreen.normalize(130),
@@ -64,9 +125,23 @@ function CustomDrawerContent(props) {
             }}
             resizeMode={'center'}
           />
+          ):(
+            <Image
+            source={require("../assets/app_ui2-13.png")}
+            style={{
+              width: ResponsiveScreen.normalize(130),
+              height: ResponsiveScreen.normalize(130),
+              borderRadius: ResponsiveScreen.normalize(30),
+              marginTop: ResponsiveScreen.normalize(15),
+              marginHorizontal: ResponsiveScreen.normalize(-10),
+            }}
+            resizeMode={'center'}
+          />
+          )}
         </View>
         <View>
           <Text style={Dstyles.toptext}>Welcome...!</Text>
+          {typeof global.OBJ != "undefined" &&  global.OBJ !== null?(
           <Text style={{
             width: ResponsiveScreen.normalize(380),
             color: "#fff",
@@ -75,7 +150,20 @@ function CustomDrawerContent(props) {
             marginTop: ResponsiveScreen.normalize(10),
             marginBottom: ResponsiveScreen.normalize(70),
 
-          }}>{global.DATA.company}</Text>
+          }}>
+             {global.OBJ.company} </Text>):(
+               <Text style={{
+                width: ResponsiveScreen.normalize(380),
+                color: "#fff",
+                fontSize: ResponsiveScreen.normalize(40),
+                marginLeft: ResponsiveScreen.normalize(-13),
+                marginTop: ResponsiveScreen.normalize(10),
+                marginBottom: ResponsiveScreen.normalize(70),
+    
+              }}>
+                 Dear Client </Text>
+             )}
+            
           {/* <Text style={[Dstyles.toptext,{marginTop:ResponsiveScreen.normalize(-68),width:ResponsiveScreen.normalize(455)}]}>saman</Text> */}
         </View>
       </View>
@@ -97,8 +185,9 @@ function CustomDrawerContent(props) {
             { marginTop: ResponsiveScreen.normalize(0), color: "#fff" },
           ]}
         >
-          Your Open Projects:{" "}
-          <Text style={{ color: "#3b3b3b" }}>{global.DATA.openproject}</Text>
+          Your Current Projects:{" "}
+          {typeof global.OBJ != "undefined" &&  global.OBJ !== null?(
+           <Text style={{ color: "#3b3b3b" }}>{global.OBJ.openproject}</Text> ):(<Text style={{ color: "#3b3b3b" }}>Loading...</Text>)}
         </Text>
       </View>
       <View
@@ -118,8 +207,9 @@ function CustomDrawerContent(props) {
             { marginTop: ResponsiveScreen.normalize(0), color: "#fff" },
           ]}
         >
-          Your All Projects:
-          <Text style={{ color: "#3b3b3b" }}> {global.DATA.allproject}</Text>
+          Your All time Projects:
+          {typeof global.OBJ != "undefined" &&  global.OBJ !== null?(
+           <Text style={{ color: "#3b3b3b" }}> {global.OBJ.allproject}</Text>):(<Text style={{ color: "#3b3b3b" }}> Loading...</Text>)}
         </Text>
       </View>
       <View
@@ -139,7 +229,7 @@ function CustomDrawerContent(props) {
         }}
       >
         <View style={Dstyles.icon}>
-          <AntDesign name="setting" size={24} color="#fff" />
+          <AntDesign name="setting" size={ResponsiveScreen.fontSize(40)} color="#fff" />
         </View>
         <Text
           style={[Dstyles.text, { marginLeft: ResponsiveScreen.normalize(12) }]}
@@ -164,7 +254,7 @@ function CustomDrawerContent(props) {
         }}
       >
         <View style={Dstyles.icon}>
-          <MaterialCommunityIcons name="history" size={25} color="#fff" />
+          <MaterialCommunityIcons name="history" size={ResponsiveScreen.fontSize(43)} color="#fff" />
         </View>
         <Text style={Dstyles.text}>History </Text>
       </TouchableOpacity>
@@ -188,12 +278,12 @@ function CustomDrawerContent(props) {
           {/* <FontAwesome5 name="bell" size={18} color="#525151"/> */}
           {/* <EvilIcons name="bell" size={26} color="#525151" /> */}
           {/* <FontAwesome name="bell-o" size={20} color="#fff" /> */}
-          <Ionicons name="notifications-outline" size={24} color="#fff" />
+          <Ionicons name="notifications-outline" size={ResponsiveScreen.fontSize(40)} color="#fff" />
         </View>
         <Text
           style={[Dstyles.text, { marginLeft: ResponsiveScreen.normalize(23) }]}
         >
-          Notification{" "}
+          Notification setting{" "}
         </Text>
       </TouchableOpacity>
       <TouchableOpacity
@@ -204,7 +294,7 @@ function CustomDrawerContent(props) {
           {/* <FontAwesome5 name="bell" size={18} color="#525151"/> */}
           {/* <EvilIcons name="bell" size={26} color="#525151" /> */}
           {/* <FontAwesome name="bell-o" size={20} color="#fff" /> */}
-          <Feather name="headphones" size={22} color="#fff" />
+          <Feather name="headphones" size={ResponsiveScreen.fontSize(37)} color="#fff" />
         </View>
         <Text
           style={[Dstyles.text, { marginLeft: ResponsiveScreen.normalize(23) }]}
@@ -214,13 +304,13 @@ function CustomDrawerContent(props) {
       </TouchableOpacity>
       <TouchableOpacity
         style={[Dstyles.box, { marginTop: ResponsiveScreen.normalize(20) }]}
-        onPress={makeCall}
+        onPress={makeMessage}
       >
         <View style={Dstyles.icon}>
           {/* <FontAwesome5 name="bell" size={18} color="#525151"/> */}
           {/* <EvilIcons name="bell" size={26} color="#525151" /> */}
           {/* <FontAwesome name="bell-o" size={20} color="#fff" /> */}
-          <MaterialCommunityIcons name="message-text-outline" size={23} color="#fff" />
+          <MaterialCommunityIcons name="message-text-outline" size={ResponsiveScreen.fontSize(40)} color="#fff" />
         </View>
         <Text
           style={[Dstyles.text, { marginLeft: ResponsiveScreen.normalize(23) }]}
@@ -230,15 +320,40 @@ function CustomDrawerContent(props) {
       </TouchableOpacity>
       <TouchableOpacity
         style={[Dstyles.box, { marginTop: ResponsiveScreen.normalize(20) }]}
-        onPress={makeCall}
+        onPress={() => props.navigation.navigate("AboutUs")}
       >
         <View style={Dstyles.icon}>
-          <AntDesign name="appstore-o" size={21} color="#fff" />
+          <AntDesign name="appstore-o" size={ResponsiveScreen.fontSize(35)} color="#fff" />
         </View>
         <Text
           style={[Dstyles.text, { marginLeft: ResponsiveScreen.normalize(23) }]}
         >
           About Us
+        </Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={[Dstyles.box, { marginTop: ResponsiveScreen.normalize(20) }]}
+        onPress={() => {
+          // Navigate using the `navigation` prop that you received
+          global.OBJ=null
+          global.PROJ=null
+          global.TOKEN=null
+          global.UDATA=null
+          global.UI=null
+          seti()
+       
+
+          props.navigation.navigate("Login");
+        }}
+      >
+        <View style={Dstyles.icon}>
+          {/* <AntDesign name="appstore-o" size={21} color="#fff" /> */}
+          <Feather name="log-out" size={21} color="#fff" />
+        </View>
+        <Text
+          style={[Dstyles.text, { marginLeft: ResponsiveScreen.normalize(23) }]}
+        >
+          Log out
         </Text>
       </TouchableOpacity>
 
@@ -292,7 +407,7 @@ const DrawerNavigator = () => {
         drawerType: "front",
         drawerStyle: {
           backgroundColor: "#f2ca30",
-          // width: 240,
+          width: ResponsiveScreen.normalize(500),
         },
       }}
     >
@@ -329,7 +444,7 @@ const Dstyles = StyleSheet.create({
     height: ResponsiveScreen.normalize(80),
     marginLeft: ResponsiveScreen.normalize(-12),
     // backgroundColor: "#e5e5e5",
-    marginTop: ResponsiveScreen.normalize(28),
+    marginTop: ResponsiveScreen.normalize(20),
     borderRadius: ResponsiveScreen.normalize(30),
     alignItems: "center",
     flexDirection: "row",
@@ -378,7 +493,7 @@ const Dstyles = StyleSheet.create({
   icon: {
     // width:  ResponsiveScreen.normalize(350),
     // height:  ResponsiveScreen.normalize(90),
-    marginTop: ResponsiveScreen.normalize(-15),
+    marginTop: '-6%',
 
     // marginLeft:ResponsiveScreen.normalize(15)
   },

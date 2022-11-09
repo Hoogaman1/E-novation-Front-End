@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useIsFocused } from "@react-navigation/native";
-
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from "react-native-responsive-screen";
-import { useNavigation } from '@react-navigation/native';
-
+import { useNavigation } from "@react-navigation/native";
+// import Slider from "react-native-slider";
 import {
   MaterialCommunityIcons,
   Octicons,
   FontAwesome5,
   AntDesign,
+  Ionicons,
+  FontAwesome,
+  // FontAwesome,
+  // Ionicons,
+  // MaterialCommunityIcons,
+  MaterialIcons,
 } from "@expo/vector-icons";
 
 import {
@@ -29,34 +29,58 @@ import {
   RefreshControl,
   Alert,
 } from "react-native";
-import { styles3, styles2, btn } from "./styleSheets.js";
+import Slider from "react-native-smooth-slider";
+import { styles3, styles2, btn } from "./styleSheets2.js";
 import ResponsiveScreen from "react-native-auto-responsive-screen";
+import { log } from "react-native-reanimated";
 ResponsiveScreen.init(720, 1600);
 const wf = Dimensions.get("screen").fontScale;
 const ws = Dimensions.get("screen").scale;
 const wh = Dimensions.get("screen").height;
 const ww = Dimensions.get("screen").width;
-
-
-
 const Bearing = (props) => {
+  // const PPOBJ=""
+  const [EF, setEF] = useState("0");
+  const [POBJ, setPOBJ] = useState("");
+  // console.log(
+  //   "kkkkkkkkkkkffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+  // );
+  const obj = global.PROJ;
+  const sd = Number(POBJ.status);
+  // const mm = Number(global.PROJ.status);
+  // const ss=(Number({sd}))
+  // console.log(obj.status);
+  // console.log("lllllllll");
   // const [email, setEmail] = useState("");
-  // const [id_select, setSelect] = useState("");
+  const [id_select, setSelect] = useState("");
+  const [refresh, setRefresh] = useState(false);
   // console.log(tokenAuth)
   // console.log(obj[0][0])
   const tokenAuth = global.TOKEN;
+  const [mstate, setMState] = useState({ vale: Number(global.PROJ.status) });
+
+  // console.log("88888888888888888888888");
+  // console.log(mstate);
+  // console.log("999999999999999999999");
   // const { navigation } = props;
+  const [state, setState] = useState({
+    vale: Number(global.PROJ.status),
+    // vale: 1
+    // vale: 0.089
+  });
+  const [myc, setCSS] = useState("1");
+  // console.log("inja");
+  // console.log(sd);
+  // console.log("onja");
+  // try{
+  //   setState({vale:sd})
+  //     }catch(err) {
+  //   console.log('annnnnnnnnnnnn')
+  //     }
+
   const navigation = useNavigation();
-
-
-  const [obj, setObj] = useState({});
-
-  // console.log('ooooooooooooooooooooooooooooooo')
-  console.log(obj)
-  // console.log('bbbbbbbbbbbbbbbbbbbbbbbb')
-
-  // console.log(mydata);
-  // const onCChange = (textValue) => setCode(textValue);
+  const [mydata, setData] = useState("");
+  const onCChange = (textValue) => setCode(textValue);
 
   //   const [email, setEmail] = useState('ali@test.com');
   //   const onEChange = (textValue) => setEmail(textValue);
@@ -67,75 +91,320 @@ const Bearing = (props) => {
   //   setIsActive(true);
   // const[list , setList] = useState([''])
   // console.log("qqqq")
-  // const BellAlert = () =>
-  //   Alert.alert(
-  //     "New Event",
-  //     "My Alert Msg",
-  //     [
-  //       // {
-  //       //   text: "Ask me later",
-  //       //   onPress: () => console.log("Ask me later pressed")
-  //       // },
-  //       {
-  //         text: "Cancel",
-  //         onPress: () => console.log("Cancel Pressed"),
-  //         style: "cancel"
-  //       },
-  //       { text: "OK", onPress: () => console.log("OK Pressed") }
-
-  //     ]
-  //   );
+  const EDIT = () => {
+    props.navigation.navigate("EditProject");
+  };
+  const BellAlert = () =>
+    Alert.alert("New Event", "My Alert Msg", [
+      // {
+      //   text: "Ask me later",
+      //   onPress: () => console.log("Ask me later pressed")
+      // },
+      {
+        text: "Cancel",
+        onPress: () => console.log("Cancel Pressed"),
+        style: "cancel",
+      },
+      { text: "OK", onPress: () => console.log("OK Pressed") },
+    ]);
   const setPost = () => {
-    // const tokenAuth = global.TOKEN;
-    // const obj = ;
+    const tokenAuth = global.TOKEN;
+    const obj = global.OBJ;
     // const { navigation } = props;
+
     props.navigation.navigate("PhotoAlbum");
+  };
+  const setAPost = () => {
+    const tokenAuth = global.TOKEN;
+    const obj = global.OBJ;
+    // const { navigation } = props;
+
+    props.navigation.navigate("PhotoAlbum");
+  };
+  const setAlert = () => {
+    props.navigation.navigate("Alert", { token: tokenAuth });
   };
   const setDPost = () => {
     props.navigation.navigate("DocAlbum");
   };
-  const setAlert = () => {
-    props.navigation.navigate('Alert', { token: tokenAuth });
+  const nextState = () => {
+    // props.navigation.navigate("DocAlbum");
+    console.log("nexteeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+    // axios({
+    //   method: "patch",
+    //   url: "http://" + global.UURL + "/BIGADMIN/projectedit/" + obj.id,
+    //   // params:{
+    //   //   email:email,
+    //   // },
+    //   headers: {
+    //     // 'Content-Type': "application/json",
+    //     Authorization: "Token " + tokenAuth,
+    //     // 'Accept': 'application/json'
+    //   },
+    //   data: {
+    //     next: true,
+    //     revert: false,
+    //     done: false,
+    //   },
+    // })
+    //   .then((response) => setEF(EF - 1))
+    //   // .then(console.log(EF))
+    //   .catch((error) => {
+    //     if (error.response.status == "0") {
+    //       global.HANDSHAKE = "Bearing";
+    //       navigation.navigate("HandShake");
+    //     } else {
+    //       console.log(error);
+    //     }
+    //   });
+    // // }});
+
+    // // };
   };
-  // const response
-  //   axios({
-  //     method: "get",
-  //     url: "http://127.0.0.1:8000/BIGADMIN/listalbum/"+(obj[0][0]),
-  //     headers: {
-  //       // 'Content-Type': "application/json",
-  //       Authorization: "Token "+tokenAuth,
-  //       // 'Accept': 'application/json'
-  //     },
-  //     data: {
-  //       // id_number: id_select,
-  //     },
-  //   })
-  //   // .then((response) => console.log(response.status))
-  //   // .then(console.log('salam'))
-  //   .then((response) => {
-  //     console.log(response.data)
-  //     if (response.status == "200") {
-  //       // props.navigation.push({token:tokenAuth,obj:response.data});
-  //       props.navigation.navigate('PhotoAlbum',{token:tokenAuth,obje:response.data});
-  //     }
-  //     })
-  //     .catch((error) => console.log(error));
-  //  }
-  const [mydata, setData] = useState([]);
-  // console.log(mydata);
-  // console.log(setData);
-  const [refreshKey, setRefreshKey] = useState(0);
-  console.log('hhhhhhhhhhhhhhhhhhh');
-  console.log(global.OBJ.id);
-  console.log('fffffffffffffff');
+  const prvState = () => {
+    // props.navigation.navigate("DocAlbum");
+    console.log("prvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv");
+    // axios({
+    //   method: "patch",
+    //   url: "http://" + global.UURL + "/BIGADMIN/projectedit/" + obj.id,
+    //   // params:{
+    //   //   email:email,
+    //   // },
+    //   headers: {
+    //     // 'Content-Type': "application/json",
+    //     Authorization: "Token " + tokenAuth,
+    //     // 'Accept': 'application/json'
+    //   },
+    //   data: {
+    //     next: false,
+    //     revert: true,
+    //     done: false,
+    //   },
+    // })
+    //   .then((response) => setEF(EF + 1))
+    //   // .then((response) => (console.log(EF))
+    //   .then(console.log(EF))
+    //   .catch((error) => {
+    //     if (error.response.status == "0") {
+    //       global.HANDSHAKE = "Bearing";
+    //       navigation.navigate("HandShake");
+    //     } else {
+    //       console.log(error);
+    //     }
+    //   });
+    // // };
+  };
+
+  //   const SK = (val) => {
+  //     console.log(val)
+  //     if (val < 0.143) {
+  //       setCSS('1')
+  //       console.log('state 1')
+  //         }else if (val < 0.286){
+  //           setCSS('2')
+  //       console.log('state 2')
+  //         }else if ( val < 0.429){
+  //           setCSS('3')
+  //           console.log('state 3')
+
+  //             }else if (val < 0.572){
+  //               setCSS('4')
+  //               console.log('state 4')
+
+  //                 }else if ( val < 0.715){
+  //                   setCSS('5')
+  //                   console.log('state 5')
+
+  //                     }else if (val < 0.858){
+  //                       setCSS('6')
+  //                       console.log('state 6')
+
+  //                         }else if (val < 1.2){
+  //                           setCSS('7')
+  //                           console.log('state 7')
+  //                         }
+  //   }
+  //   const SC = (val) => {
+  //     if (val < 0.143) {
+  //     console.log('state 1')
+  //     setState({value:0.089})
+  //     // console.log(value)
+  //       }else if (val < 0.286){
+  //     console.log('state 2')
+  //     setState({value:0.247})
+  //       }else if ( val < 0.429){
+  //         console.log('state 3')
+  //         setState({value:0.389})
+
+  //           }else if (val < 0.572){
+  //             console.log('state 4')
+  //         setState({value:0.542})
+
+  //               }else if ( val < 0.715){
+  //                 console.log('state 5')
+  //         setState({value:0.697})
+
+  //                   }else if (val < 0.858){
+  //                     console.log('state 6')
+  //         setState({value:0.85})
+
+  //                       }else if (val < 1.2){
+  //                         console.log('state 7')
+  //         setState({value:1})
+
+  //                       }
+  // }
+
+  const SK = (val) => {
+    console.log(val);
+    if (val < 1) {
+      setCSS("1");
+      console.log("state 1");
+    } else if (val < 2) {
+      setCSS("2");
+      console.log("state 2");
+    } else if (val < 3) {
+      setCSS("3");
+      console.log("state 3");
+    } else if (val < 4) {
+      setCSS("4");
+      console.log("state 4");
+    } else if (val < 5) {
+      setCSS("5");
+      console.log("state 5");
+    } else if (val < 6) {
+      setCSS("6");
+      console.log("state 6");
+    } else {
+      setCSS("7");
+      console.log("state 7");
+    }
+  };
+  const SC = (val) => {
+    if (val < 1) {
+      console.log("SC state 1");
+      setState({ vale: 0.63 });
+      if (val > Number(POBJ.status)) {
+        nextState();
+      } else if (val < Number(POBJ.status) - 1) {
+        prvState();
+      }
+    } else if (val < 2) {
+      console.log("SC state 2");
+      setState({ vale: 1.69 });
+      if (val > Number(global.PROJ.status)) {
+        nextState();
+      } else if (val < Number(global.PROJ.status) - 1) {
+        prvState();
+      }
+    } else if (val < 3) {
+      console.log("SC state 3");
+      setState({ vale: 2.76 });
+      if (val > Number(global.PROJ.status)) {
+        nextState();
+        setEF(EF + 1);
+      } else if (val < Number(global.PROJ.status)) {
+        prvState();
+        setEF(EF + 1);
+      }
+    } else if (val < 4) {
+      console.log("SC state 4");
+      setState({ vale: 3.85 });
+      if (val > Number(global.PROJ.status)) {
+        nextState();
+      } else if (val < Number(global.PROJ.status)) {
+        prvState();
+      }
+    } else if (val < 5) {
+      console.log("SC state 5");
+      setState({ vale: 4.9 });
+      if (val > Number(global.PROJ.status)) {
+        nextState();
+      } else if (val < Number(global.PROJ.status)) {
+        prvState();
+      }
+    } else if (val < 6) {
+      console.log("SC state 6");
+      setState({ vale: 5.96 });
+      if (val > Number(global.PROJ.status)) {
+        nextState();
+      } else if (val < Number(global.PROJ.status)) {
+        prvState();
+      }
+    } else if (val < 7) {
+      console.log("SC state 7");
+      setState({ vale: 7 });
+      if (val > Number(global.PROJ.status)) {
+        nextState();
+      } else if (val < Number(global.PROJ.status)) {
+        prvState();
+      }
+    }
+  };
+
+  // const [refresh, setRefresh] = useState(false)
   useEffect(() => {
-    // const Obj = global.OBJ;
-    // const { navigation } = props;
-    // props.navigation.navigate("NewPass"),
-    // setRefreshKey(1)
+    if (global.PROJ.status === "1") {
+      setState({ vale: Number(global.PROJ.status) - 0.32 });
+      setCSS("1");
+    } else if (global.PROJ.status === "2") {
+      setState({ vale: Number(global.PROJ.status) - 0.27 });
+      setCSS("2");
+    } else if (global.PROJ.status === "3") {
+      setState({ vale: Number(global.PROJ.status) - 0.21 });
+      setCSS("3");
+    } else if (global.PROJ.status === "4") {
+      setState({ vale: Number(global.PROJ.status) - 0.15 });
+      setCSS("4");
+    } else if (global.PROJ.status === "5") {
+      setState({ vale: Number(global.PROJ.status) - 0.08 });
+      setCSS("5");
+    } else if (global.PROJ.status === "6") {
+      setState({ vale: Number(global.PROJ.status) - 0.04 });
+      setCSS("6");
+    } else if (global.PROJ.status === "7") {
+      setState({ vale: Number(global.PROJ.status) });
+      setCSS("7");
+    }
+
+    // let timeoutVariable
+    // if (refresh) {
+    //   timeoutVariable = setTimeout(() => setRefresh(false), 1000)
+    // }
+
+    // const response
+    //   axios({
+    //     method: "get",
+    //     url: "http://127.0.0.1:8000/BIGADMIN/listalbum/"+(obj[0][0]),
+    //     headers: {
+    //       // 'Content-Type': "application/json",
+    //       Authorization: "Token "+tokenAuth,
+    //       // 'Accept': 'application/json'
+    //     },
+    //     data: {
+    //       // id_number: id_select,
+    //     },
+    //   })
+    //   // .then((response) => console.log(response.status))
+    //   // .then(console.log('salam'))
+    //   .then((response) => {
+    //     console.log(response.data)
+    //     if (response.status == "200") {
+    //       // props.navigation.push({token:tokenAuth,obj:response.data});
+    //       props.navigation.navigate('PhotoAlbum',{token:tokenAuth,obje:response.data});
+    //     }
+    //     })
+    //     .catch((error) => console.log(error));
+    //  }
+    // useEffect(() => {
+    //   const obj = global.OBJ;
+    //   // const { navigation } = props;
+    //   // props.navigation.navigate("NewPass"),
+    
+    setTimeout(() => setRefresh(!refresh), 1500)
     axios({
       method: "get",
-      url: "http://" + global.UURL + "/BIGADMIN/uprojectedit/" + global.OBJ.id,
+      url: "http://" + global.UURL + "/BIGADMIN/uprojectedit/" + obj.id,
       // params:{
       //   email:email,
       // },
@@ -148,409 +417,3990 @@ const Bearing = (props) => {
         // verification_code: code,
       },
     })
-      .then(setRefreshKey(1))
-      // .then((Response) => setData(Response.data))
-      // setRefreshKey(oldKey => oldKey == 1)
-      .then((response) => {
-        if (refreshKey === 0) {
-          setData(response.data)
-          setObj(response.data)
-          // console.log('mishe');
+      // .then((response) =>(console.log(response.data.status)))
+      // .then((response) =>(console.log(obj.status=)))
+      .then(
+        (response) => setPOBJ(response.data)
+        // console.log()
+        // navigation.addListener('focus', () => {
+        //   setRefresh(true)
+        // })
+      )
+      .then(console.log("salam"))
+      .catch((error) => {
+        if (error.response.status == "0") {
+          global.HANDSHAKE = "Bearing";
+          navigation.navigate("HandShake");
         } else {
-          // console.log('Nemishe');
+          console.log(error);
         }
-      })
-      // .then((response) => 
-
-      // .then((response) => console.log(mydata))
-      // .then(console.log(refreshKey))
-      .catch((error) => console.log(error));
-  }), [refreshKey];
-
-
+      });
+  }, 
+  [EF]
+  // []
+  );
+  // return () => clearTimeout(timeoutVariable)
+  // },
+  // [refresh]
+  // []
+  // );
+  // state = {
+  //   value: 0.2
+  // };
   return (
     <View style={styles3.page}>
-      <View style={styles3.topbox}>
+      <View style={[styles3.topbox, { flex: 0.6, alignItems: "flex-end" }]}>
         <Image
           source={require("../assets/app_ui2-13.png")}
-          style={styles3.logo}
+          style={[styles3.logo, { height: (wh * 7) / 100 }]}
         />
-        <TouchableOpacity
-          onPress={setAlert}
-        >
-          <FontAwesome5 name="bell" size={25} color="black" style={{ marginLeft: ww * 18 / 100, marginTop: wh * -1 / 100 }} />
-          <View style={{ backgroundColor: 'red', width: ww * 5 / 100, height: ww * 5 / 100, borderRadius: ww * 50 / 100, position: 'absolute', right: ww * -3.5 / 100, bottom: wh * 2 / 100, justifyContent: 'center', alignItems: 'center' }}><Text style={{ color: '#fff', fontSize: ResponsiveScreen.fontSize(20), fontWeight: '500' }}>24</Text></View>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => { navigation.openDrawer({ token: tokenAuth }); }}
-        >
-          <Image
-            source={require("../assets/app_ui2-11.png")}
-            style={styles3.logo2}
-          />
-        </TouchableOpacity>
-      </View>
-
-      <View style={[styles3.butbox]}>
-        <View
-          style={[
-            styles3.workbox,
-            { alignItems: "center", flexDirection: "column" },
-          ]}
-        >
-          <View
+        <TouchableOpacity onPress={() => setAlert()}>
+          <FontAwesome5
+            name="bell"
+            size={ResponsiveScreen.fontSize(45)}
+            color="black"
             style={{
-              // backgroundColor:'red',
-              width: ww * 85 / 100,
-              borderRadius: 20,
-              height: wh * 12 / 100,
+              marginLeft: (ww * 18) / 100,
+              marginTop: -(wh * 5) / 100,
+            }}
+          />
+          {/* <View
+            style={{
+              backgroundColor: "red",
+              width: (ww * 5) / 100,
+              height: (ww * 5) / 100,
+              borderRadius: (ww * 50) / 100,
+              position: "absolute",
+              right: (ww * -3.5) / 100,
+              bottom: (wh * 2) / 100,
+              justifyContent: "center",
+              alignItems: "center",
             }}
           >
             <Text
               style={{
-                fontSize: ResponsiveScreen.normalize(55),
-                fontFamily: "Roboto",
-                color: "#f2ca30",
-                marginTop: wh * 4 / 100,
-                marginLeft: ww * 7 / 100,
-                // marginBottom:wh*5/100,
+                color: "#fff",
+                fontSize: ResponsiveScreen.fontSize(20),
+                fontWeight: "500",
               }}
             >
-              {mydata.name}
+              24
             </Text>
-          </View>
+          </View> */}
+          </TouchableOpacity>
+        <TouchableOpacity style={{marginBottom:'3.5%'}}
+          onPress={() => {console.log('sallllllllllllllllllll')
+            navigation.openDrawer({ token: tokenAuth });
+          }}
+        >
+          <Ionicons
+            name="ios-menu-sharp"
+            size={ResponsiveScreen.fontSize(60)}
+            color="black"
+            style={{
+              marginRight: ResponsiveScreen.normalize(30),
+              // marginTop: '5%'
+            }}
+          />
+        </TouchableOpacity>
+      </View>
+
+      <View style={[styles3.butbox, { flex: 5, marginTop: (wh * 10) / 100 }]}>
+        <View
+          style={[
+            styles3.workbox,
+            {
+              // alignItems: "center",
+              flexDirection: "column",
+              // backgroundColor: 'blue',
+              // flex:
+            },
+          ]}
+        >
           <View
             style={{
-              // backgroundColor:"red",
-              width: ww * 85 / 100,
-              height: wh * 65 / 100,
-              borderRadius: 20,
+              // width: ww * 70 / 100,
+              // borderRadius: 20,
+              height: wh * 4 / 100,
+              // backgroundColor: 'green',
+              alignItems:'center',
+              // marginLeft: (ww * 5) / 100,
+              marginBottom: (wh * 3) / 100,
+              marginTop: (wh * 3) / 100,
+            }}
+          >
+            {/* <Text
+              style={{
+                fontSize: ResponsiveScreen.normalize(45),
+                fontFamily: "Roboto",
+                color: "#f2ca30",
+              }}
+            >
+              {POBJ.name}
+            </Text> */}
+
+
+
+
+
+
+
+
+<View
+            style={{
+              marginTop: "5%",
+              width: "85%",
+              height: (ww * 10) / 100,
+              paddingHorizontal: "0.8%",
+              borderRadius: (ww * 4) / 200,
               flexDirection: "row",
+              // marginRight:'-3%',
+              alignItems: "center",
+              // backgroundColor: "#fff",
+              justifyContent: "space-between",
+              // borderColor:"#575757",
+              // borderWidth:0.3,
+              elevation: 3,
+              backgroundColor: "#fff",
+              shadowOffset: { width: 3, height: 3 },
+              shadowColor: "#000",
+              shadowOpacity: 1,
+              shadowRadius: 8,
             }}
           >
             <View
               style={{
+                height: "90%",
                 backgroundColor: "#fff",
-                width: ww * 20 / 100,
-                height: wh * 65 / 100,
-                borderRadius: 20,
-                // backgroundColor:"pink"
+                borderRadius: (ww * 2) / 200,
+                alignItems: "flex-start",
+                justifyContent: "center",
               }}
             >
-              <View>
-                <View>
-                  <Text
-                    style={{
-                      width: ww * 3.8 / 100,
-                      height: wh * 61 / 100,
-                      backgroundColor: "#f2ca30",
-                      borderRadius: 100,
-                      marginHorizontal: ww * 6.4 / 100,
-                    }}
-                  ></Text>
-                </View>
-                {obj.status === "1" ? (
-                  <Text
-                    style={[styles3.checkline, {
-                      height: wh * 6.1 / 100,
-                      marginTop: -wh * 61 / 100,
-                    }]}
-                  ></Text>
-                ) : (
-                  <Text></Text>
-                )}
-                {obj.status === "2" ? (
-                  <Text
-                    style={[styles3.checkline, {
-                      height: wh * 15.2 / 100,
-                      marginTop: -wh * 63.4 / 100,
-                    }]}
-                  ></Text>
-                ) : (
-                  <Text></Text>
-                )}
-                {obj.status === "3" ? (
-                  <Text
-                    style={[styles3.checkline, {
-                      height: wh * 24.4 / 100,
-                      marginTop: -wh * 65.9 / 100,
-                    }]}
-                  ></Text>
-                ) : (
-                  <Text></Text>
-                )}
-                {obj.status === "4" ? (
-                  <Text
-                    style={[styles3.checkline, {
-                      height: wh * 33.6 / 100,
-                      marginTop: -wh * 68.3 / 100,
-                    }]}
-                  ></Text>
-                ) : (
-                  <Text></Text>
-                )}
-                {obj.status === "5" ? (
-                  <Text
-                    style={[styles3.checkline, {
-                      height: wh * 42.7 / 100,
-                      marginTop: -wh * 70.8 / 100,
-                    }]}
-                  ></Text>
-                ) : (
-                  <Text></Text>
-                )}
-                {obj.status === "6" ? (
-                  <Text
-                    style={[styles3.checkline, {
-                      height: wh * 51.9 / 100,
-                      marginTop: -wh * 73.2 / 100,
-                    }]}
-                  ></Text>
-                ) : (
-                  <Text></Text>
-                )}
-                {obj.status === "7" ? (
-                  <Text
-                    style={[styles3.checkline, {
-                      height: wh * 60.95 / 100,
-                      marginTop: -wh * 75.7 / 100,
-                    }]}
-                  ></Text>
-                ) : (
-                  <Text></Text>
-                )}
-              </View>
-            </View>
+              <Text
+                style={{
+                  fontSize: ResponsiveScreen.fontSize(30),
+                  color: "#575757",
+                  fontWeight:'700',
 
+                  // marginTop: wh * 2.5 / 100,
+                  // marginLeft: ww * 5 / 100,
+                  textAlign: "left",
+                  // backgroundColor: 'pink'
+                }}
+              >
+                {"  "}
+                {global.PROJ.name}
+                {"  "}
+              </Text>
+            </View>
             <View
               style={{
-                width: ww * 62 / 100,
-                height: wh * 65 / 100,
-                borderRadius: 20,
-                // backgroundColor:"red",
-                marginHorizontal: -ww * 3.5 / 100,
+                width: "45%",
+                height: "75%",
+                backgroundColor: "#f2ca30",
+                borderRadius: (ww  * 2) / 200,
+                alignItems: "flex-end",
+                justifyContent: "center",
               }}
             >
-              <View style={styles3.workcard}>
-                <View
-                  style={{
-                    marginLeft: ww * 4 / 100,
-                  }}
-                >
-                  <MaterialCommunityIcons
-                    name="forklift"
-                    size={ww * 8 / 100}
-                    color="orange"
-                  />
-                </View>
-                <View style={styles3.Viewtxtworkcard}>
-                  <Text style={styles3.txtworkcard}>Material supply</Text>
-                </View>
-              </View>
+              <Text
+                style={{
+                  fontSize: ResponsiveScreen.normalize(30),
+                  fontFamily: "Roboto",
+                  color: "#fff",
+                  textAlign: "right",
+                  // backgroundColor:'pink'
 
-              <View style={styles3.workcard}>
-                <View
-                  style={{
-                    marginLeft: ww * 4 / 100,
-                  }}
-                >
-                  <MaterialCommunityIcons
-                    name="scissors-cutting"
-                    size={ww * 8 / 100}
-                    color="orange"
-                  />
-                </View>
-                <View style={styles3.Viewtxtworkcard}>
-                  <Text style={styles3.txtworkcard}>Cutting</Text>
-                </View>
-              </View>
-              <View style={styles3.workcard}>
-                <View
-                  style={{
-                    marginLeft: ww * 4 / 100,
-                  }}
-                >
-                  <MaterialCommunityIcons
-                    name="tools"
-                    size={ww * 7 / 100}
-                    color="orange"
-                  />
-                </View>
-                <View style={styles3.Viewtxtworkcard}>
-                  <Text style={styles3.txtworkcard}>Matching</Text>
-                </View>
-              </View>
-              <View
-                style={[
-                  styles3.workcard,
-                  { paddingTop: ResponsiveScreen.normalize(0) },
-                ]}
+                  // marginTop: ResponsiveScreen.normalize(50),
+                  // marginLeft: ResponsiveScreen.normalize(35),
+                  // marginBottom: ResponsiveScreen.normalize(30),
+                }}
               >
-                <View
-                  style={{
-                    marginLeft: ww * 4 / 100,
-                  }}
-                >
-                  <FontAwesome5
-                    name="paint-roller"
-                    size={ww * 7 / 100}
-                    color="orange"
-                  />
+                Current Projects{"     "}
+              </Text>
+            </View>
+          </View>
+
+
+
+
+
+
+
+
+
+          </View>
+
+          <View style={{ width: ww, height: "70%" }}>
+            <View
+              style={{
+                flex: 1,
+                // width: ResponsiveScreen.normalize(600),
+                // height: ResponsiveScreen.normalize(1000),
+                borderRadius: 20,
+                flexDirection: "row",
+                // backgroundColor: "pink",
+                marginTop:'12%'
+              }}
+            >
+              {/* /// --------------------------------------cart----------------------- /// */}
+
+              {wh / ww > 1.85 ? (
+                <View style={{ flex: 1, alignItems: "flex-start" }}>
+                  {myc === "1" ? (
+                    <View
+                      style={{
+                        width: ResponsiveScreen.normalize(620),
+                        // height: ResponsiveScreen.normalize(950),
+                        borderRadius: ResponsiveScreen.normalize(100),
+                        // backgroundColor: "red",
+                        flexDirection: "row",
+                        alignItems: "flex-end",
+                        marginHorizontal: ResponsiveScreen.normalize(-20),
+                      }}
+                    >
+                      <View style={{ flex: 1 }}>
+                        <View style={styles3.container}>
+                          <Slider
+                          disabled={true}
+                            style={{
+                              width: ResponsiveScreen.normalize(950),
+                              height: ResponsiveScreen.normalize(40),
+                              borderRadius: 50,
+                            }}
+                            // style={{flex:1,borderRadius:50}}
+                            trackStyle={{
+                              width: "100%",
+                              height: "100%",
+                              backgroundColor: "#f2ca30",
+                              borderRadius: 50,
+                            }}
+                            minimumTrackTintColor={"#192570"}
+                            // maximumTrackTintColor={'red'}
+                            // moveVelocityThreshold={1}
+                            maximumValue={7}
+                            vertical={true}
+                            // step={0.143}
+                            step={0}
+                            // thumbTintColor={'red'}
+                            thumbTintColor={"transparent"}
+                            // value={Number(global.PROJ.status)}
+                            value={state.vale}
+                            useNativeDriver={true}
+                            // onValueChange={value =>{setState({ value }),console.log(value)}}
+                            onValueChange={(value) => SK(value)}
+                            onSlidingComplete={(value) => SC(value)}
+                            
+                          />
+
+                          {/* <Text>
+          Value: {state.vale}
+        </Text> */}
+                        </View>
+                      </View>
+                      <View
+                        style={{ flexDirection: "column-reverse", flex: 3 }}
+                      >
+                        <TouchableOpacity
+                          style={[
+                            styles3.workcard,
+                            {
+                              marginBottom: 0,
+                              backgroundColor: "#192570",
+                              width: ResponsiveScreen.normalize(505),
+                              marginLeft: "-6%",
+                            },
+                          ]}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                              // backgroundColor: 'red'
+                            }}
+                          >
+                            <MaterialCommunityIcons
+                              name="forklift"
+                              size={ResponsiveScreen.normalize(60)}
+                              color="#f2ca30"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[
+                                styles3.txtworkcard,
+                                {
+                                  color: "#fff",
+                                  fontWeight: "900",
+                                  fontSize: ResponsiveScreen.fontSize(27),
+                                },
+                              ]}
+                            >
+                              Material supply
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity
+                          style={styles3.workcard}
+                          onPress={() => nextState()}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <MaterialCommunityIcons
+                              name="scissors-cutting"
+                              size={ResponsiveScreen.normalize(60)}
+                              color="#bfbfbf"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[
+                                styles3.txtworkcard,
+                                { color: "#bfbfbf" },
+                              ]}
+                            >
+                              Cutting
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles3.workcard}>
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <MaterialCommunityIcons
+                              name="tools"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="#bfbfbf"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[
+                                styles3.txtworkcard,
+                                { color: "#bfbfbf" },
+                              ]}
+                            >
+                              Matching
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={[styles3.workcard, {}]}>
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <FontAwesome5
+                              name="paint-roller"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="#bfbfbf"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[
+                                styles3.txtworkcard,
+                                {
+                                  color: "#bfbfbf",
+                                },
+                              ]}
+                            >
+                              Heat treatment/Coating{"\n"}/Painting or Plating
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles3.workcard}>
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <AntDesign
+                              name="checksquare"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="#bfbfbf"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[
+                                styles3.txtworkcard,
+                                { color: "#bfbfbf" },
+                              ]}
+                            >
+                              Quality Control
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles3.workcard}>
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <Octicons
+                              name="package-dependencies"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="#bfbfbf"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[
+                                styles3.txtworkcard,
+                                { color: "#bfbfbf" },
+                              ]}
+                            >
+                              Packaging
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles3.workcard}>
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <MaterialCommunityIcons
+                              name="truck-delivery"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="#bfbfbf"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[
+                                styles3.txtworkcard,
+                                { color: "#bfbfbf" },
+                              ]}
+                            >
+                              Ready for delivery
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                      </View>
+                    </View>
+                  ) : myc === "2" ? (
+                    <View
+                      style={{
+                        width: ResponsiveScreen.normalize(620),
+                        // height: ResponsiveScreen.normalize(950),
+                        borderRadius: ResponsiveScreen.normalize(100),
+                        // backgroundColor: "red",
+                        flexDirection: "row",
+                        alignItems: "flex-end",
+                        marginHorizontal: ResponsiveScreen.normalize(-20),
+                      }}
+                    >
+                      <View style={{ flex: 1 }}>
+                        <View style={styles3.container}>
+                          <Slider
+                          disabled={true}
+                            style={{
+                              width: ResponsiveScreen.normalize(950),
+                              height: ResponsiveScreen.normalize(40),
+                              borderRadius: 50,
+                            }}
+                            // style={{flex:1,borderRadius:50}}
+                            trackStyle={{
+                              width: "100%",
+                              height: "100%",
+                              backgroundColor: "#f2ca30",
+                              borderRadius: 50,
+                            }}
+                            minimumTrackTintColor={"#192570"}
+                            // maximumTrackTintColor={'red'}
+                            maximumValue={7}
+                            vertical={true}
+                            // step={0.143}
+                            step={0}
+                            // thumbTintColor={'red'}
+                            thumbTintColor={"transparent"}
+                            value={state.vale}
+                            useNativeDriver={true}
+                            // onValueChange={value =>{setState({ value }),console.log(value)}}
+                            onValueChange={(value) => SK(value)}
+                            onSlidingComplete={(value) => SC(value)}
+                          />
+                          {/* <Text>
+          Value: {state.value}
+        </Text> */}
+                        </View>
+                      </View>
+                      <View
+                        style={{ flexDirection: "column-reverse", flex: 3 }}
+                      >
+                        <TouchableOpacity
+                          style={[
+                            styles3.workcard,
+                            { marginBottom: 0, backgroundColor: "#fff" },
+                          ]}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                              // backgroundColor: 'red'
+                            }}
+                          >
+                            <MaterialCommunityIcons
+                              name="forklift"
+                              size={ResponsiveScreen.normalize(60)}
+                              color="orange"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[styles3.txtworkcard, { color: "#000" }]}
+                            >
+                              Material supply
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity
+                          style={[
+                            styles3.workcard,
+                            {
+                              backgroundColor: "#192570",
+                              width: ResponsiveScreen.normalize(505),
+                              marginLeft: "-6%",
+                            },
+                          ]}
+                          onPress={() => nextState()}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <MaterialCommunityIcons
+                              name="scissors-cutting"
+                              size={ResponsiveScreen.normalize(60)}
+                              color="#f2ca30"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[
+                                styles3.txtworkcard,
+                                {
+                                  color: "#fff",
+                                  fontWeight: "900",
+                                  fontSize: ResponsiveScreen.fontSize(27),
+                                },
+                              ]}
+                            >
+                              Cutting
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles3.workcard}>
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <MaterialCommunityIcons
+                              name="tools"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="#bfbfbf"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[
+                                styles3.txtworkcard,
+                                { color: "#bfbfbf" },
+                              ]}
+                            >
+                              Matching
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={[styles3.workcard, {}]}>
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <FontAwesome5
+                              name="paint-roller"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="#bfbfbf"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[
+                                styles3.txtworkcard,
+                                {
+                                  color: "#bfbfbf",
+                                },
+                              ]}
+                            >
+                              Heat treatment/Coating{"\n"}/Painting or Plating
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles3.workcard}>
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <AntDesign
+                              name="checksquare"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="#bfbfbf"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[
+                                styles3.txtworkcard,
+                                { color: "#bfbfbf" },
+                              ]}
+                            >
+                              Quality Control
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles3.workcard}>
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <Octicons
+                              name="package-dependencies"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="#bfbfbf"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[
+                                styles3.txtworkcard,
+                                { color: "#bfbfbf" },
+                              ]}
+                            >
+                              Packaging
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles3.workcard}>
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <MaterialCommunityIcons
+                              name="truck-delivery"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="#bfbfbf"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[
+                                styles3.txtworkcard,
+                                { color: "#bfbfbf" },
+                              ]}
+                            >
+                              Ready for delivery
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                      </View>
+                    </View>
+                  ) : myc === "3" ? (
+                    <View
+                      style={{
+                        width: ResponsiveScreen.normalize(620),
+                        // height: ResponsiveScreen.normalize(950),
+                        borderRadius: ResponsiveScreen.normalize(100),
+                        // backgroundColor: "red",
+                        flexDirection: "row",
+                        alignItems: "flex-end",
+                        marginHorizontal: ResponsiveScreen.normalize(-20),
+                      }}
+                    >
+                      <View style={{ flex: 1 }}>
+                        <View style={styles3.container}>
+                          <Slider
+                          disabled={true}
+                            style={{
+                              width: ResponsiveScreen.normalize(950),
+                              height: ResponsiveScreen.normalize(40),
+                              borderRadius: 50,
+                            }}
+                            // style={{flex:1,borderRadius:50}}
+                            trackStyle={{
+                              width: "100%",
+                              height: "100%",
+                              backgroundColor: "#f2ca30",
+                              borderRadius: 50,
+                            }}
+                            minimumTrackTintColor={"#192570"}
+                            // maximumTrackTintColor={'red'}
+                            maximumValue={7}
+                            vertical={true}
+                            // step={0.143}
+                            step={0}
+                            // thumbTintColor={'red'}
+                            thumbTintColor={"transparent"}
+                            value={state.vale}
+                            useNativeDriver={true}
+                            // onValueChange={value =>{setState({ value }),console.log(value)}}
+                            onValueChange={(value) => SK(value)}
+                            onSlidingComplete={(value) => SC(value)}
+                          />
+                          {/* <Text>
+          Value: {state.value}
+        </Text> */}
+                        </View>
+                      </View>
+                      <View
+                        style={{ flexDirection: "column-reverse", flex: 3 }}
+                      >
+                        <TouchableOpacity
+                          style={[
+                            styles3.workcard,
+                            { marginBottom: 0, backgroundColor: "#fff" },
+                          ]}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                              // backgroundColor: 'red'
+                            }}
+                          >
+                            <MaterialCommunityIcons
+                              name="forklift"
+                              size={ResponsiveScreen.normalize(60)}
+                              color="orange"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[styles3.txtworkcard, { color: "#000" }]}
+                            >
+                              Material supply
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity
+                          style={[
+                            styles3.workcard,
+                            { backgroundColor: "#fff" },
+                          ]}
+                          onPress={() => nextState()}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <MaterialCommunityIcons
+                              name="scissors-cutting"
+                              size={ResponsiveScreen.normalize(60)}
+                              color="orange"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[styles3.txtworkcard, { color: "#000" }]}
+                            >
+                              Cutting
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                          style={[
+                            styles3.workcard,
+                            {
+                              backgroundColor: "#192570",
+                              width: ResponsiveScreen.normalize(505),
+                              marginLeft: "-6%",
+                            },
+                          ]}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <MaterialCommunityIcons
+                              name="tools"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="#f2ca30"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[
+                                styles3.txtworkcard,
+                                {
+                                  color: "#fff",
+                                  fontWeight: "800",
+                                  fontSize: ResponsiveScreen.fontSize(27),
+                                },
+                              ]}
+                            >
+                              Matching
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={[styles3.workcard, {}]}>
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <FontAwesome5
+                              name="paint-roller"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="#bfbfbf"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[
+                                styles3.txtworkcard,
+                                {
+                                  color: "#bfbfbf",
+                                },
+                              ]}
+                            >
+                              Heat treatment/Coating{"\n"}/Painting or Plating
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles3.workcard}>
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <AntDesign
+                              name="checksquare"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="#bfbfbf"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[
+                                styles3.txtworkcard,
+                                { color: "#bfbfbf" },
+                              ]}
+                            >
+                              Quality Control
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles3.workcard}>
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <Octicons
+                              name="package-dependencies"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="#bfbfbf"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[
+                                styles3.txtworkcard,
+                                { color: "#bfbfbf" },
+                              ]}
+                            >
+                              Packaging
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles3.workcard}>
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <MaterialCommunityIcons
+                              name="truck-delivery"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="#bfbfbf"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[
+                                styles3.txtworkcard,
+                                { color: "#bfbfbf" },
+                              ]}
+                            >
+                              Ready for delivery
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                      </View>
+                    </View>
+                  ) : myc === "4" ? (
+                    <View
+                      style={{
+                        width: ResponsiveScreen.normalize(620),
+                        // height: ResponsiveScreen.normalize(950),
+                        borderRadius: ResponsiveScreen.normalize(100),
+                        // backgroundColor: "red",
+                        flexDirection: "row",
+                        alignItems: "flex-end",
+                        marginHorizontal: ResponsiveScreen.normalize(-20),
+                      }}
+                    >
+                      <View style={{ flex: 1 }}>
+                        <View style={styles3.container}>
+                          <Slider
+                          disabled={true}
+                            style={{
+                              width: ResponsiveScreen.normalize(950),
+                              height: ResponsiveScreen.normalize(40),
+                              borderRadius: 50,
+                            }}
+                            // style={{flex:1,borderRadius:50}}
+                            trackStyle={{
+                              width: "100%",
+                              height: "100%",
+                              backgroundColor: "#f2ca30",
+                              borderRadius: 50,
+                            }}
+                            minimumTrackTintColor={"#192570"}
+                            // maximumTrackTintColor={'red'}
+                            maximumValue={7}
+                            vertical={true}
+                            // step={0.143}
+                            step={0}
+                            // thumbTintColor={'red'}
+                            thumbTintColor={"transparent"}
+                            value={state.vale}
+                            useNativeDriver={true}
+                            // onValueChange={value =>{setState({ value }),console.log(value)}}
+                            onValueChange={(value) => SK(value)}
+                            onSlidingComplete={(value) => SC(value)}
+                          />
+                          {/* <Text>
+          Value: {state.value}
+        </Text> */}
+                        </View>
+                      </View>
+                      <View
+                        style={{ flexDirection: "column-reverse", flex: 3 }}
+                      >
+                        <TouchableOpacity
+                          style={[
+                            styles3.workcard,
+                            { marginBottom: 0, backgroundColor: "#fff" },
+                          ]}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                              // backgroundColor: 'red'
+                            }}
+                          >
+                            <MaterialCommunityIcons
+                              name="forklift"
+                              size={ResponsiveScreen.normalize(60)}
+                              color="orange"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[styles3.txtworkcard, { color: "#000" }]}
+                            >
+                              Material supply
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity
+                          style={[
+                            styles3.workcard,
+                            { backgroundColor: "#fff" },
+                          ]}
+                          onPress={() => nextState()}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <MaterialCommunityIcons
+                              name="scissors-cutting"
+                              size={ResponsiveScreen.normalize(60)}
+                              color="orange"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[styles3.txtworkcard, { color: "#000" }]}
+                            >
+                              Cutting
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                          style={[
+                            styles3.workcard,
+                            { backgroundColor: "#fff" },
+                          ]}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <MaterialCommunityIcons
+                              name="tools"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="orange"
+                            />
+                          </View>
+                          <View>
+                            <Text style={[styles3.txtworkcard]}>Matching</Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                          style={[
+                            styles3.workcard,
+                            {
+                              backgroundColor: "#192570",
+                              width: ResponsiveScreen.normalize(505),
+                              marginLeft: "-6%",
+                            },
+                          ]}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <FontAwesome5
+                              name="paint-roller"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="#f2ca30"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[
+                                styles3.txtworkcard,
+                                {
+                                  color: "#fff",
+                                  fontWeight: "800",
+                                  fontSize: ResponsiveScreen.fontSize(27),
+                                },
+                              ]}
+                            >
+                              Heat treatment/Coating{"\n"}/Painting or Plating
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles3.workcard}>
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <AntDesign
+                              name="checksquare"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="#bfbfbf"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[
+                                styles3.txtworkcard,
+                                { color: "#bfbfbf" },
+                              ]}
+                            >
+                              Quality Control
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles3.workcard}>
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <Octicons
+                              name="package-dependencies"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="#bfbfbf"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[
+                                styles3.txtworkcard,
+                                { color: "#bfbfbf" },
+                              ]}
+                            >
+                              Packaging
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles3.workcard}>
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <MaterialCommunityIcons
+                              name="truck-delivery"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="#bfbfbf"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[
+                                styles3.txtworkcard,
+                                { color: "#bfbfbf" },
+                              ]}
+                            >
+                              Ready for delivery
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                      </View>
+                    </View>
+                  ) : myc === "5" ? (
+                    <View
+                      style={{
+                        width: ResponsiveScreen.normalize(620),
+                        // height: ResponsiveScreen.normalize(950),
+                        borderRadius: ResponsiveScreen.normalize(100),
+                        // backgroundColor: "red",
+                        flexDirection: "row",
+                        alignItems: "flex-end",
+                        marginHorizontal: ResponsiveScreen.normalize(-20),
+                      }}
+                    >
+                      <View style={{ flex: 1 }}>
+                        <View style={styles3.container}>
+                          <Slider
+                          disabled={true}
+                            style={{
+                              width: ResponsiveScreen.normalize(950),
+                              height: ResponsiveScreen.normalize(40),
+                              borderRadius: 50,
+                            }}
+                            // style={{flex:1,borderRadius:50}}
+                            trackStyle={{
+                              width: "100%",
+                              height: "100%",
+                              backgroundColor: "#f2ca30",
+                              borderRadius: 50,
+                            }}
+                            minimumTrackTintColor={"#192570"}
+                            // maximumTrackTintColor={'red'}
+                            maximumValue={7}
+                            vertical={true}
+                            // step={0.143}
+                            step={0}
+                            // thumbTintColor={'red'}
+                            thumbTintColor={"transparent"}
+                            value={state.vale}
+                            useNativeDriver={true}
+                            // onValueChange={value =>{setState({ value }),console.log(value)}}
+                            onValueChange={(value) => SK(value)}
+                            onSlidingComplete={(value) => SC(value)}
+                          />
+                          {/* <Text>
+          Value: {state.value}
+        </Text> */}
+                        </View>
+                      </View>
+                      <View
+                        style={{ flexDirection: "column-reverse", flex: 3 }}
+                      >
+                        <TouchableOpacity
+                          style={[
+                            styles3.workcard,
+                            { marginBottom: 0, backgroundColor: "#fff" },
+                          ]}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                              // backgroundColor: 'red'
+                            }}
+                          >
+                            <MaterialCommunityIcons
+                              name="forklift"
+                              size={ResponsiveScreen.normalize(60)}
+                              color="orange"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[styles3.txtworkcard, { color: "#000" }]}
+                            >
+                              Material supply
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity
+                          style={[
+                            styles3.workcard,
+                            { backgroundColor: "#fff" },
+                          ]}
+                          onPress={() => nextState()}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <MaterialCommunityIcons
+                              name="scissors-cutting"
+                              size={ResponsiveScreen.normalize(60)}
+                              color="orange"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[styles3.txtworkcard, { color: "#000" }]}
+                            >
+                              Cutting
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                          style={[
+                            styles3.workcard,
+                            { backgroundColor: "#fff" },
+                          ]}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <MaterialCommunityIcons
+                              name="tools"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="orange"
+                            />
+                          </View>
+                          <View>
+                            <Text style={[styles3.txtworkcard]}>Matching</Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                          style={[
+                            styles3.workcard,
+                            { backgroundColor: "#fff" },
+                          ]}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <FontAwesome5
+                              name="paint-roller"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="orange"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[styles3.txtworkcard, { color: "#000" }]}
+                            >
+                              Heat treatment/Coating{"\n"}/Painting or Plating
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                          style={[
+                            styles3.workcard,
+                            {
+                              backgroundColor: "#192570",
+                              width: ResponsiveScreen.normalize(505),
+                              marginLeft: "-6%",
+                            },
+                          ]}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <AntDesign
+                              name="checksquare"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="#f2ca30"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[
+                                styles3.txtworkcard,
+                                {
+                                  color: "#fff",
+                                  fontWeight: "800",
+                                  fontSize: ResponsiveScreen.fontSize(27),
+                                },
+                              ]}
+                            >
+                              Quality Control
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles3.workcard}>
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <Octicons
+                              name="package-dependencies"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="#bfbfbf"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[
+                                styles3.txtworkcard,
+                                { color: "#bfbfbf" },
+                              ]}
+                            >
+                              Packaging
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles3.workcard}>
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <MaterialCommunityIcons
+                              name="truck-delivery"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="#bfbfbf"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[
+                                styles3.txtworkcard,
+                                { color: "#bfbfbf" },
+                              ]}
+                            >
+                              Ready for delivery
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                      </View>
+                    </View>
+                  ) : myc === "6" ? (
+                    <View
+                      style={{
+                        width: ResponsiveScreen.normalize(620),
+                        // height: ResponsiveScreen.normalize(950),
+                        borderRadius: ResponsiveScreen.normalize(100),
+                        // backgroundColor: "red",
+                        flexDirection: "row",
+                        alignItems: "flex-end",
+                        marginHorizontal: ResponsiveScreen.normalize(-20),
+                      }}
+                    >
+                      <View style={{ flex: 1 }}>
+                        <View style={styles3.container}>
+                          <Slider
+                          disabled={true}
+                            style={{
+                              width: ResponsiveScreen.normalize(950),
+                              height: ResponsiveScreen.normalize(40),
+                              borderRadius: 50,
+                            }}
+                            // style={{flex:1,borderRadius:50}}
+                            trackStyle={{
+                              width: "100%",
+                              height: "100%",
+                              backgroundColor: "#f2ca30",
+                              borderRadius: 50,
+                            }}
+                            minimumTrackTintColor={"#192570"}
+                            // maximumTrackTintColor={'red'}
+                            maximumValue={7}
+                            vertical={true}
+                            // step={0.143}
+                            step={0}
+                            // thumbTintColor={'red'}
+                            thumbTintColor={"transparent"}
+                            value={state.vale}
+                            useNativeDriver={true}
+                            // onValueChange={value =>{setState({ value }),console.log(value)}}
+                            onValueChange={(value) => SK(value)}
+                            onSlidingComplete={(value) => SC(value)}
+                          />
+                          {/* <Text>
+          Value: {state.value}
+        </Text> */}
+                        </View>
+                      </View>
+                      <View
+                        style={{ flexDirection: "column-reverse", flex: 3 }}
+                      >
+                        <TouchableOpacity
+                          style={[
+                            styles3.workcard,
+                            { marginBottom: 0, backgroundColor: "#fff" },
+                          ]}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                              // backgroundColor: 'red'
+                            }}
+                          >
+                            <MaterialCommunityIcons
+                              name="forklift"
+                              size={ResponsiveScreen.normalize(60)}
+                              color="orange"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[styles3.txtworkcard, { color: "#000" }]}
+                            >
+                              Material supply
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity
+                          style={[
+                            styles3.workcard,
+                            { backgroundColor: "#fff" },
+                          ]}
+                          onPress={() => nextState()}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <MaterialCommunityIcons
+                              name="scissors-cutting"
+                              size={ResponsiveScreen.normalize(60)}
+                              color="orange"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[styles3.txtworkcard, { color: "#000" }]}
+                            >
+                              Cutting
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                          style={[
+                            styles3.workcard,
+                            { backgroundColor: "#fff" },
+                          ]}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <MaterialCommunityIcons
+                              name="tools"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="orange"
+                            />
+                          </View>
+                          <View>
+                            <Text style={[styles3.txtworkcard]}>Matching</Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                          style={[
+                            styles3.workcard,
+                            { backgroundColor: "#fff" },
+                          ]}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <FontAwesome5
+                              name="paint-roller"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="orange"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[styles3.txtworkcard, { color: "#000" }]}
+                            >
+                              Heat treatment/Coating{"\n"}/Painting or Plating
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                          style={[
+                            styles3.workcard,
+                            { backgroundColor: "#fff" },
+                          ]}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <AntDesign
+                              name="checksquare"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="orange"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[styles3.txtworkcard, { color: "#000" }]}
+                            >
+                              Quality Control
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                          style={[
+                            styles3.workcard,
+                            {
+                              backgroundColor: "#192570",
+                              width: ResponsiveScreen.normalize(505),
+                              marginLeft: "-6%",
+                            },
+                          ]}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <Octicons
+                              name="package-dependencies"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="#f2ca30"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[
+                                styles3.txtworkcard,
+                                {
+                                  color: "#fff",
+                                  fontWeight: "800",
+                                  fontSize: ResponsiveScreen.fontSize(27),
+                                },
+                              ]}
+                            >
+                              Packaging
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles3.workcard}>
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <MaterialCommunityIcons
+                              name="truck-delivery"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="#bfbfbf"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[
+                                styles3.txtworkcard,
+                                { color: "#bfbfbf" },
+                              ]}
+                            >
+                              Ready for delivery
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                      </View>
+                    </View>
+                  ) : (
+                    <View
+                      style={{
+                        width: ResponsiveScreen.normalize(620),
+                        // height: ResponsiveScreen.normalize(950),
+                        borderRadius: ResponsiveScreen.normalize(100),
+                        // backgroundColor: "red",
+                        flexDirection: "row",
+                        alignItems: "flex-end",
+                        marginHorizontal: ResponsiveScreen.normalize(-20),
+                      }}
+                    >
+                      <View style={{ flex: 1 }}>
+                        <View style={styles3.container}>
+                          <Slider
+                          disabled={true}
+                            style={{
+                              width: ResponsiveScreen.normalize(950),
+                              height: ResponsiveScreen.normalize(40),
+                              borderRadius: 50,
+                            }}
+                            // style={{flex:1,borderRadius:50}}
+                            trackStyle={{
+                              width: "100%",
+                              height: "100%",
+                              backgroundColor: "#f2ca30",
+                              borderRadius: 50,
+                            }}
+                            minimumTrackTintColor={"#192570"}
+                            // maximumTrackTintColor={'red'}
+                            maximumValue={7}
+                            vertical={true}
+                            // step={0.143}
+                            step={0}
+                            // thumbTintColor={'red'}
+                            thumbTintColor={"transparent"}
+                            value={state.vale}
+                            useNativeDriver={true}
+                            // onValueChange={value =>{setState({ value }),console.log(value)}}
+                            onValueChange={(value) => SK(value)}
+                            onSlidingComplete={(value) => SC(value)}
+                          />
+                          {/* <Text>
+        Value: {state.value}
+      </Text> */}
+                        </View>
+                      </View>
+                      <View
+                        style={{ flexDirection: "column-reverse", flex: 3 }}
+                      >
+                        <TouchableOpacity
+                          style={[
+                            styles3.workcard,
+                            { marginBottom: 0, backgroundColor: "#fff" },
+                          ]}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                              // backgroundColor: 'red'
+                            }}
+                          >
+                            <MaterialCommunityIcons
+                              name="forklift"
+                              size={ResponsiveScreen.normalize(60)}
+                              color="orange"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[styles3.txtworkcard, { color: "#000" }]}
+                            >
+                              Material supply
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity
+                          style={[
+                            styles3.workcard,
+                            { backgroundColor: "#fff" },
+                          ]}
+                          onPress={() => nextState()}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <MaterialCommunityIcons
+                              name="scissors-cutting"
+                              size={ResponsiveScreen.normalize(60)}
+                              color="orange"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[styles3.txtworkcard, { color: "#000" }]}
+                            >
+                              Cutting
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                          style={[
+                            styles3.workcard,
+                            { backgroundColor: "#fff" },
+                          ]}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <MaterialCommunityIcons
+                              name="tools"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="orange"
+                            />
+                          </View>
+                          <View>
+                            <Text style={[styles3.txtworkcard]}>Matching</Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                          style={[
+                            styles3.workcard,
+                            { backgroundColor: "#fff" },
+                          ]}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <FontAwesome5
+                              name="paint-roller"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="orange"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[styles3.txtworkcard, { color: "#000" }]}
+                            >
+                              Heat treatment/Coating{"\n"}/Painting or Plating
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                          style={[
+                            styles3.workcard,
+                            { backgroundColor: "#fff" },
+                          ]}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <AntDesign
+                              name="checksquare"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="orange"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[styles3.txtworkcard, { color: "#000" }]}
+                            >
+                              Quality Control
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                          style={[
+                            styles3.workcard,
+                            { backgroundColor: "#fff" },
+                          ]}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <Octicons
+                              name="package-dependencies"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="orange"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[styles3.txtworkcard, { color: "#000" }]}
+                            >
+                              Packaging
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                          style={[
+                            styles3.workcard,
+                            {
+                              backgroundColor: "#192570",
+                              width: ResponsiveScreen.normalize(505),
+                              marginLeft: "-6%",
+                            },
+                          ]}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <MaterialCommunityIcons
+                              name="truck-delivery"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="#f2ca30"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[
+                                styles3.txtworkcard,
+                                {
+                                  color: "#fff",
+                                  fontWeight: "800",
+                                  fontSize: ResponsiveScreen.fontSize(27),
+                                },
+                              ]}
+                            >
+                              Ready for delivery
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                      </View>
+                    </View>
+                  )}
                 </View>
-                <View style={styles3.Viewtxtworkcard}>
-                  <Text
-                    style={[
-                      styles3.txtworkcard,
-                      {
-                        fontSize: ResponsiveScreen.normalize(27),
-                      },
-                    ]}
-                  >
-                    Heat treatment/Coating/Painting or Plating
-                  </Text>
+              ) : (
+                ///-----------------------Normal----------------------------------------------------------///
+
+                <View style={{ flex: 1, alignItems: "flex-start" }}>
+                  {myc === "1" ? (
+                    <View
+                      style={{
+                        width: ResponsiveScreen.normalize(620),
+                        // height: ResponsiveScreen.normalize(950),
+                        borderRadius: ResponsiveScreen.normalize(100),
+                        // backgroundColor: "red",
+                        flexDirection: "row",
+                        alignItems: "flex-end",
+                        marginHorizontal: ResponsiveScreen.normalize(-20),
+                      }}
+                    >
+                      <View style={{ flex: 1 }}>
+                        <View style={styles3.container}>
+                          <Slider
+                           disabled={true}
+                            style={{
+                              width: ResponsiveScreen.normalize(810),
+                              height: ResponsiveScreen.normalize(40),
+                              borderRadius: 50,
+                            }}
+                            // style={{flex:1,borderRadius:50}}
+                            trackStyle={{
+                              width: "100%",
+                              height: "100%",
+                              backgroundColor: "#f2ca30",
+                              borderRadius: 50,
+                            }}
+                            minimumTrackTintColor={"#192570"}
+                            // maximumTrackTintColor={'red'}
+                            // maximumValue={0.7}
+                            vertical={true}
+                            // step={0.143}
+                            step={0}
+                            // thumbTintColor={'red'}
+                            thumbTintColor={"transparent"}
+                            value={state.value}
+                            useNativeDriver={true}
+                            // onValueChange={value =>{setState({ value }),console.log(value)}}
+                            onValueChange={(value) => SK(value)}
+                            onSlidingComplete={(value) => SC(value)}
+                          />
+                          {/* <Text>
+          Value: {state.value}
+        </Text> */}
+                        </View>
+                      </View>
+                      <View
+                        style={{ flexDirection: "column-reverse", flex: 3 }}
+                      >
+                        <TouchableOpacity
+                          style={[
+                            styles3.workcardN,
+                            {
+                              marginBottom: 0,
+                              backgroundColor: "#192570",
+                              width: ResponsiveScreen.normalize(505),
+                              marginLeft: "-6%",
+                            },
+                          ]}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                              // backgroundColor: 'red'
+                            }}
+                          >
+                            <MaterialCommunityIcons
+                              name="forklift"
+                              size={ResponsiveScreen.normalize(60)}
+                              color="#f2ca30"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[
+                                styles3.txtworkcard,
+                                {
+                                  color: "#fff",
+                                  fontWeight: "900",
+                                  fontSize: ResponsiveScreen.fontSize(27),
+                                },
+                              ]}
+                            >
+                              Material supply
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity
+                          style={styles3.workcardN}
+                          onPress={() => nextState()}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <MaterialCommunityIcons
+                              name="scissors-cutting"
+                              size={ResponsiveScreen.normalize(60)}
+                              color="#bfbfbf"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[
+                                styles3.txtworkcard,
+                                { color: "#bfbfbf" },
+                              ]}
+                            >
+                              Cutting
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles3.workcardN}>
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <MaterialCommunityIcons
+                              name="tools"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="#bfbfbf"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[
+                                styles3.txtworkcard,
+                                { color: "#bfbfbf" },
+                              ]}
+                            >
+                              Matching
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={[styles3.workcardN, {}]}>
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <FontAwesome5
+                              name="paint-roller"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="#bfbfbf"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[
+                                styles3.txtworkcard,
+                                {
+                                  color: "#bfbfbf",
+                                },
+                              ]}
+                            >
+                              Heat treatment/Coating{"\n"}/Painting or Plating
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles3.workcardN}>
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <AntDesign
+                              name="checksquare"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="#bfbfbf"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[
+                                styles3.txtworkcard,
+                                { color: "#bfbfbf" },
+                              ]}
+                            >
+                              Quality Control
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles3.workcardN}>
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <Octicons
+                              name="package-dependencies"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="#bfbfbf"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[
+                                styles3.txtworkcard,
+                                { color: "#bfbfbf" },
+                              ]}
+                            >
+                              Packaging
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles3.workcardN}>
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <MaterialCommunityIcons
+                              name="truck-delivery"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="#bfbfbf"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[
+                                styles3.txtworkcard,
+                                { color: "#bfbfbf" },
+                              ]}
+                            >
+                              Ready for delivery
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                      </View>
+                    </View>
+                  ) : myc === "2" ? (
+                    <View
+                      style={{
+                        width: ResponsiveScreen.normalize(620),
+                        // height: ResponsiveScreen.normalize(950),
+                        borderRadius: ResponsiveScreen.normalize(100),
+                        // backgroundColor: "red",
+                        flexDirection: "row",
+                        alignItems: "flex-end",
+                        marginHorizontal: ResponsiveScreen.normalize(-20),
+                      }}
+                    >
+                      <View style={{ flex: 1 }}>
+                        <View style={styles3.container}>
+                          <Slider
+                           disabled={true}
+                            style={{
+                              width: ResponsiveScreen.normalize(810),
+                              height: ResponsiveScreen.normalize(40),
+                              borderRadius: 50,
+                            }}
+                            // style={{flex:1,borderRadius:50}}
+                            trackStyle={{
+                              width: "100%",
+                              height: "100%",
+                              backgroundColor: "#f2ca30",
+                              borderRadius: 50,
+                            }}
+                            minimumTrackTintColor={"#192570"}
+                            // maximumTrackTintColor={'red'}
+                            // maximumValue={0.7}
+                            vertical={true}
+                            // step={0.143}
+                            step={0}
+                            // thumbTintColor={'red'}
+                            thumbTintColor={"transparent"}
+                            value={state.value}
+                            useNativeDriver={true}
+                            // onValueChange={value =>{setState({ value }),console.log(value)}}
+                            onValueChange={(value) => SK(value)}
+                            onSlidingComplete={(value) => SC(value)}
+                          />
+                          {/* <Text>
+          Value: {state.value}
+        </Text> */}
+                        </View>
+                      </View>
+                      <View
+                        style={{ flexDirection: "column-reverse", flex: 3 }}
+                      >
+                        <TouchableOpacity
+                          style={[
+                            styles3.workcardN,
+                            { marginBottom: 0, backgroundColor: "#fff" },
+                          ]}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                              // backgroundColor: 'red'
+                            }}
+                          >
+                            <MaterialCommunityIcons
+                              name="forklift"
+                              size={ResponsiveScreen.normalize(60)}
+                              color="orange"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[styles3.txtworkcard, { color: "#000" }]}
+                            >
+                              Material supply
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity
+                          style={[
+                            styles3.workcardN,
+                            {
+                              backgroundColor: "#192570",
+                              width: ResponsiveScreen.normalize(505),
+                              marginLeft: "-6%",
+                            },
+                          ]}
+                          onPress={() => nextState()}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <MaterialCommunityIcons
+                              name="scissors-cutting"
+                              size={ResponsiveScreen.normalize(60)}
+                              color="#f2ca30"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[
+                                styles3.txtworkcard,
+                                {
+                                  color: "#fff",
+                                  fontWeight: "900",
+                                  fontSize: ResponsiveScreen.fontSize(27),
+                                },
+                              ]}
+                            >
+                              Cutting
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles3.workcardN}>
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <MaterialCommunityIcons
+                              name="tools"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="#bfbfbf"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[
+                                styles3.txtworkcard,
+                                { color: "#bfbfbf" },
+                              ]}
+                            >
+                              Matching
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={[styles3.workcardN, {}]}>
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <FontAwesome5
+                              name="paint-roller"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="#bfbfbf"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[
+                                styles3.txtworkcard,
+                                {
+                                  color: "#bfbfbf",
+                                },
+                              ]}
+                            >
+                              Heat treatment/Coating{"\n"}/Painting or Plating
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles3.workcardN}>
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <AntDesign
+                              name="checksquare"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="#bfbfbf"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[
+                                styles3.txtworkcard,
+                                { color: "#bfbfbf" },
+                              ]}
+                            >
+                              Quality Control
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles3.workcardN}>
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <Octicons
+                              name="package-dependencies"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="#bfbfbf"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[
+                                styles3.txtworkcard,
+                                { color: "#bfbfbf" },
+                              ]}
+                            >
+                              Packaging
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles3.workcardN}>
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <MaterialCommunityIcons
+                              name="truck-delivery"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="#bfbfbf"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[
+                                styles3.txtworkcard,
+                                { color: "#bfbfbf" },
+                              ]}
+                            >
+                              Ready for delivery
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                      </View>
+                    </View>
+                  ) : myc === "3" ? (
+                    <View
+                      style={{
+                        width: ResponsiveScreen.normalize(620),
+                        // height: ResponsiveScreen.normalize(950),
+                        borderRadius: ResponsiveScreen.normalize(100),
+                        // backgroundColor: "red",
+                        flexDirection: "row",
+                        alignItems: "flex-end",
+                        marginHorizontal: ResponsiveScreen.normalize(-20),
+                      }}
+                    >
+                      <View style={{ flex: 1 }}>
+                        <View style={styles3.container}>
+                          <Slider
+                           disabled={true}
+                            style={{
+                              width: ResponsiveScreen.normalize(810),
+                              height: ResponsiveScreen.normalize(40),
+                              borderRadius: 50,
+                            }}
+                            // style={{flex:1,borderRadius:50}}
+                            trackStyle={{
+                              width: "100%",
+                              height: "100%",
+                              backgroundColor: "#f2ca30",
+                              borderRadius: 50,
+                            }}
+                            minimumTrackTintColor={"#192570"}
+                            // maximumTrackTintColor={'red'}
+                            // maximumValue={0.7}
+                            vertical={true}
+                            // step={0.143}
+                            step={0}
+                            // thumbTintColor={'red'}
+                            thumbTintColor={"transparent"}
+                            value={state.value}
+                            useNativeDriver={true}
+                            // onValueChange={value =>{setState({ value }),console.log(value)}}
+                            onValueChange={(value) => SK(value)}
+                            onSlidingComplete={(value) => SC(value)}
+                          />
+                          {/* <Text>
+          Value: {state.value}
+        </Text> */}
+                        </View>
+                      </View>
+                      <View
+                        style={{ flexDirection: "column-reverse", flex: 3 }}
+                      >
+                        <TouchableOpacity
+                          style={[
+                            styles3.workcardN,
+                            { marginBottom: 0, backgroundColor: "#fff" },
+                          ]}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                              // backgroundColor: 'red'
+                            }}
+                          >
+                            <MaterialCommunityIcons
+                              name="forklift"
+                              size={ResponsiveScreen.normalize(60)}
+                              color="orange"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[styles3.txtworkcard, { color: "#000" }]}
+                            >
+                              Material supply
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity
+                          style={[
+                            styles3.workcardN,
+                            { backgroundColor: "#fff" },
+                          ]}
+                          onPress={() => nextState()}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <MaterialCommunityIcons
+                              name="scissors-cutting"
+                              size={ResponsiveScreen.normalize(60)}
+                              color="orange"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[styles3.txtworkcard, { color: "#000" }]}
+                            >
+                              Cutting
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                          style={[
+                            styles3.workcardN,
+                            {
+                              backgroundColor: "#192570",
+                              width: ResponsiveScreen.normalize(505),
+                              marginLeft: "-6%",
+                            },
+                          ]}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <MaterialCommunityIcons
+                              name="tools"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="#f2ca30"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[
+                                styles3.txtworkcard,
+                                {
+                                  color: "#fff",
+                                  fontWeight: "800",
+                                  fontSize: ResponsiveScreen.fontSize(27),
+                                },
+                              ]}
+                            >
+                              Matching
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={[styles3.workcardN, {}]}>
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <FontAwesome5
+                              name="paint-roller"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="#bfbfbf"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[
+                                styles3.txtworkcard,
+                                {
+                                  color: "#bfbfbf",
+                                },
+                              ]}
+                            >
+                              Heat treatment/Coating{"\n"}/Painting or Plating
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles3.workcardN}>
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <AntDesign
+                              name="checksquare"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="#bfbfbf"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[
+                                styles3.txtworkcard,
+                                { color: "#bfbfbf" },
+                              ]}
+                            >
+                              Quality Control
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles3.workcardN}>
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <Octicons
+                              name="package-dependencies"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="#bfbfbf"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[
+                                styles3.txtworkcard,
+                                { color: "#bfbfbf" },
+                              ]}
+                            >
+                              Packaging
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles3.workcardN}>
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <MaterialCommunityIcons
+                              name="truck-delivery"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="#bfbfbf"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[
+                                styles3.txtworkcard,
+                                { color: "#bfbfbf" },
+                              ]}
+                            >
+                              Ready for delivery
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                      </View>
+                    </View>
+                  ) : myc === "4" ? (
+                    <View
+                      style={{
+                        width: ResponsiveScreen.normalize(620),
+                        // height: ResponsiveScreen.normalize(950),
+                        borderRadius: ResponsiveScreen.normalize(100),
+                        // backgroundColor: "red",
+                        flexDirection: "row",
+                        alignItems: "flex-end",
+                        marginHorizontal: ResponsiveScreen.normalize(-20),
+                      }}
+                    >
+                      <View style={{ flex: 1 }}>
+                        <View style={styles3.container}>
+                          <Slider
+                           disabled={true}
+                            style={{
+                              width: ResponsiveScreen.normalize(810),
+                              height: ResponsiveScreen.normalize(40),
+                              borderRadius: 50,
+                            }}
+                            // style={{flex:1,borderRadius:50}}
+                            trackStyle={{
+                              width: "100%",
+                              height: "100%",
+                              backgroundColor: "#f2ca30",
+                              borderRadius: 50,
+                            }}
+                            minimumTrackTintColor={"#192570"}
+                            // maximumTrackTintColor={'red'}
+                            // maximumValue={0.7}
+                            vertical={true}
+                            // step={0.143}
+                            step={0}
+                            // thumbTintColor={'red'}
+                            thumbTintColor={"transparent"}
+                            value={state.value}
+                            useNativeDriver={true}
+                            // onValueChange={value =>{setState({ value }),console.log(value)}}
+                            onValueChange={(value) => SK(value)}
+                            onSlidingComplete={(value) => SC(value)}
+                          />
+                          {/* <Text>
+          Value: {state.value}
+        </Text> */}
+                        </View>
+                      </View>
+                      <View
+                        style={{ flexDirection: "column-reverse", flex: 3 }}
+                      >
+                        <TouchableOpacity
+                          style={[
+                            styles3.workcardN,
+                            { marginBottom: 0, backgroundColor: "#fff" },
+                          ]}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                              // backgroundColor: 'red'
+                            }}
+                          >
+                            <MaterialCommunityIcons
+                              name="forklift"
+                              size={ResponsiveScreen.normalize(60)}
+                              color="orange"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[styles3.txtworkcard, { color: "#000" }]}
+                            >
+                              Material supply
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity
+                          style={[
+                            styles3.workcardN,
+                            { backgroundColor: "#fff" },
+                          ]}
+                          onPress={() => nextState()}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <MaterialCommunityIcons
+                              name="scissors-cutting"
+                              size={ResponsiveScreen.normalize(60)}
+                              color="orange"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[styles3.txtworkcard, { color: "#000" }]}
+                            >
+                              Cutting
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                          style={[
+                            styles3.workcardN,
+                            { backgroundColor: "#fff" },
+                          ]}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <MaterialCommunityIcons
+                              name="tools"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="orange"
+                            />
+                          </View>
+                          <View>
+                            <Text style={[styles3.txtworkcard]}>Matching</Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                          style={[
+                            styles3.workcardN,
+                            {
+                              backgroundColor: "#192570",
+                              width: ResponsiveScreen.normalize(505),
+                              marginLeft: "-6%",
+                            },
+                          ]}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <FontAwesome5
+                              name="paint-roller"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="#f2ca30"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[
+                                styles3.txtworkcard,
+                                {
+                                  color: "#fff",
+                                  fontWeight: "800",
+                                  fontSize: ResponsiveScreen.fontSize(27),
+                                },
+                              ]}
+                            >
+                              Heat treatment/Coating{"\n"}/Painting or Plating
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles3.workcardN}>
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <AntDesign
+                              name="checksquare"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="#bfbfbf"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[
+                                styles3.txtworkcard,
+                                { color: "#bfbfbf" },
+                              ]}
+                            >
+                              Quality Control
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles3.workcardN}>
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <Octicons
+                              name="package-dependencies"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="#bfbfbf"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[
+                                styles3.txtworkcard,
+                                { color: "#bfbfbf" },
+                              ]}
+                            >
+                              Packaging
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles3.workcardN}>
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <MaterialCommunityIcons
+                              name="truck-delivery"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="#bfbfbf"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[
+                                styles3.txtworkcard,
+                                { color: "#bfbfbf" },
+                              ]}
+                            >
+                              Ready for delivery
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                      </View>
+                    </View>
+                  ) : myc === "5" ? (
+                    <View
+                      style={{
+                        width: ResponsiveScreen.normalize(620),
+                        // height: ResponsiveScreen.normalize(950),
+                        borderRadius: ResponsiveScreen.normalize(100),
+                        // backgroundColor: "red",
+                        flexDirection: "row",
+                        alignItems: "flex-end",
+                        marginHorizontal: ResponsiveScreen.normalize(-20),
+                      }}
+                    >
+                      <View style={{ flex: 1 }}>
+                        <View style={styles3.container}>
+                          <Slider
+                           disabled={true}
+                            style={{
+                              width: ResponsiveScreen.normalize(810),
+                              height: ResponsiveScreen.normalize(40),
+                              borderRadius: 50,
+                            }}
+                            // style={{flex:1,borderRadius:50}}
+                            trackStyle={{
+                              width: "100%",
+                              height: "100%",
+                              backgroundColor: "#f2ca30",
+                              borderRadius: 50,
+                            }}
+                            minimumTrackTintColor={"#192570"}
+                            // maximumTrackTintColor={'red'}
+                            // maximumValue={0.7}
+                            vertical={true}
+                            // step={0.143}
+                            step={0}
+                            // thumbTintColor={'red'}
+                            thumbTintColor={"transparent"}
+                            value={state.value}
+                            useNativeDriver={true}
+                            // onValueChange={value =>{setState({ value }),console.log(value)}}
+                            onValueChange={(value) => SK(value)}
+                            onSlidingComplete={(value) => SC(value)}
+                          />
+                          {/* <Text>
+          Value: {state.value}
+        </Text> */}
+                        </View>
+                      </View>
+                      <View
+                        style={{ flexDirection: "column-reverse", flex: 3 }}
+                      >
+                        <TouchableOpacity
+                          style={[
+                            styles3.workcardN,
+                            { marginBottom: 0, backgroundColor: "#fff" },
+                          ]}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                              // backgroundColor: 'red'
+                            }}
+                          >
+                            <MaterialCommunityIcons
+                              name="forklift"
+                              size={ResponsiveScreen.normalize(60)}
+                              color="orange"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[styles3.txtworkcard, { color: "#000" }]}
+                            >
+                              Material supply
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity
+                          style={[
+                            styles3.workcardN,
+                            { backgroundColor: "#fff" },
+                          ]}
+                          onPress={() => nextState()}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <MaterialCommunityIcons
+                              name="scissors-cutting"
+                              size={ResponsiveScreen.normalize(60)}
+                              color="orange"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[styles3.txtworkcard, { color: "#000" }]}
+                            >
+                              Cutting
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                          style={[
+                            styles3.workcardN,
+                            { backgroundColor: "#fff" },
+                          ]}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <MaterialCommunityIcons
+                              name="tools"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="orange"
+                            />
+                          </View>
+                          <View>
+                            <Text style={[styles3.txtworkcard]}>Matching</Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                          style={[
+                            styles3.workcardN,
+                            { backgroundColor: "#fff" },
+                          ]}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <FontAwesome5
+                              name="paint-roller"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="orange"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[styles3.txtworkcard, { color: "#000" }]}
+                            >
+                              Heat treatment/Coating{"\n"}/Painting or Plating
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                          style={[
+                            styles3.workcardN,
+                            {
+                              backgroundColor: "#192570",
+                              width: ResponsiveScreen.normalize(505),
+                              marginLeft: "-6%",
+                            },
+                          ]}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <AntDesign
+                              name="checksquare"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="#f2ca30"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[
+                                styles3.txtworkcard,
+                                {
+                                  color: "#fff",
+                                  fontWeight: "800",
+                                  fontSize: ResponsiveScreen.fontSize(27),
+                                },
+                              ]}
+                            >
+                              Quality Control
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles3.workcardN}>
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <Octicons
+                              name="package-dependencies"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="#bfbfbf"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[
+                                styles3.txtworkcard,
+                                { color: "#bfbfbf" },
+                              ]}
+                            >
+                              Packaging
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles3.workcardN}>
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <MaterialCommunityIcons
+                              name="truck-delivery"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="#bfbfbf"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[
+                                styles3.txtworkcard,
+                                { color: "#bfbfbf" },
+                              ]}
+                            >
+                              Ready for delivery
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                      </View>
+                    </View>
+                  ) : myc === "6" ? (
+                    <View
+                      style={{
+                        width: ResponsiveScreen.normalize(620),
+                        // height: ResponsiveScreen.normalize(950),
+                        borderRadius: ResponsiveScreen.normalize(100),
+                        // backgroundColor: "red",
+                        flexDirection: "row",
+                        alignItems: "flex-end",
+                        marginHorizontal: ResponsiveScreen.normalize(-20),
+                      }}
+                    >
+                      <View style={{ flex: 1 }}>
+                        <View style={styles3.container}>
+                          <Slider
+                          disabled={true}
+                            style={{
+                              width: ResponsiveScreen.normalize(810),
+                              height: ResponsiveScreen.normalize(40),
+                              borderRadius: 50,
+                            }}
+                            // style={{flex:1,borderRadius:50}}
+                            trackStyle={{
+                              width: "100%",
+                              height: "100%",
+                              backgroundColor: "#f2ca30",
+                              borderRadius: 50,
+                            }}
+                            minimumTrackTintColor={"#192570"}
+                            // maximumTrackTintColor={'red'}
+                            // maximumValue={0.7}
+                            vertical={true}
+                            // step={0.143}
+                            step={0}
+                            // thumbTintColor={'red'}
+                            thumbTintColor={"transparent"}
+                            value={state.value}
+                            useNativeDriver={true}
+                            // onValueChange={value =>{setState({ value }),console.log(value)}}
+                            onValueChange={(value) => SK(value)}
+                            onSlidingComplete={(value) => SC(value)}
+                          />
+                          {/* <Text>
+          Value: {state.value}
+        </Text> */}
+                        </View>
+                      </View>
+                      <View
+                        style={{ flexDirection: "column-reverse", flex: 3 }}
+                      >
+                        <TouchableOpacity
+                          style={[
+                            styles3.workcardN,
+                            { marginBottom: 0, backgroundColor: "#fff" },
+                          ]}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                              // backgroundColor: 'red'
+                            }}
+                          >
+                            <MaterialCommunityIcons
+                              name="forklift"
+                              size={ResponsiveScreen.normalize(60)}
+                              color="orange"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[styles3.txtworkcard, { color: "#000" }]}
+                            >
+                              Material supply
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity
+                          style={[
+                            styles3.workcardN,
+                            { backgroundColor: "#fff" },
+                          ]}
+                          onPress={() => nextState()}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <MaterialCommunityIcons
+                              name="scissors-cutting"
+                              size={ResponsiveScreen.normalize(60)}
+                              color="orange"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[styles3.txtworkcard, { color: "#000" }]}
+                            >
+                              Cutting
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                          style={[
+                            styles3.workcardN,
+                            { backgroundColor: "#fff" },
+                          ]}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <MaterialCommunityIcons
+                              name="tools"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="orange"
+                            />
+                          </View>
+                          <View>
+                            <Text style={[styles3.txtworkcard]}>Matching</Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                          style={[
+                            styles3.workcardN,
+                            { backgroundColor: "#fff" },
+                          ]}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <FontAwesome5
+                              name="paint-roller"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="orange"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[styles3.txtworkcard, { color: "#000" }]}
+                            >
+                              Heat treatment/Coating{"\n"}/Painting or Plating
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                          style={[
+                            styles3.workcardN,
+                            { backgroundColor: "#fff" },
+                          ]}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <AntDesign
+                              name="checksquare"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="orange"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[styles3.txtworkcard, { color: "#000" }]}
+                            >
+                              Quality Control
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                          style={[
+                            styles3.workcardN,
+                            {
+                              backgroundColor: "#192570",
+                              width: ResponsiveScreen.normalize(505),
+                              marginLeft: "-6%",
+                            },
+                          ]}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <Octicons
+                              name="package-dependencies"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="#f2ca30"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[
+                                styles3.txtworkcard,
+                                {
+                                  color: "#fff",
+                                  fontWeight: "800",
+                                  fontSize: ResponsiveScreen.fontSize(27),
+                                },
+                              ]}
+                            >
+                              Packaging
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles3.workcardN}>
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <MaterialCommunityIcons
+                              name="truck-delivery"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="#bfbfbf"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[
+                                styles3.txtworkcard,
+                                { color: "#bfbfbf" },
+                              ]}
+                            >
+                              Ready for delivery
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                      </View>
+                    </View>
+                  ) : (
+                    <View
+                      style={{
+                        width: ResponsiveScreen.normalize(620),
+                        // height: ResponsiveScreen.normalize(950),
+                        borderRadius: ResponsiveScreen.normalize(100),
+                        // backgroundColor: "red",
+                        flexDirection: "row",
+                        alignItems: "flex-end",
+                        marginHorizontal: ResponsiveScreen.normalize(-20),
+                      }}
+                    >
+                      <View style={{ flex: 1 }}>
+                        <View style={styles3.container}>
+                          <Slider
+                           disabled={true}
+                            style={{
+                              width: ResponsiveScreen.normalize(810),
+                              height: ResponsiveScreen.normalize(40),
+                              borderRadius: 50,
+                            }}
+                            // style={{flex:1,borderRadius:50}}
+                            trackStyle={{
+                              width: "100%",
+                              height: "100%",
+                              backgroundColor: "#f2ca30",
+                              borderRadius: 50,
+                            }}
+                            minimumTrackTintColor={"#192570"}
+                            // maximumTrackTintColor={'red'}
+                            // maximumValue={0.7}
+                            vertical={true}
+                            // step={0.143}
+                            step={0}
+                            // thumbTintColor={'red'}
+                            thumbTintColor={"transparent"}
+                            value={state.value}
+                            useNativeDriver={true}
+                            // onValueChange={value =>{setState({ value }),console.log(value)}}
+                            onValueChange={(value) => SK(value)}
+                            onSlidingComplete={(value) => SC(value)}
+                          />
+                          {/* <Text>
+        Value: {state.value}
+      </Text> */}
+                        </View>
+                      </View>
+                      <View
+                        style={{ flexDirection: "column-reverse", flex: 3 }}
+                      >
+                        <TouchableOpacity
+                          style={[
+                            styles3.workcardN,
+                            { marginBottom: 0, backgroundColor: "#fff" },
+                          ]}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                              // backgroundColor: 'red'
+                            }}
+                          >
+                            <MaterialCommunityIcons
+                              name="forklift"
+                              size={ResponsiveScreen.normalize(60)}
+                              color="orange"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[styles3.txtworkcard, { color: "#000" }]}
+                            >
+                              Material supply
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity
+                          style={[
+                            styles3.workcardN,
+                            { backgroundColor: "#fff" },
+                          ]}
+                          onPress={() => nextState()}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <MaterialCommunityIcons
+                              name="scissors-cutting"
+                              size={ResponsiveScreen.normalize(60)}
+                              color="orange"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[styles3.txtworkcard, { color: "#000" }]}
+                            >
+                              Cutting
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                          style={[
+                            styles3.workcardN,
+                            { backgroundColor: "#fff" },
+                          ]}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <MaterialCommunityIcons
+                              name="tools"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="orange"
+                            />
+                          </View>
+                          <View>
+                            <Text style={[styles3.txtworkcard]}>Matching</Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                          style={[
+                            styles3.workcardN,
+                            { backgroundColor: "#fff" },
+                          ]}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <FontAwesome5
+                              name="paint-roller"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="orange"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[styles3.txtworkcard, { color: "#000" }]}
+                            >
+                              Heat treatment/Coating{"\n"}/Painting or Plating
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                          style={[
+                            styles3.workcardN,
+                            { backgroundColor: "#fff" },
+                          ]}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <AntDesign
+                              name="checksquare"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="orange"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[styles3.txtworkcard, { color: "#000" }]}
+                            >
+                              Quality Control
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                          style={[
+                            styles3.workcardN,
+                            { backgroundColor: "#fff" },
+                          ]}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <Octicons
+                              name="package-dependencies"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="orange"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[styles3.txtworkcard, { color: "#000" }]}
+                            >
+                              Packaging
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                          style={[
+                            styles3.workcardN,
+                            {
+                              backgroundColor: "#192570",
+                              width: ResponsiveScreen.normalize(505),
+                              marginLeft: "-6%",
+                            },
+                          ]}
+                        >
+                          <View
+                            style={{
+                              justifyContent: "center",
+                              alignItems: "center",
+                              marginLeft: ResponsiveScreen.normalize(25),
+                            }}
+                          >
+                            <MaterialCommunityIcons
+                              name="truck-delivery"
+                              size={ResponsiveScreen.normalize(55)}
+                              color="#f2ca30"
+                            />
+                          </View>
+                          <View>
+                            <Text
+                              style={[
+                                styles3.txtworkcard,
+                                {
+                                  color: "#fff",
+                                  fontWeight: "800",
+                                  fontSize: ResponsiveScreen.fontSize(27),
+                                },
+                              ]}
+                            >
+                              Ready for delivery
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                      </View>
+                    </View>
+                  )}
                 </View>
-              </View>
-              <View style={styles3.workcard}>
-                <View
-                  style={{
-                    marginLeft: ww * 4 / 100,
-                  }}
-                >
-                  <AntDesign
-                    name="checksquare"
-                    size={ww * 7 / 100}
-                    color="orange"
-                  />
-                </View>
-                <View style={styles3.Viewtxtworkcard}>
-                  <Text style={styles3.txtworkcard}>Quality Control</Text>
-                </View>
-              </View>
-              <View style={styles3.workcard}>
-                <View
-                  style={{
-                    marginLeft: ww * 4 / 100,
-                  }}
-                >
-                  <Octicons
-                    name="package-dependencies"
-                    size={ww * 7 / 100}
-                    color="orange"
-                  />
-                </View>
-                <View style={styles3.Viewtxtworkcard}>
-                  <Text style={styles3.txtworkcard}>Packaging</Text>
-                </View>
-              </View>
-              <View style={styles3.workcard}>
-                <View
-                  style={{
-                    marginLeft: ww * 4 / 100,
-                    // backgroundColor: 'red'
-                  }}
-                >
-                  <MaterialCommunityIcons
-                    name="truck-delivery"
-                    size={ww * 7 / 100}
-                    color="orange"
-                  />
-                </View>
-                <View style={styles3.Viewtxtworkcard}>
-                  <Text style={styles3.txtworkcard}>Ready for delivery</Text>
-                </View>
-              </View>
+              )}
             </View>
           </View>
         </View>
 
-        <View style={styles3.barbox}>
-          <TouchableOpacity style={{
-            marginTop: ResponsiveScreen.normalize(40),
-            marginLeft: ResponsiveScreen.normalize(-9),
-          }} onPress={setPost}>
-            <View style={styles3.barbut11}>
-              <Image
-                source={require("../assets/buttop.png")}
-                style={{
-                  width: ResponsiveScreen.normalize(170),
-                  height: ResponsiveScreen.normalize(400),
-                  resizeMode: "stretch",
-                }}
-              />
+        {wh / ww > 1.85 ? (
+          <View
+            style={{
+              // backgroundColor: "pink",
+              position: "absolute",
+              width:ww*17/100,
+              height:wh*63/100,
+              right: 0,
+              top: (wh * 9) / 100,
+              // flex:1
+            }}
+          >
+            <View style={styles3.barbox}>
+              <TouchableOpacity onPress={setAPost}>
+                <View style={styles3.barbut11}>
+                  <Image
+                    source={require("../assets/buttop.png")}
+                    style={{
+                      width: ResponsiveScreen.normalize(170),
+                      height: ResponsiveScreen.normalize(400),
+                      resizeMode: "stretch",
+                    }}
+                  />
+                </View>
+                <View>
+                  <Text style={styles3.bartxt}>Photo Album</Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles3.barbut22}>
+                <View>
+                  <Text
+                    style={[
+                      styles3.bartxt,
+                      {
+                        color: "#222",
+                        marginTop: ResponsiveScreen.normalize(140),
+                        marginLeft: ResponsiveScreen.normalize(-66),
+                      },
+                    ]}
+                  >
+                    Project Process
+                  </Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={setDPost}>
+                <View style={styles3.barbut33}>
+                  <Image
+                    source={require("../assets/butbot2.png")}
+                    style={{
+                      width: ResponsiveScreen.normalize(116),
+                      height: ResponsiveScreen.normalize(380),
+                      resizeMode: "stretch",
+                    }}
+                  />
+                </View>
+                <View>
+                  <Text
+                    style={[
+                      styles3.bartxt,
+                      {
+                        marginTop: ResponsiveScreen.normalize(-200),
+                        marginLeft: ResponsiveScreen.normalize(-50),
+                      },
+                    ]}
+                    // onPress={()=>{setSelect(itemList.item.id_number);setPost()}
+                    // }
+                  >
+                    Documents
+                  </Text>
+                </View>
+              </TouchableOpacity>
             </View>
-            <View>
-              <Text style={styles3.bartxt}>Photo Album</Text>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles3.barbut22}>
-            <View>
-              <Text
+            {/* <TouchableOpacity style={styles3.barPA}></TouchableOpacity>
+            <View style={{flex:1,backgroundColor:'gray'}}></View>
+            <TouchableOpacity style={[styles3.barPP,{backgroundColor:'#f2ca30'}]}></TouchableOpacity>
+            <View style={{flex:1,backgroundColor:'gray'}}></View>
+            <TouchableOpacity style={styles3.barDA}></TouchableOpacity> */}
+          </View>
+        ) : (
+          <View
+            style={{
+              // backgroundColor: 'black',
+              position: "absolute",
+              right: -4,
+              top: (wh * 9) / 100,
+            }}
+          >
+            <View style={[styles3.barbox, {}]}>
+              <TouchableOpacity onPress={setAPost}>
+                <View style={[styles3.barbut11, {}]}>
+                  <Image
+                    source={require("../assets/buttop.png")}
+                    style={{
+                      width: ResponsiveScreen.normalize(160),
+                      height: ResponsiveScreen.normalize(300),
+                      //   marginRight:-100,
+                      right: "-5%",
+                      resizeMode: "stretch",
+                    }}
+                  />
+                </View>
+                <View>
+                  <Text
+                    style={[
+                      styles3.bartxt,
+                      { marginTop: ResponsiveScreen.normalize(-110) },
+                    ]}
+                  >
+                    Photo Album
+                  </Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity
                 style={[
-                  styles3.bartxt,
+                  styles3.barbut22,
                   {
-                    marginTop: ResponsiveScreen.normalize(140),
-                    marginLeft: ResponsiveScreen.normalize(-66),
-                    color: "black",
+                    width: ResponsiveScreen.normalize(105),
+                    height: ResponsiveScreen.normalize(240),
                   },
                 ]}
+                // onPress={setPost}
               >
-                Project Process
-              </Text>
+                <View>
+                  <Text
+                    style={[
+                      styles3.bartxt,
+                      {
+                        color: "#222",
+                        marginTop: ResponsiveScreen.normalize(140),
+                        marginLeft: ResponsiveScreen.normalize(-66),
+                      },
+                    ]}
+                  >
+                    Project Process
+                  </Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={setDPost}>
+                <View style={styles3.barbut33}>
+                  <Image
+                    source={require("../assets/butbot2.png")}
+                    style={{
+                      width: ResponsiveScreen.normalize(110),
+                      height: ResponsiveScreen.normalize(300),
+                      resizeMode: "stretch",
+                    }}
+                  />
+                </View>
+                <View>
+                  <Text
+                    style={[
+                      styles3.bartxt,
+                      {
+                        marginTop: ResponsiveScreen.normalize(-130),
+                        marginLeft: ResponsiveScreen.normalize(-50),
+                      },
+                    ]}
+                    // onPress={()=>{setSelect(itemList.item.id_number);setPost()}
+                    // }
+                  >
+                    Documents
+                  </Text>
+                </View>
+              </TouchableOpacity>
             </View>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={setDPost}>
-            <View style={styles3.barbut33}>
-              <Image
-                source={require("../assets/butbot2.png")}
-                style={{
-                  width: ResponsiveScreen.normalize(116),
-                  height: ResponsiveScreen.normalize(380),
-                  resizeMode: "stretch",
-                }}
-              />
-            </View>
-            <View>
-              <Text
-                style={[
-                  styles3.bartxt,
-                  {
-                    marginTop: ResponsiveScreen.normalize(-200),
-                    marginLeft: ResponsiveScreen.normalize(-50),
-                  },
-                ]}
-              >
-                Documents
-              </Text>
-            </View>
-          </TouchableOpacity>
-          {/* <TouchableOpacity style={styles3.barbut1}>
-            <View>
-              <Text
-                style={styles3.bartxt}
-                onPress={() =>
-                  props.navigation.navigate("PhotoAlbum", {
-                    name: "PhotoAlbum",
-                  })
-                }
-              >
-                Photo Album
-              </Text>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles3.barbut2}>
-            <View>
-              <Text style={styles3.bartxt}>Project Process</Text>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles3.barbut3}>
-            <View style={{marginTop:10}}>
-            
-              <Text style={styles3.bartxt}>Documents</Text>
-            </View>
-          </TouchableOpacity> */}
-        </View>
+          </View>
+        )}
       </View>
-    </View >
+      {/* <View
+        style={{
+          height: (ww * 11) / 100,
+          // height: wh * 16 / 100,
+          flexDirection: "row",
+          width: (ww * 90) / 100,
+          position: "absolute",
+          borderRadius: ((ww + wh) * 2) / 200,
+          bottom: "2%",
+          backgroundColor: "#f2ca30",
+          justifyContent: "center",
+        }}
+      >
+        <TouchableOpacity
+          style={{
+            width: "33.3%",
+            height: "100%",
+            // backgroundColor: "#f2ca30",
+            borderRadius: 5,
+            justifyContent: "center",
+          }}
+          onPress={() => EDIT()}
+        >
+          <View style={{ alignItems: "center" }}>
+          <FontAwesome name="gears"
+              size={ResponsiveScreen.fontSize(42)}
+              color="#fff"
+            />
+          </View>
+         
+          <Text
+            style={{
+              alignSelf: "center",
+              fontSize: ResponsiveScreen.fontSize(22),
+              color: "#fff",
+              marginTop: "-3%",
+            }}
+          >
+            {" "}
+            Edit Project
+          </Text>
+        </TouchableOpacity>
+
+
+  
+        </View> */}
+      {/* <View
+        style={{
+          height: (wh * 7) / 100,
+          marginTop: (-wh * 13) / 100,
+        }}
+      >
+        <TouchableOpacity
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            width: (ww * 75) / 100,
+            marginTop: (wh * 0.5) / 100,
+            backgroundColor: "#fff",
+            borderRadius: ResponsiveScreen.normalize(50),
+            elevation: 2,
+          }}
+          onPress={() => EDIT()}
+        >
+          <View
+            style={{
+              padding: wh && (ww * 1.5) / 100,
+              backgroundColor: "#f2ca30",
+              borderRadius: ResponsiveScreen.normalize(50),
+              width: (ww * 20) / 100,
+            }}
+          >
+       
+            <View style={{ alignItems: "center" }}>
+              <FontAwesome name="gears" size={24} color="#fff" />
+            </View>
+          </View>
+          <View
+            style={{
+              borderRadius: ResponsiveScreen.normalize(50),
+            }}
+          >
+            <Text
+              style={{
+                paddingRight: (ww * 22) / 100,
+                paddingTop: (wh * 1) / 100,
+                color: "#192570",
+                fontSize: ResponsiveScreen.fontSize(27),
+              }}
+            >
+              Edit Project
+            </Text>
+          </View>
+        </TouchableOpacity>
+      </View> */}
+    </View>
   );
 };
 export default Bearing;
