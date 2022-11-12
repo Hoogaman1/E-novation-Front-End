@@ -29,6 +29,7 @@ import {
   Pressable,
   ScrollView,
   Dimensions,
+  StatusBar,
 } from "react-native";
 import { styles, styles2, btn, styles3, stylesAlT } from "./styleSheets2.js";
 import { Entypo } from "@expo/vector-icons";
@@ -392,7 +393,24 @@ const PhotoAlbum = (props) => {
 
   return (
     <View style={styles3.page}>
-      <View style={[styles3.topbox, { flex: 1, alignItems: "flex-end" }]}>
+      <StatusBar
+        animated={true}
+        backgroundColor="#fff"
+        barStyle={"dark-content"}
+        translucent={true}
+        hidden={false}
+      />
+
+      <View
+        style={[
+          styles3.topbox,
+          {
+            flex: 0.45,
+            // backgroundColor: 'red',
+            marginTop:'5.5%'
+          },
+        ]}
+      >
         <Image
           source={require("../assets/app_ui2-13.png")}
           style={[styles3.logo, { height: (wh * 7) / 100 }]}
@@ -404,10 +422,11 @@ const PhotoAlbum = (props) => {
             color="black"
             style={{
               marginLeft: (ww * 18) / 100,
-              marginTop: -(wh * 5) / 100,
+              marginTop: (wh * 1) / 100,
             }}
           />
-          {/* <View
+          {global.ALARM === true ?(
+          <View
             style={{
               backgroundColor: "red",
               width: (ww * 5) / 100,
@@ -427,23 +446,22 @@ const PhotoAlbum = (props) => {
                 fontWeight: "500",
               }}
             >
-              24
+              {global.NOTIF}
             </Text>
-          </View> */}
-          </TouchableOpacity>
+          </View> ):(<View></View>)}
+        </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
-            navigation.openDrawer({ token: global.Token });
+            navigation.openDrawer({ token: tokenAuth });
           }}
         >
-          {/* <Text>SALAM</Text> */}
           <Ionicons
             name="ios-menu-sharp"
             size={ResponsiveScreen.fontSize(60)}
             color="black"
             style={{
+              marginTop: ResponsiveScreen.normalize(10),
               marginRight: ResponsiveScreen.normalize(30),
-              marginTop: -ResponsiveScreen.normalize(90),
             }}
           />
         </TouchableOpacity>
@@ -726,9 +744,9 @@ const PhotoAlbum = (props) => {
                           renderHeader={(close) => (
                             <TouchableOpacity
                               onPress={close}
-                              style={{ marginTop: (wh * 10) / 100 }}
-                            >
-                              <Text style={styles3.closeButton}>X</Text>
+                              style={{ position:'absolute',top:wh*23/100,left:ww*3/100 }}
+                              >
+                                <Text style={{color:'#fff'}}>Close</Text>
                             </TouchableOpacity>
                           )}
                           renderContent={() => (

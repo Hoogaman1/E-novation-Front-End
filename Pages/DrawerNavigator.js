@@ -67,7 +67,7 @@ const makeMessage = () => {
   Linking.openURL('sms:+6186117749');
 };
 const seti = async () => {
-  await AsyncStorage.setItem('@token', '1')
+  await AsyncStorage.setItem('@email', '1')
   // await AsyncStorage.setItem('@OBJ', global.OBJ)
   console.log('log outttttttttttttttttt')
 };
@@ -75,10 +75,10 @@ const seti = async () => {
 
 function CustomDrawerContent(props) {
   const getDataa = async () => {
-   
+     
     
-      const value = await AsyncStorage.getItem('@token')
-      const value2 = await AsyncStorage.getItem('@obj')
+      const value = await AsyncStorage.getItem('@email')
+      const value2 = await AsyncStorage.getItem('@password')
       return({value2,value})
   
     };
@@ -87,8 +87,9 @@ function CustomDrawerContent(props) {
   
       if(response.value !== '1') {
       // value previously stored
-      global.TOKEN=response.value
-      global.OBJ = JSON.parse(response.value2);
+      global.EMAIL=response.value
+      global.PASS = response.value2;
+    
 
     }else {
       console.log('khatar')
@@ -335,11 +336,13 @@ function CustomDrawerContent(props) {
         style={[Dstyles.box, { marginTop: ResponsiveScreen.normalize(20) }]}
         onPress={() => {
           // Navigate using the `navigation` prop that you received
-          global.OBJ=null
+          // global.OBJ=null
           global.PROJ=null
           global.TOKEN=null
           global.UDATA=null
           global.UI=null
+          global.PASS = null
+          
           seti()
        
 
@@ -366,15 +369,20 @@ function CustomDrawerContent(props) {
           marginTop: ResponsiveScreen.normalize(2),
         }}
       ></View> */}
+      <View style={{position:'absolute',bottom:'11%',width:'100%',height:'5%',right:0}}>
 
       <Text style={Dstyles.Vtext}> Version v1.0 </Text>
       <Text
         style={[
           Dstyles.Vtext,
           {
-            marginTop: ResponsiveScreen.normalize(-20),
+            // marginTop: ResponsiveScreen.normalize(-20),
+            // position:'absolute',
+            // bottom:'10%',
+            alignSelf:'center',
+            
             marginHorizontal: ResponsiveScreen.normalize(0),
-            width: ResponsiveScreen.normalize(450),
+            // width: ResponsiveScreen.normalize(450),
             fontSize: ResponsiveScreen.fontSize(16),
           },
         ]}
@@ -382,6 +390,7 @@ function CustomDrawerContent(props) {
         {" "}
         All rights reserved by E-novation engineering Co.{" "}
       </Text>
+      </View>
     </View>
   );
 }
@@ -472,14 +481,17 @@ const Dstyles = StyleSheet.create({
     marginTop: ResponsiveScreen.normalize(17),
   },
   Vtext: {
-    width: ResponsiveScreen.normalize(350),
-    height: ResponsiveScreen.normalize(60),
+    // position:'absolute',
+    // width: ResponsiveScreen.normalize(350),
+    // height: ResponsiveScreen.normalize(60),
     // backgroundColor: "red",
+    alignSelf:'center',
     color: "#fff",
     fontSize: ResponsiveScreen.normalize(24),
-    marginTop: ResponsiveScreen.normalize(550),
+    // marginTop: ResponsiveScreen.normalize(550),
+    // bottom:'13%',
     fontFamily: "sans-serif-medium",
-    marginHorizontal: ResponsiveScreen.normalize(145),
+    // marginHorizontal: ResponsiveScreen.normalize(145),
   },
   Ctext: {
     width: ResponsiveScreen.normalize(370),

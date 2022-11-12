@@ -642,7 +642,8 @@ import {
       // flex: 2,
       // top:'6%',
       top:ww*6/100,
-      position: 'absolute'
+      position: 'absolute',
+      zIndex:999,
   
     },
     butbox: {

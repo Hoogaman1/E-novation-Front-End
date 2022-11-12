@@ -11,6 +11,7 @@ import {
   Fontisto,
   AntDesign,
   FontAwesome5,
+  
 } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 // import createAnimatedSwitchNavigator from "react-navigation-animated-switch";
@@ -30,7 +31,7 @@ import {
   StatusBar,
   ScrollView,
 } from "react-native";
-import { styles3 } from "./styleSheets.js";
+import { styles3 } from "./styleSheets2";
 import ResponsiveScreen from "react-native-auto-responsive-screen";
 import { log } from "react-native-reanimated";
 const wf = Dimensions.get("screen").fontScale;
@@ -197,7 +198,8 @@ const OpenProject = (props) => {
           styles3.topbox,
           {
             flex: 0.45,
-            // backgroundColor: 'red'
+            // backgroundColor: 'red',
+            marginTop:'5.5%'
           },
         ]}
       >
@@ -215,7 +217,8 @@ const OpenProject = (props) => {
               marginTop: (wh * 1) / 100,
             }}
           />
-          {/* <View
+          {global.ALARM === true ?(
+          <View
             style={{
               backgroundColor: "red",
               width: (ww * 5) / 100,
@@ -235,9 +238,9 @@ const OpenProject = (props) => {
                 fontWeight: "500",
               }}
             >
-              24
+              {global.NOTIF}
             </Text>
-          </View> */}
+          </View> ):(<View></View>)}
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {

@@ -4,6 +4,7 @@ import {
   EvilIcons,
   MaterialIcons,
   Ionicons,
+  AntDesign,
   FontAwesome,
   FontAwesome5,
 } from "@expo/vector-icons";
@@ -26,6 +27,7 @@ import {
   FlatList,
   StyleSheet,
   Dimensions,
+  StatusBar,
 } from "react-native";
 import { styles2, btn, styles3, stylesAlT } from "./styleSheets2.js";
 import ResponsiveScreen from "react-native-auto-responsive-screen";
@@ -201,16 +203,21 @@ const History = () => {
   };
 
   return (
-    <View style={[styles3.page, { flex: 1 }]}>
-      <View
+    <View style={styles3.page}>
+    <StatusBar
+      animated={true}
+      backgroundColor="#fff"
+      barStyle={"dark-content"}
+      translucent={true}
+      hidden={false}
+    />
+       <View
         style={[
           styles3.topbox,
           {
-            flex: 0.5,
-            // backgroundColor: 'green',
-            alignItems: "flex-end",
-            marginTop:'10%',
-            
+            flex: 0.45,
+            // backgroundColor: 'red'
+            marginTop:'5.5%'
           },
         ]}
       >
@@ -218,7 +225,7 @@ const History = () => {
           source={require("../assets/app_ui2-13.png")}
           style={[styles3.logo, { height: (wh * 7) / 100 }]}
         />
-          <TouchableOpacity onPress={setAlert}>
+        <TouchableOpacity onPress={setAlert}>
           <FontAwesome5
             name="bell"
             size={ResponsiveScreen.fontSize(45)}
@@ -227,7 +234,30 @@ const History = () => {
               marginLeft: (ww * 18) / 100,
               marginTop: (wh * 1) / 100,
             }}
-          />
+          />{global.ALARM === true ?(
+            <View
+              style={{
+                backgroundColor: "red",
+                width: (ww * 5) / 100,
+                height: (ww * 5) / 100,
+                borderRadius: (ww * 50) / 100,
+                position: "absolute",
+                right: (ww * -3.5) / 100,
+                bottom: (wh * 2) / 100,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Text
+                style={{
+                  color: "#fff",
+                  fontSize: ResponsiveScreen.fontSize(20),
+                  fontWeight: "500",
+                }}
+              >
+                {global.NOTIF}
+              </Text>
+            </View> ):(<View></View>)}
           {/* <View
             style={{
               backgroundColor: "red",
@@ -251,7 +281,7 @@ const History = () => {
               24
             </Text>
           </View> */}
-          </TouchableOpacity>
+        </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
             navigation.openDrawer({ token: tokenAuth });
@@ -262,7 +292,7 @@ const History = () => {
             size={ResponsiveScreen.fontSize(60)}
             color="black"
             style={{
-              marginTop: ResponsiveScreen.normalize(-10),
+              marginTop: ResponsiveScreen.normalize(10),
               marginRight: ResponsiveScreen.normalize(30),
             }}
           />
@@ -275,8 +305,8 @@ const History = () => {
             alignItems: "center",
             flexDirection: "column",
             // backgroundColor: 'red',
-            marginTop: (wh * 12) / 100,
-            flex: 3,
+            // marginTop: (wh * 12) / 100,
+            flex: 2,
           },
         ]}
       >
@@ -284,94 +314,15 @@ const History = () => {
           style={{
             width: ww,
             borderRadius: 20,
-            height: (wh * 10) / 100,
-            // backgroundColor: 'red'
+            height: (wh * 7) / 100,
+            // backgroundColor: 'blue'
           }}
         >
-          {/* <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              width: ww * 85 / 100,
-              // backgroundColor: 'green'
-            }}
-          >
-                {OBJ.img === null ? (
-                        <View
-                          style={{
-                            // backgroundColor: 'green',
-                            // width: ww ,
-                            height: (wh * 10) / 100,
-                            // marginRight: (ww * 1) / 100,
-                            marginLeft: (ww * 10) / 100,
-                            alignItems: "center",
-                          }}
-                        >
-                          <Text
-                            style={{
-                              fontSize: ResponsiveScreen.fontSize(40),
-                              color: "#f2ca30",
-                              marginTop: (wh * 3) / 100,
-                              // marginLeft: ResponsiveScreen.normalize(20),
-                              // marginBottom: ResponsiveScreen.normalize(15),
-                              textAlign: "left",
-                              // backgroundColor: 'pink'
-                            }}
-                          >
-                            {"  "}
-                            {OBJ.company_name}
-                          </Text>
-                        </View>):(
-                          <View style={{flexDirection:'row'}}>
-            <View
-              style={{
-                marginLeft: ResponsiveScreen.normalize(17),
-                borderRadius: 60,
-                width: ResponsiveScreen.normalize(140),
-                height: ResponsiveScreen.normalize(140),
-                // backgroundColor: 'green'
-              }}
-            >
-              <Image
-                source={{
-                  uri:
-                    "http://" + global.UURL + OBJ.img.slice(21),
-                  // uri: global.OBJ.img,
-                }}
-                style={{
-                  width: wh * 9 / 100,
-                  height: wh * 9 / 100,
-                  borderRadius: 60
-                }}
-                resizeMode={'center'}
-              />
-            </View>
-            <View
-              style={{
-                width: ww * 60 / 100,
-                // backgroundColor: 'green'
-              }}
-            >
-              <Text
-                style={{
-                  fontSize: ResponsiveScreen.fontSize(42),
-                  color: "#f2ca30",
-                  marginTop: wh * 2.5 / 100,
-                  marginLeft: ww * 5 / 100,
-                  textAlign: 'left',
-                  // backgroundColor: 'pink'
-                }}
-              > 
-                {global.OBJ.company_name}
-              </Text>
-            </View>
-            </View>
-              )}
-          </View> */}
+          
           <View
             style={{
               alignSelf: "center",
-              marginTop: "10%",
+              // marginTop: "2%",
               width: "85%",
               height: (ww * 10) / 100,
               paddingHorizontal: "0.8%",
@@ -1591,6 +1542,56 @@ const History = () => {
           </View>
         </TouchableOpacity> */}
       </View>
+      <View style={{flex:.3}}></View>
+     
+      <View
+        style={{
+          height: (ww * 12) / 100,
+          
+          // height: wh * 16 / 100,
+          flexDirection: "row",
+          width: (ww * 90) / 100,
+          position: "absolute",
+          borderRadius: ((ww + wh) * 2) / 200,
+          bottom: "2%",
+          backgroundColor: "#f2ca30",
+          justifyContent: "center",
+        }}
+      >
+        <TouchableOpacity
+          style={{
+            // width: "33.3%",
+            // height: "100%",
+            flex:1,
+            // backgroundColor: "#f2ca30",
+            borderRadius: 5,
+            justifyContent: "center",
+          }}
+          onPress={() => navigation.navigate("OpenProject")}
+        >
+          <View style={{ alignItems: "center" }}>
+            <AntDesign
+              name="setting"
+              size={ResponsiveScreen.fontSize(45)}
+              color="#fff"
+            />
+            
+          </View>
+         
+          <Text
+            style={{
+              alignSelf: "center",
+              fontSize: ResponsiveScreen.fontSize(22),
+              color: "#fff",
+              marginTop: "-1%",
+            }}
+          >
+            Current Project
+          </Text>
+        </TouchableOpacity>
+        
+        </View>
+      {/* </View> */}
     </View>
   );
 };

@@ -156,7 +156,8 @@ const Notif = (props) => {
           styles3.topbox,
           {
             flex: 0.45,
-            // backgroundColor: 'red'
+            // backgroundColor: 'red',
+            marginTop:'5.5%'
           },
         ]}
       >
@@ -174,7 +175,8 @@ const Notif = (props) => {
               marginTop: (wh * 1) / 100,
             }}
           />
-          {/* <View
+          {global.ALARM === true ?(
+          <View
             style={{
               backgroundColor: "red",
               width: (ww * 5) / 100,
@@ -194,9 +196,9 @@ const Notif = (props) => {
                 fontWeight: "500",
               }}
             >
-              24
+              {global.NOTIF}
             </Text>
-          </View> */}
+          </View> ):(<View></View>)}
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {

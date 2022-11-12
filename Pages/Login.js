@@ -21,6 +21,7 @@ import {
   Alert,
   ScrollView,
   KeyboardAvoidingView,
+  BackHandler,
 } from "react-native";
 import { CheckBox } from "@rneui/themed";
 import { styles, Tabletstyles, stylesAlF } from "./styleSheets2.js";
@@ -43,6 +44,10 @@ const ww = Dimensions.get("screen").width;
 // import { and } from "react-native-reanimated";
 
 const LoginPage = (props) => {
+  useEffect(() => {
+    const backHandler = BackHandler.addEventListener('hardwareBackPress', () => true)
+    return () => backHandler.remove()
+  }, [])
   const getData = async () => {
     // console.log('bbbbbbbbbbbbbb')
 
@@ -76,14 +81,12 @@ const LoginPage = (props) => {
   const [biababa, setBiababa] = useState();
   const [checked1, setChecked1] = useState(false);
   // const [EmailER, setEmailEr] = useState(false);
-  const storeData = async (value) => {
+  const storeData = async () => {
     if (checked1 == true) {
-      console.log('Loooooooooooooooooooooooooooogin1')
-      console.log(global.OBJ)
-      console.log('Loooooooooooooooooooooooooooogin2')
+
       try {
-        await AsyncStorage.setItem("@token", value);
-        await AsyncStorage.setItem("@obj", JSON.stringify(global.OBJ));
+        await AsyncStorage.setItem("@email", email);
+        await AsyncStorage.setItem("@password",password);
         
         // const testi = await AsyncStorage.getItem('@token')
 

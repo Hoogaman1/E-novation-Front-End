@@ -19,6 +19,7 @@ import Alert from "./Alert";
 import AboutUs from "./AboutUs";
 // import test from "./test";
 import Process from "./Process";
+import HandShake from "./HandShake";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Stack = createStackNavigator();
@@ -29,26 +30,26 @@ const MainStackNavigator = () => {
   const [toggle, setToggle] = useState(false)
   const [conut, setconut] = useState(0)
   
-  const getData = async () => {
-      try {
-        const value = await AsyncStorage.getItem('@token')
-        const value2 = await AsyncStorage.getItem('@obj')
-          // console.log('2222222222222222222222222222222222222')
-          // console.log(value)
-          // console.log('22222222222222222222222222222222222222')
+  // const getData = async () => {
+  //     try {
+  //       const value = await AsyncStorage.getItem('@token')
+  //       const value2 = await AsyncStorage.getItem('@obj')
+  //         // console.log('2222222222222222222222222222222222222')
+  //         // console.log(value)
+  //         // console.log('22222222222222222222222222222222222222')
   
-        if(value !== null && value !== '1') {
-          // value previously stored
-          global.TOKEN=value
-          global.OBJ=value2
-          setToggle(true)
-          // console.log('111111111111111111111111111111111111111111111111111111111111111111111111111111111111111')
-          // setconut(conut+1)
+  //       if(value !== null && value !== '1') {
+  //         // value previously stored
+  //         global.TOKEN=value
+  //         global.OBJ=value2
+  //         setToggle(true)
+  //         // console.log('111111111111111111111111111111111111111111111111111111111111111111111111111111111111111')
+  //         // setconut(conut+1)
   
-        }else {console.log('cant')}
-      } catch(e) {}
-    };
-    getData()
+  //       }else {console.log('cant')}
+  //     } catch(e) {}
+  //   };
+  //   getData()
     console.log(conut)
   return (
     <Stack.Navigator>
@@ -58,6 +59,7 @@ const MainStackNavigator = () => {
       <Stack.Screen name="AboutUs" component={AboutUs} options={{ headerShown: false, }} />
       {/* <Stack.Screen name="test" component={test} options={{ headerShown: false, }} />/ */}
       {/* <Stack.Screen name="OpenProject" component={OpenProject} /> */}
+      <Stack.Screen name="HandShake" component={HandShake} options={{ headerShown: false, }} />
       <Stack.Screen name="DocAlbum" component={DocAlbum} options={{ headerShown: false, }} />
       <Stack.Screen name="Bearing" component={Bearing} options={{ headerShown: false }} />
       <Stack.Screen name="PhotoAlbum" component={PhotoAlbum} options={{ headerShown: false }} />

@@ -28,6 +28,7 @@ import {
   Dimensions,
   RefreshControl,
   Alert,
+  StatusBar,
 } from "react-native";
 import Slider from "react-native-smooth-slider";
 import { styles3, styles2, btn } from "./styleSheets2.js";
@@ -449,22 +450,40 @@ const Bearing = (props) => {
   // };
   return (
     <View style={styles3.page}>
-      <View style={[styles3.topbox, { flex: 0.6, alignItems: "flex-end" }]}>
+      <StatusBar
+        animated={true}
+        backgroundColor="#fff"
+        barStyle={"dark-content"}
+        translucent={true}
+        hidden={false}
+      />
+
+      <View
+        style={[
+          styles3.topbox,
+          {
+            flex: 0.45,
+            // backgroundColor: 'red',
+            marginTop:'5.5%'
+          },
+        ]}
+      >
         <Image
           source={require("../assets/app_ui2-13.png")}
           style={[styles3.logo, { height: (wh * 7) / 100 }]}
         />
-        <TouchableOpacity onPress={() => setAlert()}>
+        <TouchableOpacity onPress={setAlert}>
           <FontAwesome5
             name="bell"
             size={ResponsiveScreen.fontSize(45)}
             color="black"
             style={{
               marginLeft: (ww * 18) / 100,
-              marginTop: -(wh * 5) / 100,
+              marginTop: (wh * 1) / 100,
             }}
           />
-          {/* <View
+          {global.ALARM === true ?(
+          <View
             style={{
               backgroundColor: "red",
               width: (ww * 5) / 100,
@@ -484,12 +503,12 @@ const Bearing = (props) => {
                 fontWeight: "500",
               }}
             >
-              24
+              {global.NOTIF}
             </Text>
-          </View> */}
-          </TouchableOpacity>
-        <TouchableOpacity style={{marginBottom:'3.5%'}}
-          onPress={() => {console.log('sallllllllllllllllllll')
+          </View> ):(<View></View>)}
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
             navigation.openDrawer({ token: tokenAuth });
           }}
         >
@@ -498,8 +517,8 @@ const Bearing = (props) => {
             size={ResponsiveScreen.fontSize(60)}
             color="black"
             style={{
+              marginTop: ResponsiveScreen.normalize(10),
               marginRight: ResponsiveScreen.normalize(30),
-              // marginTop: '5%'
             }}
           />
         </TouchableOpacity>
@@ -4305,7 +4324,8 @@ const Bearing = (props) => {
           </View>
         )}
       </View>
-      {/* <View
+     
+      <View
         style={{
           height: (ww * 11) / 100,
           // height: wh * 16 / 100,
@@ -4318,88 +4338,42 @@ const Bearing = (props) => {
           justifyContent: "center",
         }}
       >
+
         <TouchableOpacity
           style={{
-            width: "33.3%",
-            height: "100%",
+            // width: "33.3%",
+            // height: "100%",
+            flex:1,
             // backgroundColor: "#f2ca30",
             borderRadius: 5,
             justifyContent: "center",
           }}
-          onPress={() => EDIT()}
+          onPress={() => navigation.navigate("OpenProject")}
         >
           <View style={{ alignItems: "center" }}>
-          <FontAwesome name="gears"
-              size={ResponsiveScreen.fontSize(42)}
-              color="#fff"
-            />
+          <AntDesign
+             name="setting"
+             size={ResponsiveScreen.fontSize(45)}
+             color="#fff"
+           />
           </View>
-         
+          {/* <View style={{width:'60%',height:1,backgroundColor:'#fff',alignSelf:'center'}}></View> */}
           <Text
             style={{
               alignSelf: "center",
               fontSize: ResponsiveScreen.fontSize(22),
               color: "#fff",
-              marginTop: "-3%",
+              marginTop: "-1%",
             }}
           >
             {" "}
-            Edit Project
+            Current Projects
           </Text>
         </TouchableOpacity>
 
 
   
-        </View> */}
-      {/* <View
-        style={{
-          height: (wh * 7) / 100,
-          marginTop: (-wh * 13) / 100,
-        }}
-      >
-        <TouchableOpacity
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            width: (ww * 75) / 100,
-            marginTop: (wh * 0.5) / 100,
-            backgroundColor: "#fff",
-            borderRadius: ResponsiveScreen.normalize(50),
-            elevation: 2,
-          }}
-          onPress={() => EDIT()}
-        >
-          <View
-            style={{
-              padding: wh && (ww * 1.5) / 100,
-              backgroundColor: "#f2ca30",
-              borderRadius: ResponsiveScreen.normalize(50),
-              width: (ww * 20) / 100,
-            }}
-          >
-       
-            <View style={{ alignItems: "center" }}>
-              <FontAwesome name="gears" size={24} color="#fff" />
-            </View>
-          </View>
-          <View
-            style={{
-              borderRadius: ResponsiveScreen.normalize(50),
-            }}
-          >
-            <Text
-              style={{
-                paddingRight: (ww * 22) / 100,
-                paddingTop: (wh * 1) / 100,
-                color: "#192570",
-                fontSize: ResponsiveScreen.fontSize(27),
-              }}
-            >
-              Edit Project
-            </Text>
-          </View>
-        </TouchableOpacity>
-      </View> */}
+        </View>
     </View>
   );
 };

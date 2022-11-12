@@ -29,8 +29,9 @@ import {
   Dimensions,
   StatusBar,
   ScrollView,
+  BackHandler,
 } from "react-native";
-import { styles3 } from "./styleSheets.js";
+import { styles3 } from "./styleSheets2.js";
 import ResponsiveScreen from "react-native-auto-responsive-screen";
 import { log } from "react-native-reanimated";
 const wf = Dimensions.get("screen").fontScale;
@@ -43,6 +44,10 @@ const ww = Dimensions.get("screen").width;
 ResponsiveScreen.init(720, 1600);
 
 const OpenProject = (props) => {
+  useEffect(() => {
+    const backHandler = BackHandler.addEventListener('hardwareBackPress', () => true)
+    return () => backHandler.remove()
+  }, [])
   // const route = useRoute();
   const tokenAuth = global.TOKEN;
   const navigation = useNavigation();
@@ -50,6 +55,7 @@ const OpenProject = (props) => {
   // const [mydata, setData] = useState("");
   const onCChange = (textValue) => setCode(textValue);
   const [dummy, setDummy] = useState([]);
+  const [Aler, setAler] = useState('0');
   const [Gray, setGray] = useState(true);
 
   const [id_select, setSelect] = useState("");
@@ -113,10 +119,44 @@ const OpenProject = (props) => {
     () => {
       // let timeoutVariable;
       // if (refresh) {
-      //   timeoutVariable = setTimeout(() => setRefresh(false), 1000);
-      // }
+        //   timeoutVariable = setTimeout(() => setRefresh(false), 1000);
+        // }
+        const tokenAuth = global.TOKEN;
+        
 
-      const tokenAuth = global.TOKEN;
+axios({
+        method: "get",
+        url: "http://" + global.UURL + "/BIGADMIN/alertlistcont/"+global.OBJ.id,
+        // url: "http://" + global.UURL + ":8000/BIGADMIN/plist/" + '3',
+        // params:{
+        //   email:email,
+        // },
+        headers: {
+          // 'Content-Type': "application/json",
+          Authorization: "Token " + tokenAuth,
+          // 'Accept': 'application/json'
+        },
+        data: {
+          // verification_code: code,
+        },
+      })
+        // .then((Response) =>  console.log(Response.data))
+        .then((Response) => {
+          if (Response.status == "202") {
+          global.NOTIF=Response.data.data.num;
+          global.ALARM = true;
+          // console.log(Response.data)
+          }else{
+            global.ALARM = false;
+          }
+         
+        }).catch((e)=>{global.ALARM = false})
+
+       
+
+
+
+
       // const { navigation } = props;
       // const tokenAuth = props.navigation.navigate.getParam('token',null)
       // useEffect(() => {
@@ -229,7 +269,7 @@ const OpenProject = (props) => {
           styles3.topbox,
           {
             flex: 0.45,
-            // backgroundColor: 'red'
+            // backgroundColor: 'red',
             marginTop:'5.5%'
           },
         ]}
@@ -248,7 +288,8 @@ const OpenProject = (props) => {
               marginTop: (wh * 1) / 100,
             }}
           />
-          {/* <View
+          {global.ALARM === true ?(
+          <View
             style={{
               backgroundColor: "red",
               width: (ww * 5) / 100,
@@ -268,9 +309,9 @@ const OpenProject = (props) => {
                 fontWeight: "500",
               }}
             >
-              24
+              {global.NOTIF}
             </Text>
-          </View> */}
+          </View> ):(<View></View>)}
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
@@ -289,7 +330,7 @@ const OpenProject = (props) => {
         </TouchableOpacity>
       </View>
 
-      <View style={[styles3.butbox, { flex: 2 }]}>
+      <View style={[styles3.butbox, { flex: 2,}]}>
         <View
           style={[
             styles3.workbox,
@@ -850,8 +891,9 @@ const OpenProject = (props) => {
       >
         <TouchableOpacity
           style={{
-            width: "33.3%",
-            height: "100%",
+            // width: "33.3%",
+            // height: "100%",
+            flex:1,
             // backgroundColor: "#f2ca30",
             borderRadius: 5,
             justifyContent: "center",
@@ -871,7 +913,7 @@ const OpenProject = (props) => {
               alignSelf: "center",
               fontSize: ResponsiveScreen.fontSize(22),
               color: "#fff",
-              marginTop: "-3%",
+              marginTop: "-1%",
             }}
           >
             History

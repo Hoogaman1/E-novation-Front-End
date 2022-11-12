@@ -76,23 +76,68 @@ const Process = (props) => {
   //     }
   //   };
   //   getData()
+  
   const getData = async () => {
-    // console.log('bbbbbbbbbbbbbb')
+    console.log('bbbbbbbbbbbbbb')
     
       try {
-        const value = await AsyncStorage.getItem('@token')
-    
-        if(value !== '1') {
-          // value previously stored
-          // global.TOKEN=value
-          // var parsed_data = JSON.parse(value2);
-          // global.OBJ=JSON.parse(parsed_data);
-          console.log('salammmm')
-          // setToggle(true)
-          setTimeout(() => 
-          props.navigation.navigate("OpenProject")
-          ,1000)
-        //   props.navigation.navigate("Users");
+        const value = await AsyncStorage.getItem('@email')
+        const value2 = await AsyncStorage.getItem('@password')
+        // const value = global.EMAIL
+        // const value2 = global.PASS
+        console.log('ghable')
+        console.log(value)
+        console.log(value2)
+        console.log('badeee')
+        if(value !== '1' && value !== 'undifined' && value !== null) {
+          axios({
+            method: "POST",
+            // url: "http://127.0.0.1:8000/USER/login/",
+            url: "http://" + global.UURL + "/USER/login/",
+            headers: {
+              // 'Content-Type': "application/json",
+              // Authorization: `Token ${mahdi}`,
+              // 'Accept': 'application/json'
+            },
+            data: {
+              email: value,
+              password: value2,
+            },
+          })
+            // .then((response) => console.log(response.status))
+            .then((response) => {
+              console.log('javab')
+              global.OBJ=response.data.data
+              if (response.status == "202") {
+                global.TOKEN = response.data.data.token;
+                // storeData(response.data.data.token);
+                global.DATA = response.data.data.company;
+                setTimeout(() => sendToken(), 500);
+                console.log(response.data);
+                console.log(global.TOKEN);
+                console.log("bad");
+              }
+ 
+            })
+      
+            .catch((error) => {
+              console.log(error.response.status);
+              // if (error.response.status == "0") {
+              //   global.HANDSHAKE = "Login";
+              //   props.navigation.navigate("HandShake");
+              // } else if (error.response.status == "404") {
+              //   let brobaba = "Wrong email or password";
+            
+              // }else if (error.response.status == "500"){
+              //   let brobaba = "Wrong email";
+               
+              // }
+            });
+      
+        
+          // setTimeout(() => 
+          // props.navigation.navigate("OpenProject")
+          // ,1000)
 
         }else {
             setTimeout(() => 
@@ -101,14 +146,15 @@ const Process = (props) => {
              
         }
       } catch(e) {
-        // setToggle(false)
-
-        // error reading value
-        console.log(e)
+        console.log(e);
+        setTimeout(() => 
+            props.navigation.navigate("Login")
+             ,1000)
   
       }
     };
     getData()
+ 
   const [process, setP] = useState("Prossesing");
   const [password, setPassword] = useState("");
   const onEChange = (textValue) => setEmail(textValue);
@@ -122,52 +168,23 @@ const Process = (props) => {
   const [checked1, setChecked1] = useState(false);
     
 
-  const storeData = async (value) => {
-    if(checked1==true){
-    try {
-      await AsyncStorage.setItem('@token', value)
-      // const testi = await AsyncStorage.getItem('@token')
-      
-      // console.log(testi)
-
-    } catch (e) {
-      // saving error
-      console.log(e)
-    }}else {console.log('checkBox is off')}
-  }
-  // const getData = async () => {
-    
+  // const storeData = async (value) => {
+  //   if(checked1==true){
   //   try {
-  //     const value = await AsyncStorage.getItem('@token')
-  //     if(value !== null) {
-  //       // value previously stored
-  //       // onEChange({textValue:value})
-        
-  //       if(checked1==true && flag==1){
-  //       console.log(email)
-  //       setflag(flag+1)
-  //       setEmail(value)
-  //       console.log('asan oodafezs')
-  //       }else{console.log('nemikhad')}
-    
-  //     }
-  //   } catch(e) {
-  //     // error reading value
-  //     console.log('cache')
-
-  //   }
+  //     await AsyncStorage.setItem('@token', value)
+  //   } catch (e) {
+  //     // saving error
+  //     console.log(e)
+  //   }}else {console.log('checkBox is off')}
   // }
-  // getData()
-  // console.log('kkkkkkkkkkkkkkkkkkkk');
   useEffect(
     () => {
-//   setTimeout(() => setP( process + " ."), 100)}, [process]);
   setP( process )}, [process]);
  
 
 
   const sendToken = () => {
-    // props.navigation.navigate("Users");
+    props.navigation.navigate("OpenProject");
   };
   return (
     <View style={{flex:1,backgroundColor:'#f2ca30',alignItems:'center'}}>
