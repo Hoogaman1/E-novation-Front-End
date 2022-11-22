@@ -29,6 +29,7 @@ import {
   RefreshControl,
   Alert,
   StatusBar,
+  BackHandler,
 } from "react-native";
 import Slider from "react-native-smooth-slider";
 import { styles3, styles2, btn } from "./styleSheets2.js";
@@ -40,6 +41,17 @@ const ws = Dimensions.get("screen").scale;
 const wh = Dimensions.get("screen").height;
 const ww = Dimensions.get("screen").width;
 const Bearing = (props) => {
+  global.HANDSHAKE = "Bearing";
+  function handleBackButtonClick() {
+    navigation.navigate('OpenProject');
+    return true;
+  }
+  useEffect(() => {
+    BackHandler.addEventListener("hardwareBackPress", handleBackButtonClick);
+    return () => {
+      BackHandler.removeEventListener("hardwareBackPress", handleBackButtonClick);
+    };
+  }, []);
   // const PPOBJ=""
   const [EF, setEF] = useState("0");
   const [POBJ, setPOBJ] = useState("");
@@ -303,10 +315,10 @@ const Bearing = (props) => {
       setState({ vale: 2.76 });
       if (val > Number(global.PROJ.status)) {
         nextState();
-        setEF(EF + 1);
+        // setEF(EF + 1);
       } else if (val < Number(global.PROJ.status)) {
         prvState();
-        setEF(EF + 1);
+        // setEF(EF + 1);
       }
     } else if (val < 4) {
       console.log("SC state 4");
@@ -479,33 +491,15 @@ const Bearing = (props) => {
             color="black"
             style={{
               marginLeft: (ww * 18) / 100,
-              marginTop: (wh * 1) / 100,
+              // marginTop: (wh * 1) / 100,
             }}
           />
           {global.ALARM === true ?(
-          <View
-            style={{
-              backgroundColor: "red",
-              width: (ww * 5) / 100,
-              height: (ww * 5) / 100,
-              borderRadius: (ww * 50) / 100,
-              position: "absolute",
-              right: (ww * -3.5) / 100,
-              bottom: (wh * 2) / 100,
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <Text
-              style={{
-                color: "#fff",
-                fontSize: ResponsiveScreen.fontSize(20),
-                fontWeight: "500",
-              }}
-            >
-              {global.NOTIF}
-            </Text>
-          </View> ):(<View></View>)}
+  <Text
+  style={styles3.notif}
+  >
+  {' '}{global.NOTIF}{" "}
+</Text> ):(<View></View>)}
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
@@ -615,7 +609,7 @@ const Bearing = (props) => {
             </View>
             <View
               style={{
-                width: "45%",
+                // width: "45%",
                 height: "75%",
                 backgroundColor: "#f2ca30",
                 borderRadius: (ww  * 2) / 200,
@@ -629,6 +623,7 @@ const Bearing = (props) => {
                   fontFamily: "Roboto",
                   color: "#fff",
                   textAlign: "right",
+                  alignSelf:'center'
                   // backgroundColor:'pink'
 
                   // marginTop: ResponsiveScreen.normalize(50),
@@ -636,7 +631,7 @@ const Bearing = (props) => {
                   // marginBottom: ResponsiveScreen.normalize(30),
                 }}
               >
-                Current Projects{"     "}
+                {"  "}Current Projects{"  "}
               </Text>
             </View>
           </View>
@@ -2445,6 +2440,7 @@ const Bearing = (props) => {
                             // maximumTrackTintColor={'red'}
                             // maximumValue={0.7}
                             vertical={true}
+                            maximumValue={7}
                             // step={0.143}
                             step={0}
                             // thumbTintColor={'red'}
@@ -2693,6 +2689,7 @@ const Bearing = (props) => {
                             // maximumTrackTintColor={'red'}
                             // maximumValue={0.7}
                             vertical={true}
+                            maximumValue={7}
                             // step={0.143}
                             step={0}
                             // thumbTintColor={'red'}
@@ -2940,6 +2937,7 @@ const Bearing = (props) => {
                             // maximumTrackTintColor={'red'}
                             // maximumValue={0.7}
                             vertical={true}
+                            maximumValue={7}
                             // step={0.143}
                             step={0}
                             // thumbTintColor={'red'}
@@ -3189,6 +3187,7 @@ const Bearing = (props) => {
                             // maximumTrackTintColor={'red'}
                             // maximumValue={0.7}
                             vertical={true}
+                            maximumValue={7}
                             // step={0.143}
                             step={0}
                             // thumbTintColor={'red'}
@@ -3434,6 +3433,7 @@ const Bearing = (props) => {
                             // maximumTrackTintColor={'red'}
                             // maximumValue={0.7}
                             vertical={true}
+                            maximumValue={7}
                             // step={0.143}
                             step={0}
                             // thumbTintColor={'red'}
@@ -3681,6 +3681,7 @@ const Bearing = (props) => {
                             // maximumTrackTintColor={'red'}
                             // maximumValue={0.7}
                             vertical={true}
+                            maximumValue={7}
                             // step={0.143}
                             step={0}
                             // thumbTintColor={'red'}
@@ -3929,6 +3930,7 @@ const Bearing = (props) => {
                             minimumTrackTintColor={"#192570"}
                             // maximumTrackTintColor={'red'}
                             // maximumValue={0.7}
+                            maximumValue={7}
                             vertical={true}
                             // step={0.143}
                             step={0}
@@ -4352,8 +4354,8 @@ const Bearing = (props) => {
         >
           <View style={{ alignItems: "center" }}>
           <AntDesign
-             name="setting"
-             size={ResponsiveScreen.fontSize(45)}
+             name="home"
+             size={ResponsiveScreen.fontSize(43)}
              color="#fff"
            />
           </View>

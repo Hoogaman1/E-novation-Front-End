@@ -30,6 +30,7 @@ import {
   ScrollView,
   Dimensions,
   StatusBar,
+  BackHandler
 } from "react-native";
 import {
   styles,
@@ -50,6 +51,17 @@ const wh = Dimensions.get("screen").height;
 const ww = Dimensions.get("screen").width;
 
 const DocAlbum = (props) => {
+  global.HANDSHAKE = "DocAlbum";
+  function handleBackButtonClick() {
+    navigation.goBack();
+    return true;
+  }
+  useEffect(() => {
+    BackHandler.addEventListener("hardwareBackPress", handleBackButtonClick);
+    return () => {
+      BackHandler.removeEventListener("hardwareBackPress", handleBackButtonClick);
+    };
+  }, []);
   const navigation = useNavigation();
   const [dummyl, setDummyl] = useState(false)
   const [dummy, setDummy] = useState([
@@ -407,33 +419,16 @@ const DocAlbum = (props) => {
             color="black"
             style={{
               marginLeft: (ww * 18) / 100,
-              marginTop: (wh * 1) / 100,
+              // marginTop: (wh * 1) / 100,
             }}
           />
           {global.ALARM === true ?(
-          <View
-            style={{
-              backgroundColor: "red",
-              width: (ww * 5) / 100,
-              height: (ww * 5) / 100,
-              borderRadius: (ww * 50) / 100,
-              position: "absolute",
-              right: (ww * -3.5) / 100,
-              bottom: (wh * 2) / 100,
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <Text
-              style={{
-                color: "#fff",
-                fontSize: ResponsiveScreen.fontSize(20),
-                fontWeight: "500",
-              }}
-            >
-              {global.NOTIF}
-            </Text>
-          </View> ):(<View></View>)}
+  <Text
+  style={styles3.notif}
+  >
+  {' '}{global.NOTIF}{" "}
+</Text>
+           ):(<View></View>)}
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
@@ -533,7 +528,7 @@ const DocAlbum = (props) => {
             </View>
             <View
               style={{
-                width: "45%",
+                // width: "45%",
                 height: "75%",
                 backgroundColor: "#f2ca30",
                 borderRadius: (ww  * 2) / 200,
@@ -548,6 +543,7 @@ const DocAlbum = (props) => {
                   fontFamily: "Roboto",
                   color: "#fff",
                   textAlign: "right",
+                  alignSelf:'center'
                   // backgroundColor:'pink'
 
                   // marginTop: ResponsiveScreen.normalize(50),
@@ -555,7 +551,7 @@ const DocAlbum = (props) => {
                   // marginBottom: ResponsiveScreen.normalize(30),
                 }}
               >
-                Documents{"          "}
+                {"  "}Documents{"  "}
               </Text>
             </View>
             </View>
@@ -643,6 +639,7 @@ const DocAlbum = (props) => {
                 left: 0,
                 top: (wh * 8) / 100,
                 paddingLeft: "3.5%",
+                // backgroundColor:'red'
               }}
             >
                       {dummyl == true ? (
@@ -701,16 +698,18 @@ const DocAlbum = (props) => {
                         justifyContent: "center",
                         marginBottom: (wh * 0) / 100,
                         // marginRight: ((wh+ww) * 0.2) / 10,
+                        
                       }}
                     >
                       <TouchableOpacity
                         onPress={myImage}
                         style={{
-                          width: (ww * 35) / 100,
-                          height: (wh * 17) / 100,
+                          width: (ww * 37) / 100,
+                          height: (ww * 37) / 100,
                           justifyContent: "center",
                           alignItems: "center",
                           borderRadius: 8,
+                          backgroundColor:'#ededed'
                         }}
                       >
                         {/* <Image
@@ -759,14 +758,18 @@ const DocAlbum = (props) => {
                           )}
                         >
                           {itemList.item.att_file === "null" ? (
+                            <View>
                             <Text
                               style={{
                                 width: (ww * 37) / 100,
                                 height: (ww * 37) / 100,
                                 borderRadius: (ww * 3) / 100,
                                 backgroundColor: "#ededed",
+                                alignSelf:'center',
+                                marginTop:'12%'
                               }}
                             ></Text>
+                            </View>
                           ) : (
                             <View>
                               <Image

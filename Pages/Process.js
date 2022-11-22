@@ -43,6 +43,16 @@ import { getTimeProps } from "antd/lib/date-picker/generatePicker/index.js";
 import { and } from "react-native-reanimated";
 
 const Process = (props) => {
+
+
+  global.PROJ=null
+  global.TOKEN=null
+  global.UDATA=null
+  global.UI=null
+  global.PASS = null
+  global.OBJ = null
+  
+
   // const getData = async () => {
   //   // console.log('bbbbbbbbbbbbbb')
     
@@ -89,7 +99,11 @@ const Process = (props) => {
         console.log(value)
         console.log(value2)
         console.log('badeee')
-        if(value !== '1' && value !== 'undifined' && value !== null) {
+        if(value) {
+          console.log('jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj')
+          console.log(value)
+          console.log(value2)
+          // if (1===2){
           axios({
             method: "POST",
             // url: "http://127.0.0.1:8000/USER/login/",
@@ -121,7 +135,12 @@ const Process = (props) => {
             })
       
             .catch((error) => {
-              console.log(error.response.status);
+              // console.log(error.response.status);
+              console.log('catch');
+              setTimeout(() => 
+              props.navigation.navigate("Login")
+               ,20)
+ 
               // if (error.response.status == "0") {
               //   global.HANDSHAKE = "Login";
               //   props.navigation.navigate("HandShake");
@@ -140,6 +159,7 @@ const Process = (props) => {
           // ,1000)
 
         }else {
+          console.log('catch2');
             setTimeout(() => 
             props.navigation.navigate("Login")
              ,1000)
@@ -187,16 +207,14 @@ const Process = (props) => {
     props.navigation.navigate("OpenProject");
   };
   return (
-    <View style={{flex:1,backgroundColor:'#f2ca30',alignItems:'center'}}>
+    <View style={{flex:1,backgroundColor:'#192570',alignItems:'center'}}> 
     
     <Image
-          source={require("../assets/app_ui2-12.png")}
-          style={{position:'absolute',top:'46.2%',height: wh * 7 / 100,width:ww*59/100,resizeMode:'cover'}}
+          source={require("../assets/prossessClient.png")}
+          style={{flex:1,resizeMode:'contain'}}
         />
-        {/* <View style=></View> */}
-        <View style={{backgroundColor:'#f2ca30',position:'absolute',bottom:'40%',width:ww*60/100,height:wh*3/100,borderRadius:(ww+wh)*1/200,justifyContent:'center',alignItems:'center'}}>
-            <Text style={{color:'#fff',fontSize:ResponsiveScreen.fontSize(25),fontWeight:'400'}}>processing ...</Text>
-        </View>
+     
+       
     </View>
   );
 };

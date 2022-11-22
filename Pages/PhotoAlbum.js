@@ -30,6 +30,7 @@ import {
   ScrollView,
   Dimensions,
   StatusBar,
+  BackHandler,
 } from "react-native";
 import { styles, styles2, btn, styles3, stylesAlT } from "./styleSheets2.js";
 import { Entypo } from "@expo/vector-icons";
@@ -44,6 +45,17 @@ const wh = Dimensions.get("screen").height;
 const ww = Dimensions.get("screen").width;
 
 const PhotoAlbum = (props) => {
+  global.HANDSHAKE = "PhotoAlbum";
+  function handleBackButtonClick() {
+    navigation.goBack();
+    return true;
+  }
+  useEffect(() => {
+    BackHandler.addEventListener("hardwareBackPress", handleBackButtonClick);
+    return () => {
+      BackHandler.removeEventListener("hardwareBackPress", handleBackButtonClick);
+    };
+  }, []);
   const navigation = useNavigation();
   console.log(global.PROJ.id);
   // console.log("http://" + global.UURL + "/BIGADMIN/listalbum/"+global.OBJ.id)
@@ -422,33 +434,15 @@ const PhotoAlbum = (props) => {
             color="black"
             style={{
               marginLeft: (ww * 18) / 100,
-              marginTop: (wh * 1) / 100,
+              // marginTop: (wh * 1) / 100,
             }}
           />
           {global.ALARM === true ?(
-          <View
-            style={{
-              backgroundColor: "red",
-              width: (ww * 5) / 100,
-              height: (ww * 5) / 100,
-              borderRadius: (ww * 50) / 100,
-              position: "absolute",
-              right: (ww * -3.5) / 100,
-              bottom: (wh * 2) / 100,
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <Text
-              style={{
-                color: "#fff",
-                fontSize: ResponsiveScreen.fontSize(20),
-                fontWeight: "500",
-              }}
-            >
-              {global.NOTIF}
-            </Text>
-          </View> ):(<View></View>)}
+  <Text
+  style={styles3.notif}
+  >
+  {' '}{global.NOTIF}{" "}
+</Text> ):(<View></View>)}
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
@@ -548,7 +542,7 @@ const PhotoAlbum = (props) => {
             </View>
             <View
               style={{
-                width: "45%",
+                // width: "45%",
                 height: "75%",
                 backgroundColor: "#f2ca30",
                 borderRadius: (ww  * 2) / 200,
@@ -563,6 +557,7 @@ const PhotoAlbum = (props) => {
                   fontFamily: "Roboto",
                   color: "#fff",
                   textAlign: "right",
+                  alignSelf:'center'
                   // backgroundColor:'pink'
 
                   // marginTop: ResponsiveScreen.normalize(50),
@@ -570,7 +565,7 @@ const PhotoAlbum = (props) => {
                   // marginBottom: ResponsiveScreen.normalize(30),
                 }}
               >
-                Photo Album{"        "}
+                {"  "}Photo Album{"  "}
               </Text>
             </View>
             </View>
@@ -716,11 +711,12 @@ const PhotoAlbum = (props) => {
                       <TouchableOpacity
                         onPress={myImage}
                         style={{
-                          width: (ww * 35) / 100,
-                          height: (wh * 17) / 100,
+                          width: (ww * 37) / 100,
+                          height: (ww * 37) / 100,
                           justifyContent: "center",
                           alignItems: "center",
                           borderRadius: 8,
+                          backgroundColor:'#ededed'
                         }}
                       >
                         {/* <Image
@@ -776,6 +772,8 @@ const PhotoAlbum = (props) => {
                                 height: (ww * 37) / 100,
                                 borderRadius: (ww * 3) / 100,
                                 backgroundColor: "#ededed",
+                                alignSelf:'center',
+                                marginTop:'12%'
                               }}
                             ></Text>
                           ) : (

@@ -42,10 +42,16 @@ const wh = Dimensions.get("screen").height;
 const ww = Dimensions.get("screen").width;
 
 const AboutUs = (props) => {
-  useEffect(() => {
-    const backHandler = BackHandler.addEventListener('hardwareBackPress', () => true)
-    return () => backHandler.remove()
-  }, [])
+  // if(!global.HANDSHAKE){global.HANDSHAKE = "OpenProject";}
+  // if(global.HANDSHAKE === 'Login'||global.HANDSHAKE === 'OpenProject'){
+    if(props.route.name==="HandShake"){
+      useEffect(() => {
+        // console.log('back_______________________User-')
+        const backHandler = BackHandler.addEventListener('hardwareBackPress', () => true,)
+        return () => backHandler.remove()
+        // return () =>BackHandler.removeEventListener("hardwareBackPress", () => null);
+      }, [])}
+  // }else{}
   const navigation = useNavigation();
   // constructor(props) {
   //     super(props);
@@ -67,17 +73,18 @@ const AboutUs = (props) => {
   // const {showAlert} = state;
 
   return (
-    <View style={[styles3.page, { backgroundColor: "#192570" }]}>
+    <View style={[styles3.page, { backgroundColor: "#f2ca30" }]}>
       <Image
         source={require("../assets/app_ui2-12.png")}
-        style={[styles3.logo, { position: "absolute", top: "40%" }]}
+        style={[styles3.logo, { position: "absolute", top: "40%" ,height:ww * 15/ 100}]}
       />
 
       <View
         style={{
           position: "absolute",
           top: "45%",
-          backgroundColor: "#f2ca30",
+          backgroundColor: "#192570",
+          
           width: (ww * 70) / 100,
           height: (wh * 11) / 100,
           alignSelf: "center",
@@ -122,8 +129,8 @@ const AboutUs = (props) => {
           </Text>
         </View>
       </View>
-      <TouchableOpacity style={{backgroundColor:'#f2ca30',position:'absolute',top:'65%',alignItems:'center',justifyContent:'center',height:ww*7/100,borderRadius:ResponsiveScreen.normalize(10)}} onPress={()=>{CALL()}}>
-      <Text style={{color:'#192570'}} >    Try again    </Text>
+      <TouchableOpacity style={{backgroundColor:'#192570',position:'absolute',top:'65%',alignItems:'center',justifyContent:'center',height:ww*7/100,borderRadius:ResponsiveScreen.normalize(10)}} onPress={()=>{CALL()}}>
+      <Text style={{color:'#fff'}} >    Try again    </Text>
       </TouchableOpacity>
     </View>
   );

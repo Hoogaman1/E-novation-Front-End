@@ -37,7 +37,7 @@ ResponsiveScreen.init(720, 1600);
 global.DATA = "";
 // global.URl = "192.168.108.160:8000";
 global.UURL = "192.168.1.135:8000"
-let phoneNumber = 'tel:${+6186117749}';
+let phoneNumber = 'tel:${+61861177649}';
 // const getData = async () => {
 //   try {
 //     const value2 = await AsyncStorage.getItem('@obj')
@@ -141,7 +141,7 @@ function CustomDrawerContent(props) {
           )}
         </View>
         <View>
-          <Text style={Dstyles.toptext}>Welcome...!</Text>
+          <Text style={Dstyles.toptext}>Welcome</Text>
           {typeof global.OBJ != "undefined" &&  global.OBJ !== null?(
           <Text style={{
             width: ResponsiveScreen.normalize(380),
@@ -230,7 +230,8 @@ function CustomDrawerContent(props) {
         }}
       >
         <View style={Dstyles.icon}>
-          <AntDesign name="setting" size={ResponsiveScreen.fontSize(40)} color="#fff" />
+          <AntDesign name="home" size={ResponsiveScreen.fontSize(40)} color="#fff" />
+          
         </View>
         <Text
           style={[Dstyles.text, { marginLeft: ResponsiveScreen.normalize(12) }]}

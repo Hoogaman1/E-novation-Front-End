@@ -28,6 +28,7 @@ import {
   StyleSheet,
   Dimensions,
   StatusBar,
+  BackHandler,
 } from "react-native";
 import { styles2, btn, styles3, stylesAlT } from "./styleSheets2.js";
 import ResponsiveScreen from "react-native-auto-responsive-screen";
@@ -61,6 +62,17 @@ ResponsiveScreen.init(720, 1600);
 // );
 
 const History = () => {
+  global.HANDSHAKE = "History";
+  function handleBackButtonClick() {
+    navigation.navigate('OpenProject');
+    return true;
+  }
+  useEffect(() => {
+    BackHandler.addEventListener("hardwareBackPress", handleBackButtonClick);
+    return () => {
+      BackHandler.removeEventListener("hardwareBackPress", handleBackButtonClick);
+    };
+  }, []);
   // const tokenAuth = props.route.params.token;
   const navigation = useNavigation();
   const [show1, setState1] = useState(false);
@@ -83,16 +95,16 @@ const History = () => {
   const itemclick = (obj) => {
     global.PROJ = obj;
     // console.log("jjj");
-    console.log(obj);
+    // console.log(obj);
     // console.log("lll");
     props.navigation.navigate("Bearing");
   };
   const DONE = (id) => {
     // setState1(false)
     // const obj = global.OBJ;
-    console.log("kkkkkkkkkkkkkkkkkkkkkkkkkkk");
-    console.log(dummy);
-    console.log("hhhhhhhhhhhhhhhhhhhhhhhhhh");
+    // console.log("kkkkkkkkkkkkkkkkkkkkkkkkkkk");
+    // console.log(dummy);
+    // console.log("hhhhhhhhhhhhhhhhhhhhhhhhhh");
     axios({
       method: "patch",
       url: "http://" + global.UURL + "/BIGADMIN/projectedit/" + id,
@@ -112,7 +124,7 @@ const History = () => {
     })
       .then((response) => {
         if (response.data) {
-          console.log("salammmmmmmmmmmmmmmmmmmmmmmm");
+          // console.log("salammmmmmmmmmmmmmmmmmmmmmmm");
           setState1(false);
         }
       })
@@ -130,7 +142,7 @@ const History = () => {
         } else {
           // setState(true)
           console.log(error);
-          console.log("Odafezzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
+          // console.log("Odafezzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
         }
       });
   };
@@ -146,6 +158,7 @@ const History = () => {
   //   const onEChange = (textValue) => setEmail(textValue);
   // const [project, setProject] = useState([]);
   const [dummy, setDummy] = useState([]);
+  console.log(dummy[0])
   const ProjectEdit = () => {
     navigation.navigate("OpenProject");
   };
@@ -182,7 +195,7 @@ const History = () => {
         try {
           setDummy(Response.data);
           setGray(false);
-          console.log(Response.data);
+          // console.log(Response.data);
         } catch (e) {
           console.log("Error");
           console.log(e);
@@ -232,32 +245,14 @@ const History = () => {
             color="black"
             style={{
               marginLeft: (ww * 18) / 100,
-              marginTop: (wh * 1) / 100,
+              // marginTop: (wh * 1) / 100,
             }}
           />{global.ALARM === true ?(
-            <View
-              style={{
-                backgroundColor: "red",
-                width: (ww * 5) / 100,
-                height: (ww * 5) / 100,
-                borderRadius: (ww * 50) / 100,
-                position: "absolute",
-                right: (ww * -3.5) / 100,
-                bottom: (wh * 2) / 100,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
+            <Text
+            style={styles3.notif}
             >
-              <Text
-                style={{
-                  color: "#fff",
-                  fontSize: ResponsiveScreen.fontSize(20),
-                  fontWeight: "500",
-                }}
-              >
-                {global.NOTIF}
-              </Text>
-            </View> ):(<View></View>)}
+            {' '}{global.NOTIF}{" "}
+          </Text> ):(<View></View>)}
           {/* <View
             style={{
               backgroundColor: "red",
@@ -384,6 +379,7 @@ const History = () => {
                   fontFamily: "Roboto",
                   color: "#fff",
                   textAlign: "right",
+                  alignSelf:'center'
                   // backgroundColor:'pink'
 
                   // marginTop: ResponsiveScreen.normalize(50),
@@ -1571,8 +1567,8 @@ const History = () => {
         >
           <View style={{ alignItems: "center" }}>
             <AntDesign
-              name="setting"
-              size={ResponsiveScreen.fontSize(45)}
+              name="home"
+              size={ResponsiveScreen.fontSize(43)}
               color="#fff"
             />
             

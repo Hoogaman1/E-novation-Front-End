@@ -44,31 +44,35 @@ const ww = Dimensions.get("screen").width;
 // import { and } from "react-native-reanimated";
 
 const LoginPage = (props) => {
-  useEffect(() => {
-    const backHandler = BackHandler.addEventListener('hardwareBackPress', () => true)
-    return () => backHandler.remove()
-  }, [])
-  const getData = async () => {
-    // console.log('bbbbbbbbbbbbbb')
+  global.HANDSHAKE = "Login";
+  if(props.route.name==="Login"){
+    useEffect(() => {
+      // console.log('back_______________________User-')
+      const backHandler = BackHandler.addEventListener('hardwareBackPress', () => true,)
+      return () => backHandler.remove()
+      // return () =>BackHandler.removeEventListener("hardwareBackPress", () => null);
+    }, [])}
+  // const getData = async () => {
+  //   // console.log('bbbbbbbbbbbbbb')
 
-    try {
-      const value = await AsyncStorage.getItem("@token");
-      // if (value !== "1") {
-        if (value !== "1") {
-        // value previously stored
-        global.TOKEN = value;
-        // setToggle(true)
-        props.navigation.navigate("OpenProject");
-      } else {
-      }
-    } catch (e) {
-      // setToggle(false)
+  //   try {
+  //     const value = await AsyncStorage.getItem("@token");
+  //     // if (value !== "1") {
+  //       if (value !== "1") {
+  //       // value previously stored
+  //       global.TOKEN = value;
+  //       // setToggle(true)
+  //       props.navigation.navigate("OpenProject");
+  //     } else {
+  //     }
+  //   } catch (e) {
+  //     // setToggle(false)
 
-      // error reading value
-      console.log(e);
-    }
-  };
-  getData();
+  //     // error reading value
+  //     console.log(e);
+  //   }
+  // };
+  // getData();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const onEChange = (textValue) => setEmail(textValue);

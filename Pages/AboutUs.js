@@ -30,6 +30,7 @@ import {
   Dimensions,
   StatusBar,
   ScrollView,
+  BackHandler,
 } from "react-native";
 import { styles3 } from "./styleSheets2";
 import ResponsiveScreen from "react-native-auto-responsive-screen";
@@ -39,11 +40,22 @@ const wf = Dimensions.get("screen").fontScale;
 const ws = Dimensions.get("screen").scale;
 // console.log(ws);
 const wh = Dimensions.get("screen").height;
-// console.log(wh);
+// console.log(wh);s
 const ww = Dimensions.get("screen").width;
 ResponsiveScreen.init(720, 1600);
 
 const OpenProject = (props) => {
+  global.HANDSHAKE = "AboutUs";
+  function handleBackButtonClick() {
+    navigation.navigate('OpenProject');
+    return true;
+  }
+  useEffect(() => {
+    BackHandler.addEventListener("hardwareBackPress", handleBackButtonClick);
+    return () => {
+      BackHandler.removeEventListener("hardwareBackPress", handleBackButtonClick);
+    };
+  }, []);
   // const route = useRoute();
   const tokenAuth = global.TOKEN;
   const navigation = useNavigation();
@@ -93,7 +105,7 @@ const OpenProject = (props) => {
       })
       .catch((error) => {
         if (error.response.status == "0") {
-          global.HANDSHAKE = "OpenProject";
+          global.HANDSHAKE = "AboutUs";
           props.navigation.navigate("HandShake");
         } else {
           console.log(error);
@@ -149,7 +161,7 @@ const OpenProject = (props) => {
 
         .catch((error) => {
           if (error.response.status == "0") {
-            global.HANDSHAKE = "OpenProject";
+            global.HANDSHAKE = "AboutUs";
             props.navigation.navigate("HandShake");
           } else {
             // let brobaba = 'Wrong email or password';
@@ -214,33 +226,17 @@ const OpenProject = (props) => {
             color="black"
             style={{
               marginLeft: (ww * 18) / 100,
-              marginTop: (wh * 1) / 100,
+              // marginTop: (wh * 1) / 100,
             }}
           />
           {global.ALARM === true ?(
-          <View
-            style={{
-              backgroundColor: "red",
-              width: (ww * 5) / 100,
-              height: (ww * 5) / 100,
-              borderRadius: (ww * 50) / 100,
-              position: "absolute",
-              right: (ww * -3.5) / 100,
-              bottom: (wh * 2) / 100,
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <Text
-              style={{
-                color: "#fff",
-                fontSize: ResponsiveScreen.fontSize(20),
-                fontWeight: "500",
-              }}
-            >
-              {global.NOTIF}
-            </Text>
-          </View> ):(<View></View>)}
+       
+       <Text
+       style={styles3.notif}
+       >
+       {' '}{global.NOTIF}{" "}
+     </Text>
+           ):(<View></View>)}
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
@@ -335,7 +331,7 @@ const OpenProject = (props) => {
             </View>
             <View
               style={{
-                width: "45%",
+                // width: "45%",
                 height: "75%",
                 backgroundColor: "#f2ca30",
                 borderRadius: (ww * 2) / 200,
@@ -349,6 +345,7 @@ const OpenProject = (props) => {
                   fontFamily: "Roboto",
                   color: "#fff",
                   textAlign: "right",
+                  alignSelf:'center'
                   // backgroundColor:'pink'
 
                   // marginTop: ResponsiveScreen.normalize(50),
@@ -356,18 +353,18 @@ const OpenProject = (props) => {
                   // marginBottom: ResponsiveScreen.normalize(30),
                 }}
               >
-                About E-novation{"     "}
+                {" "}About E-novation{" "}
               </Text>
             </View>
           </View>
-          <ScrollView style={{height:wh*1/100,marginTop:'3%'}}>
+          <ScrollView style={{height:wh*120/100,marginTop:'3%'}}>
           <View
             style={{
               flexDirection: "column",
               width: ResponsiveScreen.normalize(600),
               height: ww*150/100,
               marginTop: ResponsiveScreen.normalize(50),
-            //   backgroundColor: "pink",
+              // backgroundColor: "pink",
             }}
           >
             <Text

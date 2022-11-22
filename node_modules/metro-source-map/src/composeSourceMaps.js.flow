@@ -10,6 +10,7 @@
 
 'use strict';
 
+import type {SourcePosition} from './Consumer/types.flow';
 import type {IConsumer, MixedSourceMap} from './source-map';
 import type {Number0, Number1} from 'ob1';
 
@@ -93,9 +94,9 @@ function findOriginalPosition(
   name: ?string,
   ...
 } {
-  let currentLine = generatedLine;
-  let currentColumn = generatedColumn;
-  let original = {
+  let currentLine: ?Number1 = generatedLine;
+  let currentColumn: ?Number0 = generatedColumn;
+  let original: SourcePosition = {
     line: null,
     column: null,
     source: null,
@@ -123,6 +124,7 @@ function findOriginalPosition(
       };
     }
   }
+  // $FlowFixMe[incompatible-return] `Number0`, `Number1` is incompatible with number
   return original;
 }
 

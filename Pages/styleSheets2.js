@@ -118,7 +118,7 @@ import {
     logo: {
       // fontFamily: "Roboto",
       // backgroundColor:"red",
-      width: '88%',
+      width: '100%',
       height: '70%',
       position:'absolute',
       // left:'-1%'
@@ -682,6 +682,20 @@ import {
       // marginLeft: wp("-19%"),
       // marginTop: wh * 5 / 100,
       // backgroundColor: "green",
+    },
+    notif: {
+      backgroundColor: "red",
+      // width: (ww * 5) / 100,
+      height: (ww * 4) / 100,
+      borderRadius: (ww * 50) / 100,
+      position: "absolute",
+      right: (ww * -.5) / 100,
+      bottom: (wh * 1.3) / 100,
+      justifyContent: "center",
+      alignItems: "center",
+      color: "#fff",
+      fontSize: ResponsiveScreen.fontSize(18),
+      fontWeight: "500",
     },
     logo: {
       height: wh * 5 / 100,

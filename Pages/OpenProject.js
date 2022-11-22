@@ -44,10 +44,13 @@ const ww = Dimensions.get("screen").width;
 ResponsiveScreen.init(720, 1600);
 
 const OpenProject = (props) => {
-  useEffect(() => {
-    const backHandler = BackHandler.addEventListener('hardwareBackPress', () => true)
-    return () => backHandler.remove()
-  }, [])
+  if(props.route.name==="OpenProject"){
+    useEffect(() => {
+      // console.log('back_______________________User-')
+      const backHandler = BackHandler.addEventListener('hardwareBackPress', () => true,)
+      return () => backHandler.remove()
+      // return () =>BackHandler.removeEventListener("hardwareBackPress", () => null);
+    }, [])}
   // const route = useRoute();
   const tokenAuth = global.TOKEN;
   const navigation = useNavigation();
@@ -98,7 +101,7 @@ const OpenProject = (props) => {
       })
       .catch((error) => {
         if (error.response.status == "0") {
-          global.HANDSHAKE = "OpenProject";
+          // global.HANDSHAKE = "OpenProject";
           props.navigation.navigate("HandShake");
         } else {
           console.log(error);
@@ -188,7 +191,7 @@ axios({
 
         .catch((error) => {
           if (error.response.status == "0") {
-            global.HANDSHAKE = "OpenProject";
+            // global.HANDSHAKE = "OpenProject";
             props.navigation.navigate("HandShake");
           } else {
             // let brobaba = 'Wrong email or password';
@@ -232,7 +235,7 @@ axios({
       // .then(console.log("salam"))
       .catch((error) => {
         if (error.response.status == "0") {
-          global.HANDSHAKE = "Bearing";
+          // global.HANDSHAKE = "Bearing";
           navigation.navigate("HandShake");
         } else {
           console.log(error);
@@ -278,40 +281,25 @@ axios({
           source={require("../assets/app_ui2-13.png")}
           style={[styles3.logo, { height: (wh * 7) / 100 }]}
         />
-        <TouchableOpacity onPress={setAlert}>
+        <TouchableOpacity onPress={setAlert} >
           <FontAwesome5
             name="bell"
             size={ResponsiveScreen.fontSize(45)}
             color="black"
             style={{
               marginLeft: (ww * 18) / 100,
-              marginTop: (wh * 1) / 100,
+              // marginTop: (wh * 1) / 100,
             }}
           />
           {global.ALARM === true ?(
-          <View
-            style={{
-              backgroundColor: "red",
-              width: (ww * 5) / 100,
-              height: (ww * 5) / 100,
-              borderRadius: (ww * 50) / 100,
-              position: "absolute",
-              right: (ww * -3.5) / 100,
-              bottom: (wh * 2) / 100,
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
+
             <Text
-              style={{
-                color: "#fff",
-                fontSize: ResponsiveScreen.fontSize(20),
-                fontWeight: "500",
-              }}
-            >
-              {global.NOTIF}
+              style={styles3.notif}
+              >
+              {' '}{global.NOTIF}{" "}
             </Text>
-          </View> ):(<View></View>)}
+         
+          ):(<View></View>)}
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
@@ -406,7 +394,7 @@ axios({
             </View>
             <View
               style={{
-                width: "45%",
+                // width: "45%",
                 height: "75%",
                 backgroundColor: "#f2ca30",
                 borderRadius: (ww * 2) / 200,
@@ -420,6 +408,7 @@ axios({
                   fontFamily: "Roboto",
                   color: "#fff",
                   textAlign: "right",
+                  alignSelf:'center'
                   // backgroundColor:'pink'
 
                   // marginTop: ResponsiveScreen.normalize(50),
@@ -427,7 +416,7 @@ axios({
                   // marginBottom: ResponsiveScreen.normalize(30),
                 }}
               >
-                Current Projects{"     "}
+                {"  "}Current Projects{"  "}
               </Text>
             </View>
           </View>
@@ -519,13 +508,15 @@ axios({
                                 alignItems: "center",
                               }}
                             >
-                              <View>
+                              <View style={{backgroundColor:'#fff',borderRadius:ww*1/100}}>
                                 <Text
                                   style={[
                                     styles3.txtworkcard,
                                     {
+                                      // color:'#575757',
                                       fontSize: ResponsiveScreen.fontSize(28),
                                       fontWeight: "600",
+
                                     },
                                   ]}
                                 >
@@ -537,12 +528,16 @@ axios({
                                 style={{
                                   justifyContent: "flex-start",
                                   alignSelf: "flex-start",
-                                  margin: "5%",
+                                  // margin: "5%",
+                                  // backgroundColor:'red',
+                                  alignSelf:'center',
+                                  marginRight:'8%'
+                                  
                                 }}
                               >
                                 {itemList.item.alarm === true ? (
                                   <FontAwesome
-                                    name="bell-o"
+                                    name="bell"
                                     size={ResponsiveScreen.fontSize(35)}
                                     color="#f2ca30"
                                     style={{

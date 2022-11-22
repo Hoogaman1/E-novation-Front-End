@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigation } from '@react-navigation/native';
-
+import OneSignal from 'react-native-onesignal';
+import Constants from "expo-constants";
 // import { EvilIcons  , MaterialIcons  } from '@expo/vector-icons';
 import { CheckBox } from "@rneui/themed";
 // import TimeInput from '@tighten/react-native-time-input';
@@ -18,6 +19,7 @@ import {
   StyleSheet,
   Dimensions,
   StatusBar,
+  BackHandler,
 } from "react-native";
 import { styles3, styles2, btn } from "./styleSheets2.js";
 
@@ -50,6 +52,19 @@ const ww = Dimensions.get("screen").width;
 // );
 
 const Notif = (props) => {
+  global.HANDSHAKE = "Notif";
+  function handleBackButtonClick() {
+    navigation.navigate('OpenProject');
+    return true;
+  }
+  useEffect(() => {
+    BackHandler.addEventListener("hardwareBackPress", handleBackButtonClick);
+    return () => {
+      BackHandler.removeEventListener("hardwareBackPress", handleBackButtonClick);
+    };
+  }, []);
+  // OneSignal.setAppId(Constants.manifest.extra.oneSignalAppId);
+  OneSignal.setAppId("c6c6bb5f-bb26-495a-9d24-6a1322b5d270");
   const [dummy, setDummy] = useState([]);
   // const [email, setEmail] = useState("");
   const navigation = useNavigation();
@@ -172,33 +187,15 @@ const Notif = (props) => {
             color="black"
             style={{
               marginLeft: (ww * 18) / 100,
-              marginTop: (wh * 1) / 100,
+              // marginTop: (wh * 1) / 100,
             }}
           />
           {global.ALARM === true ?(
-          <View
-            style={{
-              backgroundColor: "red",
-              width: (ww * 5) / 100,
-              height: (ww * 5) / 100,
-              borderRadius: (ww * 50) / 100,
-              position: "absolute",
-              right: (ww * -3.5) / 100,
-              bottom: (wh * 2) / 100,
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
             <Text
-              style={{
-                color: "#fff",
-                fontSize: ResponsiveScreen.fontSize(20),
-                fontWeight: "500",
-              }}
+            style={styles3.notif}
             >
-              {global.NOTIF}
-            </Text>
-          </View> ):(<View></View>)}
+            {' '}{global.NOTIF}{" "}
+          </Text> ):(<View></View>)}
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
@@ -279,7 +276,7 @@ const Notif = (props) => {
             </View>
             <View
               style={{
-                width: "45%",
+                // width: "45%",
                 height: "75%",
                 backgroundColor: "#f2ca30",
                 borderRadius: (ww * 2) / 200,
@@ -293,6 +290,7 @@ const Notif = (props) => {
                   fontFamily: "Roboto",
                   color: "#fff",
                   textAlign: "right",
+                  alignSelf:'center'
                   // backgroundColor:'pink'
 
                   // marginTop: ResponsiveScreen.normalize(50),
@@ -300,7 +298,7 @@ const Notif = (props) => {
                   // marginBottom: ResponsiveScreen.normalize(30),
                 }}
               >
-                Notification Settings{"  "}
+                {"  "}Notification Settings{"  "}
               </Text>
             </View>
           </View>

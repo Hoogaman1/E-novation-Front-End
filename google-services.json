@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "953757489711",
+    "project_id": "e-novation-c",
+    "storage_bucket": "e-novation-c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:953757489711:android:540035f49002e89a8584da",
+        "android_client_info": {
+          "package_name": "hoogaman.enovation.c"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "953757489711-vbqp6cf2d0l5s1mhivqvat8rrrc59obk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHvrswmzbF-CavNsAQG-ggHSlQMHNrr7g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "953757489711-vbqp6cf2d0l5s1mhivqvat8rrrc59obk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
