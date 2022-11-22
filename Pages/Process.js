@@ -207,7 +207,7 @@ const Process = (props) => {
     props.navigation.navigate("OpenProject");
   };
   return (
-    <View style={{flex:1,backgroundColor:'#192570',alignItems:'center'}}> 
+    <View style={{flex:1,backgroundColor:'#f2ca30',alignItems:'center'}}> 
     
     <Image
           source={require("../assets/prossessClient.png")}
