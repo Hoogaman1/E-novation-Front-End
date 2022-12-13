@@ -1568,7 +1568,7 @@ const History = () => {
           <View style={{ alignItems: "center" }}>
             <AntDesign
               name="home"
-              size={ResponsiveScreen.fontSize(43)}
+              size={ResponsiveScreen.fontSize(38)}
               color="#fff"
             />
             

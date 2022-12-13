@@ -675,6 +675,7 @@ import {
       borderRadius: 20,
       height: wh * 70 / 100,
       width: ResponsiveScreen.normalize(130),
+      marginTop: ww * 3 / 100,
       // position:'absolute',
       // top:wh*30/100,
       // left:-180,

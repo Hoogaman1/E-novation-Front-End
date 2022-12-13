@@ -44,7 +44,10 @@ const ww = Dimensions.get("screen").width;
 const AboutUs = (props) => {
   // if(!global.HANDSHAKE){global.HANDSHAKE = "OpenProject";}
   // if(global.HANDSHAKE === 'Login'||global.HANDSHAKE === 'OpenProject'){
-    if(props.route.name==="HandShake"){
+    if (!global.HANDSHAKE) {
+      global.HANDSHAKE = "OpenProject";
+    }
+  if(props.route.name==="HandShake"){
       useEffect(() => {
         // console.log('back_______________________User-')
         const backHandler = BackHandler.addEventListener('hardwareBackPress', () => true,)
@@ -52,6 +55,44 @@ const AboutUs = (props) => {
         // return () =>BackHandler.removeEventListener("hardwareBackPress", () => null);
       }, [])}
   // }else{}
+  const [refresh, setRefresh] = useState(true);
+  if(props.route.name === "HandShake"){
+  useEffect(() => {
+
+
+    axios({
+      method: "GET",
+      url: "http://" + global.UURL + "/BIGADMIN/handshake/",
+      // params:{
+      //   email:email,
+      // },
+      headers: {
+        // 'Content-Type': "application/json",
+        // Authorization: "Token " + tokenAuth,
+        // 'Accept': 'application/json'
+      },
+      data: {
+        // verification_code: code,
+      },
+
+    }).then((Response) => {
+    console.log('oomad')
+    // console.log(props)
+    CALL();
+    setTimeout(() => setRefresh(!refresh), 2500);
+    // setRefresh(!refresh)
+    }
+    ).catch((error)=>
+    {
+    console.log('nauoomad')
+    // setRefresh(!refresh)
+    setTimeout(() => setRefresh(!refresh), 2500);
+     
+    }
+    )
+   
+  },[refresh]);}
+
   const navigation = useNavigation();
   // constructor(props) {
   //     super(props);
@@ -68,9 +109,10 @@ const AboutUs = (props) => {
   };
   const CALL = () => {
     // navigation.navigate('Users');
+    console.log(global.HANDSHAKE);
+    console.log('man callam');
     navigation.navigate(global.HANDSHAKE);
   };
-  // const {showAlert} = state;
 
   return (
     <View style={[styles3.page, { backgroundColor: "#f2ca30" }]}>

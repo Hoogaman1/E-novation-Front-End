@@ -43,13 +43,16 @@ const ww = Dimensions.get("screen").width;
 const Bearing = (props) => {
   global.HANDSHAKE = "Bearing";
   function handleBackButtonClick() {
-    navigation.navigate('OpenProject');
+    navigation.navigate("OpenProject");
     return true;
   }
   useEffect(() => {
     BackHandler.addEventListener("hardwareBackPress", handleBackButtonClick);
     return () => {
-      BackHandler.removeEventListener("hardwareBackPress", handleBackButtonClick);
+      BackHandler.removeEventListener(
+        "hardwareBackPress",
+        handleBackButtonClick
+      );
     };
   }, []);
   // const PPOBJ=""
@@ -356,101 +359,102 @@ const Bearing = (props) => {
   };
 
   // const [refresh, setRefresh] = useState(false)
-  useEffect(() => {
-    if (global.PROJ.status === "1") {
-      setState({ vale: Number(global.PROJ.status) - 0.32 });
-      setCSS("1");
-    } else if (global.PROJ.status === "2") {
-      setState({ vale: Number(global.PROJ.status) - 0.27 });
-      setCSS("2");
-    } else if (global.PROJ.status === "3") {
-      setState({ vale: Number(global.PROJ.status) - 0.21 });
-      setCSS("3");
-    } else if (global.PROJ.status === "4") {
-      setState({ vale: Number(global.PROJ.status) - 0.15 });
-      setCSS("4");
-    } else if (global.PROJ.status === "5") {
-      setState({ vale: Number(global.PROJ.status) - 0.08 });
-      setCSS("5");
-    } else if (global.PROJ.status === "6") {
-      setState({ vale: Number(global.PROJ.status) - 0.04 });
-      setCSS("6");
-    } else if (global.PROJ.status === "7") {
-      setState({ vale: Number(global.PROJ.status) });
-      setCSS("7");
-    }
+  useEffect(
+    () => {
+      if (global.PROJ.status === "1") {
+        setState({ vale: Number(global.PROJ.status) - 0.32 });
+        setCSS("1");
+      } else if (global.PROJ.status === "2") {
+        setState({ vale: Number(global.PROJ.status) - 0.27 });
+        setCSS("2");
+      } else if (global.PROJ.status === "3") {
+        setState({ vale: Number(global.PROJ.status) - 0.21 });
+        setCSS("3");
+      } else if (global.PROJ.status === "4") {
+        setState({ vale: Number(global.PROJ.status) - 0.15 });
+        setCSS("4");
+      } else if (global.PROJ.status === "5") {
+        setState({ vale: Number(global.PROJ.status) - 0.08 });
+        setCSS("5");
+      } else if (global.PROJ.status === "6") {
+        setState({ vale: Number(global.PROJ.status) - 0.04 });
+        setCSS("6");
+      } else if (global.PROJ.status === "7") {
+        setState({ vale: Number(global.PROJ.status) });
+        setCSS("7");
+      }
 
-    // let timeoutVariable
-    // if (refresh) {
-    //   timeoutVariable = setTimeout(() => setRefresh(false), 1000)
-    // }
+      // let timeoutVariable
+      // if (refresh) {
+      //   timeoutVariable = setTimeout(() => setRefresh(false), 1000)
+      // }
 
-    // const response
-    //   axios({
-    //     method: "get",
-    //     url: "http://127.0.0.1:8000/BIGADMIN/listalbum/"+(obj[0][0]),
-    //     headers: {
-    //       // 'Content-Type': "application/json",
-    //       Authorization: "Token "+tokenAuth,
-    //       // 'Accept': 'application/json'
-    //     },
-    //     data: {
-    //       // id_number: id_select,
-    //     },
-    //   })
-    //   // .then((response) => console.log(response.status))
-    //   // .then(console.log('salam'))
-    //   .then((response) => {
-    //     console.log(response.data)
-    //     if (response.status == "200") {
-    //       // props.navigation.push({token:tokenAuth,obj:response.data});
-    //       props.navigation.navigate('PhotoAlbum',{token:tokenAuth,obje:response.data});
-    //     }
-    //     })
-    //     .catch((error) => console.log(error));
-    //  }
-    // useEffect(() => {
-    //   const obj = global.OBJ;
-    //   // const { navigation } = props;
-    //   // props.navigation.navigate("NewPass"),
-    
-    setTimeout(() => setRefresh(!refresh), 1500)
-    axios({
-      method: "get",
-      url: "http://" + global.UURL + "/BIGADMIN/uprojectedit/" + obj.id,
-      // params:{
-      //   email:email,
-      // },
-      headers: {
-        // 'Content-Type': "application/json",
-        Authorization: "Token " + tokenAuth,
-        // 'Accept': 'application/json'
-      },
-      data: {
-        // verification_code: code,
-      },
-    })
-      // .then((response) =>(console.log(response.data.status)))
-      // .then((response) =>(console.log(obj.status=)))
-      .then(
-        (response) => setPOBJ(response.data)
-        // console.log()
-        // navigation.addListener('focus', () => {
-        //   setRefresh(true)
-        // })
-      )
-      .then(console.log("salam"))
-      .catch((error) => {
-        if (error.response.status == "0") {
-          global.HANDSHAKE = "Bearing";
-          navigation.navigate("HandShake");
-        } else {
-          console.log(error);
-        }
-      });
-  }, 
-  [EF]
-  // []
+      // const response
+      //   axios({
+      //     method: "get",
+      //     url: "http://127.0.0.1:8000/BIGADMIN/listalbum/"+(obj[0][0]),
+      //     headers: {
+      //       // 'Content-Type': "application/json",
+      //       Authorization: "Token "+tokenAuth,
+      //       // 'Accept': 'application/json'
+      //     },
+      //     data: {
+      //       // id_number: id_select,
+      //     },
+      //   })
+      //   // .then((response) => console.log(response.status))
+      //   // .then(console.log('salam'))
+      //   .then((response) => {
+      //     console.log(response.data)
+      //     if (response.status == "200") {
+      //       // props.navigation.push({token:tokenAuth,obj:response.data});
+      //       props.navigation.navigate('PhotoAlbum',{token:tokenAuth,obje:response.data});
+      //     }
+      //     })
+      //     .catch((error) => console.log(error));
+      //  }
+      // useEffect(() => {
+      //   const obj = global.OBJ;
+      //   // const { navigation } = props;
+      //   // props.navigation.navigate("NewPass"),
+
+      setTimeout(() => setRefresh(!refresh), 1500);
+      axios({
+        method: "get",
+        url: "http://" + global.UURL + "/BIGADMIN/uprojectedit/" + obj.id,
+        // params:{
+        //   email:email,
+        // },
+        headers: {
+          // 'Content-Type': "application/json",
+          Authorization: "Token " + tokenAuth,
+          // 'Accept': 'application/json'
+        },
+        data: {
+          // verification_code: code,
+        },
+      })
+        // .then((response) =>(console.log(response.data.status)))
+        // .then((response) =>(console.log(obj.status=)))
+        .then(
+          (response) => setPOBJ(response.data)
+          // console.log()
+          // navigation.addListener('focus', () => {
+          //   setRefresh(true)
+          // })
+        )
+        .then(console.log("salam"))
+        .catch((error) => {
+          if (error.response.status == "0") {
+            global.HANDSHAKE = "Bearing";
+            navigation.navigate("HandShake");
+          } else {
+            console.log(error);
+          }
+        });
+    },
+    [EF]
+    // []
   );
   // return () => clearTimeout(timeoutVariable)
   // },
@@ -476,7 +480,7 @@ const Bearing = (props) => {
           {
             flex: 0.45,
             // backgroundColor: 'red',
-            marginTop:'5.5%'
+            marginTop: "5.5%",
           },
         ]}
       >
@@ -494,12 +498,11 @@ const Bearing = (props) => {
               // marginTop: (wh * 1) / 100,
             }}
           />
-          {global.ALARM === true ?(
-  <Text
-  style={styles3.notif}
-  >
-  {' '}{global.NOTIF}{" "}
-</Text> ):(<View></View>)}
+          {global.ALARM === true ? (
+            <Text style={styles3.notif}> {global.NOTIF} </Text>
+          ) : (
+            <View></View>
+          )}
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
@@ -534,9 +537,9 @@ const Bearing = (props) => {
             style={{
               // width: ww * 70 / 100,
               // borderRadius: 20,
-              height: wh * 4 / 100,
+              height: (wh * 4) / 100,
               // backgroundColor: 'green',
-              alignItems:'center',
+              alignItems: "center",
               // marginLeft: (ww * 5) / 100,
               marginBottom: (wh * 3) / 100,
               marginTop: (wh * 3) / 100,
@@ -552,110 +555,154 @@ const Bearing = (props) => {
               {POBJ.name}
             </Text> */}
 
-
-
-
-
-
-
-
 <View
-            style={{
-              marginTop: "5%",
-              width: "85%",
-              height: (ww * 10) / 100,
-              paddingHorizontal: "0.8%",
-              borderRadius: (ww * 4) / 200,
-              flexDirection: "row",
-              // marginRight:'-3%',
-              alignItems: "center",
-              // backgroundColor: "#fff",
-              justifyContent: "space-between",
-              // borderColor:"#575757",
-              // borderWidth:0.3,
-              elevation: 3,
-              backgroundColor: "#fff",
-              shadowOffset: { width: 3, height: 3 },
-              shadowColor: "#000",
-              shadowOpacity: 1,
-              shadowRadius: 8,
-            }}
-          >
-            <View
               style={{
-                height: "90%",
+                // marginTop: "-5%",
+                width: "85%",
+                height: (ww * 10) / 100,
+                paddingHorizontal: "0.8%",
+                borderRadius: (ww * 4) / 200,
+                flexDirection: "row",
+                // marginRight:'-3%',
+                alignItems: "center",
+                // backgroundColor: "#fff",
+                justifyContent: "space-between",
+                // borderColor:"#575757",
+                // borderWidth:0.3,
+                elevation: 3,
                 backgroundColor: "#fff",
-                borderRadius: (ww * 2) / 200,
-                alignItems: "flex-start",
-                justifyContent: "center",
+                shadowOffset: { width: 3, height: 3 },
+                shadowColor: "#000",
+                shadowOpacity: 1,
+                shadowRadius: 8,
               }}
             >
-              <Text
+              <View
                 style={{
-                  fontSize: ResponsiveScreen.fontSize(30),
-                  color: "#575757",
-                  fontWeight:'700',
-
-                  // marginTop: wh * 2.5 / 100,
-                  // marginLeft: ww * 5 / 100,
-                  textAlign: "left",
-                  // backgroundColor: 'pink'
+                  height: "90%",
+                  backgroundColor: "#fff",
+                  borderRadius: (ww * 2) / 200,
+                  alignItems: "flex-start",
+                  justifyContent: "center",
                 }}
               >
-                {"  "}
-                {global.PROJ.name}
-                {"  "}
-              </Text>
+                <Text
+                  style={{
+                    fontSize: ResponsiveScreen.fontSize(25),
+                    color: "#575757",
+                    fontWeight: "700",
+                    // marginTop: wh * 2.5 / 100,
+                    // marginLeft: ww * 5 / 100,
+                    textAlign: "left",
+                    // backgroundColor: 'pink'
+                  }}
+                >{"  "}
+                  {global.OBJ.company}
+                </Text>
+              </View>
+              <View
+                style={{
+                  // width: "45%",
+                  height: "75%",
+                  backgroundColor: "#192570",
+                  borderRadius: (ww * 2) / 200,
+                  alignItems: "flex-end",
+                  justifyContent: "center",
+                }}
+              >
+                <Text
+                  style={{
+                    fontSize: ResponsiveScreen.normalize(25),
+                    fontFamily: "Roboto",
+                    color: "#fff",
+                    textAlign: "right",
+                    alignSelf: "center",
+                    // backgroundColor:'pink'
+
+                    // marginTop: ResponsiveScreen.normalize(50),
+                    // marginLeft: ResponsiveScreen.normalize(35),
+                    // marginBottom: ResponsiveScreen.normalize(30),
+                  }}
+                >
+                  {"   "}Project Process{"   "}
+                  {/* sdas sssssssssssssssssssss aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaav */}
+                </Text>
+              </View>
             </View>
-            <View
-              style={{
-                // width: "45%",
-                height: "75%",
-                backgroundColor: "#f2ca30",
-                borderRadius: (ww  * 2) / 200,
-                alignItems: "flex-end",
-                justifyContent: "center",
+          </View>
+          <View
+               style={{
+                marginTop: "-3%",
+                width: "85%",
+                height: (ww * 8) / 100,
+                paddingHorizontal: "0.8%",
+                borderRadius: (ww * 4) / 200,
+                flexDirection: "row",
+                // marginRight:'-3%',
+                alignItems: "center",
+                alignSelf:'center',
+                // backgroundColor: "#fff",
+                justifyContent: "space-between",
+                borderColor:"#f2ca30",
+                borderWidth:0.3,
+                // borderBottomColor:'red',
+                // borderEndColor:'red',
+                elevation: 3,
+                backgroundColor: "#fff",
+                shadowOffset: { width: 3, height: 3 },
+                shadowColor: "#000",
+                shadowOpacity: 1,
+                shadowRadius: 8,
               }}
             >
-              <Text
+              <View
                 style={{
-                  fontSize: ResponsiveScreen.normalize(30),
-                  fontFamily: "Roboto",
-                  color: "#fff",
-                  textAlign: "right",
-                  alignSelf:'center'
-                  // backgroundColor:'pink'
-
-                  // marginTop: ResponsiveScreen.normalize(50),
-                  // marginLeft: ResponsiveScreen.normalize(35),
-                  // marginBottom: ResponsiveScreen.normalize(30),
+                  height: "90%",
+                  backgroundColor: "#fff",
+                  borderRadius: (ww * 4) / 200,
+                  alignItems: "flex-start",
+                  justifyContent: "center",
                 }}
               >
-                {"  "}Current Projects{"  "}
-              </Text>
-            </View>
-          </View>
+                <View
+                style={{
+                  height: "90%",
+                  backgroundColor: "#fff",
+                  borderRadius: (ww * 4) / 200,
+                  alignItems: "flex-start",
+                  justifyContent: "center",
+                }}
+              >
+                <Text
+                  style={{
+                    fontSize: ResponsiveScreen.fontSize(25),
+                    color: "#f2ca30",
+                    fontWeight: "700",
 
+                    // marginTop: wh * 2.5 / 100,
+                    // marginLeft: ww * 5 / 100,
+                    textAlign: "left",
+                    // backgroundColor: 'pink'
+                  }}
+                >
+                  {"  "}
+                  {global.PROJ.name}
+                  
+                  {"  "}
+                </Text>
+              </View>
+              </View></View>
 
-
-
-
-
-
-
-
-          </View>
-
-          <View style={{ width: ww, height: "70%" }}>
+          <View style={{ width: ww, height: "70%",marginTop:'-6%' }}>
             <View
               style={{
                 flex: 1,
                 // width: ResponsiveScreen.normalize(600),
                 // height: ResponsiveScreen.normalize(1000),
-                borderRadius: 20,
+                borderRadius: (ww * 4) / 200,
                 flexDirection: "row",
                 // backgroundColor: "pink",
-                marginTop:'12%'
+                marginTop: "12%",
               }}
             >
               {/* /// --------------------------------------cart----------------------- /// */}
@@ -677,7 +724,7 @@ const Bearing = (props) => {
                       <View style={{ flex: 1 }}>
                         <View style={styles3.container}>
                           <Slider
-                          disabled={true}
+                            disabled={true}
                             style={{
                               width: ResponsiveScreen.normalize(950),
                               height: ResponsiveScreen.normalize(40),
@@ -705,7 +752,6 @@ const Bearing = (props) => {
                             // onValueChange={value =>{setState({ value }),console.log(value)}}
                             onValueChange={(value) => SK(value)}
                             onSlidingComplete={(value) => SC(value)}
-                            
                           />
 
                           {/* <Text>
@@ -929,7 +975,7 @@ const Bearing = (props) => {
                       <View style={{ flex: 1 }}>
                         <View style={styles3.container}>
                           <Slider
-                          disabled={true}
+                            disabled={true}
                             style={{
                               width: ResponsiveScreen.normalize(950),
                               height: ResponsiveScreen.normalize(40),
@@ -1176,7 +1222,7 @@ const Bearing = (props) => {
                       <View style={{ flex: 1 }}>
                         <View style={styles3.container}>
                           <Slider
-                          disabled={true}
+                            disabled={true}
                             style={{
                               width: ResponsiveScreen.normalize(950),
                               height: ResponsiveScreen.normalize(40),
@@ -1425,7 +1471,7 @@ const Bearing = (props) => {
                       <View style={{ flex: 1 }}>
                         <View style={styles3.container}>
                           <Slider
-                          disabled={true}
+                            disabled={true}
                             style={{
                               width: ResponsiveScreen.normalize(950),
                               height: ResponsiveScreen.normalize(40),
@@ -1670,7 +1716,7 @@ const Bearing = (props) => {
                       <View style={{ flex: 1 }}>
                         <View style={styles3.container}>
                           <Slider
-                          disabled={true}
+                            disabled={true}
                             style={{
                               width: ResponsiveScreen.normalize(950),
                               height: ResponsiveScreen.normalize(40),
@@ -1917,7 +1963,7 @@ const Bearing = (props) => {
                       <View style={{ flex: 1 }}>
                         <View style={styles3.container}>
                           <Slider
-                          disabled={true}
+                            disabled={true}
                             style={{
                               width: ResponsiveScreen.normalize(950),
                               height: ResponsiveScreen.normalize(40),
@@ -2166,7 +2212,7 @@ const Bearing = (props) => {
                       <View style={{ flex: 1 }}>
                         <View style={styles3.container}>
                           <Slider
-                          disabled={true}
+                            disabled={true}
                             style={{
                               width: ResponsiveScreen.normalize(950),
                               height: ResponsiveScreen.normalize(40),
@@ -2423,7 +2469,7 @@ const Bearing = (props) => {
                       <View style={{ flex: 1 }}>
                         <View style={styles3.container}>
                           <Slider
-                           disabled={true}
+                            disabled={true}
                             style={{
                               width: ResponsiveScreen.normalize(810),
                               height: ResponsiveScreen.normalize(40),
@@ -2672,7 +2718,7 @@ const Bearing = (props) => {
                       <View style={{ flex: 1 }}>
                         <View style={styles3.container}>
                           <Slider
-                           disabled={true}
+                            disabled={true}
                             style={{
                               width: ResponsiveScreen.normalize(810),
                               height: ResponsiveScreen.normalize(40),
@@ -2920,7 +2966,7 @@ const Bearing = (props) => {
                       <View style={{ flex: 1 }}>
                         <View style={styles3.container}>
                           <Slider
-                           disabled={true}
+                            disabled={true}
                             style={{
                               width: ResponsiveScreen.normalize(810),
                               height: ResponsiveScreen.normalize(40),
@@ -3170,7 +3216,7 @@ const Bearing = (props) => {
                       <View style={{ flex: 1 }}>
                         <View style={styles3.container}>
                           <Slider
-                           disabled={true}
+                            disabled={true}
                             style={{
                               width: ResponsiveScreen.normalize(810),
                               height: ResponsiveScreen.normalize(40),
@@ -3416,7 +3462,7 @@ const Bearing = (props) => {
                       <View style={{ flex: 1 }}>
                         <View style={styles3.container}>
                           <Slider
-                           disabled={true}
+                            disabled={true}
                             style={{
                               width: ResponsiveScreen.normalize(810),
                               height: ResponsiveScreen.normalize(40),
@@ -3664,7 +3710,7 @@ const Bearing = (props) => {
                       <View style={{ flex: 1 }}>
                         <View style={styles3.container}>
                           <Slider
-                          disabled={true}
+                            disabled={true}
                             style={{
                               width: ResponsiveScreen.normalize(810),
                               height: ResponsiveScreen.normalize(40),
@@ -3914,7 +3960,7 @@ const Bearing = (props) => {
                       <View style={{ flex: 1 }}>
                         <View style={styles3.container}>
                           <Slider
-                           disabled={true}
+                            disabled={true}
                             style={{
                               width: ResponsiveScreen.normalize(810),
                               height: ResponsiveScreen.normalize(40),
@@ -4163,8 +4209,8 @@ const Bearing = (props) => {
             style={{
               // backgroundColor: "pink",
               position: "absolute",
-              width:ww*17/100,
-              height:wh*63/100,
+              width: (ww * 17) / 100,
+              height: (wh * 63) / 100,
               right: 0,
               top: (wh * 9) / 100,
               // flex:1
@@ -4326,7 +4372,7 @@ const Bearing = (props) => {
           </View>
         )}
       </View>
-     
+
       <View
         style={{
           height: (ww * 11) / 100,
@@ -4340,12 +4386,11 @@ const Bearing = (props) => {
           justifyContent: "center",
         }}
       >
-
         <TouchableOpacity
           style={{
             // width: "33.3%",
             // height: "100%",
-            flex:1,
+            flex: 1,
             // backgroundColor: "#f2ca30",
             borderRadius: 5,
             justifyContent: "center",
@@ -4353,11 +4398,11 @@ const Bearing = (props) => {
           onPress={() => navigation.navigate("OpenProject")}
         >
           <View style={{ alignItems: "center" }}>
-          <AntDesign
-             name="home"
-             size={ResponsiveScreen.fontSize(43)}
-             color="#fff"
-           />
+            <AntDesign
+              name="home"
+              size={ResponsiveScreen.fontSize(38)}
+              color="#fff"
+            />
           </View>
           {/* <View style={{width:'60%',height:1,backgroundColor:'#fff',alignSelf:'center'}}></View> */}
           <Text
@@ -4372,10 +4417,7 @@ const Bearing = (props) => {
             Current Projects
           </Text>
         </TouchableOpacity>
-
-
-  
-        </View>
+      </View>
     </View>
   );
 };

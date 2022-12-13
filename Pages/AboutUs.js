@@ -426,7 +426,7 @@ const OpenProject = (props) => {
               practices.
             </Text>
 
-            <Text
+            {/* <Text
               style={{
                 fontSize: ResponsiveScreen.fontSize(20),
                 marginBottom: "5%",
@@ -440,7 +440,7 @@ const OpenProject = (props) => {
               business and the reason we deliver the best results. Our Design
               and Manufacturing system is powered by Okuma CNC machines,
               SolidWorks, SolidCam, and ISO 9001 quality management system.
-            </Text>
+            </Text> */}
           </View>
           </ScrollView>
         </View>

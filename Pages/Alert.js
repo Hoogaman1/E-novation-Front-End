@@ -319,7 +319,7 @@ const OpenProject = (props) => {
           {
             flex: 0.45,
             // backgroundColor: 'red'
-            marginTop: "10%",
+            marginTop: "5%",
           },
         ]}
       >
@@ -405,7 +405,7 @@ const OpenProject = (props) => {
 
       {/* <Modalize ref={modalizeRef}>...your content</Modalize> */}
 
-      <View style={[styles3.butbox]}>
+      <View style={[styles3.butbox,{marginTop: '30%'}]}>
         <View
           style={[
             styles3.workbox,
@@ -715,7 +715,7 @@ const OpenProject = (props) => {
                     <View
                       style={{
                         // width: ww * 67 / 100,
-                        borderRadius: ww && (wh * 0.6) / 100,
+                        // borderRadius: ww && (wh * 0.6) / 100,
                         height: "80%",
                         width: "90%",
                         // paddingHorizontal: ww * 4 / 100,
@@ -783,7 +783,7 @@ const OpenProject = (props) => {
                     <View
                       style={{
                         // width: ww * 67 / 100,
-                        borderRadius: ww && (wh * 0.6) / 100,
+                        // borderRadius: ww && (wh * 0.6) / 100,
                         height: "80%",
                         width: "90%",
                         // paddingHorizontal: ww * 4 / 100,
@@ -851,7 +851,7 @@ const OpenProject = (props) => {
                     <View
                       style={{
                         // width: ww * 67 / 100,
-                        borderRadius: ww && (wh * 0.6) / 100,
+                        // borderRadius: ww && (wh * 0.6) / 100,
                         height: "80%",
                         width: "90%",
                         // paddingHorizontal: ww * 4 / 100,
@@ -919,7 +919,7 @@ const OpenProject = (props) => {
                     <View
                       style={{
                         // width: ww * 67 / 100,
-                        borderRadius: ww && (wh * 0.6) / 100,
+                        // borderRadius: ww && (wh * 0.6) / 100,
                         height: "80%",
                         width: "90%",
                         // paddingHorizontal: ww * 4 / 100,
@@ -987,7 +987,7 @@ const OpenProject = (props) => {
                     <View
                       style={{
                         // width: ww * 67 / 100,
-                        borderRadius: ww && (wh * 0.6) / 100,
+                        // borderRadius: ww && (wh * 0.6) / 100,
                         height: "80%",
                         width: "90%",
                         // paddingHorizontal: ww * 4 / 100,
@@ -1055,7 +1055,7 @@ const OpenProject = (props) => {
                     <View
                       style={{
                         // width: ww * 67 / 100,
-                        borderRadius: ww && (wh * 0.6) / 100,
+                        // borderRadius: ww && (wh * 0.6) / 100,
                         height: "80%",
                         width: "90%",
                         // paddingHorizontal: ww * 4 / 100,
@@ -1123,7 +1123,7 @@ const OpenProject = (props) => {
                     <View
                       style={{
                         // width: ww * 67 / 100,
-                        borderRadius: ww && (wh * 0.6) / 100,
+                        // borderRadius: ww && (wh * 0.6) / 100,
                         height: "80%",
                         width: "90%",
                         // paddingHorizontal: ww * 4 / 100,

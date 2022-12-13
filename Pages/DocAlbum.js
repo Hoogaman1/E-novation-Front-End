@@ -459,101 +459,165 @@ const DocAlbum = (props) => {
             },
           ]}
         >
-          <View
+                    <View
             style={{
               width: (ww * 100) / 100,
               borderRadius: 20,
-              height: (wh * 10) / 100,
-              // backgroundColor: 'green',
-              // position:'absolute',
-            }}
-          >
-            <View
-            style={{
-              marginTop: "5%",
-              width: "85%",
-              height: ww*8/100,
-              paddingHorizontal: "0.8%",
-              borderRadius: ((ww) * 4) / 200,
-              flexDirection: "row",
-              alignItems: "center",
-              backgroundColor: "#192570",
-              justifyContent: "space-between",
-              alignSelf:'center',
-              width: "85%",
-              height: (ww * 10) / 100,
-              paddingHorizontal: "0.8%",
-              borderRadius: (ww * 4) / 200,
-              flexDirection: "row",
-              // marginRight:'-3%',
-              alignItems: "center",
-              // backgroundColor: "#fff",
-              justifyContent: "space-between",
-              // borderColor:"#575757",
-              // borderWidth:0.3,
-              elevation: 3,
-              backgroundColor: "#fff",
-              shadowOffset: { width: 3, height: 3 },
-              shadowColor: "#000",
-              shadowOpacity: 1,
-              shadowRadius: 8,
+              height: (wh * 9) / 100,
+              // backgroundColor: "blue",
             }}
           >
             <View
               style={{
-                height: "90%",
+                width: (ww * 100) / 100,
+                borderRadius: 20,
+                height: (ww * 20) / 100,
+                // backgroundColor: 'blue',
+                alignItems: "center",
+              }}
+            >
+              <View
+                style={{
+                  // marginTop: "-5%",
+                  width: "85%",
+                  height: (ww * 10) / 100,
+                  paddingHorizontal: "0.8%",
+                  borderRadius: (ww * 4) / 200,
+                  flexDirection: "row",
+                  // marginRight:'-3%',
+                  alignItems: "center",
+                  // backgroundColor: "#fff",
+                  justifyContent: "space-between",
+                  // borderColor:"#575757",
+                  // borderWidth:0.3,
+                  elevation: 3,
+                  backgroundColor: "#fff",
+                  shadowOffset: { width: 3, height: 3 },
+                  shadowColor: "#000",
+                  shadowOpacity: 1,
+                  shadowRadius: 8,
+                }}
+              >
+                <View
+                  style={{
+                    height: "90%",
+                    backgroundColor: "#fff",
+                    borderRadius: (ww * 2) / 200,
+                    alignItems: "flex-start",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Text
+                    style={{
+                      fontSize: ResponsiveScreen.fontSize(25),
+                      color: "#575757",
+                      fontWeight: "700",
+
+                      // marginTop: wh * 2.5 / 100,
+                      // marginLeft: ww * 5 / 100,
+                      textAlign: "left",
+                      // backgroundColor: 'pink'
+                    }}
+                  >
+                    {"  "}
+                    {global.OBJ.company}
+                    {"  "}
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    // width: "45%",
+                    height: "75%",
+                    backgroundColor: "#192570",
+                    borderRadius: (ww * 2) / 200,
+                    alignItems: "flex-end",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Text
+                    style={{
+                      fontSize: ResponsiveScreen.normalize(25),
+                      fontFamily: "Roboto",
+                      color: "#fff",
+                      textAlign: "right",
+                      alignSelf: "center",
+                      // backgroundColor:'pink'
+
+                      // marginTop: ResponsiveScreen.normalize(50),
+                      // marginLeft: ResponsiveScreen.normalize(35),
+                      // marginBottom: ResponsiveScreen.normalize(30),
+                    }}
+                  >
+                    {"   "}Documents{"   "}
+                    {/* sdas sssssssssssssssssssss aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaav */}
+                  </Text>
+                </View>
+              </View>
+              <View
+              style={{
+                marginTop: "1.5%",
+                width: "85%",
+                height: (ww * 8) / 100,
+                paddingHorizontal: "0.8%",
+                borderRadius: (ww * 4) / 200,
+                flexDirection: "row",
+                // marginRight:'-3%',
+                alignItems: "center",
+                alignSelf: "center",
+                // backgroundColor: "#fff",
+                justifyContent: "space-between",
+                borderColor:"#f2ca30",
+                borderWidth:0.3,
+                // borderColor:"#575757",
+                // borderWidth:0.3,
+                elevation: 3,
                 backgroundColor: "#fff",
-                borderRadius: (ww * 2) / 200,
-                alignItems: "flex-start",
-                justifyContent: "center",
-                
+                shadowOffset: { width: 3, height: 3 },
+                shadowColor: "#000",
+                shadowOpacity: 1,
+                shadowRadius: 8,
               }}
             >
-              <Text
+              <View
                 style={{
-                  fontSize: ResponsiveScreen.fontSize(30),
-                  color: "#575757",
-                  fontWeight:'700',
-
-                  // marginTop: wh * 2.5 / 100,
-                  // marginLeft: ww * 5 / 100,
-                  textAlign: "left",
-                  // backgroundColor: 'pink'
+                  height: "90%",
+                  backgroundColor: "#fff",
+                  borderRadius: (ww * 2) / 200,
+                  alignItems: "flex-start",
+                  justifyContent: "center",
                 }}
               >
-                {"  "}
-                {global.PROJ.name}
-                {"  "}
-              </Text>
-            </View>
-            <View
-              style={{
-                // width: "45%",
-                height: "75%",
-                backgroundColor: "#f2ca30",
-                borderRadius: (ww  * 2) / 200,
-                alignItems: "flex-end",
-                justifyContent: "center",
-                
-              }}
-            >
-              <Text
-                style={{
-                  fontSize: ResponsiveScreen.normalize(30),
-                  fontFamily: "Roboto",
-                  color: "#fff",
-                  textAlign: "right",
-                  alignSelf:'center'
-                  // backgroundColor:'pink'
+                <View
+                  style={{
+                    height: "90%",
+                    backgroundColor: "#fff",
+                    borderRadius: (ww * 2) / 200,
+                    alignItems: "flex-start",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Text
+                    style={{
+                      fontSize: ResponsiveScreen.fontSize(25),
+                      color: "#f2ca30",
+                      fontWeight: "700",
 
-                  // marginTop: ResponsiveScreen.normalize(50),
-                  // marginLeft: ResponsiveScreen.normalize(35),
-                  // marginBottom: ResponsiveScreen.normalize(30),
-                }}
-              >
-                {"  "}Documents{"  "}
-              </Text>
-            </View>
+                      // marginTop: wh * 2.5 / 100,
+                      // marginLeft: ww * 5 / 100,
+                      textAlign: "left",
+                      // backgroundColor: 'pink'
+                    }}
+                  >
+                    {"  "}
+                    {global.PROJ.name}
+                    {/* salam */}
+                    {"  "}
+                  </Text>
+                </View>
+                </View>
+                </View>
+              
+            {/* </View> */}
             </View>
 
             <AwesomeAlert
@@ -637,7 +701,7 @@ const DocAlbum = (props) => {
                 height: (wh * 66) / 100,
                 position: "absolute",
                 left: 0,
-                top: (wh * 8) / 100,
+                top: (wh * 10) / 100,
                 paddingLeft: "3.5%",
                 // backgroundColor:'red'
               }}

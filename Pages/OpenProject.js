@@ -44,6 +44,7 @@ const ww = Dimensions.get("screen").width;
 ResponsiveScreen.init(720, 1600);
 
 const OpenProject = (props) => {
+  global.HANDSHAKE = "OpenProject";
   if(props.route.name==="OpenProject"){
     useEffect(() => {
       // console.log('back_______________________User-')
@@ -190,14 +191,19 @@ axios({
         })
 
         .catch((error) => {
-          if (error.response.status == "0") {
-            // global.HANDSHAKE = "OpenProject";
-            props.navigation.navigate("HandShake");
-          } else {
-            // let brobaba = 'Wrong email or password';
-            console.log(error);
-          }
-        });
+          console.log('salam')
+          console.log(error.response)
+          console.log('hame')
+          // setTimeout(() => setRefresh(!refresh), 2500);
+          // if(error.response.status == "0"){
+            // global.HANDSHAKE = 'Users';
+            navigation.navigate("HandShake");
+            setTimeout(() => setRefresh(!refresh), 2500);
+        //   }else{
+        //     console.log('errorrrrrr')
+        //     setTimeout(() => setRefresh(!refresh), 2500);
+        // }
+      });;
 
       // return () => clearTimeout(timeoutVariable);
     },
@@ -462,14 +468,9 @@ axios({
                           marginTop: "4%",
                         }}
                       >
-                        Please create the first project for this company, by{" "}
-                        <Text
-                          style={{ color: "#f2ca30" }}
-                          onPress={() => ProjectCreate()}
-                        >
-                          "New project button"
-                        </Text>
-                        .{" "}
+                        You have no open project...{" "}
+                     
+                       
                       </Text>
                     </View>
                   ) : (
@@ -898,7 +899,7 @@ axios({
           <View style={{ alignItems: "center" }}>
             <MaterialIcons
               name="history"
-              size={ResponsiveScreen.fontSize(45)}
+              size={ResponsiveScreen.fontSize(39)}
               color="#fff"
             />
           </View>

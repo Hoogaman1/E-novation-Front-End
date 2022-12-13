@@ -53,7 +53,10 @@ const PhotoAlbum = (props) => {
   useEffect(() => {
     BackHandler.addEventListener("hardwareBackPress", handleBackButtonClick);
     return () => {
-      BackHandler.removeEventListener("hardwareBackPress", handleBackButtonClick);
+      BackHandler.removeEventListener(
+        "hardwareBackPress",
+        handleBackButtonClick
+      );
     };
   }, []);
   const navigation = useNavigation();
@@ -193,14 +196,13 @@ const PhotoAlbum = (props) => {
         // .then((Response) => console.log(Response.data))
         .then((Response) => {
           if (!Response.data.length) {
-            console.log('kokokokokokok');
+            console.log("kokokokokokok");
             setDummyl(true);
-            setInternetCheck(internetCheck+1)
-          }else{
-            console.log('ah');
+            setInternetCheck(internetCheck + 1);
+          } else {
+            console.log("ah");
           }
-              
-            })
+        })
         // .then(console.log(Response.data))
         // .then(setDum)
         .catch((error) => {
@@ -225,8 +227,8 @@ const PhotoAlbum = (props) => {
   const [mydata, setData] = useState("");
   const onCChange = (textValue) => setCode(textValue);
   // const obj = global.OBJ;
-  
-  const [dummyl, setDummyl] = useState(false)
+
+  const [dummyl, setDummyl] = useState(false);
   const [dummy, setDummy] = useState([
     {
       id: 1,
@@ -307,23 +309,21 @@ const PhotoAlbum = (props) => {
         // verification_code: code,
       },
     })
-    // .then((Response) => setDummy(Response.data))
-    .then((Response) => {console.log(Response.data.length);
-    
-      if (Response.data.length > 0) {
-        setDummy(Response.data);
-        setDummyl(false);
-      }else{
-        setDummyl(true);
-        // setInternetCheck(internetCheck+1)
-      };
-    
-    })
+      // .then((Response) => setDummy(Response.data))
+      .then((Response) => {
+        console.log(Response.data.length);
 
+        if (Response.data.length > 0) {
+          setDummy(Response.data);
+          setDummyl(false);
+        } else {
+          setDummyl(true);
+          // setInternetCheck(internetCheck+1)
+        }
+      })
 
       .catch((error) => {
-      
-        console.log('vaaaaaay vaaaaaaaay')
+        console.log("vaaaaaay vaaaaaaaay");
         if (error.response.status == "0") {
           global.HANDSHAKE = "PhotoAlbum";
           navigation.navigate("HandShake");
@@ -419,7 +419,7 @@ const PhotoAlbum = (props) => {
           {
             flex: 0.45,
             // backgroundColor: 'red',
-            marginTop:'5.5%'
+            marginTop: "5.5%",
           },
         ]}
       >
@@ -437,12 +437,11 @@ const PhotoAlbum = (props) => {
               // marginTop: (wh * 1) / 100,
             }}
           />
-          {global.ALARM === true ?(
-  <Text
-  style={styles3.notif}
-  >
-  {' '}{global.NOTIF}{" "}
-</Text> ):(<View></View>)}
+          {global.ALARM === true ? (
+            <Text style={styles3.notif}> {global.NOTIF} </Text>
+          ) : (
+            <View></View>
+          )}
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
@@ -478,96 +477,160 @@ const PhotoAlbum = (props) => {
             style={{
               width: (ww * 100) / 100,
               borderRadius: 20,
-              height: (wh * 6) / 100,
-              // backgroundColor: 'blue'
-            }}
-          >
-            <View
-            style={{
-              marginTop: "5%",
-              width: "85%",
-              height: ww*8/100,
-              paddingHorizontal: "0.8%",
-              borderRadius: ((ww) * 4) / 200,
-              flexDirection: "row",
-              alignItems: "center",
-              backgroundColor: "#192570",
-              justifyContent: "space-between",
-              alignSelf:'center',
-              width: "85%",
-              height: (ww * 10) / 100,
-              paddingHorizontal: "0.8%",
-              borderRadius: (ww * 4) / 200,
-              flexDirection: "row",
-              // marginRight:'-3%',
-              alignItems: "center",
-              // backgroundColor: "#fff",
-              justifyContent: "space-between",
-              // borderColor:"#575757",
-              // borderWidth:0.3,
-              elevation: 3,
-              backgroundColor: "#fff",
-              shadowOffset: { width: 3, height: 3 },
-              shadowColor: "#000",
-              shadowOpacity: 1,
-              shadowRadius: 8,
+              height: (wh * 9) / 100,
+              // backgroundColor: "blue",
             }}
           >
             <View
               style={{
-                height: "90%",
+                width: (ww * 100) / 100,
+                borderRadius: 20,
+                height: (ww * 20) / 100,
+                // backgroundColor: 'blue',
+                alignItems: "center",
+              }}
+            >
+              <View
+                style={{
+                  // marginTop: "-5%",
+                  width: "85%",
+                  height: (ww * 10) / 100,
+                  paddingHorizontal: "0.8%",
+                  borderRadius: (ww * 4) / 200,
+                  flexDirection: "row",
+                  // marginRight:'-3%',
+                  alignItems: "center",
+                  // backgroundColor: "#fff",
+                  justifyContent: "space-between",
+                  // borderColor:"#575757",
+                  // borderWidth:0.3,
+                  elevation: 3,
+                  backgroundColor: "#fff",
+                  shadowOffset: { width: 3, height: 3 },
+                  shadowColor: "#000",
+                  shadowOpacity: 1,
+                  shadowRadius: 8,
+                }}
+              >
+                <View
+                  style={{
+                    height: "90%",
+                    backgroundColor: "#fff",
+                    borderRadius: (ww * 2) / 200,
+                    alignItems: "flex-start",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Text
+                    style={{
+                      fontSize: ResponsiveScreen.fontSize(25),
+                      color: "#575757",
+                      fontWeight: "700",
+
+                      // marginTop: wh * 2.5 / 100,
+                      // marginLeft: ww * 5 / 100,
+                      textAlign: "left",
+                      // backgroundColor: 'pink'
+                    }}
+                  >
+                    {"  "}
+                    {global.OBJ.company}
+                    {"  "}
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    // width: "45%",
+                    height: "75%",
+                    backgroundColor: "#192570",
+                    borderRadius: (ww * 2) / 200,
+                    alignItems: "flex-end",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Text
+                    style={{
+                      fontSize: ResponsiveScreen.normalize(25),
+                      fontFamily: "Roboto",
+                      color: "#fff",
+                      textAlign: "right",
+                      alignSelf: "center",
+                      // backgroundColor:'pink'
+
+                      // marginTop: ResponsiveScreen.normalize(50),
+                      // marginLeft: ResponsiveScreen.normalize(35),
+                      // marginBottom: ResponsiveScreen.normalize(30),
+                    }}
+                  >
+                    {"   "}Photo Album{"   "}
+                    {/* sdas sssssssssssssssssssss aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaav */}
+                  </Text>
+                </View>
+              </View>
+              <View
+              style={{
+                marginTop: "1.5%",
+                width: "85%",
+                height: (ww * 8) / 100,
+                paddingHorizontal: "0.8%",
+                borderRadius: (ww * 4) / 200,
+                flexDirection: "row",
+                // marginRight:'-3%',
+                alignItems: "center",
+                alignSelf: "center",
+                // backgroundColor: "#fff",
+                justifyContent: "space-between",
+                borderColor:"#f2ca30",
+                borderWidth:0.3,
+                // borderColor:"#575757",
+                // borderWidth:0.3,
+                elevation: 3,
                 backgroundColor: "#fff",
-                borderRadius: (ww * 2) / 200,
-                alignItems: "flex-start",
-                justifyContent: "center",
-                
+                shadowOffset: { width: 3, height: 3 },
+                shadowColor: "#000",
+                shadowOpacity: 1,
+                shadowRadius: 8,
               }}
             >
-              <Text
+              <View
                 style={{
-                  fontSize: ResponsiveScreen.fontSize(30),
-                  color: "#575757",
-                  fontWeight:'700',
-
-                  // marginTop: wh * 2.5 / 100,
-                  // marginLeft: ww * 5 / 100,
-                  textAlign: "left",
-                  // backgroundColor: 'pink'
+                  height: "90%",
+                  backgroundColor: "#fff",
+                  borderRadius: (ww * 2) / 200,
+                  alignItems: "flex-start",
+                  justifyContent: "center",
                 }}
               >
-                {"  "}
-                {global.PROJ.name}
-                {"  "}
-              </Text>
-            </View>
-            <View
-              style={{
-                // width: "45%",
-                height: "75%",
-                backgroundColor: "#f2ca30",
-                borderRadius: (ww  * 2) / 200,
-                alignItems: "flex-end",
-                justifyContent: "center",
-                
-              }}
-            >
-              <Text
-                style={{
-                  fontSize: ResponsiveScreen.normalize(30),
-                  fontFamily: "Roboto",
-                  color: "#fff",
-                  textAlign: "right",
-                  alignSelf:'center'
-                  // backgroundColor:'pink'
+                <View
+                  style={{
+                    height: "90%",
+                    backgroundColor: "#fff",
+                    borderRadius: (ww * 2) / 200,
+                    alignItems: "flex-start",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Text
+                    style={{
+                      fontSize: ResponsiveScreen.fontSize(25),
+                      color: "#f2ca30",
+                      fontWeight: "700",
 
-                  // marginTop: ResponsiveScreen.normalize(50),
-                  // marginLeft: ResponsiveScreen.normalize(35),
-                  // marginBottom: ResponsiveScreen.normalize(30),
-                }}
-              >
-                {"  "}Photo Album{"  "}
-              </Text>
-            </View>
+                      // marginTop: wh * 2.5 / 100,
+                      // marginLeft: ww * 5 / 100,
+                      textAlign: "left",
+                      // backgroundColor: 'pink'
+                    }}
+                  >
+                    {"  "}
+                    {global.PROJ.name}
+                    {/* salam */}
+                    {"  "}
+                  </Text>
+                </View>
+                </View>
+                </View>
+              
             </View>
             <AwesomeAlert
               show={show}
@@ -646,80 +709,79 @@ const PhotoAlbum = (props) => {
                 height: (wh * 66) / 100,
                 position: "absolute",
                 left: 0,
-                top: (wh * 8) / 100,
+                top: (wh * 10) / 100,
                 paddingLeft: "3.5%",
               }}
             >
               {dummyl == true ? (
-                    <View
-                      style={{
-                        position: "absolute",
-                        width: (ww * 75) / 100,
-                        height: (ww * 35) / 100,
-                        // backgroundColor: "#f2ca30",
-                        top: "30%",
-                        alignSelf: "center",
-                        borderRadius: (ww * 4) / 200,
-                        alignItems: "center",
-                        padding: "5%",
-                        paddingTop: "9%",
-                      }}
+                <View
+                  style={{
+                    position: "absolute",
+                    width: (ww * 75) / 100,
+                    height: (ww * 35) / 100,
+                    // backgroundColor: "#f2ca30",
+                    top: "30%",
+                    alignSelf: "center",
+                    borderRadius: (ww * 4) / 200,
+                    alignItems: "center",
+                    padding: "5%",
+                    paddingTop: "9%",
+                  }}
+                >
+                  {/* <AntDesign name="like2" size={ResponsiveScreen.normalize(60)} color="#192570" /> */}
+                  <FontAwesome
+                    name="gear"
+                    size={ResponsiveScreen.normalize(60)}
+                    color="#fff"
+                  />
+                  <Text
+                    style={{
+                      alignItems: "center",
+                      textAlign: "center",
+                      color: "#575757",
+                      fontSize: ResponsiveScreen.fontSize(28),
+                      marginTop: "4%",
+                    }}
+                  >
+                    Photo Album is empty.{" "}
+                    <Text
+                      style={{ color: "#f2ca30" }}
+                      // onPress={() => {pickImage()}}
                     >
-                      {/* <AntDesign name="like2" size={ResponsiveScreen.normalize(60)} color="#192570" /> */}
-                      <FontAwesome
-                        name="gear"
-                        size={ResponsiveScreen.normalize(60)}
-                        color="#fff"
-                      />
-                      <Text
-                        style={{
-                          alignItems: "center",
-                          textAlign: "center",
-                          color: "#575757",
-                          fontSize: ResponsiveScreen.fontSize(28),
-                          marginTop: "4%",
-                        }}
-                      >
-                        Photo Album is empty.{' '}
-                        <Text
-                          style={{ color: "#f2ca30" }}
-                          // onPress={() => {pickImage()}}
+                      {" "}
+                    </Text>{" "}
+                  </Text>
+                </View>
+              ) : (
+                <View style={{ flex: 1 }}>
+                  <FlatList
+                    data={dummy}
+                    numColumns={2}
+                    renderItem={(itemList) => (
+                      <View style={{}}>
+                        <View
+                          style={{
+                            width: (ww * 40) / 100,
+                            height: (ww * 40) / 100,
+                            flexDirection: "row",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            marginBottom: (wh * 0) / 100,
+                            // marginRight: ((wh+ww) * 0.2) / 10,
+                          }}
                         >
-                          {' '}
-                        </Text>
-                       {" "}
-                      </Text>
-                    </View>
-                  ) : (
-              <View style={{flex:1}}>
-              <FlatList
-                data={dummy}
-                numColumns={2}
-                renderItem={(itemList) => (
-                  <View style={{}}>
-                    <View
-                      style={{
-                        width: (ww * 40) / 100,
-                        height: (ww * 40) / 100,
-                        flexDirection: "row",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        marginBottom: (wh * 0) / 100,
-                        // marginRight: ((wh+ww) * 0.2) / 10,
-                      }}
-                    >
-                      <TouchableOpacity
-                        onPress={myImage}
-                        style={{
-                          width: (ww * 37) / 100,
-                          height: (ww * 37) / 100,
-                          justifyContent: "center",
-                          alignItems: "center",
-                          borderRadius: 8,
-                          backgroundColor:'#ededed'
-                        }}
-                      >
-                        {/* <Image
+                          <TouchableOpacity
+                            onPress={myImage}
+                            style={{
+                              width: (ww * 37) / 100,
+                              height: (ww * 37) / 100,
+                              justifyContent: "center",
+                              alignItems: "center",
+                              borderRadius: 8,
+                              backgroundColor: "#ededed",
+                            }}
+                          >
+                            {/* <Image
                                                     source={{ uri: itemList.item.img }}
                                                     // source={require("../assets/work.jpg")}
                                                     style={{
@@ -728,120 +790,125 @@ const PhotoAlbum = (props) => {
                                                         borderRadius: 8
                                                     }}
                                                 /> */}
-                        <Lightbox
-                          // backgroundColor='transparent'
-                          useNativeDriver={false}
-                          backgroundColor="rgba(0,0,0,0.8)"
-                          springConfig={{
-                            tension: 1000000,
-                            friction: 1000000,
-                          }}
-                          swipeToDismiss={false}
-                          renderHeader={(close) => (
-                            <TouchableOpacity
-                              onPress={close}
-                              style={{ position:'absolute',top:wh*23/100,left:ww*3/100 }}
-                              >
-                                <Text style={{color:'#fff'}}>Close</Text>
-                            </TouchableOpacity>
-                          )}
-                          renderContent={() => (
-                            <View style={{ marginTop: (wh * 10) / 100 }}>
-                              <Image
-                                style={{
-                                  width: (ww * 100) / 100,
-                                  height: (ww * 100) / 100,
-                                  borderRadius: (ww * 3) / 100,
-                                }}
-                                resizeMode="cover"
-                                source={{
-                                  uri:
-                                    "http://" +
-                                    global.UURL +
-                                    itemList.item.img.slice(21),
-                                }}
-                              />
-                            </View>
-                          )}
-                        >
-                
-                          {itemList.item.img === "null" ? (
-                            <Text
-                              style={{
-                                width: (ww * 37) / 100,
-                                height: (ww * 37) / 100,
-                                borderRadius: (ww * 3) / 100,
-                                backgroundColor: "#ededed",
-                                alignSelf:'center',
-                                marginTop:'12%'
+                            <Lightbox
+                              // backgroundColor='transparent'
+                              useNativeDriver={false}
+                              backgroundColor="rgba(0,0,0,0.8)"
+                              springConfig={{
+                                tension: 1000000,
+                                friction: 1000000,
                               }}
-                            ></Text>
-                          ) : (
-                            <View>
-                            <Image
-                              style={{
-                                width: (ww * 37) / 100,
-                                height: (ww * 37) / 100,
-                                borderRadius: (ww * 3) / 100,
-                              }}
-                              resizeMode="cover"
-                              source={{
-                                uri:
-                                  "http://" +
-                                  global.UURL +
-                                  itemList.item.img.slice(21),
-                              }}
-                            />
-                            <View
-                            style={{
-                              position: "absolute",
-                              bottom: "3%",
-                              right: "3.5%",
-                              backgroundColor: "rgba(0,0,0,0.4)",
-                              borderRadius: 150,
-                              padding: (ww * 2) / 100,
-                            }}
-                          >
-                            <SimpleLineIcons
-                              name="size-fullscreen"
-                              size={ResponsiveScreen.fontSize(23)}
-                              color="#fff"
-                            />
-                          </View>
-                          </View>
-                          )}
+                              swipeToDismiss={false}
+                              renderHeader={(close) => (
+                                <TouchableOpacity
+                                  onPress={close}
+                                  style={{
+                                    position: "absolute",
+                                    top: (wh * 23) / 100,
+                                    left: (ww * 3) / 100,
+                                  }}
+                                >
+                                  <Text style={{ color: "#fff" }}>Close</Text>
+                                </TouchableOpacity>
+                              )}
+                              renderContent={() => (
+                                <View style={{ marginTop: (wh * 10) / 100 }}>
+                                  <Image
+                                    style={{
+                                      width: (ww * 100) / 100,
+                                      height: (ww * 100) / 100,
+                                      borderRadius: (ww * 3) / 100,
+                                    }}
+                                    resizeMode="cover"
+                                    source={{
+                                      uri:
+                                        "http://" +
+                                        global.UURL +
+                                        itemList.item.img.slice(21),
+                                    }}
+                                  />
+                                </View>
+                              )}
+                            >
+                              {itemList.item.img === "null" ? (
+                                <Text
+                                  style={{
+                                    width: (ww * 37) / 100,
+                                    height: (ww * 37) / 100,
+                                    borderRadius: (ww * 3) / 100,
+                                    backgroundColor: "#ededed",
+                                    alignSelf: "center",
+                                    marginTop: "12%",
+                                  }}
+                                ></Text>
+                              ) : (
+                                <View>
+                                  <Image
+                                    style={{
+                                      width: (ww * 37) / 100,
+                                      height: (ww * 37) / 100,
+                                      borderRadius: (ww * 3) / 100,
+                                    }}
+                                    resizeMode="cover"
+                                    source={{
+                                      uri:
+                                        "http://" +
+                                        global.UURL +
+                                        itemList.item.img.slice(21),
+                                    }}
+                                  />
+                                  <View
+                                    style={{
+                                      position: "absolute",
+                                      bottom: "3%",
+                                      right: "3.5%",
+                                      backgroundColor: "rgba(0,0,0,0.4)",
+                                      borderRadius: 150,
+                                      padding: (ww * 2) / 100,
+                                    }}
+                                  >
+                                    <SimpleLineIcons
+                                      name="size-fullscreen"
+                                      size={ResponsiveScreen.fontSize(23)}
+                                      color="#fff"
+                                    />
+                                  </View>
+                                </View>
+                              )}
 
-                          {/* <Text>{itemList.item}</Text> */}
-                        </Lightbox>
-                        {itemList.item.img === "null" ? (
-                          <Text></Text>
-                        ) : (<View></View>
-                          // <TouchableOpacity
-                          //   //  onPress={() => delIcon(itemList.item.id)}
-                          //   onPress={() => iconeDelet(itemList.item.id)}
-                          //   style={{
-                          //     position: "absolute",
-                          //     top: "2%",
-                          //     right: "1%",
-                          //     backgroundColor: "rgba(0,0,0,0.4)",
-                          //     // 242, 202, 48
-                          //     borderRadius: 150,
-                          //     padding: (ww * 1) / 100,
-                          //   }}
-                          // >
-                          //   <Feather
-                          //     name="trash-2"
-                          //     size={ResponsiveScreen.fontSize(37)}
-                          //     color="#fff"
-                          //   />
-                          // </TouchableOpacity>
-                        )}
-                      </TouchableOpacity>
-                    </View>
-                  </View>
-                )}
-              />
-              </View>)}
+                              {/* <Text>{itemList.item}</Text> */}
+                            </Lightbox>
+                            {itemList.item.img === "null" ? (
+                              <Text></Text>
+                            ) : (
+                              <View></View>
+                              // <TouchableOpacity
+                              //   //  onPress={() => delIcon(itemList.item.id)}
+                              //   onPress={() => iconeDelet(itemList.item.id)}
+                              //   style={{
+                              //     position: "absolute",
+                              //     top: "2%",
+                              //     right: "1%",
+                              //     backgroundColor: "rgba(0,0,0,0.4)",
+                              //     // 242, 202, 48
+                              //     borderRadius: 150,
+                              //     padding: (ww * 1) / 100,
+                              //   }}
+                              // >
+                              //   <Feather
+                              //     name="trash-2"
+                              //     size={ResponsiveScreen.fontSize(37)}
+                              //     color="#fff"
+                              //   />
+                              // </TouchableOpacity>
+                            )}
+                          </TouchableOpacity>
+                        </View>
+                      </View>
+                    )}
+                  />
+                </View>
+              )}
             </View>
           </View>
 
@@ -1003,7 +1070,7 @@ const PhotoAlbum = (props) => {
         ) : (
           <View
             style={{
-                // backgroundColor: 'black',
+              // backgroundColor: 'black',
               position: "absolute",
               right: -4,
               top: (wh * 17) / 100,

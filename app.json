@@ -34,6 +34,12 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
+    "extra": {
+      "oneSignalAppId": "c6c6bb5f-bb26-495a-9d24-6a1322b5d270",
+      "eas": {
+        "projectId": "b3aa5e7b-c9d3-453c-bb12-018107aeea3b"
+      }
+    },
     "plugins": [
       [
         "onesignal-expo-plugin",
@@ -41,29 +47,6 @@
           "mode": "development"
         }
       ]
-    ],
-    "extra": {
-      "oneSignalAppId": "c6c6bb5f-bb26-495a-9d24-6a1322b5d270",
-      "eas": {
-        "build": {
-          "experimental": {
-            "ios": {
-              "appExtensions": [
-                {
-                  "targetName": "OneSignalNotificationServiceExtension",
-                  "bundleIdentifier": "bundlename.OneSignalNotificationServiceExtension",
-                  "entitlements": {
-                    "com.apple.security.application-groups": [
-                      "group.bundlename.onesignal"
-                    ]
-                  }
-                }
-              ]
-            }
-          }
-        },
-        "projectId": "b3aa5e7b-c9d3-453c-bb12-018107aeea3b"
-      }
-    }
+    ]
   }
 }

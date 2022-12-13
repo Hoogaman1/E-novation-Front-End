@@ -81,7 +81,7 @@ const LoginPage = (props) => {
   const [count, setCount] = useState(0);
   const [show1, setState1] = useState(false);
   const [show2, setState2] = useState(true);
-  const [showpass, setSP] = useState(false);
+  const [showpass, setSP] = useState(true);
   const [biababa, setBiababa] = useState();
   const [checked1, setChecked1] = useState(false);
   // const [EmailER, setEmailEr] = useState(false);
@@ -161,7 +161,7 @@ const LoginPage = (props) => {
         // 'Accept': 'application/json'
       },
       data: {
-        email: email,
+        email: email.toLowerCase(),
         password: password,
       },
     })
@@ -180,7 +180,7 @@ const LoginPage = (props) => {
           storeData(response.data.data.token);
 
           global.DATA = response.data.data.company;
-          setTimeout(() => sendToken(), 500);
+          setTimeout(() => sendToken(), 1000);
           // sendToken()
           console.log(response.data);
           console.log(global.TOKEN);

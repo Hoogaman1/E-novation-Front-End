@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigation } from '@react-navigation/native';
-import OneSignal from 'react-native-onesignal';
+// import OneSignal from 'react-native-onesignal';
 import Constants from "expo-constants";
 // import { EvilIcons  , MaterialIcons  } from '@expo/vector-icons';
 import { CheckBox } from "@rneui/themed";
@@ -64,7 +64,7 @@ const Notif = (props) => {
     };
   }, []);
   // OneSignal.setAppId(Constants.manifest.extra.oneSignalAppId);
-  OneSignal.setAppId("c6c6bb5f-bb26-495a-9d24-6a1322b5d270");
+  // OneSignal.setAppId("c6c6bb5f-bb26-495a-9d24-6a1322b5d270");
   const [dummy, setDummy] = useState([]);
   // const [email, setEmail] = useState("");
   const navigation = useNavigation();
