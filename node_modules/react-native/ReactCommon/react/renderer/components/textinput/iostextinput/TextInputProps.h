@@ -31,12 +31,6 @@ class TextInputProps final : public ViewProps, public BaseTextProps {
       TextInputProps const &sourceProps,
       RawProps const &rawProps);
 
-  void setProp(
-      const PropsParserContext &context,
-      RawPropsPropNameHash hash,
-      const char *propName,
-      RawValue const &value);
-
 #pragma mark - Props
 
   TextInputTraits const traits{};
@@ -64,7 +58,7 @@ class TextInputProps final : public ViewProps, public BaseTextProps {
   int const mostRecentEventCount{0};
 
   bool autoFocus{false};
-  std::optional<Selection> selection{};
+  butter::optional<Selection> selection{};
 
   std::string const inputAccessoryViewID{};
 

@@ -20,6 +20,7 @@ import AboutUs from "./AboutUs";
 // import test from "./test";
 import Process from "./Process";
 import HandShake from "./HandShake";
+import NotePad from "./NotePad";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Stack = createStackNavigator();
@@ -57,6 +58,7 @@ const MainStackNavigator = () => {
       <Stack.Screen name="Login" component={Login} options={{ headerShown: false, }} />
       <Stack.Screen name="Alert" component={Alert} options={{ headerShown: false, }} />
       <Stack.Screen name="AboutUs" component={AboutUs} options={{ headerShown: false, }} />
+      <Stack.Screen name="NotePad" component={NotePad} options={{ headerShown: false, }} />
       {/* <Stack.Screen name="test" component={test} options={{ headerShown: false, }} />/ */}
       {/* <Stack.Screen name="OpenProject" component={OpenProject} /> */}
       <Stack.Screen name="HandShake" component={HandShake} options={{ headerShown: false, }} />

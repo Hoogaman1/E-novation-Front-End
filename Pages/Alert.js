@@ -339,7 +339,7 @@ const OpenProject = (props) => {
             style={{
               width: (ww * 7.5) / 100,
               height: (ww * 7.5) / 100,
-              backgroundColor: "#f2ca30",
+              backgroundColor: "#192570",
               borderRadius: (ww * 2) / 100,
               alignItems: "center",
               justifyContent: "center",
@@ -465,7 +465,7 @@ const OpenProject = (props) => {
               style={{
                 // width: "45%",
                 height: "75%",
-                backgroundColor: "#f2ca30",
+                backgroundColor: "#192570",
                 borderRadius: (ww * 2) / 200,
                 alignItems: "flex-end",
                 justifyContent: "center",
@@ -556,7 +556,7 @@ const OpenProject = (props) => {
                         {itemList.item.active === true ? (
                           <View
                             style={{
-                              backgroundColor: "#192570",
+                              backgroundColor: "#f2ca30",
                               // width: ww * 24 / 100,
                               justifyContent: "center",
                               alignItems: "center",
@@ -622,7 +622,7 @@ const OpenProject = (props) => {
                           borderRadius: ww && (wh * 0.6) / 100,
                           height: (wh * 3) / 100,
                           paddingHorizontal: (ww * 4) / 100,
-                          backgroundColor: "#f2ca30",
+                          backgroundColor: "#192570",
                           justifyContent: "center",
                           marginLeft: "5.5%",
                         }}

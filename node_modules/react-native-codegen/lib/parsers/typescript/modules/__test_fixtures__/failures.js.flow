@@ -6,9 +6,8 @@
  *
  * @flow strict-local
  * @format
+ * @lint-ignore-every LICENSELINT
  */
-
-// @licenselint-loose-mode
 
 const NATIVE_MODULES_WITH_ARRAY_WITH_NO_TYPE_FOR_CONTENT = `
 /**
@@ -148,11 +147,11 @@ import type {TurboModule} from '../RCTExport';
 import * as TurboModuleRegistry from '../TurboModuleRegistry';
 
 export interface Spec extends TurboModule {
-  readonly getSth: (a: number | null | undefined) => void;
+  readonly getSth: (a: number | null | void) => void;
 }
 
 export interface Spec2 extends TurboModule {
-  readonly getSth: (a: number | null | undefined) => void;
+  readonly getSth: (a: number | null | void) => void;
 }
 `;
 

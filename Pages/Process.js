@@ -86,6 +86,9 @@ const Process = (props) => {
   //     }
   //   };
   //   getData()
+  const sendToken = () => {
+    props.navigation.navigate("OpenProject");
+  };
   
   const getData = async () => {
     console.log('bbbbbbbbbbbbbb')
@@ -203,9 +206,7 @@ const Process = (props) => {
  
 
 
-  const sendToken = () => {
-    props.navigation.navigate("OpenProject");
-  };
+
   return (
     <View style={{flex:1,backgroundColor:'#f2ca30',alignItems:'center'}}> 
     

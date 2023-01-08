@@ -402,7 +402,7 @@ axios({
               style={{
                 // width: "45%",
                 height: "75%",
-                backgroundColor: "#f2ca30",
+                backgroundColor: "#192570",
                 borderRadius: (ww * 2) / 200,
                 alignItems: "flex-end",
                 justifyContent: "center",
@@ -422,7 +422,7 @@ axios({
                   // marginBottom: ResponsiveScreen.normalize(30),
                 }}
               >
-                {"  "}Current Projects{"  "}
+                {"  "}Current Jobs{"  "}
               </Text>
             </View>
           </View>
@@ -468,7 +468,7 @@ axios({
                           marginTop: "4%",
                         }}
                       >
-                        You have no open project...{" "}
+                        You have no open Jobs...{" "}
                      
                        
                       </Text>
@@ -881,7 +881,7 @@ axios({
           position: "absolute",
           borderRadius: ((ww + wh) * 2) / 200,
           bottom: "2%",
-          backgroundColor: "#f2ca30",
+          backgroundColor: "#192570",
           justifyContent: "center",
         }}
       >

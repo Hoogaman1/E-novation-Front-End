@@ -48,7 +48,7 @@ function appendContents({ src, newSrc, tag, comment, }) {
             `${comment} @generated end ${tag}`,
         ].join('\n');
         return {
-            contents: sanitizedTarget ?? src + contentsToAdd,
+            contents: sanitizedTarget !== null && sanitizedTarget !== void 0 ? sanitizedTarget : src + contentsToAdd,
             didMerge: true,
             didClear: !!sanitizedTarget,
         };

@@ -14,7 +14,6 @@ NSString *const RCTJSRawStackTraceKey = @"RCTJSRawStackTraceKey";
 NSString *const RCTObjCStackTraceKey = @"RCTObjCStackTraceKey";
 NSString *const RCTFatalExceptionName = @"RCTFatalException";
 NSString *const RCTUntruncatedMessageKey = @"RCTUntruncatedMessageKey";
-NSString *const RCTJSExtraDataKey = @"RCTJSExtraDataKey";
 
 static NSString *const RCTAssertFunctionStack = @"RCTAssertFunctionStack";
 
@@ -232,114 +231,54 @@ RCTFatalExceptionHandler RCTGetFatalExceptionHandler(void)
   return RCTCurrentFatalExceptionHandler;
 }
 
-// MARK: - New Architecture Validation - Enable Reporting
+// -------------------------
+// New architecture section
+// -------------------------
 
-#if RCT_ONLY_NEW_ARCHITECTURE
-static RCTNotAllowedValidation minValidationLevel = RCTNotAllowedInBridgeless;
+#if RCT_NEW_ARCHITECTURE
+static BOOL newArchitectureViolationReporting = YES;
 #else
-static RCTNotAllowedValidation minValidationLevel = RCTNotAllowedValidationDisabled;
+static BOOL newArchitectureViolationReporting = NO;
 #endif
 
-__attribute__((used)) RCT_EXTERN void RCTNewArchitectureSetMinValidationLevel(RCTNotAllowedValidation level)
+void RCTEnableNewArchitectureViolationReporting(BOOL enabled)
 {
-#if RCT_ONLY_NEW_ARCHITECTURE
+#if RCT_NEW_ARCHITECTURE
   // Cannot disable the reporting in this mode.
 #else
-  minValidationLevel = level;
+  newArchitectureViolationReporting = enabled;
 #endif
 }
 
-// MARK: - New Architecture Validation - Private
-
-static BOOL shouldEnforceValidation(RCTNotAllowedValidation type)
+static NSString *getNewArchitectureViolationMessage(id context, NSString *extra)
 {
-  return type >= minValidationLevel;
-}
-
-static NSString *stringDescribingContext(id context)
-{
+  NSString *tag = @"uncategorized";
   if ([context isKindOfClass:NSString.class]) {
-    return context;
+    tag = context;
   } else if (context) {
     Class klass = [context class];
     if (klass) {
-      return NSStringFromClass(klass);
+      tag = NSStringFromClass(klass);
     }
   }
-  return @"uncategorized";
+  NSString *errorMessage = extra ?: @"Unexpectedly reached this code path.";
+  return [NSString stringWithFormat:@"[ReactNative Architecture][%@] %@", tag, errorMessage];
 }
 
-static NSString *validationMessage(RCTNotAllowedValidation type, id context, NSString *extra)
+void RCTEnforceNotAllowedForNewArchitecture(id context, NSString *extra)
 {
-  NSString *notAllowedType;
-  switch (type) {
-    case RCTNotAllowedValidationDisabled:
-      RCTAssert(0, @"RCTNotAllowedValidationDisabled not a validation type.");
-      return nil;
-    case RCTNotAllowedInFabricWithoutLegacy:
-      notAllowedType = @"Fabric";
-      break;
-    case RCTNotAllowedInBridgeless:
-      notAllowedType = @"Bridgeless";
-      break;
-  }
-
-  return
-      [NSString stringWithFormat:@"[ReactNative Architecture][NotAllowedIn%@] Unexpectedly reached code path in %@. %@",
-                                 notAllowedType,
-                                 stringDescribingContext(context),
-                                 extra ?: @""];
-}
-
-static void
-newArchitectureValidationInternal(RCTLogLevel level, RCTNotAllowedValidation type, id context, NSString *extra)
-{
-  if (!shouldEnforceValidation(type)) {
+  if (!newArchitectureViolationReporting) {
     return;
   }
 
-  NSString *msg = validationMessage(type, context, extra);
-  if (msg) {
-    switch (level) {
-      case RCTLogLevelInfo:
-        RCTLogInfo(@"%@", msg);
-        break;
-      case RCTLogLevelError:
-        RCTLogError(@"%@", msg);
-        break;
-      case RCTLogLevelFatal:
-        RCTAssert(0, @"%@", msg);
-        break;
-      default:
-        RCTAssert(0, @"New architecture validation is only for info, error, and fatal levels.");
-    }
+  RCTAssert(0, @"%@", getNewArchitectureViolationMessage(context, extra));
+}
+
+void RCTWarnNotAllowedForNewArchitecture(id context, NSString *extra)
+{
+  if (!newArchitectureViolationReporting) {
+    return;
   }
-}
 
-// MARK: - New Architecture Validation - Public
-
-void RCTEnforceNewArchitectureValidation(RCTNotAllowedValidation type, id context, NSString *extra)
-{
-  newArchitectureValidationInternal(RCTLogLevelFatal, type, context, extra);
-}
-
-void RCTErrorNewArchitectureValidation(RCTNotAllowedValidation type, id context, NSString *extra)
-{
-#if RCT_ONLY_NEW_ARCHITECTURE
-  newArchitectureValidationInternal(RCTLogLevelFatal, type, context, extra);
-#else
-  newArchitectureValidationInternal(RCTLogLevelError, type, context, extra);
-#endif
-}
-
-void RCTLogNewArchitectureValidation(RCTNotAllowedValidation type, id context, NSString *extra)
-{
-  newArchitectureValidationInternal(RCTLogLevelInfo, type, context, extra);
-}
-
-void RCTNewArchitectureValidationPlaceholder(RCTNotAllowedValidation type, id context, NSString *extra)
-{
-#if RCT_ONLY_NEW_ARCHITECTURE
-  newArchitectureValidationInternal(RCTLogLevelInfo, type, context, extra);
-#endif
+  RCTLogWarn(@"%@", getNewArchitectureViolationMessage(context, extra));
 }

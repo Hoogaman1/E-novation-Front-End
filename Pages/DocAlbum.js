@@ -16,7 +16,7 @@ import ResponsiveScreen from "react-native-auto-responsive-screen";
 ResponsiveScreen.init(720, 1600);
 import { useNavigation } from "@react-navigation/native";
 import * as ImagePicker from "expo-image-picker";
-import { Camera } from "expo-camera";
+// import { Camera } from "expo-camera";
 import {
   Text,
   View,
@@ -97,21 +97,21 @@ const DocAlbum = (props) => {
     },
   ]);
 
-  const [cameraPermission, setCameraPermission] = useState(null);
+  // const [cameraPermission, setCameraPermission] = useState(null);
   const [galleryPermission, setGalleryPermission] = useState(null);
-  const [showCamera, setShowCamera] = useState(false);
+  // const [showCamera, setShowCamera] = useState(false);
 
-  const [camera, setCamera] = useState(null);
+  // const [camera, setCamera] = useState(null);
   const [imageUri, setImageUri] = useState([]);
-  const [type, setType] = useState(Camera.Constants.Type.back);
+  // const [type, setType] = useState(Camera.Constants.Type.back);
   const [imageArray, setImageArray] = useState([]);
 
   const permisionFunction = async () => {
     // here is how you can get the camera permission
     //   const cameraPermission = await Camera.requestPermissionsAsync();
-    console.log("camera permission:", cameraPermission.status);
+    // console.log("camera permission:", cameraPermission.status);
 
-    setCameraPermission(cameraPermission.status === "granted");
+    // setCameraPermission(cameraPermission.status === "granted");
 
     const imagePermission = await ImagePicker.getMediaLibraryPermissionsAsync();
     console.log("permission:", imagePermission.status);
@@ -119,8 +119,9 @@ const DocAlbum = (props) => {
     setGalleryPermission(imagePermission.status === "granted");
 
     if (
-      imagePermission.status !== "granted" &&
-      cameraPermission.status !== "granted"
+      imagePermission.status !== "granted" 
+      // &&
+      // cameraPermission.status !== "granted"
     ) {
       alert("Permission for media access needed.");
     }
@@ -132,13 +133,13 @@ const DocAlbum = (props) => {
   const [photo, setPhoto] = React.useState(null);
   const [photoShow, setPhotoShow] = React.useState(null);
   const takePicture = async () => {
-    if (camera) {
-      const data = await camera.takePictureAsync(null);
-      // console.log(data.uri);
-      setImageUri(data.uri);
-      setImageArray([...imageArray, data.uri]);
-      setShowCamera(false);
-    }
+    // if (camera) {
+    //   const data = await camera.takePictureAsync(null);
+    //   // console.log(data.uri);
+    //   setImageUri(data.uri);
+    //   setImageArray([...imageArray, data.uri]);
+    //   setShowCamera(false);
+    // }
   };
 
   const pickImage = async () => {
@@ -785,9 +786,10 @@ const DocAlbum = (props) => {
                                                         borderRadius: 8
                                                     }}
                                                 /> */}
-                        <Lightbox
-                          // backgroundColor='transparent'
+                       <Lightbox
+                          // backgroundColor='transparcloseent'
                           useNativeDriver={false}
+                          // onOpen={()=>{setDes(itemList.item.description)}}
                           backgroundColor="rgba(0,0,0,0.8)"
                           springConfig={{
                             tension: 1000000,
@@ -797,19 +799,73 @@ const DocAlbum = (props) => {
                           renderHeader={(close) => (
                             <TouchableOpacity
                               onPress={close}
-                              style={{ position:'absolute',top:wh*23/100,left:ww*3/100 }}
+                              style={{
+                                position: "absolute",
+                                top: 10,
+                                left: 10,
+                              }}
                               >
                                 <Text style={{color:'#fff'}}>Close</Text>
                             </TouchableOpacity>
                           )}
                           renderContent={() => (
-                            <View style={{ marginTop: (wh * 10) / 100 }}>
+                            <View  style={{
+                              position: "absolute",
+                              top: "10%",
+                              height: wh,
+                              width: ww,
+                              backgroundColor: "rgba(0,0,0,0.4)",
+                            }}>
+                               <View
+                                    style={{
+                                      height: "45%",
+                                      width: (ww * 90) / 100,
+                                      flexDirection: "column",
+                                      alignSelf: "center",
+                                      // justifyContent: '',
+                                      marginTop: "1%",
+                                    }}
+                                  >
+                                    <Text
+                                      multiline={true}
+                                      // onChangeText={onDeChange}
+                                      style={{
+                                        marginTop:"-5%",
+                                        height: "60%",
+                                        width: "100%",
+                                        color: "#fff",
+                                        // backgroundColor:'#fff',
+                                        paddingTop: (wh * 1) / 100,
+                                        textAlignVertical: "top",
+                                        // paddingLeft: wh && (ww * 5) / 100,
+                                        alignSelf: "center",
+                                        padding: wh && (ww * 2) / 100,
+                                        borderColor: "#fff",
+                                        borderWidth: .5,
+                                        borderRadius: (ww * 2) / 100,
+                                        fontSize: ResponsiveScreen.fontSize(25),
+                                        // backgroundColor:"#fff"
+                                        backgroundColor:"rgba(2,2,2,0.5)"
+                                      }}
+                                      // placeholder={itemList.item.description}
+                                      // placeholderTextColor="#fff"
+                                      // placeholder={itemList.item.description}
+                                      // onChangeText={onDeChange}
+                                      // value={Des}
+                                    >{itemList.item.description}</Text>
+                                    <View style={{width:ww*90/100,marginTop:'2%',height:'8%',justifyContent:'space-between',flexDirection:'row-reverse',alignItems:'center'}}>
+                          
+                                    </View>
+                                  </View>
                               <Image
-                                style={{
-                                  width: (ww * 100) / 100,
-                                  height: (ww * 100) / 100,
-                                  borderRadius: (ww * 3) / 100,
-                                }}
+                               style={{
+                                width: (ww * 90) / 100,
+                                height: (ww * 90) / 100,
+                                alignSelf:'center',
+                                marginTop:'-17%'
+                                // borderRadius: (ww * 3) / 100,
+                                // backgroundColor:'red'
+                              }}
                                 resizeMode="cover"
                                 source={{
                                   uri:
@@ -821,19 +877,17 @@ const DocAlbum = (props) => {
                             </View>
                           )}
                         >
+                          
                           {itemList.item.att_file === "null" ? (
-                            <View>
                             <Text
                               style={{
                                 width: (ww * 37) / 100,
                                 height: (ww * 37) / 100,
                                 borderRadius: (ww * 3) / 100,
                                 backgroundColor: "#ededed",
-                                alignSelf:'center',
-                                marginTop:'12%'
+                                marginTop:ww*4/100,
                               }}
                             ></Text>
-                            </View>
                           ) : (
                             <View>
                               <Image
@@ -861,10 +915,10 @@ const DocAlbum = (props) => {
                                 }}
                               >
                                 <SimpleLineIcons
-                                  name="size-fullscreen"
-                                  size={ResponsiveScreen.fontSize(23)}
-                                  color="#fff"
-                                />
+                                      name="size-fullscreen"
+                                      size={ResponsiveScreen.fontSize(23)}
+                                      color="#fff"
+                                    />
                               </View>
                             </View>
                           )}
@@ -996,7 +1050,7 @@ const DocAlbum = (props) => {
                       },
                     ]}
                   >
-                    Project Process
+                  Job Progress
                   </Text>
                 </View>
               </TouchableOpacity>
@@ -1084,7 +1138,7 @@ const DocAlbum = (props) => {
                       },
                     ]}
                   >
-                    Project Process
+                    Job Progress
                   </Text>
                 </View>
               </TouchableOpacity>

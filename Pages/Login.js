@@ -244,9 +244,9 @@ const LoginPage = (props) => {
   };
   return (
     <View style={{ flex: 1 }}>
-      <ScrollView style={{ backgroundColor: "#f2ca30" }}>
+      <ScrollView style={{ backgroundColor: "#192570" }}>
         <KeyboardAvoidingView
-          style={{ backgroundColor: "#f2ca30" }}
+          style={{ backgroundColor: "#192570" }}
           behavior="position"
           keyboardVerticalOffset={ResponsiveScreen.normalize(-220)}
         >
@@ -260,12 +260,12 @@ const LoginPage = (props) => {
 
             <View
               style={{
-                height: (wh * 30) / 100,
+                height: (wh * 40) / 100,
                 alignItems: "center",
                 // backgroundColor: "gray",
-                width: "60%",
+                width: "75%",
                 position: "absolute",
-                top: "38%",
+                top: "32%",
               }}
             >
               {/* <View> */}
@@ -273,7 +273,7 @@ const LoginPage = (props) => {
               <View style={[styles.box, {}]}>
                 <StatusBar
                   animated={true}
-                  backgroundColor="#f2ca30"
+                  backgroundColor="#192570"
                   barStyle={"light-content"}
                   translucent={true}
                   hidden={false}
@@ -301,7 +301,7 @@ const LoginPage = (props) => {
                       styles.text,
                       {
                         marginBottom: (wh * 0.5) / 100,
-                        fontSize: ResponsiveScreen.fontSize(20),
+                        fontSize: ResponsiveScreen.fontSize(28),fontWeight:'600',
                       },
                     ]}
                     onChangeText={onEChange}
@@ -321,7 +321,7 @@ const LoginPage = (props) => {
                           styles.text,
                           {
                             marginBottom: (wh * 0.5) / 100,
-                            fontSize: ResponsiveScreen.fontSize(20),
+                            fontSize: ResponsiveScreen.fontSize(28),fontWeight:'600'
                           },
                         ]}
                         onChangeText={onPChange}
@@ -353,7 +353,7 @@ const LoginPage = (props) => {
                           styles.text,
                           {
                             marginBottom: (wh * 0.5) / 100,
-                            fontSize: ResponsiveScreen.fontSize(20),
+                            fontSize: ResponsiveScreen.fontSize(28),fontWeight:'600'
                           },
                         ]}
                         onChangeText={onPChange}
@@ -554,7 +554,7 @@ const LoginPage = (props) => {
                         {
                           width:'100%',
                           flexDirection: "row",
-                          height: (wh * 3) / 100,
+                          height: (wh * 3.5) / 100,
                           marginTop: (wh * 1) / 100,
                         },
                       ]}
@@ -563,7 +563,7 @@ const LoginPage = (props) => {
                       <Text
                         style={[
                           styles.ButtonText,
-                          { marginTop: (wh * 0.1) / 100 },
+                          { marginTop: (wh * 0.1) / 100,fontSize: ResponsiveScreen.fontSize(30), },
                         ]}
                       >
                         {"   "}Login{"   "}
@@ -586,7 +586,7 @@ const LoginPage = (props) => {
                       style={{
                         height: (wh * 3) / 100,
                         marginTop: (ww * -1) / 100,
-                        marginLeft: '-5.5%',
+                        marginLeft: '-5%',
                         justifyContent: 'center',
                       }}
                     >
@@ -597,21 +597,21 @@ const LoginPage = (props) => {
                         checkedIcon={
                           <Feather
                             name="check-square"
-                            size={ResponsiveScreen.fontSize(25)}
-                            color="#192570"
+                            size={ResponsiveScreen.fontSize(28)}
+                            color="#f2ca30"
                           />
                         }
                         uncheckedIcon={
                           <Feather
                             name="square"
-                            size={ResponsiveScreen.fontSize(25)}
-                            color="#192570"
+                            size={ResponsiveScreen.fontSize(28)}
+                            color="#f2ca30"
                             // color="#f2ca30"
                           />
                         }
                         size={ResponsiveScreen.fontSize(30)}
                         containerStyle={{
-                          backgroundColor: "#f2ca30",
+                          backgroundColor: "#192570",
                           height: (wh * 4) / 100,
                           padding: 0,
                           margin: 0,
@@ -619,7 +619,7 @@ const LoginPage = (props) => {
                         }}
                         textStyle={{
                           color: "#fff",
-                          fontSize: ResponsiveScreen.normalize(25),
+                          fontSize: ResponsiveScreen.normalize(30),
                         }}
                         wrapperStyle={{ height: (wh * 4) / 100 }}
                         checked={checked1}

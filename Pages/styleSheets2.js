@@ -19,7 +19,7 @@ import {
       fontFamily: "Roboto",
       fontSize: ResponsiveScreen.fontSize(20),
       alignItems: "center",
-      backgroundColor: "#f2ca30",
+      backgroundColor: "#192570",
       // backgroundColor: "#f2ca30",
       // justifyContent: "center",
       height: wh,
@@ -60,7 +60,7 @@ import {
       alignItems: "center",
       // borderColor:'#fff',
       // backgroundColor: "#192570",
-      backgroundColor: '#192570',
+      backgroundColor: '#f2ca30',
       // color :"red",
       // Color:'blue',
       // underlayColor:'#fff',
@@ -760,6 +760,12 @@ import {
       marginTop: ResponsiveScreen.normalize(-150),
       marginLeft: ResponsiveScreen.normalize(-45),
       color: "#fff"
+    },
+    state:{
+      // height:"80%",
+      height:ww*9/100,
+      width:ww*9/100,
+      // width:'30%',
     },
     workcard: {
       // backgroundColor: "gray",

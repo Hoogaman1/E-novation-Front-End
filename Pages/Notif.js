@@ -278,7 +278,7 @@ const Notif = (props) => {
               style={{
                 // width: "45%",
                 height: "75%",
-                backgroundColor: "#f2ca30",
+                backgroundColor: "#192570",
                 borderRadius: (ww * 2) / 200,
                 alignItems: "flex-end",
                 justifyContent: "center",
@@ -330,7 +330,7 @@ const Notif = (props) => {
               <CheckBox
                 center
                 size={ResponsiveScreen.fontSize(45)}
-                checkedColor="#f2ca30"
+                checkedColor="#192570"
                 containerStyle={{
                   // backgroundColor: "#f2ca30",
                   height: (wh * 4) / 100,
@@ -354,7 +354,7 @@ const Notif = (props) => {
               <CheckBox
                 center
                 size={ResponsiveScreen.fontSize(45)}
-                checkedColor="#f2ca30"
+                checkedColor="#192570"
                 containerStyle={{
                   // backgroundColor: "#f2ca30",
                   height: (wh * 4) / 100,
@@ -377,7 +377,7 @@ const Notif = (props) => {
               <CheckBox
                 center
                 size={ResponsiveScreen.fontSize(45)}
-                checkedColor="#f2ca30"
+                checkedColor="#192570"
                 containerStyle={{
                   // backgroundColor: "#f2ca30",
                   height: (wh * 4) / 100,
@@ -402,7 +402,7 @@ const Notif = (props) => {
               <CheckBox
                 center
                 size={ResponsiveScreen.fontSize(45)}
-                checkedColor="#f2ca30"
+                checkedColor="#192570"
                 containerStyle={{
                   // backgroundColor: "#f2ca30",
                   height: (wh * 4) / 100,

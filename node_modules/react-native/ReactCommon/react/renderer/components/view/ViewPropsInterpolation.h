@@ -20,9 +20,9 @@ namespace react {
  */
 static inline void interpolateViewProps(
     Float animationProgress,
-    const Props::Shared &oldPropsShared,
-    const Props::Shared &newPropsShared,
-    Props::Shared &interpolatedPropsShared) {
+    const SharedProps &oldPropsShared,
+    const SharedProps &newPropsShared,
+    SharedProps &interpolatedPropsShared) {
   ViewProps const *oldViewProps =
       static_cast<ViewProps const *>(oldPropsShared.get());
   ViewProps const *newViewProps =
@@ -44,12 +44,10 @@ static inline void interpolateViewProps(
   // mounting layer. Once we can remove this, we should change `rawProps` to
   // be const again.
 #ifdef ANDROID
-  if (!interpolatedProps->rawProps.isNull()) {
-    interpolatedProps->rawProps["opacity"] = interpolatedProps->opacity;
+  interpolatedProps->rawProps["opacity"] = interpolatedProps->opacity;
 
-    interpolatedProps->rawProps["transform"] =
-        (folly::dynamic)interpolatedProps->transform;
-  }
+  interpolatedProps->rawProps["transform"] =
+      (folly::dynamic)interpolatedProps->transform;
 #endif
 }
 

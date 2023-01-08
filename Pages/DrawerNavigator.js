@@ -64,7 +64,7 @@ const makeCall = () => {
   Linking.openURL(phoneNumber);
 };
 const makeMessage = () => {
-  Linking.openURL('sms:+6186117749');
+  Linking.openURL('sms:+61412346781');
 };
 const seti = async () => {
   await AsyncStorage.setItem('@email', '1')
@@ -103,7 +103,7 @@ function CustomDrawerContent(props) {
         alignSelf:'flex-end',
         width: ResponsiveScreen.normalize(500),
         height: ResponsiveScreen.normalize(1600),
-        // backgroundColor: "#e5e5e5",
+        backgroundColor: "#192570",
         // backgroundColor: "#f0f0f0",
         // backgroundColor: "#f2ca30",
         marginTop: ResponsiveScreen.normalize(50),
@@ -186,7 +186,7 @@ function CustomDrawerContent(props) {
             { marginTop: ResponsiveScreen.normalize(0), color: "#fff" },
           ]}
         >
-          Your Current Projects:{" "}
+          Your Current Jobs:{" "}
           {typeof global.OBJ != "undefined" &&  global.OBJ !== null?(
            <Text style={{ color: "#3b3b3b" }}>{global.OBJ.openproject}</Text> ):(<Text style={{ color: "#3b3b3b" }}>Loading...</Text>)}
         </Text>
@@ -208,7 +208,7 @@ function CustomDrawerContent(props) {
             { marginTop: ResponsiveScreen.normalize(0), color: "#fff" },
           ]}
         >
-          Your All time Projects:
+          Your All time Jobs:
           {typeof global.OBJ != "undefined" &&  global.OBJ !== null?(
            <Text style={{ color: "#3b3b3b" }}> {global.OBJ.allproject}</Text>):(<Text style={{ color: "#3b3b3b" }}> Loading...</Text>)}
         </Text>
@@ -236,7 +236,7 @@ function CustomDrawerContent(props) {
         <Text
           style={[Dstyles.text, { marginLeft: ResponsiveScreen.normalize(12) }]}
         >
-          Current Projects{" "}
+          Current Jobs{" "}
         </Text>
       </TouchableOpacity>
       {/* <View

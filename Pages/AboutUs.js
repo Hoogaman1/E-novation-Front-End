@@ -333,7 +333,7 @@ const OpenProject = (props) => {
               style={{
                 // width: "45%",
                 height: "75%",
-                backgroundColor: "#f2ca30",
+                backgroundColor: "#192570",
                 borderRadius: (ww * 2) / 200,
                 alignItems: "flex-end",
                 justifyContent: "center",

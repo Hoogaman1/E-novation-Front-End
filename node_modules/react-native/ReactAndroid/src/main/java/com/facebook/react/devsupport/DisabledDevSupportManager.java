@@ -8,10 +8,9 @@
 package com.facebook.react.devsupport;
 
 import android.app.Activity;
-import android.util.Pair;
 import android.view.View;
 import androidx.annotation.Nullable;
-import com.facebook.react.bridge.DefaultJSExceptionHandler;
+import com.facebook.react.bridge.DefaultNativeModuleCallExceptionHandler;
 import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.common.SurfaceDelegate;
@@ -22,7 +21,6 @@ import com.facebook.react.devsupport.interfaces.DevSupportManager;
 import com.facebook.react.devsupport.interfaces.ErrorCustomizer;
 import com.facebook.react.devsupport.interfaces.ErrorType;
 import com.facebook.react.devsupport.interfaces.PackagerStatusCallback;
-import com.facebook.react.devsupport.interfaces.RedBoxHandler;
 import com.facebook.react.devsupport.interfaces.StackFrame;
 import com.facebook.react.modules.debug.interfaces.DeveloperSettings;
 import java.io.File;
@@ -33,10 +31,10 @@ import java.io.File;
  */
 public class DisabledDevSupportManager implements DevSupportManager {
 
-  private final DefaultJSExceptionHandler mDefaultJSExceptionHandler;
+  private final DefaultNativeModuleCallExceptionHandler mDefaultNativeModuleCallExceptionHandler;
 
   public DisabledDevSupportManager() {
-    mDefaultJSExceptionHandler = new DefaultJSExceptionHandler();
+    mDefaultNativeModuleCallExceptionHandler = new DefaultNativeModuleCallExceptionHandler();
   }
 
   @Override
@@ -93,11 +91,6 @@ public class DisabledDevSupportManager implements DevSupportManager {
 
   @Override
   public DeveloperSettings getDevSettings() {
-    return null;
-  }
-
-  @Override
-  public RedBoxHandler getRedBoxHandler() {
     return null;
   }
 
@@ -174,17 +167,7 @@ public class DisabledDevSupportManager implements DevSupportManager {
   }
 
   @Override
-  public int getLastErrorCookie() {
-    return 0;
-  }
-
-  @Override
   public void registerErrorCustomizer(ErrorCustomizer errorCustomizer) {}
-
-  @Override
-  public Pair<String, StackFrame[]> processErrorCustomizers(Pair<String, StackFrame[]> errorInfo) {
-    return errorInfo;
-  }
 
   @Override
   public void setPackagerLocationCustomizer(
@@ -192,7 +175,7 @@ public class DisabledDevSupportManager implements DevSupportManager {
 
   @Override
   public void handleException(Exception e) {
-    mDefaultJSExceptionHandler.handleException(e);
+    mDefaultNativeModuleCallExceptionHandler.handleException(e);
   }
 
   @Override

@@ -81,7 +81,7 @@ const History = () => {
   const [Gray, setGray] = useState(true);
   const [ID, setID] = useState();
   const [message, setMessage] = useState(
-    "You successfully moved  '" + "' to current projects page. Next step? "
+    "You successfully moved  '" + "' to current Jobs page. Next step? "
   );
   // const [message,setMessage] = useState(("You successfully moved  '"+ (global.PROJ.name) +"' to current projects page. Next step?jj "))
 
@@ -367,7 +367,7 @@ const History = () => {
               style={{
                 // width: "45%",
                 height: "75%",
-                backgroundColor: "#f2ca30",
+                backgroundColor: "#192570",
                 borderRadius: (ww * 2) / 200,
                 alignItems: "flex-end",
                 justifyContent: "center",
@@ -427,7 +427,7 @@ const History = () => {
                     }}
                   >
                     History page is empty and you will see the first item after
-                    closing the first project.{" "}
+                    closing the first Job.{" "}
                     {/* <Text
                           style={{ color: "#192570" }}
                           onPress={() => ProjectEdit()}
@@ -448,192 +448,211 @@ const History = () => {
                     }}
                     data={dummy}
                     renderItem={(itemList) => (
-                      <TouchableOpacity
-                        style={mystyles.card}
-                        // onPress={() => {
-                        //   setID(itemList.item.id);
-                        //   setState1(true);
-                        //   global.PROJ = itemList.item.id;
-                        //   setMessage(
-                        //     "You successfully moved '" +
-                        //       itemList.item.name +
-                        //       "' to current projects page. Next step? "
-                        //   );
-                        // }}
-                      >
-                        <View
+                      <TouchableOpacity style={mystyles.card}>
+                      <View style={{ height: wh * 5 / 100, width: ww * 85 / 100 ,justifyContent:'center',paddingLeft:"4%"}}>
+                        <Text
                           style={{
-                            height: (wh * 5) / 100,
-                            width: (ww * 85) / 100,
-                            justifyContent: "center",
-                            paddingLeft: "4%",
+                            color: "gray",
+                            fontFamily: "Roboto",
+                            fontSize: ResponsiveScreen.fontSize(40),
+                            padding: ww && wh * .5 / 100,
+                            // backgroundColor: 'red',
+                            textAlign: 'left'
                           }}
                         >
+                          {" "}
+                          {itemList.item.name}
+                        </Text>
+                      </View>
+                      <View style={{ height: wh * .1 / 100, width: ww * 81 / 100, backgroundColor: "#f2ca30", borderRadius: 100, marginHorizontal: ww * 2 / 100 }}></View>
+      
+                      <View
+                        style={{
+                          height: wh * 0.05 / 100,
+                          width: ww * 80 / 100,
+                          backgroundColor: "#f2ca30",
+                          borderRadius: 100,
+                          marginHorizontal: ww * 1.5 / 100,
+                        }}
+                      ></View>
+                      <View
+                        style={{
+                          height: wh * 8 / 100,
+                          width: "100%",
+                          // flexDirection: "row",
+                          // backgroundColor:'red'
+                        }}
+                      >
+                         <View
+                          style={{
+                            height: '50%',
+                            width: '100%',
+                            flexDirection: "row",
+                            // backgroundColor:'blue'
+                            marginTop:'1.5%'
+                          }}
+                        >
+                              <View style={{flex:1.9}}>
                           <Text
                             style={{
-                              color: "gray",
-                              fontFamily: "Roboto",
-                              fontSize: ResponsiveScreen.fontSize(40),
-                              padding: ww && (wh * 0.5) / 100,
-                              // backgroundColor: 'red',
-                              textAlign: "left",
+                              marginTop: wh * 1 / 100,
+                              marginLeft: ww * 3.5 / 100,
+                              fontSize: ResponsiveScreen.fontSize(19),
+                              color: "#192570",
+                              fontWeight: "bold",
                             }}
                           >
                             {" "}
-                            {itemList.item.name}
+                            Identification Number:
+                            <Text style={{ color: "gray" }}>
+                              {" "}
+                              {itemList.item.id_number}
+                            </Text>
                           </Text>
+                          </View>
+                          <View style={{flex:1}}>
+                          <Text
+                            style={{
+                              marginTop: wh * 1 / 100,
+                              // marginLeft: ww * 2 / 100,
+                              fontSize: ResponsiveScreen.fontSize(18),
+                              color: "#192570",
+                              fontWeight: "bold",
+                            }}
+                          >
+                            
+                            Total Quantity:
+                            <Text style={{ color: "gray" }}>
+                              {" "}
+                              {itemList.item.amount}
+                            </Text>
+                          </Text>
+                          
+                          
+                            </View>
+      
+                      
                         </View>
                         <View
                           style={{
-                            height: (wh * 0.1) / 100,
-                            width: (ww * 81) / 100,
-                            backgroundColor: "#f2ca30",
-                            borderRadius: 100,
-                            marginHorizontal: (ww * 2) / 100,
-                          }}
-                        ></View>
-
-                        <View
-                          style={{
-                            height: (wh * 0.05) / 100,
-                            width: (ww * 80) / 100,
-                            backgroundColor: "#f2ca30",
-                            borderRadius: 100,
-                            marginHorizontal: (ww * 1.5) / 100,
-                          }}
-                        ></View>
-                        <View
-                          style={{
-                            height: (wh * 8) / 100,
-                            width: (ww * 80) / 100,
+                            height:'50%',
+                            width: '100%',
+                            alignSelf:'center',
                             flexDirection: "row",
+                            justifyContent:'space-between',
+                            paddingHorizontal:'2.5%'
                             // backgroundColor:'red'
+      
                           }}
                         >
-                          <View
+                          <View style={{flex:1.9,marginLeft:'2.5%'}}>
+       
+      
+                          <Text
                             style={{
-                              height: (wh * 8) / 100,
-                              width: (ww * 28) / 100,
-                              flexDirection: "column",
-                              // backgroundColor:'red'
+                              marginTop: wh * 1 / 100,
+                              // marginLeft: ww * 2 / 100,
+                              fontSize: ResponsiveScreen.fontSize(17),
+                              color: "#192570",
+                              fontWeight: "bold",
                             }}
                           >
-                            <Text
-                              style={{
-                                marginTop: (wh * 1) / 100,
-                                marginLeft: (ww * 3.5) / 100,
-                                fontSize: ResponsiveScreen.fontSize(19),
-                                color: "#192570",
-                                fontWeight: "bold",
-                              }}
-                            >
+                          
+                            Custumer Drowing Number:
+                            <Text style={{ color: "gray" }}>
                               {" "}
-                              ID No.:
-                              <Text style={{ color: "gray" }}>
-                                {" "}
-                                {itemList.item.id_number}
-                              </Text>
+                              {itemList.item.drawing_num}
                             </Text>
-                            <Text
-                              style={{
-                                marginTop: (wh * 1) / 100,
-                                marginLeft: (ww * 3.5) / 100,
-                                fontSize: ResponsiveScreen.fontSize(19),
-                                color: "#192570",
-                                fontWeight: "bold",
-                              }}
-                            >
-                              {" "}
-                              Drowing No.:
-                              <Text style={{ color: "gray" }}>
-                                {" "}
-                                {itemList.item.drawing_num}
-                              </Text>
-                            </Text>
+                          </Text>
                           </View>
-
-                          <View
+                          <View style={{flex:1}}>
+                    
+                          <Text
                             style={{
-                              height: (wh * 8) / 100,
-                              width: (ww * 27) / 100,
-                              flexDirection: "column",
-                              // backgroundColor:'red'
+                              marginTop: wh * 1 / 100,
+                              // marginLeft: ww * 2 / 100,
+                              fontSize: ResponsiveScreen.fontSize(18),
+                              color: "#192570",
+                              fontWeight: "bold",
                             }}
                           >
-                            <Text
-                              style={{
-                                marginTop: (wh * 1) / 100,
-                                marginLeft: (ww * 2) / 100,
-                                fontSize: ResponsiveScreen.fontSize(18),
-                                color: "#192570",
-                                fontWeight: "bold",
-                              }}
-                            >
-                              {" "}
-                              Amount:
-                              <Text style={{ color: "gray" }}>
-                                {" "}
-                                {itemList.item.amount}
-                              </Text>
+                            
+                            Job Budjet:
+                            <Text style={{ color: "gray" }}>
+                              {"  $"}
+                              {/* {itemList.item.amount} */}
+                              30000
                             </Text>
-                            <Text
-                              style={{
-                                marginTop: (wh * 1.4) / 100,
-                                marginLeft: (ww * 2) / 100,
-                                fontSize: ResponsiveScreen.fontSize(18),
-                                color: "#192570",
-                                fontWeight: "bold",
-                              }}
-                            >
-                              {" "}
-                              Order No.:
-                              <Text style={{ color: "gray" }}>
-                                {" "}
-                                {itemList.item.order_number}
-                              </Text>
-                            </Text>
+                          </Text>
+                        
                           </View>
-
-                          <View
-                            style={{
-                              height: (wh * 7) / 100,
-                              width: (ww * 28) / 100,
-                              flexDirection: "column",
-                              // backgroundColor:'red'
-                            }}
-                          >
-                            <Text
-                              style={{
-                                marginTop: (wh * 1) / 100,
-                                // marginLeft: ResponsiveScreen.normalize(0),
-                                fontSize: ResponsiveScreen.fontSize(18),
-                                color: "#192570",
-                                fontWeight: "bold",
-                              }}
-                            >
-                              {" "}
-                              State.:
-                              <Text style={{ color: "gray" }}>
-                                {" "}
-                                {itemList.item.status}
-                              </Text>
-                            </Text>
-                            {/* <Text
-                              style={{
-                                marginTop: (wh * 1) / 100,
-                                // marginLeft: ResponsiveScreen.normalize(0),
-                                fontSize: ResponsiveScreen.fontSize(18),
-                                color: "#192570",
-                                fontWeight: "bold",
-                              }}
-                            >
-                              {" "}
-                              End Date:
-                              <Text style={{ color: "gray" }}> 2022/3/12</Text>
-                            </Text> */}
-                          </View>
+      
+                          
+      
+      
                         </View>
-                      </TouchableOpacity>
+                        <View
+                          style={{
+                            height:'50%',
+                            width: '100%',
+                            alignSelf:'center',
+                            flexDirection: "row",
+                            justifyContent:'space-between',
+                            paddingHorizontal:'2.5%'
+                            // backgroundColor:'red'
+      
+                          }}
+                        >
+                          <View style={{flex:1.9,}}>
+                          <Text
+                            style={{
+                              marginTop: wh * 1 / 100,
+                              marginLeft: ww * 2 / 100,
+                              fontSize: ResponsiveScreen.fontSize(18),
+                              color: "#192570",
+                              fontWeight: "bold",
+                            }}
+                          >
+                           
+                            Purchase Order Number:
+                            <Text style={{ color: "gray" }}>
+                              {" "}
+                              {itemList.item.order_number}
+                            </Text>
+                          </Text>
+                          
+                          </View>
+                          <View style={{flex:1}}>
+                          
+                          <Text
+                            style={{
+                              marginTop: wh * 1 / 100,
+                              // marginLeft: ResponsiveScreen.normalize(0),
+                              fontSize: ResponsiveScreen.fontSize(18),
+                              color: "#192570",
+                              fontWeight: "bold",
+                            }}
+                          >
+                            {" "}
+                            State.:
+                            <Text style={{ color: "gray" }}>
+                              {" "}
+                              {itemList.item.state}
+                            </Text>
+                          </Text>   
+                         
+                          </View>
+                          
+      
+      
+                        </View>
+                
+                       
+      
+      
+           
+                      </View>
+                    </TouchableOpacity>
                     )}
                   />
                 </View>
@@ -1312,7 +1331,7 @@ const History = () => {
                 show={show1}
                 showProgress={false}
                 title="⟳"
-                message="Are you sure to move this project to current projects page bala?"
+                message="Are you sure to move this Job to current Jobs page bala?"
                 // alertContainerStyle={{backgroundColor:'green'}}
                 // overlayStyle={{backgroundColor:'red'}}
                 // progressSize={2000}
@@ -1396,7 +1415,7 @@ const History = () => {
                   stylesAlT.cancelButtonStyle,
                   { width: (ww * 30) / 100 },
                 ]}
-                cancelText="Current projects"
+                cancelText="Current Jobs"
                 confirmText="Stay here"
                 confirmButtonColor="#192570"
                 // confirmButtonColor="#f2ca30"
@@ -1428,7 +1447,7 @@ const History = () => {
                 show={show1}
                 showProgress={false}
                 title="⟳"
-                message="Are you sure to move this project to current projects page paiin?"
+                message="Are you sure to move this Job to current Jobs page paiin?"
                 // alertContainerStyle={{backgroundColor:'green'}}
                 // overlayStyle={{backgroundColor:'red'}}
                 // progressSize={2000}
@@ -1506,7 +1525,7 @@ const History = () => {
                   stylesAlT.cancelButtonStyle,
                   { width: (ww * 30) / 100 },
                 ]}
-                cancelText="Current projects"
+                cancelText="Current Jobs"
                 confirmText="Stay here"
                 confirmButtonColor="#192570"
                 // confirmButtonColor="#f2ca30"
@@ -1550,7 +1569,7 @@ const History = () => {
           position: "absolute",
           borderRadius: ((ww + wh) * 2) / 200,
           bottom: "2%",
-          backgroundColor: "#f2ca30",
+          backgroundColor: "#192570",
           justifyContent: "center",
         }}
       >
@@ -1582,7 +1601,7 @@ const History = () => {
               marginTop: "-1%",
             }}
           >
-            Current Project
+            Current Jobs
           </Text>
         </TouchableOpacity>
         
@@ -1597,12 +1616,12 @@ export default History;
 const mystyles = StyleSheet.create({
   card: {
     fontFamily: "Roboto",
-    marginTop: (wh * 2) / 100,
-    width: (ww * 84) / 100,
-    height: (wh * 13) / 100,
+    marginTop: wh * 2 / 100,
+    width: ww * 84 / 100,
+    height: wh * 18 / 100,
     // textAlign: "left",
-    marginLeft: (ww * 8) / 100,
-    marginBottom: (wh * 1) / 100,
+    marginLeft: ww * 8 / 100,
+    marginBottom: wh * 1 / 100,
     borderRadius: ResponsiveScreen.normalize(20),
     // elevation: 6,
     // backgroundColor: "gray",

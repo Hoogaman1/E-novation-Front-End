@@ -18,11 +18,7 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "bundlename",
-      "infoPlist": {
-        "NSCameraUsageDescription": "This app uses the camera to scan barcodes on event tickets."
-      }
+      "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
@@ -35,18 +31,9 @@
       "favicon": "./assets/favicon.png"
     },
     "extra": {
-      "oneSignalAppId": "c6c6bb5f-bb26-495a-9d24-6a1322b5d270",
       "eas": {
         "projectId": "b3aa5e7b-c9d3-453c-bb12-018107aeea3b"
       }
-    },
-    "plugins": [
-      [
-        "onesignal-expo-plugin",
-        {
-          "mode": "development"
-        }
-      ]
-    ]
+    }
   }
 }

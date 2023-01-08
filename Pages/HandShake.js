@@ -13,7 +13,7 @@ import ResponsiveScreen from "react-native-auto-responsive-screen";
 ResponsiveScreen.init(720, 1600);
 import { useNavigation } from "@react-navigation/native";
 import * as ImagePicker from "expo-image-picker";
-import { Camera } from "expo-camera";
+// import { Camera } from "expo-camera";
 import Slider from "react-native-smooth-slider";
 // import Slider from "react-native-slider";
 import {
@@ -115,7 +115,7 @@ const AboutUs = (props) => {
   };
 
   return (
-    <View style={[styles3.page, { backgroundColor: "#f2ca30" }]}>
+    <View style={[styles3.page, { backgroundColor: "#192570" }]}>
       <Image
         source={require("../assets/app_ui2-12.png")}
         style={[styles3.logo, { position: "absolute", top: "40%" ,height:ww * 15/ 100}]}
@@ -125,7 +125,7 @@ const AboutUs = (props) => {
         style={{
           position: "absolute",
           top: "45%",
-          backgroundColor: "#192570",
+          backgroundColor: "#f2ca30",
           
           width: (ww * 70) / 100,
           height: (wh * 11) / 100,
@@ -171,7 +171,7 @@ const AboutUs = (props) => {
           </Text>
         </View>
       </View>
-      <TouchableOpacity style={{backgroundColor:'#192570',position:'absolute',top:'65%',alignItems:'center',justifyContent:'center',height:ww*7/100,borderRadius:ResponsiveScreen.normalize(10)}} onPress={()=>{CALL()}}>
+      <TouchableOpacity style={{backgroundColor:'#f2ca30',position:'absolute',top:'65%',alignItems:'center',justifyContent:'center',height:ww*7/100,borderRadius:ResponsiveScreen.normalize(10)}} onPress={()=>{CALL()}}>
       <Text style={{color:'#fff'}} >    Try again    </Text>
       </TouchableOpacity>
     </View>
