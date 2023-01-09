@@ -188,7 +188,7 @@ function CustomDrawerContent(props) {
         >
           Your Current Jobs:{" "}
           {typeof global.OBJ != "undefined" &&  global.OBJ !== null?(
-           <Text style={{ color: "#3b3b3b" }}>{global.OBJ.openproject}</Text> ):(<Text style={{ color: "#3b3b3b" }}>Loading...</Text>)}
+           <Text style={{ color: "#fff" }}>{global.OBJ.openproject}</Text> ):(<Text style={{ color: "#3b3b3b" }}>Loading...</Text>)}
         </Text>
       </View>
       <View
@@ -210,7 +210,7 @@ function CustomDrawerContent(props) {
         >
           Your All time Jobs:
           {typeof global.OBJ != "undefined" &&  global.OBJ !== null?(
-           <Text style={{ color: "#3b3b3b" }}> {global.OBJ.allproject}</Text>):(<Text style={{ color: "#3b3b3b" }}> Loading...</Text>)}
+           <Text style={{ color: "#fff" }}> {global.OBJ.allproject}</Text>):(<Text style={{ color: "#3b3b3b" }}> Loading...</Text>)}
         </Text>
       </View>
       <View

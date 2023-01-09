@@ -544,6 +544,56 @@ const DocAlbum = (props) => {
                 </KeyboardAvoidingView>
               </View>
             </View>
+            <View
+          style={{
+            height: (ww * 11) / 100,
+            // height: wh * 16 / 100,
+            flexDirection: "row",
+            width: (ww * 90) / 100,
+            position: "absolute",
+            borderRadius: ((ww + wh) * 2) / 200,
+            bottom: "-3%",
+            backgroundColor: "#192570",
+            
+            left:"5%",
+            justifyContent: "center",
+            zIndex:9999,
+          }}
+        >
+          
+          <TouchableOpacity
+            style={{
+              // width: "33.3%",
+              // height: "100%",
+              flex: 1,
+              // backgroundColor: "#f2ca30",
+              borderRadius: 5,
+              justifyContent: "center",
+            }}
+            onPress={() => {props.navigation.navigate("Bearing")}}
+          >
+            <View style={{ alignItems: "center" }}>
+            
+              <Entypo
+                name="back"
+                size={ResponsiveScreen.fontSize(40)}
+                color="#fff"
+              />
+            </View>
+            {/* <View style={{width:'60%',height:1,backgroundColor:'#fff',alignSelf:'center'}}></View> */}
+            <Text
+              style={{
+                alignSelf: "center",
+                fontSize: ResponsiveScreen.fontSize(22),
+                color: "#fff",
+                marginTop: "-1%",
+              }}
+            >
+              {" "}
+              Back to progress
+            </Text>
+          </TouchableOpacity>
+          </View>
           
         </View>
    

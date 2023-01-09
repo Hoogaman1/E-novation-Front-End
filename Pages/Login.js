@@ -301,7 +301,7 @@ const LoginPage = (props) => {
                       styles.text,
                       {
                         marginBottom: (wh * 0.5) / 100,
-                        fontSize: ResponsiveScreen.fontSize(28),fontWeight:'600',
+                        fontSize: ResponsiveScreen.fontSize(23),fontWeight:'600',
                       },
                     ]}
                     onChangeText={onEChange}
@@ -321,7 +321,7 @@ const LoginPage = (props) => {
                           styles.text,
                           {
                             marginBottom: (wh * 0.5) / 100,
-                            fontSize: ResponsiveScreen.fontSize(28),fontWeight:'600'
+                            fontSize: ResponsiveScreen.fontSize(23),fontWeight:'500'
                           },
                         ]}
                         onChangeText={onPChange}
@@ -353,7 +353,7 @@ const LoginPage = (props) => {
                           styles.text,
                           {
                             marginBottom: (wh * 0.5) / 100,
-                            fontSize: ResponsiveScreen.fontSize(28),fontWeight:'600'
+                            fontSize: ResponsiveScreen.fontSize(23),fontWeight:'500'
                           },
                         ]}
                         onChangeText={onPChange}
@@ -563,7 +563,7 @@ const LoginPage = (props) => {
                       <Text
                         style={[
                           styles.ButtonText,
-                          { marginTop: (wh * 0.1) / 100,fontSize: ResponsiveScreen.fontSize(30), },
+                          { marginTop: (wh * 0.1) / 100,fontSize: ResponsiveScreen.fontSize(27), },
                         ]}
                       >
                         {"   "}Login{"   "}
@@ -619,7 +619,7 @@ const LoginPage = (props) => {
                         }}
                         textStyle={{
                           color: "#fff",
-                          fontSize: ResponsiveScreen.normalize(30),
+                          fontSize: ResponsiveScreen.normalize(27),
                         }}
                         wrapperStyle={{ height: (wh * 4) / 100 }}
                         checked={checked1}

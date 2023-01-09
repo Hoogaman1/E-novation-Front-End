@@ -23,7 +23,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/iconcl.png",
-        "backgroundColor": "#f2ca30"
+        "backgroundColor": "#fff"
       },
       "package": "com.arowanax.Enovation"
     },
