@@ -4,12 +4,12 @@
     "slug": "E-novation",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/iconcl.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "image": "./assets/splashclient.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#f2ca30"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -22,12 +22,18 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      }
+        "foregroundImage": "./assets/iconcl.png",
+        "backgroundColor": "#fff"
+      },
+      "package": "com.arowanax.Enovation"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "b3aa5e7b-c9d3-453c-bb12-018107aeea3b"
+      }
     }
   }
 }

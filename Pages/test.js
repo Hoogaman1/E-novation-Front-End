@@ -1,199 +1,343 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import {
-  MaterialCommunityIcons,
-  Octicons,
-  FontAwesome5,
-  AntDesign,
-} from "@expo/vector-icons";
-import ResponsiveScreen from "react-native-auto-responsive-screen";
-ResponsiveScreen.init(720, 1600);
-import {
-  Text,
-  View,
-  Button,
-  TextInput,
-  TouchableOpacity,
-  Image,
-  FlatList,
-  StyleSheet,
-  Pressable,
-  ScrollView,
-} from "react-native";
-import Svg, {
-  Circle,
-  Ellipse,
-  G,
-  // Text,
-  TSpan,
-  TextPath,
-  Path,
-  Polygon,
-  Polyline,
-  Line,
-  Rect,
-  Use,
-  // Image,
-  Symbol,
-  Defs,
-  LinearGradient,
-  RadialGradient,
-  Stop,
-  ClipPath,
-  Pattern,
-  Mask,
-} from "react-native-svg";
-import { styles, styles2, btn, styles3 } from "./styleSheets.js";
+// import React, { Component } from 'react';
+// import {
+//     StyleSheet,
+//     Text,
+//     View,
+//     Image,
+//     TouchableOpacity,
+//     TouchableHighlight,
+//     ScrollView,
+// } from 'react-native';
+// import { StatusBar } from 'expo-status-bar';
 
-const PhotoAlbum = (props) => {
-  // const DATA = [
-  //   {
-  //     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-  //     title: '1- Material supply',
-  //   },
-  //   {
-  //     id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-  //     title: '2- Cutting',
-  //   },
-  //   {
-  //     id: '58694a0f-3da1-471f-bd96-145571e29d72',
-  //     title: '3- Machining',
-  //   },
-  //   {
-  //     id: '58694a0f-3da1-471f-bd96-145571e29d73',
-  //     title: '4- Heat treatment/coating/painting and plating',
-  //   },
-  //   {
-  //     id: '58694a0f-3da1-471f-bd96-145571e29d74',
-  //     title: '5- Quality control',
-  //   },
-  //   {
-  //     id: '58694a0f-3da1-471f-bd96-145571e29d75',
-  //     title: '6- Packaging',
-  //   },
-  //   {
-  //     id: '58694a0f-3da1-471f-bd96-145571e29d76',
-  //     title: '7- Ready for delivery',
-  //   },
-  // ];
-  // const renderItem = ({ item }) => (
-  //   <Item title={item.title} />
-  // );
-  // const Item = ({ title }) => (
-  //   <View >
-  //     <Text >{title}</Text>
-  //   </View>
-  // );
+// // import ModalDropdown from 'react-native-modal-dropdown';
+// import ModalDropdown from './ModalDropdown';
 
-  // const [email, setEmail] = useState("");
-  var email = "ali@test.com";
-  //   const { navigation } = props;
-  const [mydata, setData] = useState("");
-  const onCChange = (textValue) => setCode(textValue);
-  //   const obj = props.route.params.obj;
-  //   const [dummy, setDummy] = useState([]);
-  //   const tokenAuth = props.route.params.token;
-  // console.log(tokenAuth)
-  console.log("albummmmmmmmm");
-  // console.log(obj)
-  // console.log(dummy);
+// const DEMO_OPTIONS_1 = ['option 1', 'option 2', 'option 3', 'option 4', 'option 5', 'option 6', 'option 7', 'option 8', 'option 9'];
+// const DEMO_OPTIONS_2 = [
+//     { "name": "Rex", "age": 30 },
+//     { "name": "Mary", "age": 25 },
+//     { "name": "John", "age": 41 },
+//     { "name": "Jim", "age": 22 },
+//     { "name": "Susan", "age": 52 },
+//     { "name": "Brent", "age": 33 },
+//     { "name": "Alex", "age": 16 },
+//     { "name": "Ian", "age": 20 },
+//     { "name": "Phil", "age": 24 },
+// ];
 
-  //   const [email, setEmail] = useState('ali@test.com');
-  //   const onEChange = (textValue) => setEmail(textValue);
-  // const[ project , setProject ] = useState([])
-  // const [isActive, setIsActive] = useState(false);
-  //   const handleClick = () => {
-  //   // 👇️ toggle
-  //   setIsActive(true);
-  // const[list , setList] = useState([''])
+// class App extends Component {
+//     constructor(props) {
+//         super(props);
 
-  return (
-    <View style={styles3.page}>
-      <View style={styles3.topbox}>
-        <View>
-          <Image
-            source={require("../assets/app_ui2-13.png")}
-            style={styles3.logo}
-          />
-        </View>
-        <View>
-          <Image source={require("../assets/app_ui2-11.png")} />
-        </View>
-      </View>
-      <View style={[styles3.butbox, { alignItems: "center" }]}>
-        <View
-          style={[
-            styles3.workbox,
-            {
-              alignItems: "center",
-              flexDirection: "column",
-              //   backgroundColor: "red",
-            },
-          ]}
-        >
-          <View
-            style={{
-              width: ResponsiveScreen.normalize(600),
-              borderRadius: 20,
-              height: ResponsiveScreen.normalize(200),
-            }}
-          >
-            <Text
-              style={{
-                fontSize: ResponsiveScreen.normalize(75),
-                color: "#f2ca30",
-                marginTop: ResponsiveScreen.normalize(50),
-                marginLeft: ResponsiveScreen.normalize(50),
-                marginBottom: ResponsiveScreen.normalize(25),
-              }}
-            >
-              Documents
-            </Text>
-          </View>
+//         this.state = {
+//             dropdown_4_options: [],
+//             dropdown_4_defaultValue: 'loading...',
+//             dropdown_6_icon_heart: true,
+//         };
+//     }
 
-          <View
-            style={{
-              // backgroundColor: "pink",
-              width: ResponsiveScreen.normalize(600),
-              height: ResponsiveScreen.normalize(1150),
-              borderRadius: 20,
-              // flexDirection: "row",
-            }}
-          ></View>
-        </View>
+//     render() {
+//         const dropdown_6_icon = this.state.dropdown_6_icon_heart ? require('./images/heart.png') : require('./images/flower.png');
+//         return (
+//             <View style={styles.container}>
+//                 <StatusBar style="auto" />
+//                 <View style={styles.row}>
+//                     <View style={styles.cell}>
+//                         <ModalDropdown style={styles.dropdown_1}
+//                             options={DEMO_OPTIONS_1}
+//                             renderButtonComponent={TouchableHighlight}
+//                             renderButtonProps={{ underlayColor: 'lightgray' }}
+//                         />
+//                         <ModalDropdown style={styles.dropdown_6}
+//                             options={DEMO_OPTIONS_1}
+//                             onSelect={(idx, value) => this._dropdown_6_onSelect(idx, value)}>
+//                             <Image style={styles.dropdown_6_image}
+//                                 source={dropdown_6_icon}
+//                             />
+//                         </ModalDropdown>
+//                     </View>
+//                     <View style={styles.cell}>
+//                         <ModalDropdown ref="dropdown_2"
+//                             style={styles.dropdown_2}
+//                             textStyle={styles.dropdown_2_text}
+//                             dropdownStyle={styles.dropdown_2_dropdown}
+//                             options={DEMO_OPTIONS_2}
+//                             renderButtonText={(rowData) => this._dropdown_2_renderButtonText(rowData)}
+//                             renderRow={this._dropdown_2_renderRow.bind(this)}
+//                             renderRowComponent={TouchableHighlight}
+//                             renderSeparator={(sectionID, rowID, adjacentRowHighlighted) => this._dropdown_2_renderSeparator(sectionID, rowID, adjacentRowHighlighted)}
+//                         />
+//                         <TouchableOpacity onPress={() => {
+//                             this.refs.dropdown_2.select(0);
+//                         }}>
+//                             <Text style={styles.textButton}>
+//                                 select Rex
+//                             </Text>
+//                         </TouchableOpacity>
+//                     </View>
+//                 </View>
+//                 <View style={styles.row}>
+//                     <ScrollView ref={el => this._scrollView = el}
+//                         style={styles.scrollView}
+//                         contentContainerStyle={styles.contentContainer}
+//                         showsVerticalScrollIndicator={true}
+//                         scrollEventThrottle={1}>
+//                         <Text>
+//                             {'Scroll view example.'}
+//                         </Text>
+//                         <ModalDropdown ref={el => this._dropdown_3 = el}
+//                             style={styles.dropdown_3}
+//                             options={DEMO_OPTIONS_1}
+//                             adjustFrame={style => this._dropdown_3_adjustFrame(style)}
+//                             dropdownTextStyle={styles.dropdown_3_dropdownTextStyle}
+//                             dropdownTextHighlightStyle={styles.dropdown_3_dropdownTextHighlightStyle}
+//                         />
+//                     </ScrollView>
+//                 </View>
+//                 <View style={styles.row}>
+//                     <View style={[styles.cell, { justifyContent: 'flex-end' }]}>
+//                         <ModalDropdown style={styles.dropdown_4}
+//                             dropdownStyle={styles.dropdown_4_dropdown}
+//                             options={this.state.dropdown_4_options}
+//                             defaultIndex={-1}
+//                             defaultValue={this.state.dropdown_4_defaultValue}
+//                             onDropdownWillShow={this._dropdown_4_willShow.bind(this)}
+//                             onDropdownWillHide={this._dropdown_4_willHide.bind(this)}
+//                             onSelect={(idx, value) => this._dropdown_4_onSelect(idx, value)}
+//                         />
+//                     </View>
+//                     <View style={[styles.cell, { justifyContent: 'flex-end' }]}>
+//                         <TouchableOpacity onPress={this._dropdown_5_show.bind(this)}>
+//                             <Text style={styles.textButton}>
+//                                 {'Show dropdown'}
+//                             </Text>
+//                         </TouchableOpacity>
+//                         <TouchableOpacity onPress={() => this._dropdown_5_select(2)}>
+//                             <Text style={styles.textButton}>
+//                                 {'Select the 3rd option'}
+//                             </Text>
+//                         </TouchableOpacity>
+//                         <TouchableOpacity onPress={() => this._dropdown_5_select(-1)}>
+//                             <Text style={styles.textButton}>
+//                                 {'Clear selection'}
+//                             </Text>
+//                         </TouchableOpacity>
+//                         <ModalDropdown ref={el => this._dropdown_5 = el}
+//                             style={styles.dropdown_5}
+//                             options={['Select me to hide', `I can't be selected`, 'I can only be selected outside']}
+//                             defaultValue='Try the Show button above'
+//                             onDropdownWillShow={this._dropdown_5_willShow.bind(this)}
+//                             onDropdownWillHide={this._dropdown_5_willHide.bind(this)}
+//                             onSelect={this._dropdown_5_onSelect.bind(this)}
+//                         />
+//                     </View>
+//                 </View>
+//             </View>
+//         );
+//     }
 
-        <View>
-          <View style={[styles3.barbox, { backgroundColor: "gray" }]}>
-            <Svg
-              width={ResponsiveScreen.normalize(2600)}
-              height={ResponsiveScreen.normalize(600)}
-            >
-              <Rect
-                x={ResponsiveScreen.normalize(10)}
-                y={ResponsiveScreen.normalize(200)}
-                width={ResponsiveScreen.normalize(120)}
-                height={ResponsiveScreen.normalize(250)}
-                fill="yellow"
-                // strokeWidth="3"
-                // stroke="rgb(0,0,0)"
-              />
-              <Circle
-                cx={ResponsiveScreen.normalize(57)}
-                cy={ResponsiveScreen.normalize(200)}
-                r={ResponsiveScreen.normalize(50)}
-                fill="red"
-              />
-              <Polygon
-                points="40,5 70,80 25,95"
-                fill="lime"
-                stroke="purple"
-                strokeWidth="1"
-              />
-            </Svg>
-          </View>
-        </View>
-      </View>
-    </View>
-  );
-};
-export default PhotoAlbum;
+//     _dropdown_2_renderButtonText(rowData) {
+//         const { name, age } = rowData;
+//         return `${name} - ${age}`;
+//     }
+
+//     _dropdown_2_renderRow(rowData, rowID, highlighted) {
+//         let icon = highlighted ? require('./images/heart.png') : require('./images/flower.png');
+//         let evenRow = rowID % 2;
+//         return (
+//             <View style={[styles.dropdown_2_row, { backgroundColor: evenRow ? 'lemonchiffon' : 'white' }]}>
+//                 <Image style={styles.dropdown_2_image}
+//                     mode='stretch'
+//                     source={icon}
+//                 />
+//                 <Text style={[styles.dropdown_2_row_text, highlighted && { color: 'mediumaquamarine' }]}>
+//                     {`${rowData.name} (${rowData.age})`}
+//                 </Text>
+//             </View>
+//         );
+//     }
+
+//     _dropdown_2_renderSeparator(sectionID, rowID, adjacentRowHighlighted) {
+//         if (rowID == DEMO_OPTIONS_1.length - 1) return;
+//         let key = `spr_${rowID}`;
+//         return (<View style={styles.dropdown_2_separator}
+//             key={key}
+//         />);
+//     }
+
+//     _dropdown_3_adjustFrame(style) {
+//         console.log(`frameStyle={width:${style.width}, height:${style.height}, top:${style.top}, left:${style.left}, right:${style.right}}`);
+//         style.top -= 15;
+//         style.left += 150;
+//         return style;
+//     }
+
+//     _dropdown_4_willShow() {
+//         setTimeout(() => this.setState({
+//             dropdown_4_options: DEMO_OPTIONS_1,
+//             dropdown_4_defaultValue: 'loaded',
+//         }), 2000);
+//     }
+
+//     _dropdown_4_willHide() {
+//         this.setState({
+//             dropdown_4_options: [],
+//             dropdown_4_defaultValue: 'loading',
+//         });
+//     }
+
+//     _dropdown_4_onSelect(idx, value) {
+//         // BUG: alert in a modal will auto dismiss and causes crash after reload and touch. @sohobloo 2016-12-1
+//         //alert(`idx=${idx}, value='${value}'`);
+//         console.debug(`idx=${idx}, value='${value}'`);
+//     }
+
+//     _dropdown_5_show() {
+//         this._dropdown_5 && this._dropdown_5.show();
+//     }
+
+//     _dropdown_5_select(idx) {
+//         this._dropdown_5 && this._dropdown_5.select(idx);
+//     }
+
+//     _dropdown_5_willShow() {
+//         return false;
+//     }
+
+//     _dropdown_5_willHide() {
+//         let idx = this._dropdown_5_idx;
+//         this._dropdown_5_idx = undefined;
+//         return idx == 0;
+//     }
+
+//     _dropdown_5_onSelect(idx, value) {
+//         this._dropdown_5_idx = idx;
+//         if (this._dropdown_5_idx != 0) {
+//             return false;
+//         }
+//     }
+
+//     _dropdown_6_onSelect(idx, value) {
+//         this.setState({
+//             dropdown_6_icon_heart: !this.state.dropdown_6_icon_heart,
+//         })
+//     }
+// }
+
+// const styles = StyleSheet.create({
+//     container: {
+//         flex: 1,
+//     },
+//     row: {
+//         flex: 1,
+//         flexDirection: 'row',
+//     },
+//     cell: {
+//         flex: 1,
+//         borderWidth: StyleSheet.hairlineWidth,
+//     },
+//     scrollView: {
+//         flex: 1,
+//     },
+//     contentContainer: {
+//         height: 500,
+//         paddingVertical: 100,
+//         paddingLeft: 20,
+//     },
+//     textButton: {
+//         color: 'deepskyblue',
+//         borderWidth: StyleSheet.hairlineWidth,
+//         borderColor: 'deepskyblue',
+//         margin: 2,
+//     },
+
+//     dropdown_1: {
+//         flex: 1,
+//         top: 32,
+//         left: 8,
+//     },
+//     dropdown_2: {
+//         alignSelf: 'flex-end',
+//         width: 150,
+//         marginTop: 32,
+//         right: 8,
+//         borderWidth: 0,
+//         borderRadius: 3,
+//         backgroundColor: 'cornflowerblue',
+//     },
+//     dropdown_2_text: {
+//         marginVertical: 10,
+//         marginHorizontal: 6,
+//         fontSize: 18,
+//         color: 'white',
+//         textAlign: 'center',
+//         textAlignVertical: 'center',
+//     },
+//     dropdown_2_dropdown: {
+//         width: 150,
+//         height: 300,
+//         borderColor: 'cornflowerblue',
+//         borderWidth: 2,
+//         borderRadius: 3,
+//     },
+//     dropdown_2_row: {
+//         flexDirection: 'row',
+//         height: 40,
+//         alignItems: 'center',
+//     },
+//     dropdown_2_image: {
+//         marginLeft: 4,
+//         width: 30,
+//         height: 30,
+//     },
+//     dropdown_2_row_text: {
+//         marginHorizontal: 4,
+//         fontSize: 16,
+//         color: 'navy',
+//         textAlignVertical: 'center',
+//     },
+//     dropdown_2_separator: {
+//         height: 1,
+//         backgroundColor: 'cornflowerblue',
+//     },
+//     dropdown_3: {
+//         width: 150,
+//         borderColor: 'lightgray',
+//         borderWidth: 1,
+//         borderRadius: 1,
+//     },
+//     dropdown_3_dropdownTextStyle: {
+//         backgroundColor: '#000',
+//         color: '#fff'
+//     },
+//     dropdown_3_dropdownTextHighlightStyle: {
+//         backgroundColor: '#fff',
+//         color: '#000'
+//     },
+//     dropdown_4: {
+//         margin: 8,
+//         borderColor: 'lightgray',
+//         borderWidth: 1,
+//         borderRadius: 1,
+//     },
+//     dropdown_4_dropdown: {
+//         width: 100,
+//     },
+//     dropdown_5: {
+//         margin: 8,
+//         borderColor: 'lightgray',
+//         borderWidth: 1,
+//         borderRadius: 1,
+//     },
+//     dropdown_6: {
+//         flex: 1,
+//         left: 8,
+//     },
+//     dropdown_6_image: {
+//         width: 40,
+//         height: 40,
+//     },
+// });
+
+// export default App;
