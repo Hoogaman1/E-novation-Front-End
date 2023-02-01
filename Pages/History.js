@@ -238,7 +238,7 @@ const History = () => {
           source={require("../assets/app_ui2-13.png")}
           style={[styles3.logo, { height: (wh * 7) / 100 }]}
         />
-        <TouchableOpacity onPress={setAlert}>
+        {/* <TouchableOpacity onPress={setAlert}>
           <FontAwesome5
             name="bell"
             size={ResponsiveScreen.fontSize(45)}
@@ -253,30 +253,8 @@ const History = () => {
             >
             {' '}{global.NOTIF}{" "}
           </Text> ):(<View></View>)}
-          {/* <View
-            style={{
-              backgroundColor: "red",
-              width: (ww * 5) / 100,
-              height: (ww * 5) / 100,
-              borderRadius: (ww * 50) / 100,
-              position: "absolute",
-              right: (ww * -3.5) / 100,
-              bottom: (wh * 2) / 100,
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <Text
-              style={{
-                color: "#fff",
-                fontSize: ResponsiveScreen.fontSize(20),
-                fontWeight: "500",
-              }}
-            >
-              24
-            </Text>
-          </View> */}
-        </TouchableOpacity>
+         
+        </TouchableOpacity> */}
         <TouchableOpacity
           onPress={() => {
             navigation.openDrawer({ token: tokenAuth });
@@ -346,6 +324,7 @@ const History = () => {
                 justifyContent: "center",
               }}
             >
+              {global.OBJ.company.length < 22 ?(
               <Text
                 style={{
                   fontSize: ResponsiveScreen.fontSize(30),
@@ -362,6 +341,24 @@ const History = () => {
                 {global.OBJ.company}
                 {"  "}
               </Text>
+              ):(
+                <Text
+                style={{
+                  fontSize: ResponsiveScreen.fontSize(30),
+                  color: "#575757",
+                  fontWeight:'700',
+
+                  // marginTop: wh * 2.5 / 100,
+                  // marginLeft: ww * 5 / 100,
+                  textAlign: "left",
+                  // backgroundColor: 'pink'
+                }}
+              >
+                {"  "}
+                {global.OBJ.company.slice(0,22)}...
+                {"  "}
+              </Text>
+              )}
             </View>
             <View
               style={{
@@ -565,7 +562,7 @@ const History = () => {
                             </Text>
                           </Text>
                           </View>
-                          <View style={{flex:1}}>
+                          {/* <View style={{flex:1}}>
                     
                           <Text
                             style={{
@@ -579,12 +576,31 @@ const History = () => {
                             
                             Job Budjet:
                             <Text style={{ color: "gray" }}>
-                              {"  $"}
-                              {/* {itemList.item.amount} */}
+                            
                               30000
                             </Text>
                           </Text>
                         
+                          </View> */}
+                          <View style={{flex:1}}>
+                          
+                          <Text
+                            style={{
+                              marginTop: wh * 1 / 100,
+                              // marginLeft: ResponsiveScreen.normalize(0),
+                              fontSize: ResponsiveScreen.fontSize(18),
+                              color: "#192570",
+                              fontWeight: "bold",
+                            }}
+                          >
+                            {" "}
+                            State.:
+                            <Text style={{ color: "gray" }}>
+                              {" "}
+                              {itemList.item.state}
+                            </Text>
+                          </Text>   
+                         
                           </View>
       
                           
@@ -622,26 +638,7 @@ const History = () => {
                           </Text>
                           
                           </View>
-                          <View style={{flex:1}}>
                           
-                          <Text
-                            style={{
-                              marginTop: wh * 1 / 100,
-                              // marginLeft: ResponsiveScreen.normalize(0),
-                              fontSize: ResponsiveScreen.fontSize(18),
-                              color: "#192570",
-                              fontWeight: "bold",
-                            }}
-                          >
-                            {" "}
-                            State.:
-                            <Text style={{ color: "gray" }}>
-                              {" "}
-                              {itemList.item.state}
-                            </Text>
-                          </Text>   
-                         
-                          </View>
                           
       
       

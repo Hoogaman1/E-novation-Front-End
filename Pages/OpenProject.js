@@ -287,7 +287,7 @@ axios({
           source={require("../assets/app_ui2-13.png")}
           style={[styles3.logo, { height: (wh * 7) / 100 }]}
         />
-        <TouchableOpacity onPress={setAlert} >
+        {/* <TouchableOpacity onPress={setAlert} >
           <FontAwesome5
             name="bell"
             size={ResponsiveScreen.fontSize(45)}
@@ -306,7 +306,7 @@ axios({
             </Text>
          
           ):(<View></View>)}
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <TouchableOpacity
           onPress={() => {
             navigation.openDrawer({ token: tokenAuth });
@@ -381,6 +381,7 @@ axios({
                 justifyContent: "center",
               }}
             >
+              {global.OBJ.company.length < 21 ?(
               <Text
                 style={{
                   fontSize: ResponsiveScreen.fontSize(30),
@@ -397,6 +398,24 @@ axios({
                 {global.OBJ.company}
                 {"  "}
               </Text>
+              ):(
+                <Text
+                style={{
+                  fontSize: ResponsiveScreen.fontSize(30),
+                  color: "#575757",
+                  fontWeight: "700",
+
+                  // marginTop: wh * 2.5 / 100,
+                  // marginLeft: ww * 5 / 100,
+                  textAlign: "left",
+                  // backgroundColor: 'pink'
+                }}
+              >
+                {"   "}
+                {global.OBJ.company.slice(0,21)}...
+                {"  "}
+              </Text>
+              )}
             </View>
             <View
               style={{
@@ -510,6 +529,7 @@ axios({
                               }}
                             >
                               <View style={{backgroundColor:'#fff',borderRadius:ww*1/100}}>
+                                {itemList.item.name.length < 24 ? (
                                 <Text
                                   style={[
                                     styles3.txtworkcard,
@@ -523,6 +543,21 @@ axios({
                                 >
                                   {itemList.item.name}
                                 </Text>
+                                ):(
+                                  <Text
+                                  style={[
+                                    styles3.txtworkcard,
+                                    {
+                                      // color:'#575757',
+                                      fontSize: ResponsiveScreen.fontSize(28),
+                                      fontWeight: "600",
+
+                                    },
+                                  ]}
+                                >
+                                  {itemList.item.name.slice(0,24)}...
+                                </Text>
+                                )}
                               </View>
 
                               <View

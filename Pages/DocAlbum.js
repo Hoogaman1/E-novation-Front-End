@@ -17,6 +17,7 @@ ResponsiveScreen.init(720, 1600);
 import { useNavigation } from "@react-navigation/native";
 import * as ImagePicker from "expo-image-picker";
 // import { Camera } from "expo-camera";
+
 import {
   Text,
   View,
@@ -30,8 +31,11 @@ import {
   ScrollView,
   Dimensions,
   StatusBar,
-  BackHandler
+  BackHandler,
+  Linking,
+  // PermissionsAndroid,
 } from "react-native";
+// import RNFetchBlob from 'rn-fetch-blob';
 import {
   styles,
   styles2,
@@ -42,13 +46,17 @@ import {
 } from "./styleSheets2.js";
 import { Entypo } from "@expo/vector-icons";
 // import { ListItem } from "@rneui/base";
+import * as FileSystem from 'expo-file-system';
+import { StorageAccessFramework } from 'expo-file-system';
 
 // import { SCLAlert, SCLAlertButton } from "react-native-scl-alert";
 
 import Lightbox from "react-native-lightbox-v2";
+import { color } from "react-native-reanimated";
 
 const wh = Dimensions.get("screen").height;
 const ww = Dimensions.get("screen").width;
+
 
 const DocAlbum = (props) => {
   global.HANDSHAKE = "DocAlbum";
@@ -62,6 +70,42 @@ const DocAlbum = (props) => {
       BackHandler.removeEventListener("hardwareBackPress", handleBackButtonClick);
     };
   }, []);
+  // const fileUrl = "http://154.26.136.182/media/documents/sample.pdf";
+
+
+
+
+  // const checkPermission = async () => {
+    
+  //   // Function to check the platform
+  //   // If Platform is Android then check for permissions.
+
+  //   // if (Platform.OS === 'ios') {
+  //   //   downloadFile();
+  //   // } else {
+  //     try {
+  //       const granted = await PermissionsAndroid.request(
+  //         PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+  //         {
+  //           title: 'Storage Permission Required',
+  //           message:
+  //             'Application needs access to your storage to download File',
+  //         }
+  //       );
+  //       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+  //         // Start downloading
+  //         downloadFile();
+  //         console.log('Storage Permission Granted.');
+  //       } else {
+  //         // If permission denied then show alert
+  //         Alert.alert('Error','Storage Permission Not Granted');
+  //       }
+  //     } catch (err) {
+  //       // To handle permission related exception
+  //       console.log("++++"+err);
+  //     }
+  //   // }
+  // };
   const navigation = useNavigation();
   const [dummyl, setDummyl] = useState(false)
   const [dummy, setDummy] = useState([
@@ -388,6 +432,49 @@ const DocAlbum = (props) => {
         }
       });
   };
+  // const downloadFile = () => {
+   
+  //   // Get today's date to add the time suffix in filename
+  //   let date = new Date();
+  //   // File URL which we want to download
+  //   let FILE_URL = fileUrl;    
+  //   // Function to get extention of the file url
+  //   let file_ext = getFileExtention(FILE_URL);
+   
+  //   file_ext = '.' + file_ext[0];
+   
+  //   // config: To get response by passing the downloading related options
+  //   // fs: Root directory path to download
+  //   // const { config, fs } = RNFetchBlob;
+  //   let RootDir = fs.dirs.PictureDir;
+  //   let options = {
+  //     fileCache: true,
+  //     addAndroidDownloads: {
+  //       path:
+  //         RootDir+
+  //         '/file_' + 
+  //         Math.floor(date.getTime() + date.getSeconds() / 2) +
+  //         file_ext,
+  //       description: 'downloading file...',
+  //       notification: true,
+  //       // useDownloadManager works with Android only
+  //       useDownloadManager: true,   
+  //     },
+  //   };
+  //   config(options)
+  //     .fetch('GET', FILE_URL)
+  //     .then(res => {
+  //       // Alert after successful downloading
+  //       console.log('res -> ', JSON.stringify(res));
+  //       alert('File Downloaded Successfully.');
+  //     });
+  // };
+
+  // const getFileExtention = fileUrl => {
+  //   // To get the file extension
+  //   return /[.]/.exec(fileUrl) ?
+  //            /[^.]+$/.exec(fileUrl) : undefined;
+  // };
 
   return (
 <View style={styles3.page}>
@@ -413,7 +500,7 @@ const DocAlbum = (props) => {
           source={require("../assets/app_ui2-13.png")}
           style={[styles3.logo, { height: (wh * 7) / 100 }]}
         />
-        <TouchableOpacity onPress={setAlert}>
+        {/* <TouchableOpacity onPress={setAlert}>
           <FontAwesome5
             name="bell"
             size={ResponsiveScreen.fontSize(45)}
@@ -430,7 +517,7 @@ const DocAlbum = (props) => {
   {' '}{global.NOTIF}{" "}
 </Text>
            ):(<View></View>)}
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <TouchableOpacity
           onPress={() => {
             navigation.openDrawer({ token: tokenAuth });
@@ -508,6 +595,7 @@ const DocAlbum = (props) => {
                     justifyContent: "center",
                   }}
                 >
+                  {global.OBJ.company.length < 25 ?(
                   <Text
                     style={{
                       fontSize: ResponsiveScreen.fontSize(25),
@@ -524,6 +612,24 @@ const DocAlbum = (props) => {
                     {global.OBJ.company}
                     {"  "}
                   </Text>
+                  ):(
+                    <Text
+                    style={{
+                      fontSize: ResponsiveScreen.fontSize(25),
+                      color: "#575757",
+                      fontWeight: "700",
+
+                      // marginTop: wh * 2.5 / 100,
+                      // marginLeft: ww * 5 / 100,
+                      textAlign: "left",
+                      // backgroundColor: 'pink'
+                    }}
+                  >
+                    {"  "}
+                    {global.OBJ.company.slice(0,25)}...
+                    {"  "}
+                  </Text>
+                  )}
                 </View>
                 <View
                   style={{
@@ -751,215 +857,37 @@ const DocAlbum = (props) => {
               <View style={{flex:1}}>
               <FlatList
                 data={dummy}
-                numColumns={2}
+                numColumns={1}
                 renderItem={(itemList) => (
                   <View style={{}}>
-                    <View
+                    <TouchableOpacity
+                      // onPress={()=>{itemList.item.att_file}}
+                      // onPress={()=>{downloadFile()}}
+                      
+                      onPress={() => Linking.openURL("http://"+global.UURL +itemList.item.att_file.slice(21))}
+                      
                       style={{
-                        width: (ww * 40) / 100,
-                        height: (ww * 40) / 100,
+                        width: '90%',
+                        // height: (ww * 40) / 100,
+                        paddingHorizontal:'6%',
+                        paddingVertical:ww*2/100,
+                        alignSelf:'center',
                         flexDirection: "row",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        marginBottom: (wh * 0) / 100,
+                        alignItems: 'center',
+                        // justifyContent: 'space-between',
+                        flexDirection:'column',
+                        marginBottom: (ww * 2) / 100,
                         // marginRight: ((wh+ww) * 0.2) / 10,
+                        borderRadius:ww*1/100,
+                        backgroundColor:'#ebebeb'
                         
                       }}
                     >
-                      <TouchableOpacity
-                        onPress={myImage}
-                        style={{
-                          width: (ww * 37) / 100,
-                          height: (ww * 37) / 100,
-                          justifyContent: "center",
-                          alignItems: "center",
-                          borderRadius: 8,
-                          backgroundColor:'#ededed'
-                        }}
-                      >
-                        {/* <Image
-                                                    source={{ uri: itemList.item.img }}
-                                                    // source={require("../assets/work.jpg")}
-                                                    style={{
-                                                        width: "100%",
-                                                        height: '100%',
-                                                        borderRadius: 8
-                                                    }}
-                                                /> */}
-                       <Lightbox
-                          // backgroundColor='transparcloseent'
-                          useNativeDriver={false}
-                          // onOpen={()=>{setDes(itemList.item.description)}}
-                          backgroundColor="rgba(0,0,0,0.8)"
-                          springConfig={{
-                            tension: 1000000,
-                            friction: 1000000,
-                          }}
-                          swipeToDismiss={false}
-                          renderHeader={(close) => (
-                            <TouchableOpacity
-                              onPress={close}
-                              style={{
-                                position: "absolute",
-                                top: 10,
-                                left: 10,
-                              }}
-                              >
-                                <Text style={{color:'#fff'}}>Close</Text>
-                            </TouchableOpacity>
-                          )}
-                          renderContent={() => (
-                            <View  style={{
-                              position: "absolute",
-                              top: "10%",
-                              height: wh,
-                              width: ww,
-                              backgroundColor: "rgba(0,0,0,0.4)",
-                            }}>
-                               <View
-                                    style={{
-                                      height: "45%",
-                                      width: (ww * 90) / 100,
-                                      flexDirection: "column",
-                                      alignSelf: "center",
-                                      // justifyContent: '',
-                                      marginTop: "1%",
-                                    }}
-                                  >
-                                    <Text
-                                      multiline={true}
-                                      // onChangeText={onDeChange}
-                                      style={{
-                                        marginTop:"-5%",
-                                        height: "60%",
-                                        width: "100%",
-                                        color: "#fff",
-                                        // backgroundColor:'#fff',
-                                        paddingTop: (wh * 1) / 100,
-                                        textAlignVertical: "top",
-                                        // paddingLeft: wh && (ww * 5) / 100,
-                                        alignSelf: "center",
-                                        padding: wh && (ww * 2) / 100,
-                                        borderColor: "#fff",
-                                        borderWidth: .5,
-                                        borderRadius: (ww * 2) / 100,
-                                        fontSize: ResponsiveScreen.fontSize(25),
-                                        // backgroundColor:"#fff"
-                                        backgroundColor:"rgba(2,2,2,0.5)"
-                                      }}
-                                      // placeholder={itemList.item.description}
-                                      // placeholderTextColor="#fff"
-                                      // placeholder={itemList.item.description}
-                                      // onChangeText={onDeChange}
-                                      // value={Des}
-                                    >{itemList.item.description}</Text>
-                                    <View style={{width:ww*90/100,marginTop:'2%',height:'8%',justifyContent:'space-between',flexDirection:'row-reverse',alignItems:'center'}}>
-                          
-                                    </View>
-                                  </View>
-                              <Image
-                               style={{
-                                width: (ww * 90) / 100,
-                                height: (ww * 90) / 100,
-                                alignSelf:'center',
-                                marginTop:'-17%'
-                                // borderRadius: (ww * 3) / 100,
-                                // backgroundColor:'red'
-                              }}
-                                resizeMode="cover"
-                                source={{
-                                  uri:
-                                    "http://" +
-                                    global.UURL +
-                                    itemList.item.att_file.slice(21),
-                                }}
-                              />
-                            </View>
-                          )}
-                        >
-                          
-                          {itemList.item.att_file === "null" ? (
-                            <Text
-                              style={{
-                                width: (ww * 37) / 100,
-                                height: (ww * 37) / 100,
-                                borderRadius: (ww * 3) / 100,
-                                backgroundColor: "#ededed",
-                                marginTop:ww*4/100,
-                              }}
-                            ></Text>
-                          ) : (
-                            <View>
-                              <Image
-                                style={{
-                                  width: (ww * 37) / 100,
-                                  height: (ww * 37) / 100,
-                                  borderRadius: (ww * 3) / 100,
-                                }}
-                                resizeMode="cover"
-                                source={{
-                                  uri:
-                                    "http://" +
-                                    global.UURL +
-                                    itemList.item.att_file.slice(21),
-                                }}
-                              />
-                              <View
-                                style={{
-                                  position: "absolute",
-                                  bottom: "3%",
-                                  right: "3.5%",
-                                  backgroundColor: "rgba(0,0,0,0.4)",
-                                  borderRadius: 150,
-                                  padding: (ww * 2) / 100,
-                                }}
-                              >
-                                <SimpleLineIcons
-                                      name="size-fullscreen"
-                                      size={ResponsiveScreen.fontSize(23)}
-                                      color="#fff"
-                                    />
-                              </View>
-                            </View>
-                          )}
-                          {/* <Text>{itemList.item}</Text> */}
-                        </Lightbox>
-                        {itemList.item.att_file === "null" ? (
-                          <Text></Text>
-                        ) : (<View></View>
-                          // <TouchableOpacity
-                          //   //  onPress={() => delIcon(itemList.item.id)}
-                          //   onPress={() => iconeDelet(itemList.item.id)}
-                          //   style={{ position: "absolute", top: 1, right: 1 }}
-                          // >
-                          //   <Entypo
-                          //     name="circle-with-minus"
-                          //     size={ResponsiveScreen.fontSize(40)}
-                          //     color="#f2ca30"
-                          //   />
-                          // </TouchableOpacity>
-                          // <TouchableOpacity
-                          //   //  onPress={() => delIcon(itemList.item.id)}
-                          //   onPress={() => iconeDelet(itemList.item.id)}
-                          //   style={{
-                          //     position: "absolute",
-                          //     top: "2%",
-                          //     right: "1%",
-                          //     backgroundColor: "rgba(0,0,0,0.4)",
-                          //     borderRadius: 150,
-                          //     padding: (ww * 1) / 100,
-                          //   }}
-                          // >
-                            
-                          //   <Feather
-                          //     name="trash-2"
-                          //     size={ResponsiveScreen.fontSize(37)}
-                          //     color="#fff"
-                          //   />
-                          // </TouchableOpacity>
-                        )}
-                      </TouchableOpacity>
-                    </View>
+                      {/* <Text>{itemList.item.att_file}</Text> */}
+                      <Text style={{width:'100%',height:ww*5/100,textAlign:'left',color:"#575757"}}>{itemList.item.name}</Text>
+                      <Text style={{width:'100%',height:1,backgroundColor:'#c4c4c4',marginVertical:'1%'}}></Text>
+                      <Text style={{width:'100%',textAlign:'left',color:"#575757"}}>{itemList.item.description}</Text>
+                    </TouchableOpacity>
                   </View>
                 )}
               />

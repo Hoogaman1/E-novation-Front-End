@@ -219,7 +219,7 @@ const OpenProject = (props) => {
           source={require("../assets/app_ui2-13.png")}
           style={[styles3.logo, { height: (wh * 7) / 100 }]}
         />
-        <TouchableOpacity onPress={setAlert}>
+        {/* <TouchableOpacity onPress={setAlert}>
           <FontAwesome5
             name="bell"
             size={ResponsiveScreen.fontSize(45)}
@@ -237,7 +237,7 @@ const OpenProject = (props) => {
        {' '}{global.NOTIF}{" "}
      </Text>
            ):(<View></View>)}
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <TouchableOpacity
           onPress={() => {
             navigation.openDrawer({ token: tokenAuth });
@@ -312,6 +312,7 @@ const OpenProject = (props) => {
                 justifyContent: "center",
               }}
             >
+              {global.OBJ.company.length < 21 ?(
               <Text
                 style={{
                   fontSize: ResponsiveScreen.fontSize(30),
@@ -328,6 +329,24 @@ const OpenProject = (props) => {
                 {global.OBJ.company}
                 {"  "}
               </Text>
+              ):(
+                <Text
+                style={{
+                  fontSize: ResponsiveScreen.fontSize(30),
+                  color: "#575757",
+                  fontWeight:'700',
+
+                  // marginTop: wh * 2.5 / 100,
+                  // marginLeft: ww * 5 / 100,
+                  textAlign: "left",
+                  //   backgroundColor: 'pink'
+                }}
+              >
+                {"  "}
+                {global.OBJ.company.slice(0,21)}...
+                {"  "}
+              </Text>
+              )}
             </View>
             <View
               style={{

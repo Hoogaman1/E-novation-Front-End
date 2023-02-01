@@ -180,7 +180,7 @@ const Notif = (props) => {
           source={require("../assets/app_ui2-13.png")}
           style={[styles3.logo, { height: (wh * 7) / 100 }]}
         />
-        <TouchableOpacity onPress={setAlert}>
+        {/* <TouchableOpacity onPress={setAlert}>
           <FontAwesome5
             name="bell"
             size={ResponsiveScreen.fontSize(45)}
@@ -196,7 +196,7 @@ const Notif = (props) => {
             >
             {' '}{global.NOTIF}{" "}
           </Text> ):(<View></View>)}
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <TouchableOpacity
           onPress={() => {
             navigation.openDrawer({ token: tokenAuth });
@@ -257,6 +257,7 @@ const Notif = (props) => {
                 justifyContent: "center",
               }}
             >
+              {global.OBJ.company.length < 20 ?(
               <Text
                 style={{
                   fontSize: ResponsiveScreen.fontSize(30),
@@ -273,6 +274,24 @@ const Notif = (props) => {
                 {global.OBJ.company}
                 {"  "}
               </Text>
+              ):(
+                <Text
+                style={{
+                  fontSize: ResponsiveScreen.fontSize(30),
+                  color: "#575757",
+                  fontWeight:'700',
+
+                  // marginTop: wh * 2.5 / 100,
+                  // marginLeft: ww * 5 / 100,
+                  textAlign: "left",
+                  // backgroundColor: 'pink'
+                }}
+              >
+                {"  "}
+                {global.OBJ.company.slice(0,20)}...
+                {"  "}
+              </Text>
+              )}
             </View>
             <View
               style={{
@@ -284,6 +303,7 @@ const Notif = (props) => {
                 justifyContent: "center",
               }}
             >
+              
               <Text
                 style={{
                   fontSize: ResponsiveScreen.normalize(30),

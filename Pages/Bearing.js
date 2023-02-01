@@ -3636,6 +3636,47 @@ const Bearing = (props) => {
             alignSelf: "center",
           }}
         ></View> */}
+               <TouchableOpacity
+          style={{
+            // width: "33.3%",
+            // height: "100%",
+            flex: 1,
+            // backgroundColor: "#f2ca30",
+            borderTopLeftRadius: ((ww + wh) * 2) / 200,
+            borderBottomLeftRadius: ((ww + wh) * 2) / 200,
+            justifyContent: "center",
+            
+          }}
+          onPress={() => EDIT()}
+        >
+          <View style={{ alignItems: "center" }}>
+            <Ionicons
+              name="information-circle-outline"
+              size={ResponsiveScreen.fontSize(43)}
+              color="#fff"
+            />
+          </View>
+          {/* <View style={{width:'60%',height:1,backgroundColor:'#fff',alignSelf:'center'}}></View> */}
+          <Text
+            style={{
+              alignSelf: "center",
+              fontSize: ResponsiveScreen.fontSize(22),
+              color: "#fff",
+              marginTop: "-1%",
+            }}
+          >
+            {" "}
+            Jobs info
+          </Text>
+        </TouchableOpacity>
+        <View
+          style={{
+            backgroundColor: "#fff",
+            width: 1,
+            height: "50%",
+            alignSelf: "center",
+          }}
+        ></View>
         <TouchableOpacity
           style={{
             // width: "33.3%",
@@ -3680,6 +3721,7 @@ const Bearing = (props) => {
             alignSelf: "center",
           }}
         ></View>
+        
         <TouchableOpacity
           style={{
             // width: "33.3%",
@@ -3712,6 +3754,7 @@ const Bearing = (props) => {
             Company Jobs
           </Text>
         </TouchableOpacity>
+        
       </View>
       {/* <View
         style={{

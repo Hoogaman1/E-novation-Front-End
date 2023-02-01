@@ -334,7 +334,7 @@ const OpenProject = (props) => {
             width: (ww * 25) / 100,
           }}
         >
-          <TouchableOpacity
+          {/* <TouchableOpacity
             onPress={setAlert}
             style={{
               width: (ww * 7.5) / 100,
@@ -357,30 +357,9 @@ const OpenProject = (props) => {
                 }
               }
             />
-            {/* <View
-            style={{
-              backgroundColor: "red",
-              width: (ww * 5) / 100,
-              height: (ww * 5) / 100,
-              borderRadius: (ww * 50) / 100,
-              position: "absolute",
-              right: (ww * -3.5) / 100,
-              bottom: (wh * 2) / 100,
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <Text
-              style={{
-                color: "#fff",
-                fontSize: ResponsiveScreen.fontSize(20),
-                fontWeight: "500",
-              }}
-            >
-              24
-            </Text>
-          </View> */}
-          </TouchableOpacity>
+           
+          
+          </TouchableOpacity> */}
           <TouchableOpacity
             onPress={() => {
               navigation.openDrawer({ token: tokenAuth });
@@ -444,6 +423,7 @@ const OpenProject = (props) => {
                 justifyContent: "center",
               }}
             >
+              {global.OBJ.company.length < 22 ? (
               <Text
                 style={{
                   fontSize: ResponsiveScreen.fontSize(30),
@@ -460,6 +440,24 @@ const OpenProject = (props) => {
                 {global.OBJ.company}
                 {"  "}
               </Text>
+              ):(
+                <Text
+                style={{
+                  fontSize: ResponsiveScreen.fontSize(30),
+                  color: "#575757",
+                  fontWeight: "700",
+
+                  // marginTop: wh * 2.5 / 100,
+                  // marginLeft: ww * 5 / 100,
+                  textAlign: "left",
+                  //   backgroundColor: 'pink'
+                }}
+              >
+                {"  "}
+                {global.OBJ.company.slice(0,22)}...
+                {"  "}
+              </Text>
+              )}
             </View>
             <View
               style={{
@@ -605,7 +603,8 @@ const OpenProject = (props) => {
                           fontSize: ResponsiveScreen.normalize(30),
                         }}
                       >
-                        {itemList.item.time.slice(0, 10)}
+                        {/* {itemList.item.time.slice(0, 10)} */}
+                        {(itemList.item.time).slice(8,)}/{(itemList.item.time).slice(5,7)}/{(itemList.item.time).slice(0,4)}
                       </Text>
                     </View>
 

@@ -428,7 +428,7 @@ const PhotoAlbum = (props) => {
           source={require("../assets/app_ui2-13.png")}
           style={[styles3.logo, { height: (wh * 7) / 100 }]}
         />
-        <TouchableOpacity onPress={setAlert}>
+        {/* <TouchableOpacity onPress={setAlert}>
           <FontAwesome5
             name="bell"
             size={ResponsiveScreen.fontSize(45)}
@@ -443,7 +443,7 @@ const PhotoAlbum = (props) => {
           ) : (
             <View></View>
           )}
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <TouchableOpacity
           onPress={() => {
             navigation.openDrawer({ token: tokenAuth });
@@ -522,6 +522,7 @@ const PhotoAlbum = (props) => {
                     justifyContent: "center",
                   }}
                 >
+                  {global.OBJ.company.length < 25 ?(
                   <Text
                     style={{
                       fontSize: ResponsiveScreen.fontSize(25),
@@ -538,6 +539,24 @@ const PhotoAlbum = (props) => {
                     {global.OBJ.company}
                     {"  "}
                   </Text>
+                  ):(
+                    <Text
+                    style={{
+                      fontSize: ResponsiveScreen.fontSize(25),
+                      color: "#575757",
+                      fontWeight: "700",
+
+                      // marginTop: wh * 2.5 / 100,
+                      // marginLeft: ww * 5 / 100,
+                      textAlign: "left",
+                      // backgroundColor: 'pink'
+                    }}
+                  >
+                    {"  "}
+                    {global.OBJ.company.slice(0,25)}...
+                    {"  "}
+                  </Text>
+                  )}
                 </View>
                 <View
                   style={{

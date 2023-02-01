@@ -21,6 +21,7 @@ import AboutUs from "./AboutUs";
 import Process from "./Process";
 import HandShake from "./HandShake";
 import NotePad from "./NotePad";
+import EditProject from "./EditProject";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Stack = createStackNavigator();
@@ -54,9 +55,11 @@ const MainStackNavigator = () => {
     console.log(conut)
   return (
     <Stack.Navigator>
+      
       <Stack.Screen name="Process" component={Process} options={{ headerShown: false, }} />
       <Stack.Screen name="Login" component={Login} options={{ headerShown: false, }} />
       <Stack.Screen name="Alert" component={Alert} options={{ headerShown: false, }} />
+      <Stack.Screen name="EditProject" component={EditProject} options={{ headerShown: false, }} />
       <Stack.Screen name="AboutUs" component={AboutUs} options={{ headerShown: false, }} />
       <Stack.Screen name="NotePad" component={NotePad} options={{ headerShown: false, }} />
       {/* <Stack.Screen name="test" component={test} options={{ headerShown: false, }} />/ */}

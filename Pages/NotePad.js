@@ -1,4 +1,4 @@
-import React, { useEffect, useState ,useRef} from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import {
   MaterialCommunityIcons,
@@ -83,146 +83,144 @@ const DocAlbum = (props) => {
   const [Des, setDes] = useState("");
   const onDeChange = (textValue) => {
     setDes(textValue);
-    
   };
   const [DesC, setDesC] = useState("");
   const onDeCChange = (textValue) => {
     setDesC(textValue);
-    
   };
-//   const DONE = (id) => {
-//     // setState1(false)
-//     // const obj = global.OBJ;
-    
-//     axios({
-//       method: "post",
-//       url: "http://" + global.UURL + "/BIGADMIN/comment/",
-//       // params:{
-//       //   email:email,
-//       // },
-//       headers: {
-//         // 'Content-Type': "application/json",
-//         Authorization: "Token " + global.TOKEN,
-//         // 'Accept': 'application/json'
-//       },
-//       data: {
-//         comment: DesC,
-//         project: obj.id,
-//       },
-//     })
-//       .then((response) => {
-//         if (response.data) {
-//           console.log("salammmmmmmmmmmmmmmmmmmmmmmm");
-    
-//           // setADD(false);
-//         }
-//       })
-//       // navigation.addListener('focus', () => {
-//       //   setRefresh(true)
-//       // }))
-//       // .then((response) => (console.log(EF))
-//       // .then(console.log(EF))
-//       // .catch((error) => console.log(error));
+  //   const DONE = (id) => {
+  //     // setState1(false)
+  //     // const obj = global.OBJ;
 
-//       .catch((error) => {
-//         if (error.response.status == "0") {
-//           // global.HANDSHAKE = 'History';
-//           navigation.navigate("HandShake");
-//         } else {
-//           // setState(true)
-//           console.log(error);
-//           console.log("Odafezzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
-//         }
-//       });
-//   };
-//   const Edit = (id) => {
-//     // setState1(false)
-//     // const obj = global.OBJ;
+  //     axios({
+  //       method: "post",
+  //       url: "http://" + global.UURL + "/BIGADMIN/comment/",
+  //       // params:{
+  //       //   email:email,
+  //       // },
+  //       headers: {
+  //         // 'Content-Type': "application/json",
+  //         Authorization: "Token " + global.TOKEN,
+  //         // 'Accept': 'application/json'
+  //       },
+  //       data: {
+  //         comment: DesC,
+  //         project: obj.id,
+  //       },
+  //     })
+  //       .then((response) => {
+  //         if (response.data) {
+  //           console.log("salammmmmmmmmmmmmmmmmmmmmmmm");
 
-//     axios({
-//       method: "PUT",
-//       url: "http://" + global.UURL + "/BIGADMIN/commentedit/" + id,
-//       // params:{
-//       //   email:email,
-//       // },
-//       headers: {
-//         // 'Content-Type': "application/json",
-//         Authorization: "Token " + global.TOKEN,
-//         // 'Accept': 'application/json'
-//       },
-//       data: {
-//         comment: Des,
-//         project: id,
-//       },
-//     })
-//       .then((response) => {
-//         if (response.data) {
-//           console.log("salammmmmmmmmmmmmmmmmmmmmmmm");
-//           setADD("cc");
-//         }
-//       })
-//       // navigation.addListener('focus', () => {
-//       //   setRefresh(true)
-//       // }))
-//       // .then((response) => (console.log(EF))
-//       // .then(console.log(EF))
-//       // .catch((error) => console.log(error));
+  //           // setADD(false);
+  //         }
+  //       })
+  //       // navigation.addListener('focus', () => {
+  //       //   setRefresh(true)
+  //       // }))
+  //       // .then((response) => (console.log(EF))
+  //       // .then(console.log(EF))
+  //       // .catch((error) => console.log(error));
 
-//       .catch((error) => {
-//         if (error.response.status == "0") {
-//           // global.HANDSHAKE = 'History';
-//           navigation.navigate("HandShake");
-//         } else {
-//           // setState(true)
-//           console.log(error);
-//           console.log("Odafezzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
-//         }
-//       });
-//   };
-//   const Delete = (id) => {
-//     // setState1(false)
-//     // const obj = global.OBJ;
+  //       .catch((error) => {
+  //         if (error.response.status == "0") {
+  //           // global.HANDSHAKE = 'History';
+  //           navigation.navigate("HandShake");
+  //         } else {
+  //           // setState(true)
+  //           console.log(error);
+  //           console.log("Odafezzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
+  //         }
+  //       });
+  //   };
+  //   const Edit = (id) => {
+  //     // setState1(false)
+  //     // const obj = global.OBJ;
 
-//     axios({
-//       method: "delete",
-//       url: "http://" + global.UURL + "/BIGADMIN/commentedit/" + id,
-//       // params:{
-//       //   email:email,
-//       // },
-//       headers: {
-//         // 'Content-Type': "application/json",
-//         Authorization: "Token " + global.TOKEN,
-//         // 'Accept': 'application/json'
-//       },
-//       data: {
-//         comment: Des,
-//         project: id,
-//       },
-//     })
-//       .then((response) => {
-//         if (response.data) {
-//           console.log("salammmmmmmmmmmmmmmmmmmmmmmm");
-//           setADD("cc");
-//         }
-//       })
-//       // navigation.addListener('focus', () => {
-//       //   setRefresh(true)
-//       // }))
-//       // .then((response) => (console.log(EF))
-//       // .then(console.log(EF))
-//       // .catch((error) => console.log(error));
+  //     axios({
+  //       method: "PUT",
+  //       url: "http://" + global.UURL + "/BIGADMIN/commentedit/" + id,
+  //       // params:{
+  //       //   email:email,
+  //       // },
+  //       headers: {
+  //         // 'Content-Type': "application/json",
+  //         Authorization: "Token " + global.TOKEN,
+  //         // 'Accept': 'application/json'
+  //       },
+  //       data: {
+  //         comment: Des,
+  //         project: id,
+  //       },
+  //     })
+  //       .then((response) => {
+  //         if (response.data) {
+  //           console.log("salammmmmmmmmmmmmmmmmmmmmmmm");
+  //           setADD("cc");
+  //         }
+  //       })
+  //       // navigation.addListener('focus', () => {
+  //       //   setRefresh(true)
+  //       // }))
+  //       // .then((response) => (console.log(EF))
+  //       // .then(console.log(EF))
+  //       // .catch((error) => console.log(error));
 
-//       .catch((error) => {
-//         if (error.response.status == "0") {
-//           // global.HANDSHAKE = 'History';
-//           navigation.navigate("HandShake");
-//         } else {
-//           // setState(true)
-//           console.log(error);
-//           console.log("Odafezzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
-//         }
-//       });
-//   };
+  //       .catch((error) => {
+  //         if (error.response.status == "0") {
+  //           // global.HANDSHAKE = 'History';
+  //           navigation.navigate("HandShake");
+  //         } else {
+  //           // setState(true)
+  //           console.log(error);
+  //           console.log("Odafezzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
+  //         }
+  //       });
+  //   };
+  //   const Delete = (id) => {
+  //     // setState1(false)
+  //     // const obj = global.OBJ;
+
+  //     axios({
+  //       method: "delete",
+  //       url: "http://" + global.UURL + "/BIGADMIN/commentedit/" + id,
+  //       // params:{
+  //       //   email:email,
+  //       // },
+  //       headers: {
+  //         // 'Content-Type': "application/json",
+  //         Authorization: "Token " + global.TOKEN,
+  //         // 'Accept': 'application/json'
+  //       },
+  //       data: {
+  //         comment: Des,
+  //         project: id,
+  //       },
+  //     })
+  //       .then((response) => {
+  //         if (response.data) {
+  //           console.log("salammmmmmmmmmmmmmmmmmmmmmmm");
+  //           setADD("cc");
+  //         }
+  //       })
+  //       // navigation.addListener('focus', () => {
+  //       //   setRefresh(true)
+  //       // }))
+  //       // .then((response) => (console.log(EF))
+  //       // .then(console.log(EF))
+  //       // .catch((error) => console.log(error));
+
+  //       .catch((error) => {
+  //         if (error.response.status == "0") {
+  //           // global.HANDSHAKE = 'History';
+  //           navigation.navigate("HandShake");
+  //         } else {
+  //           // setState(true)
+  //           console.log(error);
+  //           console.log("Odafezzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
+  //         }
+  //       });
+  //   };
   const [internetCheck, setInternetCheck] = useState(0);
   useEffect(() => {
     axios({
@@ -435,40 +433,37 @@ const DocAlbum = (props) => {
                 </View>
               </View>
             </View>
-
-            
-            </View>
+          </View>
+          <View
+            style={{
+              flex: 1,
+              width: (ww * 82.7) / 100,
+              // height: (ww * 115) / 100,
+              // height: "80%",
+              // flex:1,
+              // position: "absolute",
+              // left: 0,
+              // top: (ww * 43) / 100,
+              // paddingLeft: "3.5%",
+              // backgroundColor: "red",
+              // alignItems:'center'
+            }}
+          >
             <View
               style={{
-                flex: 1,
                 width: (ww * 82.7) / 100,
-                // height: (ww * 115) / 100,
-                // height: "80%",
-                // flex:1,
+                // // height: (ww * 115) / 100,
+                height: "100%",
+                // // flex:1,
                 // position: "absolute",
                 // left: 0,
                 // top: (ww * 43) / 100,
                 // paddingLeft: "3.5%",
-                // backgroundColor: "red",
-                // alignItems:'center'
+                //   backgroundColor: "blue",
+                alignItems: "center",
               }}
             >
-           
-              <View
-                style={{
-                  width: (ww * 82.7) / 100,
-                  // // height: (ww * 115) / 100,
-                  height: "100%",
-                  // // flex:1,
-                  // position: "absolute",
-                  // left: 0,
-                  // top: (ww * 43) / 100,
-                  // paddingLeft: "3.5%",
-                //   backgroundColor: "blue",
-                  alignItems: "center",
-                }}
-              >
-                {/* <ScrollView>
+              {/* <ScrollView>
                 <View style={{backgroundColor:'pink',width:'100%',alignItems:'center',alignSelf:'center'}}>
 
                 
@@ -476,127 +471,175 @@ const DocAlbum = (props) => {
                 </View>
                 
               </ScrollView> */}
-              <KeyboardAvoidingView behavior='padding' keyboardVerticalOffset={150}>
-
+              <KeyboardAvoidingView
+                behavior="padding"
+                keyboardVerticalOffset={150}
+              >
                 <FlatList
-                // ref={yourRef}
-                // onContentSizeChange={() => yourRef.current.scrollToEnd() }
-                // onLayout={() => yourRef.current.scrollToEnd() }
-                removeClippedSubviews={false}
+                  // ref={yourRef}
+                  // onContentSizeChange={() => yourRef.current.scrollToEnd() }
+                  // onLayout={() => yourRef.current.scrollToEnd() }
+                  removeClippedSubviews={false}
                   style={{
                     // width: ww * 100 / 100,
                     // paddingHorizontal: (ww * 0) / 100,
                     // height: wh * 100 / 100,
                     // flex: 1,
-                    height:"80%",
-                    width:ww*80/100,
+                    height: "80%",
+                    width: (ww * 80) / 100,
                     flexDirection: "column",
                     // backgroundColor: "blue",
-                    marginLeft:'-2.5%',
-                    marginBottom:'10%'
+                    marginLeft: "-2.5%",
+                    marginBottom: "10%",
                   }}
                   data={dummy}
                   renderItem={(itemList) => (
                     <View style={{ width: "95%" }}>
-                     
-                        <TouchableOpacity
+                      <TouchableOpacity
                         //   onLongPress={() => {
                         //     setADD(String(itemList.item.id));
-                          
+
                         //     console.log(itemList.item.comment),
                         //     setDes(itemList.item.comment);
                         //   }}
-                          style={{
-                            backgroundColor: "#f6f6f6",
-                            marginBottom: "4%",
-                            width: "97%",
-                            // marginLeft: "6%",
-                            borderRadius: 10,
-                          }}
+                        style={{
+                          backgroundColor: "#f6f6f6",
+                          marginBottom: "4%",
+                          width: "97%",
+                          // marginLeft: "6%",
+                          borderRadius: 10,
+                          // flexDirection:'row'
+                        }}
                         //   delayLongPress={50}
+                      >
+                        {/* <View style={{ height: "90%", width: (ww * 70) / 100 }}> */}
+                        <View
+                         style={{
+                          alignSelf: "flex-start",
+                          // backgroundColor: "red",
+                          width:'100%',
+                          paddingTop: (wh * 1) / 100,
+                          // textAlignVertical: "top",
+                          // paddingLeft: wh && (ww * 5) / 100,
+                          paddingRight: wh && (ww * 5) / 100,
+                          flexDirection:'row',
+                          justifyContent:'space-between',
+                          padding: wh && (ww * 1.4) / 100,
+                          
+                          // fontSize: ResponsiveScreen.fontSize(25),
+                        }}>
+                          <Image
+                    source={require("../assets/iconcl.png")}
+                    style={{
+                      alignSelf:'center',
+                      width:ww*10/100,
+                      height: ww*10/100,
+                      resizeMode: 'cover',
+                    }}
+                  />
+                          <Text  style={{
+                            alignSelf:'center',
+                            color: "#575757",
+                            // paddingTop: (wh * 1) / 100,
+                            textAlignVertical: "top",
+                            fontWeight:'600',
+                            marginLeft:"-10%",
+
+                            // padding: wh && (ww * 1.4) / 100,
+                            fontSize: ResponsiveScreen.fontSize(25),
+                          }}>E-novation Admin </Text>
+                        <Text
+                          style={{
+                            alignSelf:'center',
+                            color: "#575757",
+                            // paddingTop: (wh * 1) / 100,
+                            textAlignVertical: "top",
+                            // paddingLeft: wh && (ww * 5) / 100,
+
+                            // padding: wh && (ww * 1.4) / 100,
+                            fontSize: ResponsiveScreen.fontSize(25),
+                          }}
                         >
-                          {/* <View style={{ height: "90%", width: (ww * 70) / 100 }}> */}
+                          {(itemList.item.after_time).slice(8,)}/{(itemList.item.after_time).slice(5,7)}/{(itemList.item.after_time).slice(0,4)}
+                        </Text>
+                        </View>
+                        <Text
+                          multiline={true}
+                          // onChangeText={onDeChange}
+                          style={{
+                            // height: "100%",
+                            // width: "100%",
+                            color: "#575757",
+                            paddingTop: (wh * 1) / 100,
+                            textAlignVertical: "top",
+                            paddingLeft: wh && (ww * 5) / 100,
 
-                          <Text
-                            multiline={true}
-                            // onChangeText={onDeChange}
-                            style={{
-                              // height: "100%",
-                              // width: "100%",
-                              color: "#575757",
-                              paddingTop: (wh * 1) / 100,
-                              textAlignVertical: "top",
-                              paddingLeft: wh && (ww * 5) / 100,
-
-                              padding: wh && (ww * 1.4) / 100,
-                              fontSize: ResponsiveScreen.fontSize(25),
-                            }}
-                          >
-                            {itemList.item.comment}
-                          </Text>
-                        </TouchableOpacity>
-
+                            padding: wh && (ww * 1.4) / 100,
+                            fontSize: ResponsiveScreen.fontSize(25),
+                          }}
+                        >
+                          {itemList.item.comment}
+                        </Text>
+                      </TouchableOpacity>
                     </View>
                   )}
-                
                 />
                 {/* <View style={{height:ww*10/100}}></View> */}
-                </KeyboardAvoidingView>
-              </View>
+              </KeyboardAvoidingView>
             </View>
-            <View
-          style={{
-            height: (ww * 11) / 100,
-            // height: wh * 16 / 100,
-            flexDirection: "row",
-            width: (ww * 90) / 100,
-            position: "absolute",
-            borderRadius: ((ww + wh) * 2) / 200,
-            bottom: "-3%",
-            backgroundColor: "#192570",
-            
-            left:"5%",
-            justifyContent: "center",
-            zIndex:9999,
-          }}
-        >
-          
-          <TouchableOpacity
+          </View>
+          <View
             style={{
-              // width: "33.3%",
-              // height: "100%",
-              flex: 1,
-              // backgroundColor: "#f2ca30",
-              borderRadius: 5,
+              height: (ww * 11) / 100,
+              // height: wh * 16 / 100,
+              flexDirection: "row",
+              width: (ww * 90) / 100,
+              position: "absolute",
+              borderRadius: ((ww + wh) * 2) / 200,
+              bottom: "-3%",
+              backgroundColor: "#192570",
+
+              left: "5%",
               justifyContent: "center",
+              zIndex: 9999,
             }}
-            onPress={() => {props.navigation.navigate("Bearing")}}
           >
-            <View style={{ alignItems: "center" }}>
-            
-              <Entypo
-                name="back"
-                size={ResponsiveScreen.fontSize(40)}
-                color="#fff"
-              />
-            </View>
-            {/* <View style={{width:'60%',height:1,backgroundColor:'#fff',alignSelf:'center'}}></View> */}
-            <Text
+            <TouchableOpacity
               style={{
-                alignSelf: "center",
-                fontSize: ResponsiveScreen.fontSize(22),
-                color: "#fff",
-                marginTop: "-1%",
+                // width: "33.3%",
+                // height: "100%",
+                flex: 1,
+                // backgroundColor: "#f2ca30",
+                borderRadius: 5,
+                justifyContent: "center",
+              }}
+              onPress={() => {
+                props.navigation.navigate("Bearing");
               }}
             >
-              {" "}
-              Back to progress
-            </Text>
-          </TouchableOpacity>
+              <View style={{ alignItems: "center" }}>
+                <Entypo
+                  name="back"
+                  size={ResponsiveScreen.fontSize(40)}
+                  color="#fff"
+                />
+              </View>
+              {/* <View style={{width:'60%',height:1,backgroundColor:'#fff',alignSelf:'center'}}></View> */}
+              <Text
+                style={{
+                  alignSelf: "center",
+                  fontSize: ResponsiveScreen.fontSize(22),
+                  color: "#fff",
+                  marginTop: "-1%",
+                }}
+              >
+                {" "}
+                Back to progress
+              </Text>
+            </TouchableOpacity>
           </View>
-          
         </View>
-   
+
         {wh / ww > 1.85 ? (
           <View
             style={{
