@@ -26,9 +26,37 @@ import History from "./Pages/History";
 import Notif from "./Pages/Notif";
 import DocAlbum from "./Pages/DocAlbum";
 // import test from "./Pages/test";
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import DrawerNavigator from "./Pages/DrawerNavigator";
 import { MainStackNavigator } from "./Pages/StackNavigator";
+
+// import OneSignal from 'react-native-onesignal';
+
+//OneSignal Init Code
+// OneSignal.setLogLevel(6, 0);
+// OneSignal.setAppId("c6c6bb5f-bb26-495a-9d24-6a1322b5d270");
+//END OneSignal Init Code
+
+//Prompt for push on iOS
+// OneSignal.promptForPushNotificationsWithUserResponse(response => {
+//   console.log("Prompt response:", response);
+// });
+
+//Method for handling notifications received while app in foreground
+// OneSignal.setNotificationWillShowInForegroundHandler(notificationReceivedEvent => {
+//   console.log("OneSignal: notification will show in foreground:", notificationReceivedEvent);
+//   let notification = notificationReceivedEvent.getNotification();
+//   console.log("notification: ", notification);
+//   const data = notification.additionalData
+//   console.log("additionalData: ", data);
+//   // Complete with null means don't show a notification.
+//   notificationReceivedEvent.complete(notification);
+// });
+
+//Method for handling notifications opened
+// OneSignal.setNotificationOpenedHandler(notification => {
+//   console.log("OneSignal: notification opened:", notification);
+// });
 // import EditProject from './Pages/EditProject'
 // const getFonts = () => {
 //   return Font.loadAsync({
@@ -93,6 +121,39 @@ import { MainStackNavigator } from "./Pages/StackNavigator";
 //     easing:Easing.linear
 //   }
 // }
+// const getData = async () => {
+//   // console.log('bbbbbbbbbbbbbb')
+  
+//     try {
+//       const value = await AsyncStorage.getItem('@token')
+//       const value2 = await AsyncStorage.getItem('@obj')
+//       if(value !== '1') {
+//         // value previously stored
+//         global.TOKEN=value
+//         global.OBJ = JSON.parse(value2);
+//         // global.OBJ=JSON.parse(parsed_data);
+//         console.log('salammmmat')
+//         // setToggle(true)
+//         // setTimeout(() => 
+//         // props.navigation.navigate("OpenProject")
+//         // ,1000)
+//       //   props.navigation.navigate("Users");
+
+//       }else {
+//           setTimeout(() => 
+//           props.navigation.navigate("Login")
+//            ,1000)
+           
+//       }
+//     } catch(e) {
+//       // setToggle(false)
+
+//       // error reading value
+//       console.log(e)
+
+//     }
+//   };
+//   getData()
 export default function App({ navigation }) {
   // const [fontLoading, setFontLoading] = useState(false);
   // if (fontLoading)
@@ -103,7 +164,9 @@ export default function App({ navigation }) {
   //       onError={console.warn}
   //     />
   // }
-  global.UURL = "192.168.1.135:8000"
+  global.UURL = "154.26.136.182:8001"
+
+  // global.UURL = "192.168.43.223:8000"
   return (
     <NavigationContainer>
       {/* <Stack.Navigator>
