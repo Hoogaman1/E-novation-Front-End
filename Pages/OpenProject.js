@@ -78,7 +78,7 @@ const OpenProject = (props) => {
 
     axios({
       method: "POST",
-      url: "http://" + global.UURL + "/USER/opproject/",
+      url:global.UURL + "/USER/opproject/",
       headers: {
         // 'Content-Type': "application/json",
         Authorization: "Token " + global.TOKEN,
@@ -130,7 +130,7 @@ const OpenProject = (props) => {
 
 axios({
         method: "get",
-        url: "http://" + global.UURL + "/BIGADMIN/alertlistcont/"+global.OBJ.id,
+        url:global.UURL + "/BIGADMIN/alertlistcont/"+global.OBJ.id,
         // url: "http://" + global.UURL + ":8000/BIGADMIN/plist/" + '3',
         // params:{
         //   email:email,
@@ -169,7 +169,7 @@ axios({
       // const dummyData = []
       axios({
         method: "get",
-        url: "http://" + global.UURL + "/USER/opproject/",
+        url:global.UURL + "/USER/opproject/",
         // url: "http://" + global.UURL + ":8000/BIGADMIN/plist/" + '3',
         // params:{
         //   email:email,
@@ -217,7 +217,7 @@ axios({
 
     axios({
       method: "patch",
-      url: "http://" + global.UURL + "/BIGADMIN/alarmdone/" + obj.id,
+      url:global.UURL + "/BIGADMIN/alarmdone/" + obj.id,
       // params:{
       //   email:email,
       // },

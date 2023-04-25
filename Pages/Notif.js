@@ -99,7 +99,7 @@ const Notif = (props) => {
     // }, [id_select]);
     axios({
       method: "PUT",
-      url: "http://" + global.UURL + ":8000/USER/notif/",
+      url:global.UURL + "/USER/notif/",
       headers: {
         // 'Content-Type': "application/json",
         Authorization: "Token " + tokenAuth,
@@ -135,7 +135,7 @@ const Notif = (props) => {
 
     axios({
       method: "get",
-      url: "http://" + global.UURL + "/USER/notif/",
+      url:global.UURL + "/USER/notif/",
       // params:{
       //   email:email,
       // },

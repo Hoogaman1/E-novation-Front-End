@@ -110,7 +110,7 @@ const Process = (props) => {
           axios({
             method: "POST",
             // url: "http://127.0.0.1:8000/USER/login/",
-            url: "http://" + global.UURL + "/USER/login/",
+            url:global.UURL + "/USER/login/",
             headers: {
               // 'Content-Type': "application/json",
               // Authorization: `Token ${mahdi}`,

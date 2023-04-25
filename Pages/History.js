@@ -107,7 +107,7 @@ const History = () => {
     // console.log("hhhhhhhhhhhhhhhhhhhhhhhhhh");
     axios({
       method: "patch",
-      url: "http://" + global.UURL + "/BIGADMIN/projectedit/" + id,
+      url: global.UURL + "/BIGADMIN/projectedit/" + id,
       // params:{
       //   email:email,
       // },
@@ -170,7 +170,7 @@ const History = () => {
 
     axios({
       method: "GET",
-      url: "http://" + global.UURL + "/BIGADMIN/history/" + obj.id,
+      url:global.UURL + "/BIGADMIN/history/" + obj.id,
       // params:{
       //   email:email,
       // },

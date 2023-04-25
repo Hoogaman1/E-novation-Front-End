@@ -36,7 +36,7 @@ ResponsiveScreen.init(720, 1600);
 // import TabNavigator from "./TabNavigator";
 global.DATA = "";
 // global.URl = "192.168.108.160:8000";
-global.UURL = "192.168.1.135:8000"
+global.UURL = "https://enovationengineering.com.au/panel/"
 let phoneNumber = 'tel:${+61861177649}';
 // const getData = async () => {
 //   try {
@@ -116,7 +116,7 @@ function CustomDrawerContent(props) {
         <View>
           {typeof global.OBJ != "undefined" &&  global.OBJ !== null?(
           <Image
-            source={{ uri: "http://" + global.UURL + "/media/" + global.OBJ.img }}
+            source={{ uri: global.UURLM + "/media/" + global.OBJ.img }}
             style={{
               width: ResponsiveScreen.normalize(130),
               height: ResponsiveScreen.normalize(130),

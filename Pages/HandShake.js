@@ -62,7 +62,7 @@ const AboutUs = (props) => {
 
     axios({
       method: "GET",
-      url: "http://" + global.UURL + "/BIGADMIN/handshake/",
+      url: global.UURL + "/BIGADMIN/handshake/",
       // params:{
       //   email:email,
       // },

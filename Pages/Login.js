@@ -154,7 +154,8 @@ const LoginPage = (props) => {
     axios({
       method: "POST",
       // url: "http://127.0.0.1:8000/USER/login/",
-      url: "http://" + global.UURL + "/USER/login/",
+      // url:global.UURL + "/USER/login/",
+      url:"http://154.26.136.182:8001/panel/USER/login/",
       headers: {
         // 'Content-Type': "application/json",
         // Authorization: `Token ${mahdi}`,
@@ -206,6 +207,7 @@ const LoginPage = (props) => {
       .catch((error) => {
         console.log(error.response.status);
         if (error.response.status == "0") {
+          console.log(global.UURL)
           global.HANDSHAKE = "Login";
           props.navigation.navigate("HandShake");
         } else if (error.response.status == "404") {

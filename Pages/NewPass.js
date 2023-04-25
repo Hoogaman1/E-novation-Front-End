@@ -28,7 +28,7 @@ const NewPass = (props) => {
 
       axios({
         method: "POST",
-        url: "http://" + global.UURL + "/USER/new_password/" + email,
+        url:global.UURL + "/USER/new_password/" + email,
         // params:{
         //   email:email,
         // },

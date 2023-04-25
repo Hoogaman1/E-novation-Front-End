@@ -164,7 +164,9 @@ export default function App({ navigation }) {
   //       onError={console.warn}
   //     />
   // }
-  global.UURL = "154.26.136.182:8001"
+  global.UURL = "http://154.26.136.182:8001/panel"
+  // global.UURL = "https://enovationengineering.com.au/panel"
+  global.UURLM = "http://154.26.136.182:8001"
 
   // global.UURL = "192.168.43.223:8000"
   return (

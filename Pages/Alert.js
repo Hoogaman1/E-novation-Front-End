@@ -199,7 +199,7 @@ const OpenProject = (props) => {
     navigation.navigate(pp.state);
     axios({
       method: "patch",
-      url: "http://" + global.UURL + "/BIGADMIN/alertedit/" + pp.id,
+      url: global.UURL + "/BIGADMIN/alertedit/" + pp.id,
       headers: {
         // 'Content-Type': "application/json",
         Authorization: "Token " + global.TOKEN,
@@ -256,7 +256,7 @@ const OpenProject = (props) => {
     // const dummyData = []
     axios({
       method: "get",
-      url: "http://" + global.UURL + "/BIGADMIN/alertlist/",
+      url: global.UURL + "/BIGADMIN/alertlist/",
 
       headers: {
         Authorization: "Token " + tokenAuth,

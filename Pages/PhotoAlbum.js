@@ -142,7 +142,7 @@ const PhotoAlbum = (props) => {
 
     axios({
       method: "post",
-      url: "http://" + global.UURL + "/BIGADMIN/album/",
+      url:global.UURL + "/BIGADMIN/album/",
       // params:{
       //   email:email,
       // },
@@ -179,7 +179,7 @@ const PhotoAlbum = (props) => {
 
       axios({
         method: "get",
-        url: "http://" + global.UURL + "/BIGADMIN/listalbum/" + global.PROJ.id,
+        url:global.UURL + "/BIGADMIN/listalbum/" + global.PROJ.id,
         // url: "http://" + global.UURL + "/BIGADMIN/listalbum/3",
         // params:{
         //   email:email,
@@ -297,7 +297,7 @@ const PhotoAlbum = (props) => {
     axios({
       method: "get",
       // url: "http://" + global.UURL + "/BIGADMIN/listalbum/3",
-      url: "http://" + global.UURL + "/BIGADMIN/listalbum/" + global.PROJ.id,
+      url:global.UURL + "/BIGADMIN/listalbum/" + global.PROJ.id,
       // params:{
       //   email:email,
       // },
@@ -340,7 +340,7 @@ const PhotoAlbum = (props) => {
     // console.log(id)
     axios({
       method: "delete",
-      url: "http://" + global.UURL + "/BIGADMIN/albumedit/" + global.DELETE,
+      url:global.UURL + "/BIGADMIN/albumedit/" + global.DELETE,
       // params:{
       //   email:email,
       // },
@@ -378,7 +378,7 @@ const PhotoAlbum = (props) => {
     axios({
       method: "get",
       // url: "http://" + global.UURL + "/BIGADMIN/listalbum/3",
-      url: "http://" + global.UURL + "/BIGADMIN/listalbum/" + global.PROJ.id,
+      url: global.UURL + "/BIGADMIN/listalbum/" + global.PROJ.id,
       // params:{
       //   email:email,
       // },
@@ -881,7 +881,9 @@ const PhotoAlbum = (props) => {
                                       // // placeholder={itemList.item.description}
                                       // onChangeText={onDeChange}
                                       // value={Des}
-                                    >{itemList.item.description}</Text>
+                                    // >{global.UURLM+
+                                    // itemList.item.img.slice(26)}</Text>
+                                    >{itemList.item.description}</Text> 
                                     <View style={{width:ww*90/100,marginTop:'2%',height:'8%',justifyContent:'space-between',flexDirection:'row-reverse',alignItems:'center'}}>
 
                                     </View>
@@ -898,9 +900,8 @@ const PhotoAlbum = (props) => {
                                     resizeMode="cover"
                                     source={{
                                       uri:
-                                        "http://" +
-                                        global.UURL +
-                                        itemList.item.img.slice(21),
+                                        global.UURLM +
+                                        itemList.item.img.slice(26),
                                     }}
                                   />
                               
@@ -928,9 +929,9 @@ const PhotoAlbum = (props) => {
                                     resizeMode="cover"
                                     source={{
                                       uri:
-                                        "http://" +
-                                        global.UURL +
-                                        itemList.item.img.slice(21),
+                                        
+                                        global.UURLM +
+                                        itemList.item.img.slice(26),
                                     }}
                                   />
                                   <View

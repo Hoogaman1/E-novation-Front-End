@@ -225,7 +225,7 @@ const DocAlbum = (props) => {
   useEffect(() => {
     axios({
       method: "get",
-      url: "http://" + global.UURL + "/BIGADMIN/listcom/" + obj.id,
+      url:global.UURL + "/BIGADMIN/listcom/" + obj.id,
       // params:{
       //   email:email,
       // },

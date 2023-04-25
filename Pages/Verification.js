@@ -26,7 +26,7 @@ const Verification = (props) => {
     props.navigation.navigate("NewPass", { email: email }),
       axios({
         method: "POST",
-        url: "http://" + global.UURL + "/USER/verification/" + email + "/",
+        url:global.UURL + "/USER/verification/" + email + "/",
         // params:{
         //   email:email,
         // },

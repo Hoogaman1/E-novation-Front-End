@@ -88,7 +88,7 @@ const EditProject = (props) => {
 
     axios({
       method: "get",
-      url: "http://" + global.UURL + ":8000/BIGADMIN/projectedit/" + obj.id,
+      url: global.UURL + "/BIGADMIN/projectedit/" + obj.id,
       // params:{
       //   email:email,
       // },
@@ -234,7 +234,7 @@ const EditProject = (props) => {
   const DONE = () => {
     axios({
       method: "patch",
-      url: "http://" + global.UURL + "/BIGADMIN/projectedit/" + obj.id,
+      url: global.UURL + "/BIGADMIN/projectedit/" + obj.id,
       // params:{
       //   email:email,
       // },
@@ -319,7 +319,7 @@ const EditProject = (props) => {
     
     axios({
       method: "patch",
-      url: "http://" + global.UURL + "/BIGADMIN/projectedit/" + obj.id,
+      url: global.UURL + "/BIGADMIN/projectedit/" + obj.id,
       // params:{
       //   email:email,
       // },

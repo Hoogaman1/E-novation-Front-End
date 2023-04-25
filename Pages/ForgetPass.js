@@ -24,7 +24,7 @@ const ForgetPass = (props) => {
     props.navigation.navigate("Verification", { email: email });
     axios({
       method: "POST",
-      url: "http://" + global.UURL + "/USER/forget_password/",
+      url:global.UURL + "/USER/forget_password/",
       headers: {
         // 'Content-Type': "application/json",
         // Authorization: "7a5b55841e8ad94f989a789ef4d23e5809ce0c48",

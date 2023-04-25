@@ -218,7 +218,7 @@ const DocAlbum = (props) => {
 
     axios({
       method: "post",
-      url: "http://" + global.UURL + "/BIGADMIN/doc/",
+      url:global.UURL + "/BIGADMIN/doc/",
       // params:{
       //   email:email,
       // },
@@ -254,7 +254,7 @@ const DocAlbum = (props) => {
       axios({
         method: "get",
         // url: "http://" + global.UURL + "/BIGADMIN/listdoc/" + global.OBJ.id,
-        url: "http://" + global.UURL + "/BIGADMIN/listdoc/" + global.PROJ.id,
+        url: global.UURL + "/BIGADMIN/listdoc/" + global.PROJ.id,
         // params:{
         //   email:email,
         // },
@@ -328,7 +328,7 @@ const DocAlbum = (props) => {
     console.log("ddddddddddddddddddddd");
     axios({
       method: "get",
-      url: "http://" + global.UURL + "/BIGADMIN/listdoc/" + global.PROJ.id,
+      url: global.UURL + "/BIGADMIN/listdoc/" + global.PROJ.id,
       // params:{
       //   email:email,
       // },
@@ -367,7 +367,7 @@ const DocAlbum = (props) => {
     // console.log(id)
     axios({
       method: "delete",
-      url: "http://" + global.UURL + "/BIGADMIN/docedit/" + global.DELETE,
+      url:global.UURL + "/BIGADMIN/docedit/" + global.DELETE,
       // params:{
       //   email:email,
       // },
@@ -408,7 +408,7 @@ const DocAlbum = (props) => {
 
     axios({
       method: "get",
-      url: "http://" + global.UURL + "/BIGADMIN/listdoc/" + global.PROJ.id,
+      url:global.UURL + "/BIGADMIN/listdoc/" + global.PROJ.id,
       // params:{
       //   email:email,
       // },
@@ -864,7 +864,7 @@ const DocAlbum = (props) => {
                       // onPress={()=>{itemList.item.att_file}}
                       // onPress={()=>{downloadFile()}}
                       
-                      onPress={() => Linking.openURL("http://"+global.UURL +itemList.item.att_file.slice(21))}
+                      onPress={() => Linking.openURL(global.UURLM +itemList.item.att_file.slice(26))}
                       
                       style={{
                         width: '90%',

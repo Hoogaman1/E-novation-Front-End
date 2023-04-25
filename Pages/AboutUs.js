@@ -81,7 +81,7 @@ const OpenProject = (props) => {
 
     axios({
       method: "POST",
-      url: "http://" + global.UURL + "/USER/opproject/",
+      url: global.UURL + "/USER/opproject/",
       headers: {
         // 'Content-Type': "application/json",
         Authorization: "Token " + global.TOKEN,
@@ -138,7 +138,7 @@ const OpenProject = (props) => {
       // const dummyData = []
       axios({
         method: "get",
-        url: "http://" + global.UURL + "/USER/opproject/",
+        url: global.UURL + "/USER/opproject/",
         // url: "http://" + global.UURL + ":8000/BIGADMIN/plist/" + '3',
         // params:{
         //   email:email,

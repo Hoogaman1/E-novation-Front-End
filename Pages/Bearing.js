@@ -487,7 +487,7 @@ const Bearing = (props) => {
 
     axios({
       method: "get",
-      url: "http://" + global.UURL + "/BIGADMIN/projectedit/" + obj.id,
+      url: global.UURL + "/BIGADMIN/projectedit/" + obj.id,
       // params:{
       //   email:email,
       // },
